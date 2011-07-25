@@ -41,10 +41,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['hostname'] = 'mysql-user.stanford.edu';
+$db['default']['username'] = 'gfrosocodormwe0';
+$db['default']['password'] = 'aithaiqu';
+$db['default']['database'] = 'g_frosoco_dorm_website';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
