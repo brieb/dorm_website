@@ -1,15 +1,4 @@
-<input id="user_search" type='text' name='user_search' placeholder='Enter a name or house...'></input>
-
-<input type="checkbox" name="filter_house[]" value="schiff" />Schiff
-<input type="checkbox" name="filter_house[]" value="adams" />Adams
-
-<input type="checkbox" name="filter_floor[]" value="1" />Floor 1
-<input type="checkbox" name="filter_floor[]" value="2" />Floor 2
-<input type="checkbox" name="filter_floor[]" value="3" />Floor 3
-
-<div id="users_container"></div>
-
-<script type="text/javascript">
+//TODO use this instead, won't work now because it needs php data
 $(document).ready(function () {
 
 var users = <?php echo $users; ?>;
@@ -31,7 +20,8 @@ var detect_matching_users = function() {
     }
   );
   match_floor = match_floor.substring(1);
-  var match_floor_regex = new RegExp(match_floor);
+  match_floor_regex = new RegExp(match_floor);
+  console.log(match_floor_regex);
 
   var search_text = $('#user_search').val();
   var search_regex = new RegExp(search_text, 'i');
@@ -63,34 +53,29 @@ var detect_matching_users = function() {
 var print_matching_users = function() {
   detect_matching_users();
 
-  var content = $('<ul/>');
+  var content = "";
+
+  content += "<ul>";
   for (var i = 0; i < users.length; i++) {
     var user = users[i];
     if (user['is_match'] === true) {
-      content.append(
-        $('<li />').append(
-          $('<ul />').append(
-            $('<li />', {
-              text: user['first_name'] + " " + user['last_name']
-            }),
-            $('<li />', {
-              text: user['email']
-            }),
-            $('<li />', {
-              text: user['house'] + " " + user['room']
-            })
-          )
-        )
-      )
+      content += "<li>";
+        content += "<ul>";
+          content += "<li>" + user['first_name'] + " " + user['last_name'] + "</li>";
+          content += "<li>" + user['email'] + "</li>";
+          content += "<li>" + user['house'] + " " + user['room'] + "</li>";
+        content += "</ul>";
+      content += "</li>";
     }
   }
+  content += "</ul>";
+
   $("#users_container").html(content);
 }
+
+print_matching_users();
 
 $("#user_search").keyup(print_matching_users);
 $('input:checkbox').click(print_matching_users);
 
-print_matching_users();
 });
-</script>
-
