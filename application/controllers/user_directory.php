@@ -36,14 +36,14 @@ class User_directory extends CI_Controller {
       'last_name' => 'Smith',
       'email' => 'bobs@stanford.edu',
       'house' => 'Schiff',
-      'room' => '219',
+      'room' => '119',
     ),
     array(
       'first_name' => 'John',
       'last_name' => 'Smith',
       'email' => 'johnsmith@stanford.edu',
-      'house' => 'Schiff',
-      'room' => '219',
+      'house' => 'Adams',
+      'room' => '319',
     ),
    );
 
