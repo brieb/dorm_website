@@ -1,47 +1,38 @@
-<button id='button_sign_up'           class='button_event_builder' type='button'>Sign Up</button>
-<button id='button_sign_up_questions' class='button_event_builder' type='button'>Sign Up Questions</button>
-<button id='button_payment'           class='button_event_builder' type='button'>Payment</button>
-<button id='button_event_location'          class='button_event_builder' type='button'>Event Location</button>
-<button id='button_meetup_info'            class='button_event_builder' type='button'>Meetup Info</button>
+<?php
+$this->load->view('header', array('page_title' => 'Create an Event'));
+$this->load->view('calendar/sidebar');
+?>
 
-<?php echo validation_errors(); ?>
+<button id='button_sign_up' class='button_event_builder' type='button'>Sign Up</button>
+<button id='button_sign_up_questions' class='button_event_builder' type='button'>Sign Up Questions</button>
+<button id='button_payment' class='button_event_builder' type='button'>Payment</button>
+<button id='button_event_location' class='button_event_builder' type='button'>Event Location</button>
+<button id='button_meetup_info' class='button_event_builder' type='button'>Meetup Info</button>
 
 <?php
 $this->load->helper('form');
-var_dump($display_fields);
 
 echo form_open('event/create', array('id' => 'event_create_form'));
-echo form_error('default[title]');
+echo form_error('title');
 echo form_input(array(
-  'name' => 'default[title]',
+  'name' => 'title',
   'placeholder' => 'Event Title',
-  'value' => set_value('default[title]')
+  'value' => set_value('title')
 ));
-echo form_error('default[datetime]');
+echo form_error('datetime');
 echo form_input(array(
-  'name' => 'default[datetime]',
-  'value' => set_value('default[datetime]')
+  'name' => 'datetime',
+  'value' => set_value('datetime')
 ));
-echo form_error('default[description]');
+echo form_error('description');
 echo form_textarea(array(
-  'name' => 'default[description]',
-  'value' => set_value('default[description]')
+  'name' => 'description',
+  'value' => set_value('description')
 ));
 
-foreach($display_fields as $display_field) {
-  switch ($display_field) {
-    case "sign_up":
-      echo genFieldSignUp();
-      break;
-    case "payment":
-      echo genFieldPayment();
-      break;
-    case 'event_location':
-      echo genFieldEventLocation();
-      break;
-    case 'meetup_info':
-      echo genFieldMeetupInfo();
-      break;
+if(isset($display_fields)) {
+  foreach($display_fields as $display_field) {
+    echo genFieldForType($display_field);
   }
 }
 
@@ -61,80 +52,23 @@ $(document).ready(function() {
     target.attr('disabled', 'disabled');
     var type = target.attr('id').replace(/button_/, '');
 
+    var content_sign_up = <?php echo json_encode(genFieldSignUp()); ?>;
+    var content_meetup_info = <?php echo json_encode(genFieldMeetupInfo()); ?>;
+
+    //TODO preload field types?
     $.get("<?php echo site_url('event/getFieldByType'); ?>/"+type,
       function(data) {
         console.log(data);
-
         var insertBeforeElem = $('#event_create_form input[type=submit]');
-
-        var content = $(data);
-        //content.append(
-          //$('<button />')
-            //.text('Remove')
-            //.attr({
-              //type: 'button'
-            //})
-            //.click(function(event) {
-              //var target = $(event.target);
-              //target.parent().remove();
-
-              //$(this).removeAttr('disabled');
-            //}.bind(this))
-        //);
-
         insertBeforeElem.before(data);
-
-      }.bind(this)
+      }
     );
-
-    //var content = $('<fieldset />');
-    //content.append($('<legend />').text(target.text()));
-
-    //if (type === 'sign_up') {
-      //content.append(
-        //$('<input />')
-          //.attr({
-            //type: 'hidden',
-            //name: 'sign_up[enabled]',
-            //value: 'true'
-          //})
-      //);
-    //} else if (type === 'payment') {
-      //content.append(
-        //$('<input />')
-          //.attr({
-            //type: 'text',
-            //name: 'payment[price]',
-            //placeholder: 'Price'
-          //}),
-        //$('<input />')
-          //.attr({
-            //type: 'text',
-            //name: 'payment[instructions]',
-            //placeholder: 'Instructions'
-          //})
-      //);
-    //} else if (type === 'event_location') {
-      //content.append(
-        //$('<input />')
-          //.attr({
-            //type: 'text',
-            //name: 'event_location[location]',
-            //placeholder: 'Event Location'
-          //})
-      //);
-    //} else if (type === 'meetup_info') {
-      //content.append(
-        //$('<input />')
-          //.attr({
-            //type: 'text',
-            //name: 'meetup_info[info]',
-            //placeholder: 'Meetup Info'
-          //})
-      //);
-    //}
 
   });
 
 });
 </script>
+
+<?php
+$this->load->view('footer');
+?>
