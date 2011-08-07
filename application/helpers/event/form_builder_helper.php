@@ -1,5 +1,29 @@
 <?php
 
+function getFieldTypes() {
+  return array(
+    'sign_up',
+    'payment',
+    'event_location',
+    'meetup_info',
+  );
+}
+
+function genFieldForType($type) {
+  switch ($type) {
+    case "sign_up":
+      return genFieldSignUp();
+    case "payment":
+      return genFieldPayment();
+    case 'event_location':
+      return genFieldEventLocation();
+    case 'meetup_info':
+      return genFieldMeetupInfo();
+    default:
+      return "";
+  }
+}
+
 function genFieldset($legend_text, $form_field_name, $content) {
   $fieldset = form_fieldset($legend_text);
   $fieldset .= $content;
@@ -8,7 +32,11 @@ function genFieldset($legend_text, $form_field_name, $content) {
     target.parent().remove();
     $(\'#button_'.$form_field_name.'\').removeAttr(\'disabled\');
    "';
-  $fieldset .= form_button('', 'Remove', $js);
+//  $button_attr_remove = array(
+//    'content' => 'Remove',
+//    ''
+//  );
+  $fieldset .= form_button('button_field_remove['.$form_field_name.']', 'Remove');
   $fieldset .= form_fieldset_close();
   return $fieldset;
 }
@@ -32,7 +60,7 @@ function genFieldPayment() {
     'type' => 'text',
     'name' => $field_form_name,
     'placeholder' => 'Price',
-    'value' > set_value($field_form_name)
+    'value' => set_value($field_form_name)
   ));
 
   $field_form_name = 'form_builder[payment][instructions]';
@@ -58,7 +86,6 @@ function genFieldEventLocation() {
     'placeholder' => 'Event Location',
     'value' => set_value($field_form_name)
   ));
-  var_dump(set_value($field_form_name));
 
   return genFieldset('Event Location', 'event_location', $field_content);
 }
@@ -75,6 +102,6 @@ function genFieldMeetupInfo() {
     'value' => set_value($field_form_name)
   ));
 
-  return genFieldset('Meetup Info', 'meeting_info', $field_content);
+  return genFieldset('Meetup Info', 'meetup_info', $field_content);
 }
 
