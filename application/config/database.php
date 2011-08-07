@@ -38,8 +38,8 @@
 | the active record class
 */
 
-$active_group = 'default';
-$active_record = TRUE;
+$active_group = 'test';
+$active_record = FALSE;
 
 $db['default']['hostname'] = 'mysql-user.stanford.edu';
 $db['default']['username'] = 'gfrosocodormwe0';
@@ -57,6 +57,21 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['test']['hostname'] = "localhost";
+$db['test']['username'] = "root";
+$db['test']['password'] = "root";
+$db['test']['database'] = "dorm_website";
+$db['test']['dbdriver'] = "mysql";
+$db['test']['dbprefix'] = "";
+$db['test']['pconnect'] = TRUE;
+$db['test']['db_debug'] = FALSE;
+$db['test']['cache_on'] = FALSE;
+$db['test']['cachedir'] = "";
+$db['test']['char_set'] = "utf8";
+$db['test']['dbcollat'] = "utf8_general_ci";
+$db['test']['swap_pre'] = "";
+$db['test']['autoinit'] = TRUE;
+$db['test']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

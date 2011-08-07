@@ -1,11 +1,11 @@
-<input id="user_search" type='text' name='user_search' placeholder='Enter a name or house...'></input>
+<input id="user_search" type='text' name='user_search' placeholder='Enter a name or email...'></input>
 
-<input type="checkbox" name="filter_house[]" value="schiff" />Schiff
-<input type="checkbox" name="filter_house[]" value="adams" />Adams
+<input type="checkbox" name="filter_house[]" checked value="schiff" />Schiff
+<input type="checkbox" name="filter_house[]" checked value="adams" />Adams
 
-<input type="checkbox" name="filter_floor[]" value="1" />Floor 1
-<input type="checkbox" name="filter_floor[]" value="2" />Floor 2
-<input type="checkbox" name="filter_floor[]" value="3" />Floor 3
+<input type="checkbox" name="filter_floor[]" checked value="1" />Floor 1
+<input type="checkbox" name="filter_floor[]" checked value="2" />Floor 2
+<input type="checkbox" name="filter_floor[]" checked value="3" />Floor 3
 
 <div id="users_container"></div>
 
@@ -39,9 +39,13 @@ var detect_matching_users = function() {
   for (var i = 0; i < users.length; i++) {
     var user = users[i];
     user['is_match'] = false;
+    if ($('input[name="filter_house[]"]:checked').length == 0 ||
+      $('input[name="filter_floor[]"]:checked').length == 0) {
+        continue;
+      }
 
     var user_searchable = [
-      user['first_name'] + " " + user['last_name'],
+      user['full_name'],
       user['email']
     ];
 
@@ -63,6 +67,7 @@ var detect_matching_users = function() {
 var print_matching_users = function() {
   detect_matching_users();
 
+  $("#users_container").html('');
   var content = $('<ul/>');
   for (var i = 0; i < users.length; i++) {
     var user = users[i];
@@ -71,7 +76,7 @@ var print_matching_users = function() {
         $('<li />').append(
           $('<ul />').append(
             $('<li />', {
-              text: user['first_name'] + " " + user['last_name']
+              text: user['full_name']
             }),
             $('<li />', {
               text: user['email']
