@@ -26,6 +26,10 @@ echo form_close();
 
 <script
   type="text/javascript"
+  src="<?php echo base_url(); ?>assets/js/jquery.serialize-list.js">
+</script>
+<script
+  type="text/javascript"
   src="<?php echo base_url(); ?>assets/js/SignUpFormBuilder.js">
 </script>
 

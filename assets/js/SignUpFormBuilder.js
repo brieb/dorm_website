@@ -18,7 +18,25 @@ SignUpFormBuilder = {
     });
 
     $('#sign_up_form_create').submit(function() {
-      console.log($(this).serializeArray());
+      var questions = [];
+      var form = $(this);
+      form.find('fieldset').each(function(i, value) {
+        value = $(value);
+        var question = {};
+        question.type = value.find('input[name="question[type]"]').val();
+        question.text = value.find('input[name="question[text]"]').val();
+        question.help = value.find('input[name="question[help]"]').val();
+        question.required = value.find('input[name="question[required]"]').val();
+
+        var choices = value.find('input[name="question[choice][]"]');
+        question.choices = [];
+        choices.each(function(j, choice) {
+          choice = $(choice);
+          question.choices.push(choice.val());
+        });
+        questions.push(question);
+      });
+      console.log(questions);
       return false;
     });
   },
@@ -36,11 +54,20 @@ SignUpFormBuilder = {
       content.append(
         $('<input />').attr({
         type: 'hidden',
-        name: 'question_type[][' + type + ']'
+        name: 'question[type]',
+        value: type
+      }), $('<input />').attr({
+        type: 'hidden',
+        name: 'question[id]',
+        value: SignUpFormBuilder.field.curId
       }), $('<input />').attr({
         type: 'text',
-        placeholder: 'Enter question text here...',
-        name: 'question[]'
+        name: 'question[text]',
+        placeholder: 'Enter question text here...'
+      }), $('<input />').attr({
+        type: 'text',
+        name: 'question[help]',
+        placeholder: 'Optional question help'
       }), $('<br/ >'));
 
       content.append(SignUpFormBuilder.field['genType' + typeFn]);
@@ -74,10 +101,10 @@ SignUpFormBuilder = {
     genMultipleChoiceChoice: function() {
       var elemChoice = $('<input />').attr({
         type: 'radio',
-        name: 'field[' + SignUpFormBuilder.field.curId + '][]'
+        disabled: 'disabled'
       }).after($('<input />').attr({
         type: 'text',
-        name: '',
+        name: 'question[choice][]',
         placeholder: 'Enter Choice Text Here'
       })).after($('<br />'));
       return elemChoice;
@@ -89,10 +116,10 @@ SignUpFormBuilder = {
     genCheckbox: function() {
       var elemChoice = $('<input />').attr({
         type: 'checkbox',
-        name: 'field[' + SignUpFormBuilder.field.curId + '][]'
+        disabled: 'disabled'
       }).after($('<input />').attr({
         type: 'text',
-        name: '',
+        name: 'question[choice][]',
         placeholder: 'Enter Choice Text Here'
       })).after($('<br />'));
       return elemChoice;
@@ -104,7 +131,7 @@ SignUpFormBuilder = {
     genChooseFromAListChoice: function() {
       var elemChoice = $('<input />').attr({
         type: 'text',
-        name: '',
+        name: 'question[choice][]',
         placeholder: 'Enter choice text here'
       }).after($('<br />'));
       return elemChoice;
@@ -113,7 +140,13 @@ SignUpFormBuilder = {
       var target = $(event.target);
       var elemNew = genFn();
       target.parent().before(elemNew);
-      elemNew[1].focus();
+      for(var i = 0; i < elemNew.length; i++) {
+        console.log(elemNew[i]);
+        if($(elemNew[i]).attr('type') === 'text') {
+          elemNew[i].focus();
+          break;
+        }
+      }
     },
     genDummyField: function(inputType, inputText, genFn) {
       var elemChoiceDummy = $('<span />').css({
