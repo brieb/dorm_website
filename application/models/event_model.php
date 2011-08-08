@@ -9,13 +9,36 @@ class Event_model extends CI_Model {
     parent::__construct();
   }
 
+  function getEvent($id) {
+    $this->load->database();
+    $query = $this->db->query(
+      "
+      SELECT
+        title,
+        description,
+        time,
+        fields
+      FROM event
+      WHERE id = ?
+    ", array(
+            $id
+       )
+    );
+    $event = $query->row_array();
+    $event['time_pretty'] = date('m.d.y \a\t g:ia', strtotime($event['time']));
+
+    return $event;
+  }
+
+  //TODO move to controller
   function getEvents() {
     $this->load->database();
     $query = $this->db->query("
       SELECT
         title,
         description,
-        time
+        time,
+        fields
       FROM event
     ");
 
@@ -28,17 +51,19 @@ class Event_model extends CI_Model {
   }
 
   function create($event_data) {
+    //var_dump($event_data);
     $mysqldate = date('Y-m-d H:i:s', strtotime($event_data['datetime']));
 
     $this->load->database();
     $query = $this->db->query("
       INSERT INTO event
-        (title, description, time)
-      VALUES (?, ?, ?)
+        (title, description, time, fields)
+      VALUES (?, ?, ?, ?)
     ", array(
       $event_data['title'],
       $event_data['description'],
-      $mysqldate
+      $mysqldate,
+      $event_data['fields']
     ));
 
     if($query) {

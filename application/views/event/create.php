@@ -3,11 +3,24 @@ $this->load->view('header', array('page_title' => 'Create an Event'));
 $this->load->view('calendar/sidebar');
 ?>
 
-<button id='button_sign_up' class='button_event_builder' type='button'>Sign Up</button>
-<button id='button_sign_up_questions' class='button_event_builder' type='button'>Sign Up Questions</button>
-<button id='button_payment' class='button_event_builder' type='button'>Payment</button>
-<button id='button_event_location' class='button_event_builder' type='button'>Event Location</button>
-<button id='button_meetup_info' class='button_event_builder' type='button'>Meetup Info</button>
+<?php
+$fields = getFieldTypes();
+
+foreach($fields as $field) {
+  $button_attr = array();
+  $button_attr['name'] = 'button_field_add['.$field['name'].']';
+  $button_attr['content'] = $field['pretty'];
+  if(isset($display_fields) && in_array($field['name'], $display_fields)) {
+    $button_attr['disabled'] = 'disabled';
+  }
+  echo form_button($button_attr);
+}
+?>
+<!--<button id='button_sign_up' class='button_event_builder' type='button'>Sign Up</button>-->
+<!--<button id='button_sign_up_questions' class='button_event_builder' type='button'>Sign Up Questions</button>-->
+<!--<button id='button_payment' class='button_event_builder' type='button'>Payment</button>-->
+<!--<button id='button_event_location' class='button_event_builder' type='button'>Event Location</button>-->
+<!--<button id='button_meetup_info' class='button_event_builder' type='button'>Meetup Info</button>-->
 
 <?php
 $this->load->helper('form');
@@ -47,24 +60,35 @@ $(document).ready(function() {
     return false;
   });
 
-  $('.button_event_builder').click(function() {
+  $('button[name^="button_field_add["]').click(function() {
     var target = $(this);
     target.attr('disabled', 'disabled');
-    var type = target.attr('id').replace(/button_/, '');
+    var type = target.attr('name').replace(/button_field_add\[(.*)\]/, '$1');
 
-    var content_sign_up = <?php echo json_encode(genFieldSignUp()); ?>;
-    var content_meetup_info = <?php echo json_encode(genFieldMeetupInfo()); ?>;
-
-    //TODO preload field types?
-    $.get("<?php echo site_url('event/getFieldByType'); ?>/"+type,
-      function(data) {
-        console.log(data);
-        var insertBeforeElem = $('#event_create_form input[type=submit]');
-        insertBeforeElem.before(data);
+    <?php
+      echo "var content = [];\n";
+      foreach($fields as $field) {
+        echo "content['".$field['name']."'] = ".json_encode(genFieldForType($field['name'])).";\n";
       }
-    );
+    ?>
 
+    var insertBeforeElem = $('#event_create_form input[type=submit]');
+    insertBeforeElem.before(content[type]);
   });
+  <?php
+    foreach($fields as $field):
+  ?>
+    $('#event_create_form').delegate(
+        'button[name="button_field_remove[<?php echo $field['name']; ?>]"]',
+        'click',
+        function(event) {
+          var target = $(event.target);
+          target.parent().remove();
+          $('button[name="button_field_add[<?php echo $field['name']; ?>]"]').removeAttr('disabled');
+        });
+  <?php
+    endforeach;
+?>
 
 });
 </script>
