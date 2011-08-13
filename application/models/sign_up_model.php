@@ -29,21 +29,12 @@ class Sign_up_model extends CI_Model {
     return $query;
   }
 
-  function read($id = NULL) {
-    if ($id != NULL) {
-      $sql = "SELECT event_id, form FROM sign_up
-        WHERE id = ?";
-      $query = $this->db->query($sql, array($id));
-      $result = $query->row();
-      return $result;
-    } else {
-      $sql = "SELECT event_id, form FROM sign_up
-        WHERE id = ?";
-      $query = $this->db->query($sql, array($id));
-      $result = $query->row();
-      return $result;
-
-    }
+  function read($id) {
+    $sql = "SELECT event_id, form FROM sign_up
+      WHERE id = ?";
+    $query = $this->db->query($sql, array($id));
+    $result = $query->row();
+    return $result;
   }
 
   function update($id) {
