@@ -74,15 +74,4 @@ class Event extends CI_Controller {
     }
   }
 
-  function createSignUpForm() {
-    $this->load->library('form_validation');
-    $form_data = $this->input->post();
-    if (!$form_data) {
-      $this->load->view('event/sign_up/form_create');
-    }
-    else {
-      
-    }
-  }
-
 }
