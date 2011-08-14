@@ -16,7 +16,6 @@ SignUpFormBuilder = {
     SignUpFormBuilder.buttons.setUp();
     SignUpFormBuilder.dialog.setUp();
     SignUpFormBuilder.form.container = $("#sign_up_form_create");
-
   },
   form: {
     container: null,
@@ -27,6 +26,7 @@ SignUpFormBuilder = {
         .each(function (i, value) {
           value = $(value);
           var question = {};
+          question.id = value.find('input[name="question[id]"]').val();
           question.type = value.find('input[name="question[type]"]').val();
           question.text = value.find('input[name="question[text]"]').val();
           question.help = value.find('input[name="question[help]"]').val();
@@ -111,6 +111,7 @@ SignUpFormBuilder = {
     }
   },
   field: {
+    curId: 0,
     genType: function (type) {
       SignUpFormBuilder.field.curId++;
 
@@ -121,6 +122,10 @@ SignUpFormBuilder = {
       var fieldset = $('<fieldset />');
       fieldset.append(
         $('<input />').attr({
+          type: 'hidden',
+          name: 'question[id]',
+          value: SignUpFormBuilder.field.curId
+        }), $('<input />').attr({
           type: 'hidden',
           name: 'question[type]',
           value: type

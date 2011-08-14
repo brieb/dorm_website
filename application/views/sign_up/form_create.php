@@ -1,21 +1,12 @@
-<html>
-<head>
-<script
-  type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
-</script>
-<script
-  type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js">
-</script>
+<?php
+//TODO remove
+$this->load->view('header');
+?>
 <script
   type="text/javascript"
   src="<?php $this->load->helper('url'); echo base_url(); ?>assets/js/SignUpFormBuilder.js">
 </script>
-<link rel="stylesheet" href="/dorm_website/assets/css/Aristo/jquery-ui-1.8.7.custom.css">
-</head>
 
-<body>
 <button name="button_field_add[sign_up]" type="button">Sign Up</button>
 
 <div id='sign_up_form_dialog'>
@@ -44,6 +35,3 @@
 
 ?>
 </div>
-
-
-<body>

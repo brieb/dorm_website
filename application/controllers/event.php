@@ -62,7 +62,7 @@ class Event extends CI_Controller {
   function view($id = "") {
     $this->load->model('Event_model');
     if($id != "") {
-      $event = $this->Event_model->getEvent($id);
+      $event = $this->Event_model->read($id);
       $data['event'] = $event;
       $this->load->view('event/view', $data);
     } else {

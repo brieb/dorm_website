@@ -65,9 +65,10 @@ $this->load->view('calendar/sidebar');
         if (events[i].is_match) {
           container.append(
               $('<div />').append(
-                  $('<h1/>', {
-                    text: events[i].title
-                  }),
+                $('<h1/>').append(
+                  $('<a/>').attr({
+                    href: "<?php echo site_url('event/view'); ?>/"+events[i].id
+                  }).text(events[i].title)),
                   $('<span/>', {
                     text: events[i].time_pretty
                   }),

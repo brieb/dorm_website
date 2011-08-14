@@ -9,20 +9,21 @@ class Event_model extends CI_Model {
     parent::__construct();
   }
 
-  function getEvent($id) {
+  function read($id) {
     $this->load->database();
+    //TODO load entire sign_up form??
     $query = $this->db->query(
-      "
-      SELECT
-        title,
-        description,
-        time,
-        fields
-      FROM event
-      WHERE id = ?
-    ", array(
-            $id
-       )
+      "SELECT
+        event.id,
+        event.title,
+        event.description,
+        event.time,
+        event.fields,
+        sign_up.id AS sign_up_id
+      FROM event LEFT JOIN sign_up
+      ON event.id = sign_up.event_id
+      WHERE event.id = ?",
+      array($id)
     );
     $event = $query->row_array();
     $event['time_pretty'] = date('m.d.y \a\t g:ia', strtotime($event['time']));
@@ -35,12 +36,13 @@ class Event_model extends CI_Model {
     $this->load->database();
     $query = $this->db->query("
       SELECT
-        title,
-        description,
-        time,
-        fields
+      id,
+      title,
+      description,
+      time,
+      fields
       FROM event
-    ");
+      ");
 
     $events = array();
     foreach ($query->result() as $row) {
@@ -57,14 +59,14 @@ class Event_model extends CI_Model {
     $this->load->database();
     $query = $this->db->query("
       INSERT INTO event
-        (title, description, time, fields)
+      (title, description, time, fields)
       VALUES (?, ?, ?, ?)
-    ", array(
-      $event_data['title'],
-      $event_data['description'],
-      $mysqldate,
-      $event_data['fields']
-    ));
+      ", array(
+        $event_data['title'],
+        $event_data['description'],
+        $mysqldate,
+        $event_data['fields']
+      ));
 
     if($query) {
       $query = $this->db->query("SELECT LAST_INSERT_ID() AS id");
