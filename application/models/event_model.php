@@ -65,7 +65,8 @@ class Event_model extends CI_Model {
         $event_data['Description'],
         $mysqldate,
         $event_data['fields'],
-        $event_data['has_field_payment']
+        isset($event_data['has_field_payment']) ?
+          $event_data['has_field_payment'] : 0
       ));
 
     if($query) {

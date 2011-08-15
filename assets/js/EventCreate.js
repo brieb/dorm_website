@@ -5,6 +5,15 @@ EventCreate = {
     EventCreate.button.container = $('#'+containerButtons);
     EventCreate.field.container = $('#'+containerFields);
 
+    EventCreate.field.container.append(
+      $('<input>')
+        .attr({
+          type: 'submit'
+        })
+        .text('Create Event')
+        .button()
+    );
+
     EventCreate.field.container.submit(function() {
       var eventData =
         $(this).serialize() 
@@ -39,9 +48,13 @@ EventCreate = {
               name: 'button_field_add['+type.name+']'
             })
             .text(type.pretty)
+            .button()
             .click(function() {
               var target = $(this);
-              target.attr('disabled', 'disabled');
+              target
+                .blur()
+                .mouseleave()
+                .button('disable');
               EventCreate.field.container.find('input:submit')
                .before(
                    genFn()
@@ -104,11 +117,14 @@ EventCreate = {
               name: 'button_field_remove['+field.name+']'
             })
             .text('Remove')
+            .button()
             .click(function(event) {
               var target = $(event.target);
               target.parent().remove();
               $('button[name="button_field_add['+field.name+']"]')
-                .removeAttr('disabled');
+                .blur()
+                .mouseleave()
+                .button('enable');
             })
         );
     },

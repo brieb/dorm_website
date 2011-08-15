@@ -4,15 +4,11 @@ $this->load->view('calendar/sidebar');
 ?>
 
 <div id="event_create_buttons"></div>
-
-<?php
-$this->load->helper('form');
-
-echo form_open('event/create', array('id' => 'event_create_form'));
-
-echo form_submit('submit', 'Create Event');
-echo form_close();
-?>
+<form
+  id="event_create_form"
+  action="<?php echo site_url('event/create'); ?>"
+  method="post">
+</form>
 
 <script type="text/javascript"
   src="<?php echo base_url(); ?>assets/js/EventCreate.js">
@@ -25,9 +21,8 @@ echo form_close();
 </script>
 <script type="text/javascript">
 $(document).ready(function() {
-  EventCreate.init(
-    'event_create_buttons', 'event_create_form'
-  );
+  $('button')
+  EventCreate.init('event_create_buttons', 'event_create_form');
 });
 </script>
 
