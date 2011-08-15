@@ -1,34 +1,23 @@
 var EventCreate = {};
 
-$(document).ready(function() {
-  EventCreate.init(
-    'event_create_buttons', 'event_create_form'
-  ); 
-});
-
 EventCreate = {
   init: function(containerButtons, containerFields) {
     EventCreate.button.container = $('#'+containerButtons);
     EventCreate.field.container = $('#'+containerFields);
 
     EventCreate.field.container.submit(function() {
-      var eventData = $(this).serialize().replace(/%5B%5D/g, '[]');
-      //eventData.push({
-        //name: 'sign_up',
-        //value: [
-          //{
-            //name: 'capacity',
-            //value: EventCreate.signUp.capacity
-          //},
-          //{
-            //name: 'form',
-            //value: EventCreate.signUp.form
-          //}
-        //]
-      //});
+      var eventData =
+        $(this).serialize() 
+        + '&' + $.param({
+          'sign_up[capacity]': EventCreate.signUp.capacity
+        })
+        + '&' + $.param({
+          'sign_up[form]': EventCreate.signUp.form
+        });
+      eventData.replace(/%5B%5D/g, '[]');
       $.post(
         window.location.pathname,
-        { data: eventData },
+        eventData,
         function(response) {
           console.log(response);
         }

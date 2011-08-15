@@ -11,7 +11,6 @@ class Event extends CI_Controller {
     }
     else {
       //$form_data = json_decode($form_data['data']);
-      $form_data = $form_data['data'];
       var_dump($form_data); return;
 
       //TODO server-side validation

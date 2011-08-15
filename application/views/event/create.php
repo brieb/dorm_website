@@ -23,6 +23,13 @@ echo form_close();
 <script type="text/javascript"
   src="<?php echo base_url(); ?>assets/js/EventCreateSignUpWizard.js">
 </script>
+<script type="text/javascript">
+$(document).ready(function() {
+  EventCreate.init(
+    'event_create_buttons', 'event_create_form'
+  );
+});
+</script>
 
 <?php
 $this->load->view('footer');
