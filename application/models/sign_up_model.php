@@ -16,9 +16,7 @@ class Sign_up_model extends CI_Model {
       VALUES (?, ?)";
     $query = $this->db->query($sql,
       array(
-        //TODO
-        //$data['event_id'],
-        1,
+        $data['event_id'],
         $data['form']
       ));
     if($query) {

@@ -11,7 +11,6 @@ class Event extends CI_Controller {
     }
     else {
       //$form_data = json_decode($form_data['data']);
-      var_dump($form_data); return;
 
       //TODO server-side validation
       //if (isset($form_data['form_builder'])) {
@@ -55,9 +54,19 @@ class Event extends CI_Controller {
         } else {
           $form_data['fields'] = null;
         }
+
         $this->load->model('Event_model');
         $event_id = $this->Event_model->create($form_data);
         if ($event_id) {
+          if (isset($form_data['sign_up'])) {
+            $sign_up_ser = serialize($form_data['sign_up']);
+            $this->load->model('Sign_up_model');
+            $sign_up_id = $this->Sign_up_model->create(array(
+              'event_id' => $event_id,
+              'form' => $sign_up_ser
+            ));
+          }
+
           $this->load->helper('url');
           redirect('/event/view/' . $event_id);
         }
@@ -77,8 +86,9 @@ class Event extends CI_Controller {
     } else {
       $events = $this->Event_model->getEvents();
       $events = json_encode($events);
-      $this->load->view('event/view_all',
-                        array('events' => $events)
+      $this->load->view(
+        'event/view_all',
+        array('events' => $events)
       );
     }
   }
