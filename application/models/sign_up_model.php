@@ -37,7 +37,9 @@ class Sign_up_model extends CI_Model {
     return $result;
   }
 
-
+  function setEventCapacity($capacityCount){
+    $sql = "";
+  }
 
   function update($id) {
 

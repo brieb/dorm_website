@@ -53,19 +53,19 @@ class Event_model extends CI_Model {
   }
 
   function create($event_data) {
-    //var_dump($event_data);
-    $mysqldate = date('Y-m-d H:i:s', strtotime($event_data['datetime']));
+    $mysqldate = date('Y-m-d H:i:s', strtotime($event_data['Datetime']));
 
     $this->load->database();
     $query = $this->db->query("
       INSERT INTO event
-      (title, description, time, fields)
-      VALUES (?, ?, ?, ?)
+      (title, description, time, fields, has_field_payment)
+      VALUES (?, ?, ?, ?, ?)
       ", array(
-        $event_data['title'],
-        $event_data['description'],
+        $event_data['Title'],
+        $event_data['Description'],
         $mysqldate,
-        $event_data['fields']
+        $event_data['fields'],
+        $event_data['has_field_payment']
       ));
 
     if($query) {

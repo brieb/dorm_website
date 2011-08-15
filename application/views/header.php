@@ -5,11 +5,11 @@
     <title><?= $page_title ?></title>
     <script
       type="text/javascript"
-      src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+        src="<?php echo base_url(); ?>assets/third_party/jquery.js">
     </script>
     <script
       type="text/javascript"
-      src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js">
+        src="<?php echo base_url(); ?>assets/third_party/jquery-ui.js">
     </script>
     <link rel="stylesheet" href="/dorm_website/assets/css/Aristo/jquery-ui-1.8.7.custom.css">
   </head>

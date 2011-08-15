@@ -10,36 +10,42 @@ class Event extends CI_Controller {
       $this->load->view('event/create');
     }
     else {
-      if (isset($form_data['form_builder'])) {
-        foreach (
-          $form_data['form_builder'] as $key => $value
-        ) {
-          $display_fields[] = $key;
-        }
-      }
-      $data['display_fields'] = $display_fields;
+      //TODO server-side validation
+      //if (isset($form_data['form_builder'])) {
+        //foreach (
+          //$form_data['form_builder'] as $key => $value
+        //) {
+          //$display_fields[] = $key;
+        //}
+      //}
+      //$data['display_fields'] = $display_fields;
 
-      $this->form_validation->set_rules('title', 'Title', 'required|min_length[6]');
-      $this->form_validation->set_rules('datetime', 'Date and time', 'required');
-      $this->form_validation->set_rules('description', 'Description', 'required');
-      if (isset($form_data['form_builder'])) {
-        if (isset($form_data['form_builder']['payment'])) {
-          $this->form_validation->set_rules('form_builder[payment][price]', 'Price', 'required');
-          $this->form_validation->set_rules('form_builder[payment][instructions]', 'Instructions', 'required');
-        }
-        if (isset($form_data['form_builder']['event_location'])) {
-          $this->form_validation->set_rules('form_builder[event_location][location]', 'Event Location', 'required');
-        }
-        if (isset($form_data['form_builder']['meetup_information'])) {
-          $this->form_validation->set_rules('form_builder[meetup_info][info]', 'Meetup Info', 'required');
-        }
-      }
+      //$this->form_validation->set_rules('title', 'Title', 'required|min_length[6]');
+      //$this->form_validation->set_rules('datetime', 'Date and time', 'required');
+      //$this->form_validation->set_rules('description', 'Description', 'required');
+      //if (isset($form_data['form_builder'])) {
+        //if (isset($form_data['form_builder']['payment'])) {
+          //$this->form_validation->set_rules('form_builder[payment][price]', 'Price', 'required');
+          //$this->form_validation->set_rules('form_builder[payment][instructions]', 'Instructions', 'required');
+        //}
+        //if (isset($form_data['form_builder']['event_location'])) {
+          //$this->form_validation->set_rules('form_builder[event_location][location]', 'Event Location', 'required');
+        //}
+        //if (isset($form_data['form_builder']['meetup_information'])) {
+          //$this->form_validation->set_rules('form_builder[meetup_info][info]', 'Meetup Info', 'required');
+        //}
+      //}
 
-      if ($this->form_validation->run() == FALSE) {
-        $this->load->view('event/create', $data);
-      }
-      else {
+      //if ($this->form_validation->run() == FALSE) {
+        //$this->load->view('event/create', $data);
+      //}
+      //else {
         if (isset($form_data['form_builder'])) {
+          if (isset($form_data['form_builder']['payment'])) {
+            $form_data['has_field_payment'] = 1;
+          } else {
+            $form_data['has_field_payment'] = 0;
+          }
           $form_builder_ser = serialize($form_data['form_builder']);
           unset($form_data['form_builder']);
           $form_data['fields'] = $form_builder_ser;
@@ -56,7 +62,7 @@ class Event extends CI_Controller {
           echo 'db fail - try again';
         }
       }
-    }
+    //}
   }
 
   function view($id = "") {

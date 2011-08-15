@@ -1,18 +1,19 @@
 var SignUpFormBuilder = {};
 
-$(document).ready(function () {
-  $('button[name="button_field_add[sign_up]"]')
-    .click(function () {
-      $("#sign_up_form_dialog").dialog("open");
-    })
-    .button();
+//$(document).ready(function () {
+  //$('button[name="button_field_add[sign_up]"]')
+    //.click(function () {
+      //$("#sign_up_form_dialog").dialog("open");
+    //})
+    //.button();
 
-  SignUpFormBuilder.init('sign_up_form_dialog');
-});
+  //SignUpFormBuilder.init('sign_up_form_dialog');
+//});
 
 SignUpFormBuilder = {
-  init: function (containerId) {
-    SignUpFormBuilder.dialog.container = $("#" + containerId);
+  init: function (container/*Id*/) {
+    //SignUpFormBuilder.dialog.container = $("#" + containerId);
+    SignUpFormBuilder.dialog.container = container;
     SignUpFormBuilder.buttons.setUp();
     SignUpFormBuilder.dialog.setUp();
     SignUpFormBuilder.form.container = $("#sign_up_form_create");
@@ -41,11 +42,13 @@ SignUpFormBuilder = {
           questions.push(question);
         });
 
-      $.post(window.location.pathname, {
-        questions: questions
-      }, function (response) {
-        console.log(response);
-      });
+      $.post(
+        window.location.pathname.replace(/(.*index\.php).*/, "$1/sign_up/create"),
+        {
+          questions: questions
+        }, function (response) {
+          console.log(response);
+        });
     }
   },
   dialog: {
@@ -55,30 +58,30 @@ SignUpFormBuilder = {
       $('<form />').attr({
         id: 'sign_up_form_create'
       }).addClass('ui-form'));
-      SignUpFormBuilder.dialog.container.dialog({
-        //TODO change to false
-        //autoOpen: false,
-        autoOpen: true,
-        height: 760,
-        width: 600,
-        modal: true,
-        draggable: false,
-        buttons: {
-          'Create Sign Up Form': function () {
-            SignUpFormBuilder.form.submitHandler();
-            //TODO validation
-            //TODO form preview
-            $(this).dialog("close");
-          },
-          'Clear': function () {
-            $('#sign_up_form_create').html('');
-          },
-          'Close': function () {
-            $(this).dialog("close");
-          }
-        },
-        close: function () {}
-      });
+      //SignUpFormBuilder.dialog.container.dialog({
+        ////TODO change to false
+        ////autoOpen: false,
+        //autoOpen: true,
+        //height: 760,
+        //width: 600,
+        //modal: true,
+        //draggable: false,
+        //buttons: {
+          //'Create Sign Up Form': function () {
+            //SignUpFormBuilder.form.submitHandler();
+            ////TODO validation
+            ////TODO form preview
+            //$(this).dialog("close");
+          //},
+          //'Clear': function () {
+            //$('#sign_up_form_create').html('');
+          //},
+          //'Close': function () {
+            //$(this).dialog("close");
+          //}
+        //},
+        //close: function () {}
+      //});
     }
   },
   buttons: {

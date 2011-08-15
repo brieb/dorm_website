@@ -16,7 +16,7 @@ class Sign_up extends CI_Controller {
     $this->load->library('form_validation');
     $form_data = $this->input->post();
     if (!$form_data) {
-      $this->load->view('sign_up/form_create');
+      echo 'Error: no post data';
     }
     else {
       var_dump($form_data);
@@ -28,6 +28,11 @@ class Sign_up extends CI_Controller {
 
       echo $response;
     }
+  }
+
+  function setEventCapacity() {
+    $form_data = $this->input->post();
+    var_dump($form_data);
   }
 
 }
