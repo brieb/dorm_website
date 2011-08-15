@@ -42,13 +42,15 @@ SignUpFormBuilder = {
           questions.push(question);
         });
 
-      $.post(
-        window.location.pathname.replace(/(.*index\.php).*/, "$1/sign_up/create"),
-        {
-          questions: questions
-        }, function (response) {
-          console.log(response);
-        });
+      return questions;
+
+      //$.post(
+        //window.location.pathname.replace(/(.*index\.php).*/, "$1/sign_up/create"),
+        //{
+          //questions: questions
+        //}, function (response) {
+          //console.log(response);
+        //});
     }
   },
   dialog: {

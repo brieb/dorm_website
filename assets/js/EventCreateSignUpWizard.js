@@ -3,15 +3,15 @@ var EventCreateSignUpWizard = {};
 EventCreateSignUpWizard = {
   container: null,
   init: function() {
-    this.container = $('<div/>');
-    this.container.dialog({
+    EventCreateSignUpWizard.container = $('<div/>');
+    EventCreateSignUpWizard.container.dialog({
       modal: true,
       autoOpen: true,
       height: 600,
       width: 600,
       draggable: false
     }); 
-    this.loadNextPane();
+    EventCreateSignUpWizard.loadNextPane();
   },
   curPane: 0,
   panes: [
@@ -45,28 +45,28 @@ EventCreateSignUpWizard = {
     //}
   ],
   loadNextPane: function() {
-    if (this.curPane >= this.panes.length) {
-      this.container.dialog('close');
+    if (EventCreateSignUpWizard.curPane >= EventCreateSignUpWizard.panes.length) {
+      EventCreateSignUpWizard.container.dialog('close');
     } else {
-      this.genPrompt();
-      this.curPane++;
+      EventCreateSignUpWizard.genPrompt();
+      EventCreateSignUpWizard.curPane++;
     }
   },
   genPrompt: function(message, callbackIfYes) {
-    var curPane = this.panes[this.curPane];
-    this.container.empty();
-    this.container.dialog("option", "title", curPane.title);
-    this.container.dialog("option", "buttons", [
+    var curPane = EventCreateSignUpWizard.panes[EventCreateSignUpWizard.curPane];
+    EventCreateSignUpWizard.container.empty();
+    EventCreateSignUpWizard.container.dialog("option", "title", curPane.title);
+    EventCreateSignUpWizard.container.dialog("option", "buttons", [
       {
         text: 'Yes',
-        click: $.proxy(this['loadPane'+curPane.name], this)
+        click: EventCreateSignUpWizard['loadPane'+curPane.name]
       },
       {
         text: 'No',
-        click: $.proxy(this.loadNextPane, this)
+        click: EventCreateSignUpWizard.loadNextPane
       }
     ]);
-    this.container.append(
+    EventCreateSignUpWizard.container.append(
       $('<div/>')
         .text(curPane.prompt)
     );
@@ -75,15 +75,17 @@ EventCreateSignUpWizard = {
     //$.getScript(
       //'../../assets/js/SignUpFormBuilder.js',
       //$.proxy(function() {
-        this.container.dialog("option", "buttons", [
+        EventCreateSignUpWizard.container.dialog("option", "buttons", [
         {
           text: 'Create Sign Up Form',
-          click: $.proxy(function () {
-            SignUpFormBuilder.form.submitHandler();
+          click: function () {
+            var signUpForm = SignUpFormBuilder.form.submitHandler();
+            console.log(signUpForm);
+            EventCreate.signUp.setForm(signUpForm);
             //TODO validation
             //TODO form preview
-            this.loadNextPane(); 
-          }, this),
+            EventCreateSignUpWizard.loadNextPane(); 
+          }
         },
         {
           text: 'Clear',
@@ -93,17 +95,17 @@ EventCreateSignUpWizard = {
         },
         {
           text: 'Cancel',
-          click: $.proxy(this.loadNextPane, this)
+          click: EventCreateSignUpWizard.loadNextPane
         }
         ]);
-        SignUpFormBuilder.init(this.container);
+        SignUpFormBuilder.init(EventCreateSignUpWizard.container);
       //},
-      //this)
+      //EventCreateSignUpWizard)
     //);
   },
   loadPaneWaitlist: function() {
-    this.container.empty();
-    this.container.append(
+    EventCreateSignUpWizard.container.empty();
+    EventCreateSignUpWizard.container.append(
       $('<label/>')
         .attr({
           for: 'waitlist_capacity'
@@ -117,23 +119,18 @@ EventCreateSignUpWizard = {
           name: 'waitlist_capacity'
         })
     );
-    this.container.dialog("option", "buttons", [
+    EventCreateSignUpWizard.container.dialog("option", "buttons", [
       {
         text: 'Add Waitlist',
-        click: $.proxy(function () {
+        click: function () {
           //TODO save count
-          EventCreate.field.setHiddenSignUpField(
-            'capacity',
-            $('#waitlist_capacity').val()
-          );
-          this.loadNextPane(); 
-        }, this),
+          EventCreate.signUp.setCapacity($('#waitlist_capacity').val());
+          EventCreateSignUpWizard.loadNextPane(); 
+        }
       },
       {
         text: 'Cancel',
-        click: $.proxy(function () {
-          this.loadNextPane(); 
-        }, this),
+        click: EventCreateSignUpWizard.loadNextPane 
       }
     ]);
   }

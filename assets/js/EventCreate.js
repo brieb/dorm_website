@@ -11,10 +11,24 @@ EventCreate = {
     EventCreate.button.container = $('#'+containerButtons);
     EventCreate.field.container = $('#'+containerFields);
 
-    EventCreate.field.container.submit(function(eventData) {
+    EventCreate.field.container.submit(function() {
+      var eventData = $(this).serialize().replace(/%5B%5D/g, '[]');
+      //eventData.push({
+        //name: 'sign_up',
+        //value: [
+          //{
+            //name: 'capacity',
+            //value: EventCreate.signUp.capacity
+          //},
+          //{
+            //name: 'form',
+            //value: EventCreate.signUp.form
+          //}
+        //]
+      //});
       $.post(
         window.location.pathname,
-        $(this).serialize(),
+        { data: eventData },
         function(response) {
           console.log(response);
         }
@@ -234,5 +248,15 @@ EventCreate = {
       }
     }
   },
+  signUp: {
+    capacity: 0,
+    form: null,
+    setCapacity: function(capacity) {
+      this.capacity = capacity;
+    },
+    setForm: function(form) {
+      this.form = form;
+    }
+  }
 };
 
