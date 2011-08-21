@@ -68,12 +68,24 @@ EventCreate = {
       return false;
     }.bind(this));
 
+    this.containerButtons.append(
+      $('<button/>')
+        .attr({
+          name: 'button_field_add[SignUp]'
+        })
+        .text('SignUp')
+        .button()
+        .click(function() {
+          this.signUpCreate();
+        }.bind(this))
+    );
+
     $.each(this.fieldTypes, function(key, type) {
-      var genFn = this.genFieldType(type);
+      var fieldContent = this.genFieldType(type);
       if (type.isDefault) {
          this.containerFields.find('input:submit')
           .before(
-              genFn()
+              fieldContent
            ); 
       } else {
         this.containerButtons.append(
@@ -90,13 +102,36 @@ EventCreate = {
                 .mouseleave()
                 .button('disable');
               this.containerFields.find('input:submit')
-               .before(
-                   genFn()
-                ); 
+               .before(fieldContent); 
             }.bind(this))
         );
       }
     }.bind(this));
+
+  },
+  signUpCreate: function() {
+    EventCreateSignUpWizard.init();
+
+    this.containerSignUp
+      .append(
+        $('<button/>')
+          .text('Remove Sign Up')
+          .button()
+          .click(function(event) {
+            var target = $(event.target);
+            target.parent().empty();
+
+            this.signUpEnabled = false;
+            this.signUpForm = null;
+            this.signUpCapacity = 0;
+            EventCreateSignUpWizard.reset();
+
+            $('button[name="button_field_add[SignUp]"]')
+              .blur()
+              .mouseleave()
+              .button('enable');
+          }.bind(this))
+      );
   },
   fieldTypes: {
     title: {
@@ -106,40 +141,77 @@ EventCreate = {
       fields: [
         {
           identifier: 'Title',
-          label: 'Title', 
+          label: 'Title: ', 
           placeholder: 'End of the Year Banquet'
         }
       ]
     },
+    //TODO datepicker
     datetime: {
       name: 'Datetime',
       pretty: 'Time and Date',
-      isDefault: true
+      isDefault: true,
+      fields: [
+        {
+          identifier: 'Datetime',
+          label: 'When: ',
+          placeholder: ''
+        }
+      ]
     },
     description: {
       name: 'Description',
       pretty: 'Description',
-      isDefault: true
-    },
-    signUp: {
-      name: 'SignUp',
-      pretty: 'Sign Up',
-      isDefault: false
+      isDefault: true,
+      fields: [
+        {
+          identifier: 'Description',
+          label: 'Description: ',
+          inputType: 'textarea',
+          placeholder: ''
+        }
+      ]
     },
     meetupInfo: {
       name: 'MeetupInfo',
       pretty: 'Meetup Info',
-      isDefault: false
+      isDefault: false,
+      fields: [
+        {
+          identifier: 'form_builder[meetup_info][info]',
+          label: 'Info: ',
+          placeholder: 'ex: Schaddify at 10pm'
+        }
+      ]
     },
     eventLocation: {
       name: 'EventLocation',
       pretty: 'Event Location',
-      isDefault: false
+      isDefault: false,
+      fields:  [
+        {
+          identifier: 'form_builder[event_location][location]',
+          label: 'Location: ',
+          placeholder: ''
+        }
+      ]
     },
     payment: {
       name: 'Payment',
       pretty: 'Payment',
-      isDefault: false
+      isDefault: false,
+      fields: [
+        {
+          identifier: 'form_builder[payment][price]',
+          label: 'Price: ',
+          placeholder: '$10.00'
+        },
+        {
+          identifier: 'form_builder[payment][instructions]',
+          label: 'Instructions: ',
+          placeholder: 'ex: Slide it under [Staff Memeber]\'s door'
+        }
+      ]
     },
     pointPerson: {
       name: 'PointPerson',
@@ -178,18 +250,20 @@ EventCreate = {
   },
   genFieldType: function(type) {
     var content = this.genFormInput(type.fields);
-    if (field.isDefault === true) {
+    if (type.isDefault === true) {
       return content;
     }
     return this.genFieldset(type, content);
-    //return this['genFieldType'+type.name];
   },
   genFormInput: function(elems) {
     var inputs = elems.map(function(elem) {
+      if (elem.inputType === undefined) {
+        elem.inputType = 'input';
+      }
       var label = $('<label/>').attr({
         for: elem.identifier
       }).text(elem.label);
-      var input = $('<input/>').attr({
+      var input = $('<'+elem.inputType+'/>').attr({
         name: elem.identifier,
         id: elem.identifier,
         placeholder: elem.placeholder
@@ -202,117 +276,6 @@ EventCreate = {
       container.append(input);
     });
     return container;
-  },
-  genFieldTypeTitle: function() {
-    return this.genFormInput(
-    [
-      {
-        identifier: this.fieldTypes.title.name,
-        label: this.fieldTypes.title.pretty,
-        placeholder: 'End of the Year Banquet'
-      }
-    ]
-    );
-  },
-  genFieldTypeDatetime: function() {
-    //TODO datepicker
-    return this.genFormInput([
-      {
-        identifier: this.fieldTypes.datetime.name,
-        label: this.fieldTypes.datetime.pretty,
-        placeholder: ''
-      }
-    ]);
-  },
-  genFieldTypeDescription: function() {
-    return $('<div/>').append(
-      $('<label/>')
-        .attr({
-          for: this.fieldTypes.description.name
-        })
-        .text(this.fieldTypes.description.pretty),
-      $('<textarea/>').attr({
-        id: this.fieldTypes.description.name,
-        name: this.fieldTypes.description.name
-      })
-    );
-  },
-  genFieldTypeSignUp: function() {
-    EventCreateSignUpWizard.init();
-
-    var field = this.fieldTypes.signUp;
-    this.containerSignUp
-      .append(
-        $('<button/>')
-          .text('Remove Sign Up')
-          .button()
-          .click(function(event) {
-            var target = $(event.target);
-            target.parent().empty();
-
-            this.signUpEnabled = false;
-            this.signUpForm = null;
-            this.signUpCapacity = 0;
-            EventCreateSignUpWizard.reset();
-
-            $('button[name="button_field_add['+field.name+']"]')
-              .blur()
-              .mouseleave()
-              .button('enable');
-          }.bind(this))
-      );
-
-  },
-  genFieldTypeMeetupInfo: function() {
-    var content = this.genFormInput([
-      {
-        identifier: 'form_builder[meetup_info][info]',
-        label: 'Info: ',
-        placeholder: 'ex: Schaddify at 10pm'
-      }
-    ]);
-    return this.genFieldset(
-      this.fieldTypes.meetupInfo,
-      content
-    );
-  },
-  genFieldTypeEventLocation: function() {
-    var content = this.genFormInput([
-      {
-        identifier: 'form_builder[event_location][location]',
-        label: 'Location: ',
-        placeholder: ''
-      }
-    ]);
-    return this.genFieldset(
-      this.fieldTypes.eventLocation,
-      content
-    );
-  },
-  genFieldTypePayment: function() {
-    var content = this.genFormInput([
-      {
-        identifier: 'form_builder[payment][price]',
-        label: 'Price: ',
-        placeholder: '$10.00'
-      },
-      {
-        identifier: 'form_builder[payment][instructions]',
-        label: 'Instructions: ',
-        placeholder: 'ex: Slide it under [Staff Memeber]\'s door'
-      }
-    ]);      
-    return this.genFieldset(
-      this.fieldTypes.payment,
-      content
-    );
-  },
-  genFieldTypePointPerson: function() {
-    var content = this.genFormInput();
-    return this.genFieldset(
-      this.fieldTypes.pointPerson,
-      content
-    );
   }
 
 };
