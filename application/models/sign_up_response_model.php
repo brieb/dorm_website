@@ -23,8 +23,8 @@ class Sign_up_response_model extends CI_Model {
       ));
     if($query) {
       $query = $this->db->query("SELECT LAST_INSERT_ID() AS id");
-      $result = $query->row();
-      return $result->id;
+      $result = $query->row_array();
+      return $result['id'];
     }
     return $query;
   }
@@ -43,6 +43,10 @@ class Sign_up_response_model extends CI_Model {
   }
 
   function delete($id) {
-
+    $sql = "DELETE
+      FROM sign_up_response
+      WHERE id = ?
+    ";
+    echo $this->db->query($sql, array($id));
   }
 }

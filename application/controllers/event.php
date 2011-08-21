@@ -1,10 +1,17 @@
 <?php
 class Event extends CI_Controller {
+
+  function __construct(){
+    parent::__construct();
+
+    $this->load->model('Event_model');
+  }
+
   function create() {
     $this->load->library('form_validation');
     $this->load->helper('event/form_builder');
     $form_data = $this->input->post();
-    $display_fields = array();
+    //$display_fields = array();
 
     if (!$form_data) {
       $this->load->view('event/create');
@@ -55,15 +62,19 @@ class Event extends CI_Controller {
           $form_data['fields'] = null;
         }
 
-        $this->load->model('Event_model');
         $event_id = $this->Event_model->create($form_data);
         if ($event_id) {
           if (isset($form_data['sign_up'])) {
-            $sign_up_ser = serialize($form_data['sign_up']);
+            $sign_up_form_ser = isset($form_data['sign_up']['form']) ?
+              serialize($form_data['sign_up']['form']) : serialize(NULL);
+            $capacity = isset($form_data['sign_up']['capacity']) ?
+              $form_data['sign_up']['capacity'] : 0;
+
             $this->load->model('Sign_up_model');
             $sign_up_id = $this->Sign_up_model->create(array(
               'event_id' => $event_id,
-              'form' => $sign_up_ser
+              'form' => $sign_up_form_ser,
+              'capacity' => $capacity
             ));
           }
 
@@ -78,7 +89,6 @@ class Event extends CI_Controller {
   }
 
   function view($id = "") {
-    $this->load->model('Event_model');
     if($id != "") {
       $event = $this->Event_model->read($id);
       $data['event'] = $event;
@@ -93,4 +103,14 @@ class Event extends CI_Controller {
     }
   }
 
+  function edit($id) {
+    if (!$id) {
+      echo "Event id needed in url";
+      return;
+    }
+
+    $event = $this->Event_model->read($id);
+    $event['fields'] = unserialize($event['fields']);
+    var_dump(json_encode($event));
+  }
 }

@@ -44,6 +44,7 @@ SignUpFormBuilder = {
 
       return questions;
 
+      //TODO moved to EventCreate instead
       //$.post(
         //window.location.pathname.replace(/(.*index\.php).*/, "$1/sign_up/create"),
         //{

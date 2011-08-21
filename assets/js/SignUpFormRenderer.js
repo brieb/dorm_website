@@ -1,63 +1,114 @@
 var SignUpFormRenderer = {};
 
 SignUpFormRenderer = {
-  init: function(signUpFormUrl, signUpResponseCreateUrl, signUpId) {
-    SignUpFormRenderer.form.signUpId = signUpId;
-    SignUpFormRenderer.form.responseCreateUrl =
-      signUpResponseCreateUrl;
+  formViewUrl: SITE_URL+'/sign_up/view/',
+  urlResponseCreate: SITE_URL+'/sign_up_response/create',
+  urlResponseDelete: SITE_URL+'/sign_up_response/delete',
+  buttonSignUp: null,
+  signUpId: null,
+  eventTitle: '',
+  responseId: 0,
+  content: null,
+  container: null,
 
-    if (SignUpFormRenderer.form.content === null) {
-      $.get(signUpFormUrl, function(response) {
-        SignUpFormRenderer.form.content = response;
-        SignUpFormRenderer.form.render();
-      });
-    } else {
-      SignUpFormRenderer.form.render();
-    }
-    
-    //SignUpFormBuilder.dialog.container = $("#" + containerId);
+  init: function(signUpId, eventTitle) {
+    this.signUpId = signUpId;
+    this.eventTitle = eventTitle;
+    this.buttonSignUp = $("#button_sign_up");
+
+    this.display();
   },
-  form: {
-    responseCreateUrl: null,
-    signUpId: null,
-    content: null,
-    container: null,
-    render: function() {
-      SignUpFormRenderer.form.container = $('<div />');
-      SignUpFormRenderer.form.container.html(SignUpFormRenderer.form.content);
-      SignUpFormRenderer.form.container.dialog({
-        autoOpen: true,
-        modal: true,
-        draggable: false,
-        buttons: {
-          'Sign Up': function () {
-            SignUpFormRenderer.form.submitHandler();
-            //TODO validation
-            //TODO form preview
-            $(this).dialog("close");
-          },
-          'Cancel': function () {
-            $(this).dialog("close");
-          }
-        },
-        close: function () {}
-      });
-    },
-    submitHandler: function() {
+  process: function() {
+    if (this.content === '') {
       $.post(
-        SignUpFormRenderer.form.responseCreateUrl,
-        //{
-          //sign_up_id: SignUpFormRenderer.form.signUpId,
-          //form_response: SignUpFormRenderer.form.container.find('form')
-            //.serialize().replace(/%5B%5D/g, '[]')
-        //},
-        SignUpFormRenderer.form.container.find('form')
-          .serialize().replace(/%5B%5D/g, '[]')
-          +"&sign_up_id="+SignUpFormRenderer.form.signUpId,
+        this.urlResponseCreate,
+        {
+          sign_up_id: this.signUpId
+        },
         function(response) {
-          console.log(response)
-        }
+          this.responseHandler(response);
+        }.bind(this)
+      );
+    } else {
+      this.formRender();
+    }
+  },
+  responseHandler: function(response) {
+    this.responseId = response;
+    this.buttonSignUp
+      .button({ label: 'Cancel Sign Up' })
+      .unbind('click')
+      .click(
+      function() {
+        this.cancel();
+      }.bind(this)
+    );
+  },
+  cancel: function() {
+    $.post(
+       this.urlResponseDelete,
+       {
+         id: this.responseId
+       },
+       function(response){
+         if (response === '1') {
+           this.buttonSignUp
+              .button({ label: 'Sign Up' })
+              .unbind('click')
+              .click(
+              function() {
+                this.process();
+              }.bind(this)
+            );
+         }
+       }.bind(this)
+    );
+  },
+  display: function() {
+    if (this.content !== null) {
+      this.process();
+    } else {
+      $.get(
+        this.formViewUrl+this.signUpId,
+        function(response) {
+          this.content = response;
+          this.process();
+        }.bind(this)
       );
     }
+  },
+  formRender: function() {
+    this.container = $('<div />');
+    this.container.html(this.content);
+    this.container.dialog({
+      title: 'Sign Up for '+this.eventTitle,
+      autoOpen: true,
+      modal: true,
+      draggable: false,
+      buttons: {
+        'Sign Up': function () {
+          this.formSubmit();
+          //TODO validation
+        }.bind(this),
+        'Cancel': function () {
+          this.container.dialog('close');
+        }.bind(this)
+      },
+      close: function () {}
+    });
+  },
+  formSubmit: function() {
+    $.post(
+      this.urlResponseCreate,
+      this.container.find('form')
+        .serialize().replace(/%5B%5D/g, '[]')
+        +"&sign_up_id="+this.signUpId,
+      function(response) {
+        //TODO handle error ''
+        //console.log(response);
+        this.responseHandler(response);
+        this.container.dialog('close');
+      }.bind(this)
+    );
   }
 };

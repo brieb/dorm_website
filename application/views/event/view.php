@@ -5,10 +5,6 @@ $this->load->helper('event/form_builder');
 ?>
 <script
   type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js">
-</script>
-<script
-  type="text/javascript"
   src="<?php echo base_url(); ?>assets/js/SignUpFormRenderer.js">
 </script>
 <script>
@@ -17,12 +13,10 @@ $(document).ready(function () {
     .button()
     .click(function () {
       SignUpFormRenderer.init(
-        "<?php echo site_url("sign_up/view/".$event['sign_up_id']); ?>",
-        "<?php echo site_url('sign_up_response/create'); ?>",
-        "<?php echo $event['sign_up_id']; ?>"
+        "<?php echo $event['sign_up_id']; ?>",
+        "<?php echo $event['title']; ?>"
       );
     });
-
 
 });
 </script>

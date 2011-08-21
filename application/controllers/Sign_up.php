@@ -4,12 +4,15 @@ class Sign_up extends CI_Controller {
   function view($id) {
     $this->load->model('Sign_up_model');
     $sign_up = $this->Sign_up_model->read($id);
-    $sign_up_form = unserialize($sign_up->form);
-    $this->load->view('sign_up/form_fields/fields',
-      array(
-        'fields' => $sign_up_form['form']
-      )
-    );
+
+    $sign_up_form = unserialize($sign_up['form']);
+    if ($sign_up_form != NULL) {
+      $this->load->view('sign_up/form_fields/fields',
+        array(
+          'fields' => $sign_up_form
+        )
+      );
+    }
   }
 
   //TODO delete??
