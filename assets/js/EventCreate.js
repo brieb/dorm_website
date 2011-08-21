@@ -1,6 +1,8 @@
 var EventCreate = {};
 
 EventCreate = {
+  urlEventCreate: SITE_URL+'/event/create',
+
   container: null,
   containerButtons: null,
   containerFields: null,
@@ -41,7 +43,7 @@ EventCreate = {
     );
 
     this.containerFields.submit(function() {
-      var eventData = $(this).serialize();
+      var eventData = $(this.containerFields).serialize();
 
       if (this.signUpEnabled) {
         eventData += '&' + $.param({
@@ -59,7 +61,7 @@ EventCreate = {
 
       eventData.replace(/%5B%5D/g, '[]');
       $.post(
-        window.location.pathname,
+        this.urlEventCreate,
         eventData,
         function(response) {
           console.log(response);
