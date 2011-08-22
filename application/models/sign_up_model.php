@@ -44,11 +44,15 @@ class Sign_up_model extends CI_Model {
     return $query->row_array();
   }
 
-  function update($id) {
-
+  function update($id, $data) {
   }
 
   function delete($id) {
-
+    $sql = "
+      DELETE
+      FROM sign_up
+      WHERE id = ?
+    ";
+    return $this->db->query($sql, array($id));
   }
 }

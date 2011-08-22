@@ -20,7 +20,7 @@
 
     <link
       rel="stylesheet"
-      href="/dorm_website/assets/css/Aristo/jquery-ui-1.8.7.custom.css">
+      href="<?php echo base_url(); ?>assets/third_party/jquery-ui-themes/Absolution/jquery.ui.all.css">
 
   </head>
 

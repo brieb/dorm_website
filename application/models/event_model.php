@@ -7,10 +7,10 @@ class Event_model extends CI_Model {
 
   function __construct() {
     parent::__construct();
+    $this->load->database();
   }
 
   function read($id) {
-    $this->load->database();
     //TODO load entire sign_up form??
     $query = $this->db->query(
       "SELECT
@@ -33,7 +33,6 @@ class Event_model extends CI_Model {
 
   //TODO move to controller
   function getEvents() {
-    $this->load->database();
     $query = $this->db->query("
       SELECT
       id,
@@ -53,16 +52,15 @@ class Event_model extends CI_Model {
   }
 
   function create($event_data) {
-    $mysqldate = date('Y-m-d H:i:s', strtotime($event_data['Datetime']));
+    $mysqldate = date('Y-m-d H:i:s', strtotime($event_data['time']));
 
-    $this->load->database();
     $query = $this->db->query("
       INSERT INTO event
       (title, description, time, fields, has_field_payment)
       VALUES (?, ?, ?, ?, ?)
       ", array(
-        $event_data['Title'],
-        $event_data['Description'],
+        $event_data['title'],
+        $event_data['description'],
         $mysqldate,
         $event_data['fields'],
         isset($event_data['has_field_payment']) ?
@@ -76,4 +74,35 @@ class Event_model extends CI_Model {
     }
     return $query;
   }
+
+  function update($id, $data) {
+    //TODO gcal
+    $sql = "
+      UPDATE event
+      SET
+        title=?,
+        time=?,
+        description=?,
+        fields=?,
+        has_field_payment=?
+      WHERE id = ?
+    ";
+    return $this->db->query($sql, array(
+      $data['title'],
+      $data['time'],
+      $data['description'],
+      $data['fields'],
+      $data['has_field_payment'],
+      $id
+    ));
+  }
+
+  function delete($id) {
+    $sql = "
+      DELETE FROM event
+      WHERE id = ?
+    ";
+    return $this->db->query($sql, array($id));
+  }
+
 }

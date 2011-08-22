@@ -7,6 +7,27 @@ $this->load->helper('event/form_builder');
   type="text/javascript"
   src="<?php echo base_url(); ?>assets/js/SignUpFormRenderer.js">
 </script>
+
+
+<?php
+//TODO permissions
+
+if (true):
+?>
+<button id="eventEdit">Edit Event</button>
+<script>
+$(document).ready(function () {
+  $('#eventEdit')
+    .button()
+    .click(function () {
+      window.location = "<?php echo site_url('/event/edit/'.$event['id']); ?>";
+    });
+});
+</script>
+<?php endif; ?>
+
+<?php if ($event['sign_up_id'] != NULL): ?>
+<button id="button_sign_up">Sign Up</button>
 <script>
 $(document).ready(function () {
   $('#button_sign_up')
@@ -17,12 +38,8 @@ $(document).ready(function () {
         "<?php echo $event['title']; ?>"
       );
     });
-
 });
 </script>
-
-<?php if ($event['sign_up_id'] != NULL): ?>
-<button id="button_sign_up">Sign Up</button>
 <?php endif; ?>
 
 <div class="event_view_title">
