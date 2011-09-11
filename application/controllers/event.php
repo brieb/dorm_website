@@ -20,6 +20,7 @@ class Event extends CI_Controller {
       $form_data['fields'] = $form_builder_ser;
     } else {
       $form_data['fields'] = null;
+      $form_data['has_field_payment'] = 0;
     }
   }
 
@@ -87,19 +88,22 @@ class Event extends CI_Controller {
       //}
       //else {
 
+
+
         $this->serializeFields($form_data);
+        $formData['time'] = $this->formatDatetime($formData['time']);
 
         $event_id = $this->Event_model->create($form_data);
-        $this->Gcal_model->create($form_data);
-        if ($event_id) {
-          $this->createSignUp($form_data, $event_id);
-
-          $this->load->helper('url');
-          redirect('/event/view/' . $event_id);
-        }
-        else {
+        if (!$event_id) {
           echo 'db fail - try again';
         }
+
+        $form_data['event_id'] = $event_id;
+        $this->Gcal_model->create($form_data);
+        //TODO use form_data event id instead
+        $this->createSignUp($form_data, $event_id);
+
+        echo $event_id;
       }
     //}
   }
@@ -141,10 +145,18 @@ class Event extends CI_Controller {
       $this->createSignUp($formData, $event_id);
 
       $this->serializeFields($formData);
+      $formData['time'] = $this->formatDatetime($formData['time']);
 
       $this->Event_model->update($event_id, $formData);
+      $this->Gcal_model->update(
+        $this->Event_model->readGcalUrl($event_id),
+        $formData
+      );
     } else {
       $event = $this->Event_model->read($id);
+      $event['time'] = $this->formatDatetime($event['time']);
+      var_dump($event);
+
       $event['fields'] = unserialize($event['fields']);
       $this->load->view(
         'event/edit',
@@ -154,7 +166,9 @@ class Event extends CI_Controller {
   }
 
   function delete($id) {
-    echo $this->Event_model->delete($id);
+    echo
+      $this->Gcal_model->delete($this->Event_model->readGcalUrl($id)) &&
+      $this->Event_model->delete($id);
   }
 
   function gcalTest() {
@@ -162,15 +176,28 @@ class Event extends CI_Controller {
     //make signup text match whether there is a sign up
     $form_data = array(
       'title' => 'test title',
-      'time' => '2011-08-23 07:00:00',
-      'time_end' => '2011-08-23 10:00:00',
+      'time' => array(
+        'start' => '2011-08-25T08:25:02.000Z',
+        'end' => '2011-08-25T11:25:02.000Z',
+      )
     );
 
-    $this->Gcal_model->create(array(
-      'title' => $form_data['title'],
-      'time' => str_replace(' ', 'T', $form_data['time']),
-      'time_end' => str_replace(' ', 'T', $form_data['time_end']),
-      'description' => '<a href="google.com">Click here for event info and signups</a>'
-    ));
+    echo $this->Gcal_model->create(1, $form_data);
+  }
+
+  function gcalRead() {
+    echo "<pre>";
+    var_dump($this->Gcal_model->update("http://www.google.com/calendar/feeds/default/private/full/mkm06rsr9prgovm9u9tl1qnnjk"));
+  }
+
+  private function formatDatetime($time) {
+    return
+      array_map(
+        create_function(
+          '$date',
+          'return date(DATE_RFC3339, strtotime($date));'
+        ),
+        $time
+      );
   }
 }

@@ -47,7 +47,7 @@ $(document).ready(function () {
 </div>
 <div class="event_view_time">
   <?php
-    echo $event['time_pretty'];
+    echo $event['time_pretty_start'] . " - ". $event['time_pretty_end'];
   ?>
 </div>
 

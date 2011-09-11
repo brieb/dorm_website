@@ -5,6 +5,7 @@ class Gcal_model extends CI_Model {
 
   function __construct(){
     parent::__construct();
+    $this->load->database();
 
     $oldPath = set_include_path(get_include_path() . PATH_SEPARATOR .
       realpath(dirname(__FILE__).'/../../assets/third_party/zend'));
@@ -26,22 +27,74 @@ class Gcal_model extends CI_Model {
       echo "Could not connect to calendar.";
       die();
     }
+
     $this->service = new Zend_Gdata_Calendar($client);
   }
 
   public function create($data) {
-    $newEvent = $this->service->newEventEntry();
+    $id = $data['event_id'];
+    $title = $data['title'];
+    $time_start = $data['time']['start'];
+    $time_end = $data['time']['end'];
 
-    $newEvent->title = $this->service->newTitle($data['title']);
-    //$newEvent->where = array($this->service->newWhere($where));
-    $newEvent->content = $this->service->newContent("{$data['description']}");
+    $desc = "<a href='".
+      site_url('event/view/'.$id).
+      "'>Click here for event info and sign ups</a>";
+
+    $event = $this->service->newEventEntry();
+
+    $event->title = $this->service->newTitle($title);
+    //TODO location
+    //$event->where = array($this->service->newWhere($where));
+    $event->content = $this->service->newContent("$desc");
 
     $when = $this->service->newWhen();
-    $when->startTime = "{$data['time']}.000";
-    $when->endTime = "{$data['time_end']}.000";
-    $newEvent->when = array($when);
+    $when->startTime = "{$time_start}";
+    $when->endTime = "{$time_end}";
+    $event->when = array($when);
 
-    $createdEvent = $this->service->insertEvent($newEvent);
-    echo $createdEvent->id->text;
+    $createdEvent = $this->service->insertEvent($event);
+    $gcalUrl = $createdEvent->id->text;
+
+    //TODO move this to event model??? - setGcalUrl - and call from event controller
+    $this->db->query("
+      UPDATE event SET gcal_url = ?
+      WHERE id = ?
+    ", array($gcalUrl, $data['event_id']));
+  }
+
+  public function read($id) {
+    return $this->service->getCalendarEventEntry($id);
+  }
+
+  public function update($id, $data) {
+    $title = $data['title'];
+    $time_start = $data['time']['start'];
+    $time_end = $data['time']['end'];
+
+    $event = $this->service->getCalendarEventEntry($id);
+    if (!$event) {
+      return false;
+    }
+
+    $event->title = $this->service->newTitle($title);
+
+    $when = $this->service->newWhen();
+    $when->startTime = "{$time_start}";
+    $when->endTime = "{$time_end}";
+    $event->when = array($when);
+
+    try {
+      $event->save();
+      return true;
+    } catch (Zend_Gdata_App_Exception $e) {
+      //var_dump($e);
+      return false;
+    }
+  }
+
+  public function delete($id) {
+    $event = $this->service->getCalendarEventEntry($id);
+    return $event->delete();
   }
 }

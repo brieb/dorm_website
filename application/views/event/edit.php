@@ -5,6 +5,12 @@ $this->load->view('calendar/sidebar');
 
 <div id="container"></div>
 
+<link
+  href="<?php echo base_url(); ?>assets/third_party/jquery-ui-timepicker/jquery-ui-timepicker-addon.css"
+rel="stylesheet" />
+<script type="text/javascript"
+  src="<?php echo base_url(); ?>assets/third_party/jquery-ui-timepicker/jquery-ui-timepicker-addon.js">
+</script>
 <script type="text/javascript"
   src="<?php echo base_url(); ?>assets/js/EventCreate.js">
 </script>

@@ -78,24 +78,42 @@ EventEdit = {
         })
     );
   },
+  getObjValueByIdentifierArray: function(obj, identifier) {
+    var parts = identifier.match(/\w*[^\[\]]/g);
+    for (var i = 0; i < parts.length; i++) {
+      obj = obj[parts[i]];
+    }
+    return obj;
+  },
+  setFieldValue: function(identifier, value) {
+    //TODO make not so dependent on regexps
+    var field = $('input[name="'+identifier+'"]');
+    if (identifier.substring(0, "time".length) === "time") {
+      field.datetimepicker('setDate', (new Date(value)) );
+    } else {
+      field.val(value); 
+    }
+  },
   replay: function() {
     //TODO make not so dependent on regexps
     $.each(EventCreate.fieldTypes, function(key, type) {
       type.fields.map(function(field) {
-        var editField = undefined;
+        var prefill = undefined;
         if (type.isDefault) {
-          editField = this.data[field.identifier];
+          prefill =
+            this.getObjValueByIdentifierArray(this.data, field.identifier);
+          //prefill = this.data[this.parseIdentifierArray(field.identifier)];
         } else {
           if (this.data.fields[type.name] !== undefined) {
             $('button[name="button_field_add['+type.name+']"]').click();
             var fieldName = field.identifier.replace(
               new RegExp('form_builder\\['+type.name+'\\]\\[(.*)\\]'), '$1');
-            editField = this.data.fields[type.name][fieldName];
+            prefill = this.data.fields[type.name][fieldName];
           }
         }  
 
-        if (editField !== undefined) {
-          $('input[name="'+field.identifier+'"]').val(editField); 
+        if (prefill !== undefined) {
+          this.setFieldValue(field.identifier, prefill);
         }
       }, this);
     }.bind(this));

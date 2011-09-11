@@ -2,6 +2,7 @@ var EventCreate = {};
 
 EventCreate = {
   urlEventCreate: SITE_URL+'/event/create',
+  urlEventView: SITE_URL+'/event/view',
 
   container: null,
   containerButtons: null,
@@ -46,8 +47,8 @@ EventCreate = {
         this.serialize(),
         function(response) {
           //TODO handle
-          console.log(response);
-        }
+          window.location = this.urlEventView + '/' + response; 
+        }.bind(this)
       );
       return false;
     }.bind(this));
@@ -95,6 +96,16 @@ EventCreate = {
 
   },
   serialize: function() {
+    //var timeStart = $('input[name="time[start]"]');
+    //var timeEnd = $('input[name="time[end]"]');
+    //var timeDateStart = timeStart.datetimepicker('getDate');
+    //var timeDateEnd = timeEnd.datetimepicker('getDate');
+    //timeStart.val(
+      //timeDateStart.toISOString().replace('Z', '')
+    //);
+    //timeEnd.val(
+      //timeDateEnd.toISOString().replace('Z', '')
+    //);
     var eventData = $(this.containerFields).serialize();
 
     if (this.signUpEnabled) {
@@ -161,7 +172,14 @@ EventCreate = {
       isDefault: true,
       fields: [
         {
-          inputType: 'datetimepicker',
+          identifier: 'time[start]',
+          label: 'From: ',
+          inputType: 'datetimepicker'
+        },
+        {
+          identifier: 'time[end]',
+          label: 'To: ',
+          inputType: 'datetimepicker'
         }
       ]
     },
@@ -272,24 +290,17 @@ EventCreate = {
         var datepickerOptions = {
           ampm: true,
           stepHour: 1,
-          stepMinute: 10,
+          stepMinute: 5,
         };
-        var defaultStart = new Date();
-        var defaultEnd = new Date(defaultStart.getTime() + 30*60000);
         var content = $('<div/>').append(
           $('<span/>')
-            .text('From '),
+            .text(elem.label),
           $('<input/>')
-            .attr({ type: 'text', name: 'time[start]' })
+            .attr({ type: 'text', name: elem.identifier })
             .datetimepicker(datepickerOptions)
-            .datetimepicker('setDate', defaultStart),
-          $('<span/>')
-            .text('to '),
-          $('<input/>')
-            .attr({ type: 'text', name: 'time[start]' })
-            .datetimepicker(datepickerOptions)
-            .datetimepicker('setDate', defaultEnd)
+            .datetimepicker('setDate', new Date())
         );
+        //For some reason, part of the picker shows up on load
         $('#ui-datepicker-div').hide();
         return content;
       } else {
