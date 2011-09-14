@@ -179,16 +179,40 @@ $logoPaddingTop: 14px;
   overflow-y: scroll;
 
   #user_directory_listing {
-    .item {
-      padding: 15px;
-      margin-bottom: 20px;
-      @include single-box-shadow;
-      @include border-radius(5px);
-      @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+    table {
+      width: 100%;
+      border-collapse: collapse;
 
-      li {
-        display: inline-block;
-        margin-right: 30px;
+      ul {
+        padding: 15px;
+        margin: 10px;
+        @include single-box-shadow;
+        @include border-radius(5px);
+        @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+
+        li {
+          /*display: inline-block;*/
+          /*margin-right: 30px;*/
+          padding: 3px;
+
+          &.name {
+            font-family: "Lato-Black";
+            font-size: 120%;
+          }
+          &.email {
+            font-family: "Lato-Light";
+            margin-left: 20px;
+            font-size: 110%;
+
+            a {
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+          &.room {
+            margin-left: 20px;
+          }
+        }
       }
     }
   }

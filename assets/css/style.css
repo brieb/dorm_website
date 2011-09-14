@@ -188,9 +188,14 @@ body {
   overflow-y: scroll;
 }
 /* line 182, ../sass/style.scss */
-#content #user_directory_listing .item {
+#content #user_directory_listing table {
+  width: 100%;
+  border-collapse: collapse;
+}
+/* line 186, ../sass/style.scss */
+#content #user_directory_listing table ul {
   padding: 15px;
-  margin-bottom: 20px;
+  margin: 10px;
   -moz-box-shadow: 0px 0px 5px #333333;
   -webkit-box-shadow: 0px 0px 5px #333333;
   -o-box-shadow: 0px 0px 5px #333333;
@@ -208,8 +213,29 @@ body {
   background-image: -ms-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
 }
-/* line 189, ../sass/style.scss */
-#content #user_directory_listing .item li {
-  display: inline-block;
-  margin-right: 30px;
+/* line 193, ../sass/style.scss */
+#content #user_directory_listing table ul li {
+  /*display: inline-block;*/
+  /*margin-right: 30px;*/
+  padding: 3px;
+}
+/* line 198, ../sass/style.scss */
+#content #user_directory_listing table ul li.name {
+  font-family: "Lato-Black";
+  font-size: 120%;
+}
+/* line 202, ../sass/style.scss */
+#content #user_directory_listing table ul li.email {
+  font-family: "Lato-Light";
+  margin-left: 20px;
+  font-size: 110%;
+}
+/* line 207, ../sass/style.scss */
+#content #user_directory_listing table ul li.email a {
+  text-decoration: none;
+  color: inherit;
+}
+/* line 212, ../sass/style.scss */
+#content #user_directory_listing table ul li.room {
+  margin-left: 20px;
 }

@@ -117,28 +117,51 @@ var detect_matching_users = function() {
 var print_matching_users = function() {
   detect_matching_users();
 
+  var numInCol1 = 0;
+  var numInCol2 = 0;
+
   $("#user_directory_listing").html('');
-  var content = $('<ul />').attr({class: 'list'});
+  var content = $('<table />');
+  var currentRow = null;
   for (var i = 0; i < users.length; i++) {
+
     var user = users[i];
     if (user['is_match'] === true) {
-      content.append(
-        $('<li />').append(
+      if (numInCol1 === numInCol2) {
+        if (currentRow !== null) {
+          content.append(currentRow);
+        }
+        currentRow = $('<tr />');
+      }
+
+      currentRow.append(
+        $('<td />').append(
           $('<ul />')
-            .attr({class: 'item'})
             .append(
               $('<li />', {
-                text: user['full_name']
+                text: user['full_name'],
+                class: 'name'
               }),
+              $('<li />')
+                .attr({ 'class': 'email' })
+                .append(
+                  $('<a />')
+                    .attr({ 'href': 'mailto:' + user['email'] })
+                    .text(user['email'])
+                ),
               $('<li />', {
-                text: user['email']
-              }),
-              $('<li />', {
-                text: user['house'] + " " + user['room']
+                text: user['house'] + " " + user['room'],
+                class: 'room'
               })
             )
         )
-      )
+      );
+
+      if (numInCol1 <= numInCol2) {
+        numInCol1++;
+      } else {
+        numInCol2++;
+      }
     }
   }
   $("#user_directory_listing").html(content);
