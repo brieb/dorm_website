@@ -149,10 +149,10 @@ body {
   border-right-style: solid;
   border-right-color: #B3B3B3;
   border-right-width: 2px;
-  padding-left: 5px;
 }
-/* line 150, ../sass/style.scss */
+/* line 149, ../sass/style.scss */
 #sidebar .sidebar-box {
+  padding-left: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
@@ -168,34 +168,83 @@ body {
 }
 /* line 162, ../sass/style.scss */
 #sidebar #user_search {
+  padding-left: 5px;
   font-size: 14px;
   height: 25px;
   margin: 10px;
   width: 180px;
 }
+/* line 175, ../sass/style.scss */
+#sidebar #navigation li {
+  height: 45px;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c5c5c5), color-stop(100%, #b7b7b7));
+  background-image: -webkit-linear-gradient(#c5c5c5, #b7b7b7);
+  background-image: -moz-linear-gradient(#c5c5c5, #b7b7b7);
+  background-image: -o-linear-gradient(#c5c5c5, #b7b7b7);
+  background-image: -ms-linear-gradient(#c5c5c5, #b7b7b7);
+  background-image: linear-gradient(#c5c5c5, #b7b7b7);
+}
+/* line 179, ../sass/style.scss */
+#sidebar #navigation li a {
+  text-decoration: none;
+  color: black;
+  font-family: "Lato-Bold";
+  font-size: 20px;
+  display: block;
+  height: 32.5px;
+  margin-left: 8px;
+  padding-top: 12.5px;
+  padding-left: 26px;
+  width: 100%;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+/* line 202, ../sass/style.scss */
+#sidebar #navigation li a.calendar {
+  background-image: url('/dorm_website/assets/img/event/calendar.png?1315975166');
+}
+/* line 205, ../sass/style.scss */
+#sidebar #navigation li a.event_list {
+  background-image: url('/dorm_website/assets/img/event/event_list.png?1315975174');
+  background-size: 15px 15px;
+}
+/* line 209, ../sass/style.scss */
+#sidebar #navigation li a.event_create {
+  background-image: url('/dorm_website/assets/img/event/event_create.png?1315976077');
+  background-size: 16px 16px;
+}
 
-/* line 170, ../sass/style.scss */
+/* line 218, ../sass/style.scss */
 #sidebar-right {
   width: 150px;
   height: 100%;
   float: right;
 }
 
-/* line 176, ../sass/style.scss */
+/* line 224, ../sass/style.scss */
 #content {
-  padding: 20px;
-  height: 100%;
   overflow-y: scroll;
+  height: 100%;
 }
-/* line 182, ../sass/style.scss */
+/* line 228, ../sass/style.scss */
+#content #user_directory_listing {
+  padding: 10px;
+}
+/* line 231, ../sass/style.scss */
 #content #user_directory_listing table {
   width: 100%;
   border-collapse: collapse;
 }
-/* line 186, ../sass/style.scss */
+/* line 235, ../sass/style.scss */
+#content #user_directory_listing table td.empty {
+  width: 50%;
+}
+/* line 239, ../sass/style.scss */
 #content #user_directory_listing table ul {
   padding: 15px;
   margin: 10px;
+  min-height: 85px;
   -moz-box-shadow: 0px 0px 5px #333333;
   -webkit-box-shadow: 0px 0px 5px #333333;
   -o-box-shadow: 0px 0px 5px #333333;
@@ -213,29 +262,44 @@ body {
   background-image: -ms-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
 }
-/* line 193, ../sass/style.scss */
+/* line 248, ../sass/style.scss */
 #content #user_directory_listing table ul li {
   /*display: inline-block;*/
   /*margin-right: 30px;*/
   padding: 3px;
+  height: 100%;
 }
-/* line 198, ../sass/style.scss */
+/* line 254, ../sass/style.scss */
 #content #user_directory_listing table ul li.name {
   font-family: "Lato-Black";
   font-size: 120%;
 }
-/* line 202, ../sass/style.scss */
+/* line 258, ../sass/style.scss */
 #content #user_directory_listing table ul li.email {
   font-family: "Lato-Light";
   margin-left: 20px;
   font-size: 110%;
 }
-/* line 207, ../sass/style.scss */
+/* line 263, ../sass/style.scss */
 #content #user_directory_listing table ul li.email a {
   text-decoration: none;
   color: inherit;
 }
-/* line 212, ../sass/style.scss */
+/* line 268, ../sass/style.scss */
 #content #user_directory_listing table ul li.room {
   margin-left: 20px;
+}
+/* line 271, ../sass/style.scss */
+#content #user_directory_listing table ul li.photo {
+  float: left;
+  margin-right: 20px;
+}
+/* line 275, ../sass/style.scss */
+#content #user_directory_listing table ul li.photo img {
+  height: 80px;
+}
+/* line 284, ../sass/style.scss */
+#content #gcal {
+  width: 100%;
+  height: 100%;
 }

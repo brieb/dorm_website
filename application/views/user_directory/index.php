@@ -121,23 +121,29 @@ var print_matching_users = function() {
   var numInCol2 = 0;
 
   $("#user_directory_listing").html('');
+
   var content = $('<table />');
-  var currentRow = null;
+  var currentRow = $('<tr />');
+
   for (var i = 0; i < users.length; i++) {
 
     var user = users[i];
     if (user['is_match'] === true) {
-      if (numInCol1 === numInCol2) {
-        if (currentRow !== null) {
-          content.append(currentRow);
-        }
-        currentRow = $('<tr />');
-      }
-
+    console.log(user);
       currentRow.append(
         $('<td />').append(
           $('<ul />')
             .append(
+              $('<li />')
+                .attr({
+                  'class': 'photo'
+                })
+                .append(
+                  $('<img />')
+                    .attr({
+                      'src': BASE_URL + 'assets/img/people/placeholder.png',
+                    })
+                ),
               $('<li />', {
                 text: user['full_name'],
                 class: 'name'
@@ -162,8 +168,22 @@ var print_matching_users = function() {
       } else {
         numInCol2++;
       }
+
+      if (numInCol1 === numInCol2) {
+        content.append(currentRow);
+        currentRow = $('<tr />');
+      }
     }
   }
+
+  if (numInCol1 > numInCol2) {
+    currentRow.append(
+      $('<td />')
+        .attr({ 'class': 'empty' })
+    );
+    content.append(currentRow);
+  }
+
   $("#user_directory_listing").html(content);
 }
 
