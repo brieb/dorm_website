@@ -33,14 +33,38 @@ $(document).ready(function() {
       }
     });
   };
-  setActiveMenuItems();
+  //setActiveMenuItems();
 
   //TODO proper icons
-  $("#sidebar a").each(function() {
-    $(this).button({
-      icons: {
-        primary: "ui-icon-locked"
-      }
-    });
-  });
+  //$("#sidebar a").each(function() {
+    //$(this).button({
+      //icons: {
+        //primary: "ui-icon-locked"
+      //}
+    //});
+  //});
+
+  $("#links .events").hover(
+    function() {
+      //$(this).css('color', 'black');
+      $("#links .events").addClass('hover');
+        //.css('backgroundColor': )
+      $("#links .submenu").show();
+        
+    },
+    function() {
+      //$(this).css('color', 'white');
+      $("#links .events").removeClass('hover');
+      $("#links .submenu").hide();
+    }
+  );
+
+  $("#links .events .submenu li").hover(
+    function() {
+      $(this).addClass('hover');
+    },
+    function() {
+      $(this).removeClass('hover');
+    }
+  );
 });

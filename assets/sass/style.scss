@@ -63,7 +63,7 @@ $contentWidth: 100% - $sidebarWidth - $scrollBarWidth;
 $contentSidebarRightWidth:
   100% - $sidebarWidth - $sidebarRightWidth  - $scrollBarWidth;
 $headerHeight: 50px;
-$aPaddingTop: 17px;
+$aPaddingTop: 18px;
 $imgDim: 32px;
 $logoPaddingTop: 5px;
 
@@ -104,42 +104,127 @@ body {
     position: absolute;
     right: 30px;
     font-size: 120%;
-    height: $headerHeight;
+    z-index: 1000;
 
-    li {
+    .menu li {
       display: inline-block;
       margin-right: 5px;
-      height: $headerHeight - $aPaddingTop;
+      vertical-align: top;
+      width: 150px;
 
       a {
-        height: 100%;
+        height: $headerHeight - $aPaddingTop;
         display: block;
         background: {
           size: $imgDim $imgDim;
           repeat: no-repeat;
-          position: center left;
+          position: 15px center;
         };
-        padding: $aPaddingTop 20px 0 $imgDim+10px;
+        padding: $aPaddingTop 20px 0 $imgDim+25px;
         color: white;
         text-decoration: none;
 
-        &.calendar {
+        &.events_menuitem {
           background-image: image-url("common/header/calendar.png");
         }
         &.people {
           background-image: image-url("common/header/people.png");
         }
 
-        &.active {
-          background-color: transparentize(#FFFFFF, 0.8);
-          background-position: 5px 10px;
-          padding: $aPaddingTop 25px 5px $imgDim+10px;
-          border: {
-            style: solid;
-            width: 0 1px 1px 1px;
-            color: transparentize(#000000, 0.8);
+        /*&.active {*/
+          /*background-color: transparentize(#FFFFFF, 0.8);*/
+          /*background-position: 5px 10px;*/
+          /*padding: $aPaddingTop 25px 5px $imgDim+10px;*/
+          /*border: {*/
+            /*style: solid;*/
+            /*width: 0 1px 1px 1px;*/
+            /*color: transparentize(#000000, 0.8);*/
+          /*};*/
+        /*}*/
+      }
+
+      .submenu {
+        display:none;
+
+        font-size: 90%;
+        margin-bottom: 10px;
+
+        li {
+          display: list-item;
+
+          a {
+            margin: 0;
+            padding: 14px 0 5px (16px+8px+25px);
+
+            color: black;
+            height: 20px;
+
+            background: {
+              size: 16px;
+              repeat: no-repeat;
+              position: 15px center;
+            };
+
+            &.event_list {
+              background-image:
+                image-url("common/header/event/event_list.png");
+            }
+            &.event_create {
+              background-image:
+                image-url("common/header/event/event_create.png");
+            }
+            &.calendar {
+              background-image:
+                image-url("common/header/event/calendar.png");
+            }
+          }
+
+          &.hover {
+            @include background-image(
+              linear-gradient(#8F8F8F, #575757)
+            );
+            background-size: 100% 100%;
+            background-position: 0 0;
+
+            a {
+              color: white;
+
+              &.event_list {
+                background-image:
+                  image-url("common/header/event/event_list_hover.png");
+              }
+              &.event_create {
+                background-image:
+                  image-url("common/header/event/event_create_hover.png");
+              }
+              &.calendar {
+                background-image:
+                  image-url("common/header/event/calendar_hover.png");
+              }
+            } 
+          }
+        }
+      }
+
+      &.events.hover {
+        $marginTop: 4px;
+
+        @include background-image(linear-gradient(#C5C5C5, #B9B9B9));
+        @include border-radius(10px);
+        @include single-box-shadow;
+
+        margin-top: $marginTop;
+
+        .events_menuitem {
+          margin-top: -$marginTop;
+          color: black;
+          border-bottom:{
+            style: dashed;
+            color: #A5A5A5;
+            width: 1px;
           };
         }
+
       }
     }
   }
@@ -291,15 +376,6 @@ body {
 }
 
 #content {
-  /*margin-left: $sidebarWidth;*/
-  /*margin-right: $sidebarRightWidth + 20px;*/
-  /*position: absolute;*/
-  /*left: $sidebarWidth;*/
-  /*left: 0;*/
-  /*top: $headerHeight;*/
-  
-
-  /*padding: 20px;*/
 
   width: $contentWidth;
 
