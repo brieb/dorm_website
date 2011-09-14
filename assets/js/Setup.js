@@ -17,13 +17,13 @@ $(document).ready(function() {
     sidebar.height(remaining_height - sidebarHeightExtra); 
     content.height(remaining_height - contentHeightExtra); 
 
-    var contentWidth = 
-      $(window).width() -  sidebar.width() - 170 - 50;
+    //var contentWidth = 
+      //$(window).width() -  sidebar.width() - 170 - 50;
     //content.width(contentWidth);
   };
 
-  //adjustDimensions();
-  //$(window).resize(adjustDimensions);
+  adjustDimensions();
+  $(window).resize(adjustDimensions);
 
   var setActiveMenuItems = function() {
     console.log(window.location.href);

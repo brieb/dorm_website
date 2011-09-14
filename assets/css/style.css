@@ -74,7 +74,7 @@ body {
   height: 100%;
 }
 
-/* line 82, ../sass/style.scss */
+/* line 80, ../sass/style.scss */
 #header {
   height: 50px;
   width: 100%;
@@ -87,7 +87,7 @@ body {
   font-family: "Sansation";
   position: relative;
 }
-/* line 89, ../sass/style.scss */
+/* line 87, ../sass/style.scss */
 #header #logo {
   font-family: "Sansation-Bold";
   font-size: 40px;
@@ -95,7 +95,7 @@ body {
   height: 50px;
   left: 30px;
 }
-/* line 96, ../sass/style.scss */
+/* line 94, ../sass/style.scss */
 #header #logo a {
   height: 45px;
   padding-top: 5px;
@@ -103,71 +103,39 @@ body {
   text-decoration: none;
   color: white;
 }
-/* line 105, ../sass/style.scss */
+/* line 103, ../sass/style.scss */
 #header #links {
   position: absolute;
   right: 30px;
-  /*top: 0;*/
   font-size: 120%;
   height: 50px;
-  /*height: 100%;*/
-  /*float: right;*/
-  /*width: 50%;*/
-  /*ul {*/
-  /*height: 100%;*/
-  /*width: 100%;*/
-  /*}*/
 }
-/* line 120, ../sass/style.scss */
+/* line 109, ../sass/style.scss */
 #header #links li {
-  /*float: right;*/
-  /*width: 47%;*/
   display: inline-block;
-  /*height: 100%;*/
   margin-right: 5px;
   height: 33px;
-  /*vertical-align: middle;*/
 }
-/* line 129, ../sass/style.scss */
+/* line 114, ../sass/style.scss */
 #header #links li a {
   height: 100%;
-  /*width: 100%;*/
   display: block;
   background-size: 32px 32px;
   background-repeat: no-repeat;
   background-position: center left;
   padding: 17px 20px 0 42px;
-  /*padding: 5% 1% 0% 30%;*/
   color: white;
   text-decoration: none;
 }
-/* line 143, ../sass/style.scss */
+/* line 126, ../sass/style.scss */
 #header #links li a.calendar {
   background-image: url('/dorm_website/assets/img/common/header/calendar.png?1315955492');
 }
-/* line 146, ../sass/style.scss */
-#header #links li a.calendar img {
-  height: 90%;
-  float: left;
-  /*margin-right: 2%;*/
-}
-/* line 151, ../sass/style.scss */
-#header #links li a.calendar span {
-  /*display: inline-block;*/
-  /*display: block;*/
-  /*height: 100%;*/
-  float: left;
-  /*height: 50%;*/
-  /*padding-top: 10%;*/
-  /*vertical-align:bottom;*/
-  /*margin-top: 8%;*/
-  /*padding-left: 5%;*/
-}
-/* line 163, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 #header #links li a.people {
   background-image: url('/dorm_website/assets/img/common/header/people.png?1315959606');
 }
-/* line 167, ../sass/style.scss */
+/* line 133, ../sass/style.scss */
 #header #links li a.active {
   background-color: rgba(255, 255, 255, 0.2);
   background-position: 5px 10px;
@@ -177,32 +145,29 @@ body {
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-/* line 182, ../sass/style.scss */
+/* line 148, ../sass/style.scss */
 #main {
   overflow: hidden;
 }
 
-/* line 186, ../sass/style.scss */
+/* line 152, ../sass/style.scss */
 #sidebar {
   height: 100%;
   width: 15%;
   position: relative;
-  /*position: absolute;*/
-  /*left: 0;*/
-  /*top: $headerHeight;*/
   float: left;
   background-color: #c5c5c5;
   border-right-style: solid;
   border-right-color: #B3B3B3;
   border-right-width: 2px;
 }
-/* line 205, ../sass/style.scss */
+/* line 167, ../sass/style.scss */
 #sidebar .sidebar-box, #sidebar #user_search {
   margin: 3%;
   padding: 2%;
   width: 90%;
 }
-/* line 211, ../sass/style.scss */
+/* line 173, ../sass/style.scss */
 #sidebar .sidebar-box {
   background: rgba(0, 0, 0, 0.1);
   border-style: solid;
@@ -215,13 +180,13 @@ body {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 221, ../sass/style.scss */
+/* line 183, ../sass/style.scss */
 #sidebar #user_search {
   font-size: 110%;
   height: 32px;
   width: 94%;
 }
-/* line 227, ../sass/style.scss */
+/* line 189, ../sass/style.scss */
 #sidebar #navigation {
   /*$navItemHeight: 45px;*/
   /*$navIconDim: 18px;*/
@@ -231,11 +196,11 @@ body {
   /*margin: 10px 10px 0 10px;*/
   /*}*/
 }
-/* line 238, ../sass/style.scss */
+/* line 200, ../sass/style.scss */
 #sidebar #navigation li {
   /*height: $navItemHeight;*/
 }
-/* line 241, ../sass/style.scss */
+/* line 203, ../sass/style.scss */
 #sidebar #navigation li a {
   /*@include border-radius(0px);*/
   /*@include background-image(linear-gradient(#C4C4C4, #818181));*/
@@ -285,7 +250,7 @@ body {
   /*}*/
 }
 
-/* line 301, ../sass/style.scss */
+/* line 263, ../sass/style.scss */
 #sidebar-right {
   width: 10%;
   height: 100%;
@@ -298,20 +263,20 @@ body {
   border-left-color: #B3B3B3;
   border-left-width: 2px;
 }
-/* line 318, ../sass/style.scss */
+/* line 280, ../sass/style.scss */
 #sidebar-right button {
   width: 96%;
   margin: 3% 2%;
 }
 
-/* line 325, ../sass/style.scss */
+/* line 287, ../sass/style.scss */
 #content, #content-sidebarright {
   overflow-y: scroll;
-  height: 100%;
+  height: 90%;
   float: left;
 }
 
-/* line 331, ../sass/style.scss */
+/* line 293, ../sass/style.scss */
 #content {
   /*margin-left: $sidebarWidth;*/
   /*margin-right: $sidebarRightWidth + 20px;*/
@@ -322,20 +287,20 @@ body {
   /*padding: 20px;*/
   width: 84.5%;
 }
-/* line 344, ../sass/style.scss */
+/* line 306, ../sass/style.scss */
 #content #user_directory_listing {
   padding: 10px;
 }
-/* line 347, ../sass/style.scss */
+/* line 309, ../sass/style.scss */
 #content #user_directory_listing table {
   width: 100%;
   border-collapse: collapse;
 }
-/* line 351, ../sass/style.scss */
+/* line 313, ../sass/style.scss */
 #content #user_directory_listing table td.empty {
   width: 50%;
 }
-/* line 355, ../sass/style.scss */
+/* line 317, ../sass/style.scss */
 #content #user_directory_listing table ul {
   padding: 15px;
   margin: 10px;
@@ -357,54 +322,54 @@ body {
   background-image: -ms-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
 }
-/* line 364, ../sass/style.scss */
+/* line 326, ../sass/style.scss */
 #content #user_directory_listing table ul li {
   /*display: inline-block;*/
   /*margin-right: 30px;*/
   padding: 3px;
   height: 100%;
 }
-/* line 370, ../sass/style.scss */
+/* line 332, ../sass/style.scss */
 #content #user_directory_listing table ul li.name {
   font-family: "Lato-Black";
   font-size: 120%;
 }
-/* line 374, ../sass/style.scss */
+/* line 336, ../sass/style.scss */
 #content #user_directory_listing table ul li.email {
   font-family: "Lato-Light";
   margin-left: 20px;
   font-size: 110%;
 }
-/* line 379, ../sass/style.scss */
+/* line 341, ../sass/style.scss */
 #content #user_directory_listing table ul li.email ui-state-active
 a {
   text-decoration: none;
   color: inherit;
 }
-/* line 384, ../sass/style.scss */
+/* line 346, ../sass/style.scss */
 #content #user_directory_listing table ul li.room {
   margin-left: 20px;
 }
-/* line 387, ../sass/style.scss */
+/* line 349, ../sass/style.scss */
 #content #user_directory_listing table ul li.photo {
   float: left;
   margin-right: 20px;
 }
-/* line 391, ../sass/style.scss */
+/* line 353, ../sass/style.scss */
 #content #user_directory_listing table ul li.photo img {
   height: 80px;
 }
-/* line 400, ../sass/style.scss */
+/* line 362, ../sass/style.scss */
 #content #gcal {
   width: 100%;
   height: 100%;
 }
 
-/* line 406, ../sass/style.scss */
+/* line 368, ../sass/style.scss */
 #content-sidebarright {
   width: 74.5%;
 }
-/* line 409, ../sass/style.scss */
+/* line 371, ../sass/style.scss */
 #content-sidebarright #event_create_fields {
   -moz-box-shadow: 0px 0px 5px #333333;
   -webkit-box-shadow: 0px 0px 5px #333333;
@@ -427,38 +392,38 @@ a {
   position: relative;
   padding-bottom: 60px;
 }
-/* line 419, ../sass/style.scss */
+/* line 381, ../sass/style.scss */
 #content-sidebarright #event_create_fields .field {
   margin-bottom: 3%;
 }
-/* line 422, ../sass/style.scss */
+/* line 384, ../sass/style.scss */
 #content-sidebarright #event_create_fields .field label {
   font-size: 120%;
   font-family: "Lato-Bold";
 }
-/* line 429, ../sass/style.scss */
+/* line 391, ../sass/style.scss */
 #content-sidebarright #event_create_fields .field input[type='text'], #content-sidebarright #event_create_fields .field textarea {
   height: 32px;
   font-size: 14px;
   width: 50%;
   margin: 1%;
 }
-/* line 436, ../sass/style.scss */
+/* line 398, ../sass/style.scss */
 #content-sidebarright #event_create_fields .field textarea {
   height: 100px;
 }
-/* line 441, ../sass/style.scss */
+/* line 403, ../sass/style.scss */
 #content-sidebarright #event_create_fields fieldset {
   padding: 20px;
   margin: 20px 0;
   width: 55%;
   position: relative;
 }
-/* line 448, ../sass/style.scss */
+/* line 410, ../sass/style.scss */
 #content-sidebarright #event_create_fields fieldset .field input[type='text'] {
   width: 90%;
 }
-/* line 453, ../sass/style.scss */
+/* line 415, ../sass/style.scss */
 #content-sidebarright #event_create_fields fieldset .button_remove {
   position: absolute;
   right: 3px;
@@ -466,7 +431,7 @@ a {
   width: 32px;
   height: 32px;
 }
-/* line 463, ../sass/style.scss */
+/* line 425, ../sass/style.scss */
 #content-sidebarright #event_create_fields input[type='submit'] {
   position: absolute;
   bottom: 10px;

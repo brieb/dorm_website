@@ -46,13 +46,13 @@
     <div id="links">
       <ul>
         <li>
-          <a
-            href="<?php echo site_url('calendar/index'); ?>"
-            class="calendar" >
-              <!-- <img
-                src="<?php echo base_url().'assets/img/common/header/calendar.png'?>" /> -->
-              Calendar
-          </a>
+          <?php
+            echo anchor(
+              'calendar/index',
+              'Calendar',
+              array('class' => 'calendar')
+            );
+          ?>
         </li>
         <li>
           <?php
