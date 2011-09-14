@@ -1,37 +1,25 @@
 <div id="sidebar">
   <ul id="navigation">
     <li>
-      <?php
-        echo anchor(
-          "calendar/index",
-          "Calendar",
-          array(
-            'class' => 'calendar'
-          )
-        );
-      ?>
+      <a
+        href="<?php echo site_url('calendar/index'); ?>"
+        class="calendar" >
+        <span>Calendar</span>
+      </a>
     </li>
     <li>
-      <?php
-        echo anchor(
-          "event/view",
-          "Event List",
-          array(
-            'class' => 'event_list'
-          )
-        );
-      ?>
+      <a
+        href="<?php echo site_url('event/view'); ?>"
+        class="event_list" >
+          <span>Event List</span>
+      </a>
     </li>
     <li>
-      <?php
-        echo anchor(
-          "event/create",
-          "Create an Event",
-          array(
-            'class' => 'event_create'
-          )
-        );
-      ?>
+      <a
+        href="<?php echo site_url('event/create'); ?>"
+        class="event_create" >
+          <span>Create an Event</span>
+      </a>
     </li>
   </ul>
 </div>

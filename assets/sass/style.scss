@@ -54,20 +54,30 @@
   font-files("lato/Lato-Regular.ttf", truetype)
 );
 
+$sidebarBackgroundColor: #343434;
+$sidebarBackgroundColor: #C5C5C5;
+$sidebarWidth: 15%;
+$sidebarRightWidth: 10%;
+$scrollBarWidth: 0.5%;
+$contentWidth: 100% - $sidebarWidth - $scrollBarWidth;
+$contentSidebarRightWidth:
+  100% - $sidebarWidth - $sidebarRightWidth  - $scrollBarWidth;
+$headerHeight: 50px;
+$aPaddingTop: 17px;
+$imgDim: 32px;
+$logoPaddingTop: 5px;
 
 body {
   margin: 0;
-  font-family: "Lato-Regular";
-  font-size: 15px;
+  font-family: "Lato-Regular", "Lucida Grande";
+  font-size: 14px;
   overflow: hidden;
   background-color: #e3e3e3;
+  width: 100%;
+  height: 100%;
 }
 
 
-$headerHeight:60px;
-$aPaddingTop: 22px;
-$imgDim: 40px;
-$logoPaddingTop: 14px;
 
 #header {
   height: $headerHeight;
@@ -82,7 +92,7 @@ $logoPaddingTop: 14px;
     position: absolute;
     height: $headerHeight;
     left: 30px;
-    
+
     a {
       height: $headerHeight - $logoPaddingTop;
       padding-top: $logoPaddingTop;
@@ -93,34 +103,76 @@ $logoPaddingTop: 14px;
   }
 
   #links {
-    /*margin: 50% 30px;*/
-    right: 30px;
-    font-size: 18px;
     position: absolute;
+    right: 30px;
+    /*top: 0;*/
+    font-size: 120%;
     height: $headerHeight;
+    /*height: 100%;*/
+    /*float: right;*/
+    /*width: 50%;*/
+
+    /*ul {*/
+      /*height: 100%;*/
+      /*width: 100%;*/
+    /*}*/
 
     li {
+      /*float: right;*/
+      /*width: 47%;*/
       display: inline-block;
+      /*height: 100%;*/
+      margin-right: 5px;
       height: $headerHeight - $aPaddingTop;
+      /*vertical-align: middle;*/
 
       a {
         height: 100%;
+        /*width: 100%;*/
         display: block;
         background: {
           size: $imgDim $imgDim;
           repeat: no-repeat;
           position: center left;
         };
-        /*margin: 20px 30px;*/
         padding: $aPaddingTop 20px 0 $imgDim+10px;
+        /*padding: 5% 1% 0% 30%;*/
         color: white;
         text-decoration: none;
 
         &.calendar {
           background-image: image-url("common/header/calendar.png");
+
+          img {
+            height: 90%;
+            float: left;
+            /*margin-right: 2%;*/
+          }
+          span {
+            /*display: inline-block;*/
+            /*display: block;*/
+            /*height: 100%;*/
+            float: left;
+            /*height: 50%;*/
+            /*padding-top: 10%;*/
+            /*vertical-align:bottom;*/
+            /*margin-top: 8%;*/
+            /*padding-left: 5%;*/
+          }
         }
         &.people {
           background-image: image-url("common/header/people.png");
+        }
+
+        &.active {
+          background-color: transparentize(#FFFFFF, 0.8);
+          background-position: 5px 10px;
+          padding: $aPaddingTop 25px 5px $imgDim+10px;
+          border: {
+            style: solid;
+            width: 0 1px 1px 1px;
+            color: transparentize(#000000, 0.8);
+          };
         }
       }
     }
@@ -132,13 +184,17 @@ $logoPaddingTop: 14px;
 }
 
 #sidebar {
-  $sidebarWidth: 200px;
 
   height: 100%;
   width: $sidebarWidth;
+  position: relative;
+  /*position: absolute;*/
+  /*left: 0;*/
+  /*top: $headerHeight;*/
   float: left;
+
   background: {
-    color: #C5C5C5;
+    color: $sidebarBackgroundColor;
   };
   border-right: {
     style: solid;
@@ -146,8 +202,13 @@ $logoPaddingTop: 14px;
     width: 2px;
   };
 
+  .sidebar-box, #user_search {
+    margin: 3%;
+    padding: 2%;
+    width: 100% - 3%*2 - 2%*2;
+  }
+
   .sidebar-box {
-    padding-left: 5px;
     background: transparentize(#000000, 0.9);
     border: {
       style: solid;
@@ -155,75 +216,130 @@ $logoPaddingTop: 14px;
       width: 1px;
     };
     @include border-radius(5px);
-    margin: 10px;
-    padding: 5px;
   }
 
   #user_search {
-    padding-left: 5px;
-    font-size: 14px;
-    height: 25px;
-    margin: 10px;
-    width: $sidebarWidth - 20px;
+    font-size: 110%;
+    height: 32px;
+    width: 94%;
   }
 
   #navigation {
-    $navItemHeight: 45px;
-    $navItemFontSize: 20px;
-    $navIconDim: 18px;
+    /*$navItemHeight: 45px;*/
+    $navItemFontSize: 115%;
+    /*$navIconDim: 18px;*/
+
+  /*button {*/
+    /*width: 180px;*/
+    /*padding: 2px;*/
+    /*margin: 10px 10px 0 10px;*/
+  /*}*/
 
     li {
-      height: $navItemHeight;
-      @include background-image(linear-gradient(#C5C5C5, #B7B7B7));
+      /*height: $navItemHeight;*/
 
       a {
-        text-decoration: none;
-        color: black;
+        /*@include border-radius(0px);*/
+        /*@include background-image(linear-gradient(#C4C4C4, #818181));*/
+        /*text-decoration: none;*/
+        /*color: black;*/
         font: {
           family: "Lato-Bold";
           size: $navItemFontSize;
         };
-        display: block;
+        text-align: left;
+        /*border-style: none;*/
+        width: 92%;
+        padding: 2%;
+        margin: 2%;
+        /*display: block;*/
 
-        $paddingTop: ($navItemHeight - $navItemFontSize)/2;
-        height: $navItemHeight - $paddingTop;
-        margin-left: 8px;
-        padding-top: $paddingTop;
-        padding-left: $navIconDim + 8px;
-        width: 100%;
+        /*height: 100%;*/
+        /*width: 100%;*/
+
+        /*&.active {*/
+          /*@include background-image(linear-gradient(#393939, #5B5B5B));*/
+          /*color: white;*/
+        /*}*/
+        /*&:hover {*/
+          /*@include background-image(linear-gradient(#8F8F8F, #575757));*/
+          /*color: white;*/
+        /*}*/
+
+        /*span {*/
+          /*display: block;*/
+          /*$paddingTop: ($navItemHeight - $navItemFontSize)/2;*/
+          /*height: $navItemHeight - $paddingTop;*/
+          /*margin-left: 8px;*/
+          /*padding-top: $paddingTop;*/
+          /*padding-left: 8px;*/
+        /*}*/
 
 
-        background: {
-          size: $navIconDim $navIconDim;
-          repeat: no-repeat;
-          position: center left;
-        };
+        /*background: {*/
+          /*size: $navIconDim $navIconDim;*/
+          /*repeat: no-repeat;*/
+          /*position: center left;*/
+        /*};*/
 
-        &.calendar {
-          background-image: image-url("event/calendar.png");
-        }
-        &.event_list {
-          background-image: image-url("event/event_list.png");
-          background-size: ($navIconDim - 3px) ($navIconDim - 3px);
-        }
-        &.event_create {
-          background-image: image-url("event/event_create.png");
-          background-size: ($navIconDim - 2px) ($navIconDim - 2px);
-        }
+        /*&.calendar {*/
+          /*background-image: image-url("event/calendar.png");*/
+        /*}*/
+        /*&.event_list {*/
+          /*background-image: image-url("event/event_list.png");*/
+          /*background-size: ($navIconDim - 3px) ($navIconDim - 3px);*/
+        /*}*/
+        /*&.event_create {*/
+          /*background-image: image-url("event/event_create.png");*/
+          /*background-size: ($navIconDim - 2px) ($navIconDim - 2px);*/
+        /*}*/
       }
     }
   }
 }
 
 #sidebar-right {
-  width: 150px;
+  width: $sidebarRightWidth;
   height: 100%;
-  float: right;
+  /*position: absolute;*/
+  float: left;
+  /*top: $headerHeight;*/
+  /*right: 0;*/
+
+  background: {
+    color: $sidebarBackgroundColor;
+  };
+  border-left: {
+    style: solid;
+    color: #B3B3B3;
+    width: 2px;
+  };
+
+  button {
+    $marginLR: 2%;
+    width: 100% - $marginLR*2;
+    margin: 3% $marginLR;
+  }
+}
+
+#content, #content-sidebarright {
+  overflow-y: scroll;
+  height: 100%;
+  float: left;
 }
 
 #content {
-  overflow-y: scroll;
-  height: 100%;
+  /*margin-left: $sidebarWidth;*/
+  /*margin-right: $sidebarRightWidth + 20px;*/
+  /*position: absolute;*/
+  /*left: $sidebarWidth;*/
+  /*left: 0;*/
+  /*top: $headerHeight;*/
+  
+
+  /*padding: 20px;*/
+
+  width: $contentWidth;
 
   #user_directory_listing {
     padding: 10px;
@@ -258,7 +374,7 @@ $logoPaddingTop: 14px;
           &.email {
             font-family: "Lato-Light";
             margin-left: 20px;
-            font-size: 110%;
+            font-size: 110%;ui-state-active
 
             a {
               text-decoration: none;
@@ -287,3 +403,67 @@ $logoPaddingTop: 14px;
   }
 }
 
+#content-sidebarright {
+  width: $contentSidebarRightWidth;
+
+  #event_create_fields {
+    @include single-box-shadow;
+    @include border-radius(10px);
+    @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+
+    padding: 3%;
+    margin: 2%;
+    position: relative;
+    padding-bottom: 60px;
+
+    .field {
+      margin-bottom: 3%;  
+
+      label {
+        font: {
+          size: 120%;
+          family: "Lato-Bold";
+        };
+      }
+
+      input[type='text'], textarea {
+        height: 32px;
+        font-size: 14px;
+        width: 50%;
+        margin: 1%;
+      }
+
+      textarea {
+        height: 100px;
+      }
+    }
+
+    fieldset {
+      padding: 20px;
+      margin: 20px 0;
+      width: 55%;
+      position: relative;
+
+      .field {
+        input[type='text'] {
+          width: 90%;
+        }
+      }
+
+      .button_remove {
+        $dim: 32px;
+        position: absolute;
+        right: 3px;
+        top: 10px;
+        width: $dim;
+        height: $dim;
+      }
+    }
+
+    input[type='submit'] {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+}

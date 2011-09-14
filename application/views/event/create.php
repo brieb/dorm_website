@@ -18,15 +18,16 @@ rel="stylesheet" />
 <script type="text/javascript"
   src="<?php echo base_url(); ?>assets/js/EventCreateSignUpWizard.js">
 </script>
+
+
 <script type="text/javascript">
 $(document).ready(function() {
-  EventCreate.init();
+  EventCreate.init("content-sidebarright");
 });
 </script>
 
 
-<div id="container"></div>
-
+<div id="content-sidebarright"></div>
 
 <?php
 $this->load->view('common/footer');

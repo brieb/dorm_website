@@ -30,7 +30,7 @@
 
     <link
       rel="stylesheet"
-      href="<?php echo base_url(); ?>assets/jquery-ui/frosoco/jquery-ui-1.8.16.custom.css">
+      href="<?php echo base_url(); ?>assets/third_party/jquery-ui-themes/Absolution/jquery.ui.all.css">
 
     <link
       rel="stylesheet"
@@ -46,13 +46,13 @@
     <div id="links">
       <ul>
         <li>
-          <?php
-            echo anchor(
-              'calendar/index',
-              'Calendar',
-              array('class' => 'calendar')
-            );
-          ?>
+          <a
+            href="<?php echo site_url('calendar/index'); ?>"
+            class="calendar" >
+              <!-- <img
+                src="<?php echo base_url().'assets/img/common/header/calendar.png'?>" /> -->
+              Calendar
+          </a>
         </li>
         <li>
           <?php

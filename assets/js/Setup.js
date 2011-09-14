@@ -1,9 +1,10 @@
 $(document).ready(function() {
-  var adjustHeights = function() {
+  var adjustDimensions = function() {
     var headerHeight = $('#header').height();
     var remaining_height = parseInt($(window).height() - headerHeight); 
 
     var sidebar = $('#sidebar');
+    var sidebarRight = $('#sidebar-right');
     var content = $('#content');
 
     var sidebarHeightExtra =
@@ -15,8 +16,31 @@ $(document).ready(function() {
 
     sidebar.height(remaining_height - sidebarHeightExtra); 
     content.height(remaining_height - contentHeightExtra); 
+
+    var contentWidth = 
+      $(window).width() -  sidebar.width() - 170 - 50;
+    //content.width(contentWidth);
   };
 
-  adjustHeights();
-  $(window).resize(adjustHeights);
+  //adjustDimensions();
+  //$(window).resize(adjustDimensions);
+
+  var setActiveMenuItems = function() {
+    console.log(window.location.href);
+    $("#header #links a, #sidebar a").each(function() {
+      if ($(this).attr('href') === window.location.href) {
+        $(this).addClass('active');
+      }
+    });
+  };
+  setActiveMenuItems();
+
+  //TODO proper icons
+  $("#sidebar a").each(function() {
+    $(this).button({
+      icons: {
+        primary: "ui-icon-locked"
+      }
+    });
+  });
 });
