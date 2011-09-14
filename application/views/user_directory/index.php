@@ -1,13 +1,63 @@
-<input id="user_search" type='text' name='user_search' placeholder='Enter a name or email...'></input>
+<?php
+$this->load->view(
+ 'common/header',
+ array('page_title' => 'Directory')
+);
+?>
 
-<input type="checkbox" name="filter_house[]" checked value="schiff" />Schiff
-<input type="checkbox" name="filter_house[]" checked value="adams" />Adams
+<div id="sidebar">
+  <input
+    id="user_search"
+    type='text'
+    name='user_search'
+    placeholder='Enter a name or email...'>
+  </input>
 
-<input type="checkbox" name="filter_floor[]" checked value="1" />Floor 1
-<input type="checkbox" name="filter_floor[]" checked value="2" />Floor 2
-<input type="checkbox" name="filter_floor[]" checked value="3" />Floor 3
+  <div class="sidebar-box">
+    <input
+      type="checkbox"
+      name="filter_house[]" checked
+      value="schiff" />
+      Schiff
+    <br/>
 
-<div id="users_container"></div>
+    <input
+      type="checkbox"
+      name="filter_house[]" checked
+      value="adams" />
+      Adams
+    <br/>
+  </div>
+
+  <div class="sidebar-box">
+    <input
+      type="checkbox"
+      name="filter_floor[]" checked
+      value="1" />
+      Floor 1
+    <br/>
+
+    <input
+      type="checkbox"
+      name="filter_floor[]" checked
+      value="2" />
+      Floor 2
+    <br/>
+
+    <input
+      type="checkbox"
+      name="filter_floor[]" checked
+      value="3" />
+      Floor 3
+    <br/>
+  </div>
+
+</div>
+
+
+<div id="content">
+  <div id="user_directory_listing">
+</div>
 
 <script type="text/javascript">
 $(document).ready(function () {
@@ -67,29 +117,31 @@ var detect_matching_users = function() {
 var print_matching_users = function() {
   detect_matching_users();
 
-  $("#users_container").html('');
-  var content = $('<ul/>');
+  $("#user_directory_listing").html('');
+  var content = $('<ul />').attr({class: 'list'});
   for (var i = 0; i < users.length; i++) {
     var user = users[i];
     if (user['is_match'] === true) {
       content.append(
         $('<li />').append(
-          $('<ul />').append(
-            $('<li />', {
-              text: user['full_name']
-            }),
-            $('<li />', {
-              text: user['email']
-            }),
-            $('<li />', {
-              text: user['house'] + " " + user['room']
-            })
-          )
+          $('<ul />')
+            .attr({class: 'item'})
+            .append(
+              $('<li />', {
+                text: user['full_name']
+              }),
+              $('<li />', {
+                text: user['email']
+              }),
+              $('<li />', {
+                text: user['house'] + " " + user['room']
+              })
+            )
         )
       )
     }
   }
-  $("#users_container").html(content);
+  $("#user_directory_listing").html(content);
 }
 
 $("#user_search").keyup(print_matching_users);
@@ -99,3 +151,6 @@ print_matching_users();
 });
 </script>
 
+<?php
+$this->load->view('common/footer');
+?>

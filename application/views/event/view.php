@@ -1,5 +1,5 @@
 <?php
-$this->load->view('header', array('page_title' => 'Event'));
+$this->load->view('common/header', array('page_title' => Event'));
 $this->load->view('calendar/sidebar');
 $this->load->helper('event/form_builder');
 ?>
@@ -59,7 +59,7 @@ renderFields($event['fields']);
 ?>
 
 <?php
-$this->load->view('footer');
+$this->load->view('common/footer');
 ?>
 
 

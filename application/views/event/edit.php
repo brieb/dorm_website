@@ -1,5 +1,5 @@
 <?php
-$this->load->view('header', array('page_title' => 'Create an Event'));
+$this->load->view('common/header', array('page_title' => 'Create an Event'));
 $this->load->view('calendar/sidebar');
 ?>
 
@@ -31,5 +31,5 @@ $(document).ready(function() {
 
 
 <?php
-$this->load->view('footer');
+$this->load->view('common/footer');
 ?>

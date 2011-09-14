@@ -155,7 +155,6 @@ class Event extends CI_Controller {
     } else {
       $event = $this->Event_model->read($id);
       $event['time'] = $this->formatDatetime($event['time']);
-      var_dump($event);
 
       $event['fields'] = unserialize($event['fields']);
       $this->load->view(

@@ -1,6 +1,6 @@
 <?php
-//TODO remove
-$this->load->view('header');
+//TODO remove this used for testing
+$this->load->view('common/header');
 ?>
 <script
   type="text/javascript"

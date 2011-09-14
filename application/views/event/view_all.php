@@ -1,6 +1,6 @@
 <?php
 $this->load->view(
-  'header',
+  'common/header',
   array('page_title' => 'Event List')
 );
 $this->load->view('calendar/sidebar');
@@ -108,5 +108,5 @@ $this->load->view('calendar/sidebar');
 </script>
 
 <?php
-$this->load->view('footer');
+$this->load->view('common/footer');
 ?>

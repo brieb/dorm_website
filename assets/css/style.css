@@ -1,0 +1,215 @@
+@font-face {
+  font-family: "Sansation";
+  src: url('/dorm_website/assets/css/fonts/sansation/Sansation_Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Sansation-Light";
+  src: url('/dorm_website/assets/css/fonts/sansation/Sansation_Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Sansation-Bold";
+  src: url('/dorm_website/assets/css/fonts/sansation/Sansation_Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-Black";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-BlackItalic";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-BlackItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-Bold";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-BoldItalic";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-Hairline";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-Hairline.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-HairlineItalic";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-HairlineItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-Italic";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-Light";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-LightItalic";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lato-Regular";
+  src: url('/dorm_website/assets/css/fonts/lato/Lato-Regular.ttf') format('truetype');
+}
+
+/* line 58, ../sass/style.scss */
+body {
+  margin: 0;
+  font-family: "Lato-Regular";
+  font-size: 15px;
+  overflow: hidden;
+  background-color: #e3e3e3;
+}
+
+/* line 72, ../sass/style.scss */
+#header {
+  height: 60px;
+  width: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #990000), color-stop(100%, #641b1b));
+  background-image: -webkit-linear-gradient(#990000, #641b1b);
+  background-image: -moz-linear-gradient(#990000, #641b1b);
+  background-image: -o-linear-gradient(#990000, #641b1b);
+  background-image: -ms-linear-gradient(#990000, #641b1b);
+  background-image: linear-gradient(#990000, #641b1b);
+  font-family: "Sansation";
+  position: relative;
+}
+/* line 79, ../sass/style.scss */
+#header #logo {
+  font-family: "Sansation-Bold";
+  font-size: 40px;
+  position: absolute;
+  height: 60px;
+  left: 30px;
+}
+/* line 86, ../sass/style.scss */
+#header #logo a {
+  height: 46px;
+  padding-top: 14px;
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+/* line 95, ../sass/style.scss */
+#header #links {
+  /*margin: 50% 30px;*/
+  right: 30px;
+  font-size: 18px;
+  position: absolute;
+  height: 60px;
+}
+/* line 102, ../sass/style.scss */
+#header #links li {
+  display: inline-block;
+  height: 38px;
+}
+/* line 106, ../sass/style.scss */
+#header #links li a {
+  height: 100%;
+  display: block;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  background-position: center left;
+  /*margin: 20px 30px;*/
+  padding: 22px 20px 0 50px;
+  color: white;
+  text-decoration: none;
+}
+/* line 119, ../sass/style.scss */
+#header #links li a.calendar {
+  background-image: url('/dorm_website/assets/img/common/header/calendar.png?1315955492');
+}
+/* line 122, ../sass/style.scss */
+#header #links li a.people {
+  background-image: url('/dorm_website/assets/img/common/header/people.png?1315959606');
+}
+
+/* line 130, ../sass/style.scss */
+#main {
+  overflow: hidden;
+}
+
+/* line 134, ../sass/style.scss */
+#sidebar {
+  height: 100%;
+  width: 200px;
+  float: left;
+  background-color: #C5C5C5;
+  border-right-style: solid;
+  border-right-color: #B3B3B3;
+  border-right-width: 2px;
+  padding-left: 5px;
+}
+/* line 150, ../sass/style.scss */
+#sidebar .sidebar-box {
+  background: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 5px;
+}
+/* line 162, ../sass/style.scss */
+#sidebar #user_search {
+  font-size: 14px;
+  height: 25px;
+  margin: 10px;
+  width: 180px;
+}
+
+/* line 170, ../sass/style.scss */
+#sidebar-right {
+  width: 150px;
+  height: 100%;
+  float: right;
+}
+
+/* line 176, ../sass/style.scss */
+#content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: scroll;
+}
+/* line 182, ../sass/style.scss */
+#content #user_directory_listing .item {
+  padding: 15px;
+  margin-bottom: 20px;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f3f3f3), color-stop(100%, #e6e6e6));
+  background-image: -webkit-linear-gradient(#f3f3f3, #e6e6e6);
+  background-image: -moz-linear-gradient(#f3f3f3, #e6e6e6);
+  background-image: -o-linear-gradient(#f3f3f3, #e6e6e6);
+  background-image: -ms-linear-gradient(#f3f3f3, #e6e6e6);
+  background-image: linear-gradient(#f3f3f3, #e6e6e6);
+}
+/* line 189, ../sass/style.scss */
+#content #user_directory_listing .item li {
+  display: inline-block;
+  margin-right: 30px;
+}

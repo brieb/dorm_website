@@ -1,0 +1,195 @@
+@import "compass";
+
+@include font-face(
+  "Sansation",
+  font-files("sansation/Sansation_Regular.ttf", truetype)
+);
+@include font-face(
+  "Sansation-Light",
+  font-files("sansation/Sansation_Light.ttf", truetype)
+);
+@include font-face(
+  "Sansation-Bold",
+  font-files("sansation/Sansation_Bold.ttf", truetype)
+);
+
+@include font-face(
+  "Lato-Black",
+  font-files("lato/Lato-Black.ttf", truetype)
+);
+@include font-face(
+  "Lato-BlackItalic",
+  font-files("lato/Lato-BlackItalic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Bold",
+  font-files("lato/Lato-Bold.ttf", truetype)
+);
+@include font-face(
+  "Lato-BoldItalic",
+  font-files("lato/Lato-BoldItalic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Hairline",
+  font-files("lato/Lato-Hairline.ttf", truetype)
+);
+@include font-face(
+  "Lato-HairlineItalic",
+  font-files("lato/Lato-HairlineItalic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Italic",
+  font-files("lato/Lato-Italic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Light",
+  font-files("lato/Lato-Light.ttf", truetype)
+);
+@include font-face(
+  "Lato-LightItalic",
+  font-files("lato/Lato-LightItalic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Regular",
+  font-files("lato/Lato-Regular.ttf", truetype)
+);
+
+
+body {
+  margin: 0;
+  font-family: "Lato-Regular";
+  font-size: 15px;
+  overflow: hidden;
+  background-color: #e3e3e3;
+}
+
+
+$headerHeight:60px;
+$aPaddingTop: 22px;
+$imgDim: 40px;
+$logoPaddingTop: 14px;
+
+#header {
+  height: $headerHeight;
+  width: 100%;
+  @include background-image(linear-gradient(#990000, #641B1B));
+  font-family: "Sansation";
+  position: relative;
+
+  #logo {
+    font-family: "Sansation-Bold";
+    font-size: 40px;
+    position: absolute;
+    height: $headerHeight;
+    left: 30px;
+    
+    a {
+      height: $headerHeight - $logoPaddingTop;
+      padding-top: $logoPaddingTop;
+      display: block;
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  #links {
+    /*margin: 50% 30px;*/
+    right: 30px;
+    font-size: 18px;
+    position: absolute;
+    height: $headerHeight;
+
+    li {
+      display: inline-block;
+      height: $headerHeight - $aPaddingTop;
+
+      a {
+        height: 100%;
+        display: block;
+        background: {
+          size: $imgDim $imgDim;
+          repeat: no-repeat;
+          position: center left;
+        };
+        /*margin: 20px 30px;*/
+        padding: $aPaddingTop 20px 0 $imgDim+10px;
+        color: white;
+        text-decoration: none;
+
+        &.calendar {
+          background-image: image-url("common/header/calendar.png");
+        }
+        &.people {
+          background-image: image-url("common/header/people.png");
+        }
+      }
+    }
+  }
+}
+
+#main {
+  overflow: hidden;
+}
+
+#sidebar {
+  $sidebarWidth: 200px;
+
+  height: 100%;
+  width: $sidebarWidth;
+  float: left;
+  background: {
+    color: #C5C5C5;
+  };
+  border-right: {
+    style: solid;
+    color: #B3B3B3;
+    width: 2px;
+  };
+  padding-left: 5px;
+
+  .sidebar-box {
+    background: transparentize(#000000, 0.9);
+    border: {
+      style: solid;
+      color: transparentize(#000000, 0.8);
+      width: 1px;
+    };
+    @include border-radius(5px);
+    margin: 10px;
+    padding: 5px;
+  }
+
+  #user_search {
+    font-size: 14px;
+    height: 25px;
+    margin: 10px;
+    width: $sidebarWidth - 20px;
+  }
+}
+
+#sidebar-right {
+  width: 150px;
+  height: 100%;
+  float: right;
+}
+
+#content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: scroll;
+
+  #user_directory_listing {
+    .item {
+      padding: 15px;
+      margin-bottom: 20px;
+      @include single-box-shadow;
+      @include border-radius(5px);
+      @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+
+      li {
+        display: inline-block;
+        margin-right: 30px;
+      }
+    }
+  }
+}
