@@ -63,19 +63,17 @@
   src: url('/dorm_website/assets/css/fonts/lato/Lato-Regular.ttf') format('truetype');
 }
 
-/* line 70, ../sass/style.scss */
+/* line 65, ../sass/style.scss */
 body {
   margin: 0;
   font-family: "Lato-Regular", "Lucida Grande";
   font-size: 14px;
-  overflow: hidden;
   background-color: #e3e3e3;
-  width: 100%;
-  height: 100%;
 }
 
-/* line 80, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 #header {
+  z-index: 100;
   height: 50px;
   width: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #990000), color-stop(100%, #641b1b));
@@ -85,39 +83,56 @@ body {
   background-image: -ms-linear-gradient(#990000, #641b1b);
   background-image: linear-gradient(#990000, #641b1b);
   font-family: "Sansation";
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
-/* line 87, ../sass/style.scss */
+/* line 84, ../sass/style.scss */
 #header #logo {
+  width: 175px;
   font-family: "Sansation-Bold";
-  font-size: 40px;
+  font-size: 36px;
   position: absolute;
-  height: 50px;
-  left: 30px;
+  height: 36px;
+  left: 5px;
+  padding: 2px 8px;
+  margin: 4px 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.3);
 }
-/* line 94, ../sass/style.scss */
+/* line 101, ../sass/style.scss */
 #header #logo a {
-  height: 45px;
-  padding-top: 5px;
+  text-align: center;
+  height: 42px;
+  padding-top: 3px;
   display: block;
   text-decoration: none;
   color: white;
+  text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 2px;
 }
-/* line 103, ../sass/style.scss */
+/* line 112, ../sass/style.scss */
 #header #links {
   position: absolute;
   right: 30px;
   font-size: 120%;
   z-index: 1000;
 }
-/* line 109, ../sass/style.scss */
+/* line 118, ../sass/style.scss */
 #header #links .menu li {
   display: inline-block;
   margin-right: 5px;
   vertical-align: top;
   width: 150px;
 }
-/* line 115, ../sass/style.scss */
+/* line 124, ../sass/style.scss */
 #header #links .menu li a {
   height: 32px;
   display: block;
@@ -138,25 +153,25 @@ body {
   /*};*/
   /*}*/
 }
-/* line 127, ../sass/style.scss */
+/* line 136, ../sass/style.scss */
 #header #links .menu li a.events_menuitem {
   background-image: url('/dorm_website/assets/img/common/header/calendar.png?1315955492');
 }
-/* line 130, ../sass/style.scss */
+/* line 139, ../sass/style.scss */
 #header #links .menu li a.people {
   background-image: url('/dorm_website/assets/img/common/header/people.png?1315959606');
 }
-/* line 146, ../sass/style.scss */
+/* line 155, ../sass/style.scss */
 #header #links .menu li .submenu {
   display: none;
   font-size: 90%;
   margin-bottom: 10px;
 }
-/* line 152, ../sass/style.scss */
+/* line 161, ../sass/style.scss */
 #header #links .menu li .submenu li {
   display: list-item;
 }
-/* line 155, ../sass/style.scss */
+/* line 164, ../sass/style.scss */
 #header #links .menu li .submenu li a {
   margin: 0;
   padding: 14px 0 5px 49px;
@@ -166,19 +181,19 @@ body {
   background-repeat: no-repeat;
   background-position: 15px center;
 }
-/* line 168, ../sass/style.scss */
+/* line 177, ../sass/style.scss */
 #header #links .menu li .submenu li a.event_list {
   background-image: url('/dorm_website/assets/img/common/header/event/event_list.png?1315975174');
 }
-/* line 172, ../sass/style.scss */
+/* line 181, ../sass/style.scss */
 #header #links .menu li .submenu li a.event_create {
   background-image: url('/dorm_website/assets/img/common/header/event/event_create.png?1315976077');
 }
-/* line 176, ../sass/style.scss */
+/* line 185, ../sass/style.scss */
 #header #links .menu li .submenu li a.calendar {
   background-image: url('/dorm_website/assets/img/common/header/event/calendar.png?1315975166');
 }
-/* line 182, ../sass/style.scss */
+/* line 191, ../sass/style.scss */
 #header #links .menu li .submenu li.hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #8f8f8f), color-stop(100%, #575757));
   background-image: -webkit-linear-gradient(#8f8f8f, #575757);
@@ -189,23 +204,23 @@ body {
   background-size: 100% 100%;
   background-position: 0 0;
 }
-/* line 189, ../sass/style.scss */
+/* line 198, ../sass/style.scss */
 #header #links .menu li .submenu li.hover a {
   color: white;
 }
-/* line 192, ../sass/style.scss */
+/* line 201, ../sass/style.scss */
 #header #links .menu li .submenu li.hover a.event_list {
   background-image: url('/dorm_website/assets/img/common/header/event/event_list_hover.png?1316039910');
 }
-/* line 196, ../sass/style.scss */
+/* line 205, ../sass/style.scss */
 #header #links .menu li .submenu li.hover a.event_create {
   background-image: url('/dorm_website/assets/img/common/header/event/event_create_hover.png?1316039895');
 }
-/* line 200, ../sass/style.scss */
+/* line 209, ../sass/style.scss */
 #header #links .menu li .submenu li.hover a.calendar {
   background-image: url('/dorm_website/assets/img/common/header/event/calendar_hover.png?1315977588');
 }
-/* line 209, ../sass/style.scss */
+/* line 218, ../sass/style.scss */
 #header #links .menu li.events.hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c5c5c5), color-stop(100%, #b9b9b9));
   background-image: -webkit-linear-gradient(#c5c5c5, #b9b9b9);
@@ -225,7 +240,7 @@ body {
   box-shadow: 0px 0px 5px #333333;
   margin-top: 4px;
 }
-/* line 218, ../sass/style.scss */
+/* line 227, ../sass/style.scss */
 #header #links .menu li.events.hover .events_menuitem {
   margin-top: -4px;
   color: black;
@@ -234,29 +249,26 @@ body {
   border-bottom-width: 1px;
 }
 
-/* line 233, ../sass/style.scss */
-#main {
-  overflow: hidden;
-}
-
-/* line 237, ../sass/style.scss */
+/* line 242, ../sass/style.scss */
 #sidebar {
   height: 100%;
-  width: 15%;
-  position: relative;
-  float: left;
+  width: 200px;
+  position: fixed;
+  left: 0;
+  top: 50px;
+  /*float: left;*/
   background-color: #c5c5c5;
   border-right-style: solid;
   border-right-color: #B3B3B3;
   border-right-width: 2px;
 }
-/* line 252, ../sass/style.scss */
+/* line 259, ../sass/style.scss */
 #sidebar .sidebar-box, #sidebar #user_search {
   margin: 3%;
   padding: 2%;
   width: 90%;
 }
-/* line 258, ../sass/style.scss */
+/* line 265, ../sass/style.scss */
 #sidebar .sidebar-box {
   background: rgba(0, 0, 0, 0.1);
   border-style: solid;
@@ -269,13 +281,13 @@ body {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 268, ../sass/style.scss */
+/* line 275, ../sass/style.scss */
 #sidebar #user_search {
   font-size: 110%;
   height: 32px;
   width: 94%;
 }
-/* line 274, ../sass/style.scss */
+/* line 281, ../sass/style.scss */
 #sidebar #navigation {
   /*$navItemHeight: 45px;*/
   /*$navIconDim: 18px;*/
@@ -285,11 +297,11 @@ body {
   /*margin: 10px 10px 0 10px;*/
   /*}*/
 }
-/* line 285, ../sass/style.scss */
+/* line 292, ../sass/style.scss */
 #sidebar #navigation li {
   /*height: $navItemHeight;*/
 }
-/* line 288, ../sass/style.scss */
+/* line 295, ../sass/style.scss */
 #sidebar #navigation li a {
   /*@include border-radius(0px);*/
   /*@include background-image(linear-gradient(#C4C4C4, #818181));*/
@@ -338,51 +350,36 @@ body {
   /*background-size: ($navIconDim - 2px) ($navIconDim - 2px);*/
   /*}*/
 }
-
-/* line 348, ../sass/style.scss */
-#sidebar-right {
-  width: 10%;
-  height: 100%;
-  /*position: absolute;*/
-  float: left;
-  /*top: $headerHeight;*/
-  /*right: 0;*/
-  background-color: #c5c5c5;
-  border-left-style: solid;
-  border-left-color: #B3B3B3;
-  border-left-width: 2px;
-}
-/* line 365, ../sass/style.scss */
-#sidebar-right button {
+/* line 354, ../sass/style.scss */
+#sidebar button {
   width: 96%;
   margin: 3% 2%;
 }
 
-/* line 372, ../sass/style.scss */
-#content, #content-sidebarright {
-  overflow-y: scroll;
-  height: 90%;
-  float: left;
-}
-
-/* line 378, ../sass/style.scss */
+/* line 361, ../sass/style.scss */
 #content {
-  width: 84.5%;
+  margin-left: 200px;
+  margin-top: 50px;
+  padding: 20px;
 }
-/* line 382, ../sass/style.scss */
-#content #user_directory_listing {
-  padding: 10px;
+/* line 366, ../sass/style.scss */
+#content.nosidebar {
+  margin-left: 0px;
 }
-/* line 385, ../sass/style.scss */
+/* line 369, ../sass/style.scss */
+#content.nopadding {
+  padding: 0px;
+}
+/* line 374, ../sass/style.scss */
 #content #user_directory_listing table {
   width: 100%;
   border-collapse: collapse;
 }
-/* line 389, ../sass/style.scss */
+/* line 378, ../sass/style.scss */
 #content #user_directory_listing table td.empty {
   width: 50%;
 }
-/* line 393, ../sass/style.scss */
+/* line 382, ../sass/style.scss */
 #content #user_directory_listing table ul {
   padding: 15px;
   margin: 10px;
@@ -404,55 +401,48 @@ body {
   background-image: -ms-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
 }
-/* line 402, ../sass/style.scss */
+/* line 391, ../sass/style.scss */
 #content #user_directory_listing table ul li {
-  /*display: inline-block;*/
-  /*margin-right: 30px;*/
   padding: 3px;
   height: 100%;
 }
-/* line 408, ../sass/style.scss */
+/* line 395, ../sass/style.scss */
 #content #user_directory_listing table ul li.name {
   font-family: "Lato-Black";
   font-size: 120%;
 }
-/* line 412, ../sass/style.scss */
+/* line 399, ../sass/style.scss */
 #content #user_directory_listing table ul li.email {
   font-family: "Lato-Light";
   margin-left: 20px;
   font-size: 110%;
 }
-/* line 417, ../sass/style.scss */
+/* line 404, ../sass/style.scss */
 #content #user_directory_listing table ul li.email ui-state-active
 a {
   text-decoration: none;
   color: inherit;
 }
-/* line 422, ../sass/style.scss */
+/* line 409, ../sass/style.scss */
 #content #user_directory_listing table ul li.room {
   margin-left: 20px;
 }
-/* line 425, ../sass/style.scss */
+/* line 412, ../sass/style.scss */
 #content #user_directory_listing table ul li.photo {
   float: left;
   margin-right: 20px;
 }
-/* line 429, ../sass/style.scss */
+/* line 416, ../sass/style.scss */
 #content #user_directory_listing table ul li.photo img {
   height: 80px;
 }
-/* line 438, ../sass/style.scss */
+/* line 425, ../sass/style.scss */
 #content #gcal {
   width: 100%;
-  height: 100%;
+  height: 90%;
 }
-
-/* line 444, ../sass/style.scss */
-#content-sidebarright {
-  width: 74.5%;
-}
-/* line 447, ../sass/style.scss */
-#content-sidebarright #event_create_fields {
+/* line 430, ../sass/style.scss */
+#content #event_create_fields {
   -moz-box-shadow: 0px 0px 5px #333333;
   -webkit-box-shadow: 0px 0px 5px #333333;
   -o-box-shadow: 0px 0px 5px #333333;
@@ -474,48 +464,81 @@ a {
   position: relative;
   padding-bottom: 60px;
 }
-/* line 457, ../sass/style.scss */
-#content-sidebarright #event_create_fields .field {
+/* line 440, ../sass/style.scss */
+#content #event_create_fields .field {
   margin-bottom: 3%;
 }
-/* line 460, ../sass/style.scss */
-#content-sidebarright #event_create_fields .field label {
+/* line 443, ../sass/style.scss */
+#content #event_create_fields .field label {
   font-size: 120%;
   font-family: "Lato-Bold";
 }
-/* line 467, ../sass/style.scss */
-#content-sidebarright #event_create_fields .field input[type='text'], #content-sidebarright #event_create_fields .field textarea {
+/* line 450, ../sass/style.scss */
+#content #event_create_fields .field input[type='text'], #content #event_create_fields .field textarea {
   height: 32px;
   font-size: 14px;
   width: 50%;
   margin: 1%;
 }
-/* line 474, ../sass/style.scss */
-#content-sidebarright #event_create_fields .field textarea {
+/* line 457, ../sass/style.scss */
+#content #event_create_fields .field textarea {
   height: 100px;
 }
-/* line 479, ../sass/style.scss */
-#content-sidebarright #event_create_fields fieldset {
+/* line 462, ../sass/style.scss */
+#content #event_create_fields fieldset {
   padding: 20px;
   margin: 20px 0;
   width: 55%;
   position: relative;
 }
-/* line 486, ../sass/style.scss */
-#content-sidebarright #event_create_fields fieldset .field input[type='text'] {
+/* line 469, ../sass/style.scss */
+#content #event_create_fields fieldset .field input[type='text'] {
   width: 90%;
 }
-/* line 491, ../sass/style.scss */
-#content-sidebarright #event_create_fields fieldset .button_remove {
+/* line 474, ../sass/style.scss */
+#content #event_create_fields fieldset .button_remove {
   position: absolute;
   right: 3px;
   top: 10px;
   width: 32px;
   height: 32px;
 }
-/* line 501, ../sass/style.scss */
-#content-sidebarright #event_create_fields input[type='submit'] {
+/* line 484, ../sass/style.scss */
+#content #event_create_fields input[type='submit'] {
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+/* line 492, ../sass/style.scss */
+#content #event_list .item {
+  padding: 20px;
+  margin-bottom: 30px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f3f3f3), color-stop(100%, #e6e6e6));
+  background-image: -webkit-linear-gradient(#f3f3f3, #e6e6e6);
+  background-image: -moz-linear-gradient(#f3f3f3, #e6e6e6);
+  background-image: -o-linear-gradient(#f3f3f3, #e6e6e6);
+  background-image: -ms-linear-gradient(#f3f3f3, #e6e6e6);
+  background-image: linear-gradient(#f3f3f3, #e6e6e6);
+}
+/* line 499, ../sass/style.scss */
+#content #event_list .item h1 {
+  font-family: "Lato-Black";
+  font-size: 120%;
+  margin-bottom: 15px;
+}
+/* line 505, ../sass/style.scss */
+#content #event_list .item .time {
+  margin-bottom: 15px;
+  font-size: 110%;
+  font-family: "Lato-Bold";
 }

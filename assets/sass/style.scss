@@ -56,47 +56,56 @@
 
 $sidebarBackgroundColor: #343434;
 $sidebarBackgroundColor: #C5C5C5;
-$sidebarWidth: 15%;
-$sidebarRightWidth: 10%;
-$scrollBarWidth: 0.5%;
-$contentWidth: 100% - $sidebarWidth - $scrollBarWidth;
-$contentSidebarRightWidth:
-  100% - $sidebarWidth - $sidebarRightWidth  - $scrollBarWidth;
+$sidebarWidth: 200px;
 $headerHeight: 50px;
 $aPaddingTop: 18px;
 $imgDim: 32px;
-$logoPaddingTop: 5px;
+$logoPaddingTop: 8px;
 
 body {
   margin: 0;
   font-family: "Lato-Regular", "Lucida Grande";
   font-size: 14px;
-  overflow: hidden;
   background-color: #e3e3e3;
-  width: 100%;
-  height: 100%;
 }
 
 #header {
+  z-index: 100;
   height: $headerHeight;
   width: 100%;
+
   @include background-image(linear-gradient(#990000, #641B1B));
   font-family: "Sansation";
-  position: relative;
+
+  position: fixed;
+  left: 0;
+  top: 0;
 
   #logo {
+    width: $sidebarWidth - 25px;
     font-family: "Sansation-Bold";
-    font-size: 40px;
+    font-size: 36px;
     position: absolute;
-    height: $headerHeight;
-    left: 30px;
+    height: $headerHeight - 14px;
+    left: 5px;
+    padding: 2px 8px;
+    margin: 4px 0;
+    background-color: transparentize(#FFFFFF, 0.8);
+    @include border-radius(10px);
+    border: {
+      style: solid;
+      width: 1px;
+      color: transparentize(#000000, 0.7);
+    };
 
     a {
+      text-align: center;
       height: $headerHeight - $logoPaddingTop;
-      padding-top: $logoPaddingTop;
+      padding-top: $logoPaddingTop - 5px;
       display: block;
       text-decoration: none;
       color: white;
+      @include text-shadow(rgba(black, 0.5) 1px 1px 2px);
     }
   }
 
@@ -230,15 +239,13 @@ body {
   }
 }
 
-#main {
-  overflow: hidden;
-}
-
 #sidebar {
   height: 100%;
   width: $sidebarWidth;
-  position: relative;
-  float: left;
+  position: fixed;
+  left: 0;
+  top: $headerHeight;
+  /*float: left;*/
 
   background: {
     color: $sidebarBackgroundColor;
@@ -343,24 +350,6 @@ body {
       }
     }
   }
-}
-
-#sidebar-right {
-  width: $sidebarRightWidth;
-  height: 100%;
-  /*position: absolute;*/
-  float: left;
-  /*top: $headerHeight;*/
-  /*right: 0;*/
-
-  background: {
-    color: $sidebarBackgroundColor;
-  };
-  border-left: {
-    style: solid;
-    color: #B3B3B3;
-    width: 2px;
-  };
 
   button {
     $marginLR: 2%;
@@ -369,19 +358,19 @@ body {
   }
 }
 
-#content, #content-sidebarright {
-  overflow-y: scroll;
-  height: 90%;
-  float: left;
-}
-
 #content {
+  margin-left: $sidebarWidth;
+  margin-top: $headerHeight;
+  padding: 20px;
 
-  width: $contentWidth;
+  &.nosidebar {
+    margin-left: 0px;
+  }
+  &.nopadding {
+    padding: 0px;
+  }
 
   #user_directory_listing {
-    padding: 10px;
-
     table {
       width: 100%;
       border-collapse: collapse;
@@ -400,8 +389,6 @@ body {
         @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
 
         li {
-          /*display: inline-block;*/
-          /*margin-right: 30px;*/
           padding: 3px;
           height: 100%;
 
@@ -437,12 +424,8 @@ body {
 
   #gcal {
     width: 100%;
-    height: 100%;
+    height: 90%;
   }
-}
-
-#content-sidebarright {
-  width: $contentSidebarRightWidth;
 
   #event_create_fields {
     @include single-box-shadow;
@@ -504,4 +487,27 @@ body {
       right: 10px;
     }
   }
+
+  #event_list {
+    .item {
+      padding: 20px;
+      margin-bottom: 30px;
+      @include border-radius(10px);
+      @include single-box-shadow;
+      @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+
+      h1 {
+        font-family: "Lato-Black";
+        font-size: 120%;
+        margin-bottom: 15px;
+      }
+
+      .time {
+        margin-bottom: 15px;
+        font-size: 110%;
+        font-family: "Lato-Bold";
+      }
+    }
+  }
 }
+

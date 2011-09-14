@@ -5,7 +5,6 @@ class Event extends CI_Controller {
     parent::__construct();
 
     $this->load->model('Event_model');
-    $this->load->model('Gcal_model');
   }
 
   private function serializeFields(&$form_data) {
@@ -99,6 +98,7 @@ class Event extends CI_Controller {
         }
 
         $form_data['event_id'] = $event_id;
+        $this->load->model('Gcal_model');
         $this->Gcal_model->create($form_data);
         //TODO use form_data event id instead
         $this->createSignUp($form_data, $event_id);
@@ -148,6 +148,7 @@ class Event extends CI_Controller {
       $formData['time'] = $this->formatDatetime($formData['time']);
 
       $this->Event_model->update($event_id, $formData);
+      $this->load->model('Gcal_model');
       $this->Gcal_model->update(
         $this->Event_model->readGcalUrl($event_id),
         $formData
@@ -165,6 +166,7 @@ class Event extends CI_Controller {
   }
 
   function delete($id) {
+    $this->load->model('Gcal_model');
     echo
       $this->Gcal_model->delete($this->Event_model->readGcalUrl($id)) &&
       $this->Event_model->delete($id);
@@ -181,11 +183,13 @@ class Event extends CI_Controller {
       )
     );
 
+    $this->load->model('Gcal_model');
     echo $this->Gcal_model->create(1, $form_data);
   }
 
   function gcalRead() {
     echo "<pre>";
+    $this->load->model('Gcal_model');
     var_dump($this->Gcal_model->update("http://www.google.com/calendar/feeds/default/private/full/mkm06rsr9prgovm9u9tl1qnnjk"));
   }
 

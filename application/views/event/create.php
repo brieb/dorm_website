@@ -1,6 +1,5 @@
 <?php
 $this->load->view('common/header', array('page_title' => 'Create an Event'));
-$this->load->view('calendar/sidebar');
 ?>
 
 <link
@@ -22,12 +21,15 @@ rel="stylesheet" />
 
 <script type="text/javascript">
 $(document).ready(function() {
-  EventCreate.init("content-sidebarright");
+  EventCreate.init("sidebar", "content");
 });
 </script>
 
 
-<div id="content-sidebarright"></div>
+<div id="main">
+  <div id="sidebar"></div>
+  <div id="content"></div>
+</div>
 
 <?php
 $this->load->view('common/footer');

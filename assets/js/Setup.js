@@ -22,8 +22,8 @@ $(document).ready(function() {
     //content.width(contentWidth);
   };
 
-  adjustDimensions();
-  $(window).resize(adjustDimensions);
+  //adjustDimensions();
+  //$(window).resize(adjustDimensions);
 
   var setActiveMenuItems = function() {
     console.log(window.location.href);

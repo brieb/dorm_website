@@ -3,17 +3,26 @@ $this->load->view(
   'common/header',
   array('page_title' => 'Event List')
 );
-$this->load->view('calendar/sidebar');
 ?>
-<input id="search" type="text" placeholder="Search for an event..."></input>
 
-<button class="sort_by active asc" type="button" value="title">Title</button>
-<button class="sort_by" type="button" value="time">Time</button>
+<div id="main">
+  <div id="sidebar">
+    <input id="search" type="text" placeholder="Search for an event..."></input>
 
-<input id="only_my_sign_ups"
-       type="checkbox">Only Show the Events that I am Signed Up For</input>
+    <button class="sort_by active asc" type="button" value="title">Title</button>
+    <button class="sort_by" type="button" value="time">Time</button>
 
-<div id="event_list"></div>
+    <!--
+      TODO
+      <input id="only_my_sign_ups"
+           type="checkbox">Only Show the Events that I am Signed Up For</input>
+    -->
+  </div>
+
+  <div id="content">
+    <div id="event_list"></div>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(document).ready(function () {
@@ -64,13 +73,20 @@ $this->load->view('calendar/sidebar');
 
         if (events[i].is_match) {
           container.append(
-              $('<div />').append(
+            $('<div />')
+              .attr({
+                'class': 'item'
+              })
+              .append(
                 $('<h1/>').append(
                   $('<a/>').attr({
                     href: "<?php echo site_url('event/view'); ?>/"+events[i].id
                   }).text(events[i].title)),
-                  $('<span/>', {
-                    text: events[i].time_pretty
+                  $('<div/>', {
+                    text: events[i].time_pretty_start
+                          +' to '+
+                          events[i].time_pretty_end,
+                    'class': 'time'
                   }),
                   $('<p/>', {
                     text: events[i].description

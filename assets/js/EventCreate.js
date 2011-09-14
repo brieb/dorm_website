@@ -19,10 +19,13 @@ EventCreate = {
     this.signUpCapacity = capacity;
   },
 
-  init: function(container) {
-    this.container = $('#'+container);
-    this.containerButtons = $('<div/>')
-      .attr({ 'id': 'sidebar-right' });
+  init: function(sidebarId, containerId) {
+    this.container = $('#'+containerId);
+    this.containerButtons = $('<div />')
+      .attr({
+        'class': 'sidebar-box'
+      });
+
     this.containerFields = $('<form/>')
       .attr({ 'id': 'event_create_fields' });
     this.containerSignUp = $('<div/>')
@@ -98,6 +101,7 @@ EventCreate = {
       }
     }.bind(this));
 
+    $('#'+sidebarId).append(this.containerButtons);
   },
   serialize: function() {
     //var timeStart = $('input[name="time[start]"]');
