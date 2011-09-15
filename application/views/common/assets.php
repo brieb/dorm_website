@@ -29,6 +29,9 @@ $this->load->helper('common/asset_helper');
         <link href="<?php echo base_url(); ?>assets/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->
 
+    <link rel="icon"
+      href="<?php echo base_url().'assets/img/common/favicon.ico'; ?>" />
+
     <?php
       array_map(
         "includeCSS",

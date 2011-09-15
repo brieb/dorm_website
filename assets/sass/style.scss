@@ -59,6 +59,11 @@
   font-files("Chunkfive.otf", opentype)
 );
 
+@include font-face(
+  "Freshman",
+  font-files("Freshman.ttf", truetype)
+);
+
 $sidebarBackgroundColor: #343434;
 $sidebarBackgroundColor: #C5C5C5;
 $sidebarWidth: 200px;
@@ -75,7 +80,8 @@ body {
 }
 
 #header {
-  z-index: 100;
+  z-index: 1000;
+  @include box-shadow(#000000 0px 0px 12px);
   height: $headerHeight;
   width: 100%;
 
@@ -87,21 +93,23 @@ body {
   top: 0;
 
   #logo {
-    width: $sidebarWidth - 25px;
-    font-family: "Sansation-Bold";
-    font-size: 36px;
+    /*width: $sidebarWidth - 25px;*/
+    font-family: "Freshman";
+    font-size: 33px;
     position: absolute;
+    /*height: $headerHeight - 14px;*/
     height: $headerHeight - 14px;
-    left: 5px;
-    padding: 2px 8px;
-    margin: 4px 0;
-    background-color: transparentize(#FFFFFF, 0.8);
-    @include border-radius(10px);
-    border: {
-      style: solid;
-      width: 1px;
-      color: transparentize(#000000, 0.7);
-    };
+    width: $sidebarWidth + 2px;
+    /*left: 5px;*/
+    padding: 7px 0px;
+    /*margin: 4px 0;*/
+    background-color: transparentize(#000000, 0.8);
+    /*@include border-radius(10px);*/
+    /*border: {*/
+      /*style: solid;*/
+      /*width: 1px;*/
+      /*color: transparentize(#000000, 0.9);*/
+    /*};*/
 
     a {
       text-align: center;
@@ -110,7 +118,7 @@ body {
       display: block;
       text-decoration: none;
       color: white;
-      @include text-shadow(rgba(black, 0.5) 1px 1px 2px);
+      @include text-shadow(#000000 1px 1px 4px);
     }
   }
 
@@ -118,7 +126,7 @@ body {
     position: absolute;
     right: 30px;
     font-size: 120%;
-    z-index: 1000;
+    z-index: 100;
 
     .menu li {
       display: inline-block;
@@ -145,23 +153,22 @@ body {
           background-image: image-url("common/header/people.png");
         }
 
-        /*&.active {*/
-          /*background-color: transparentize(#FFFFFF, 0.8);*/
-          /*background-position: 5px 10px;*/
-          /*padding: $aPaddingTop 25px 5px $imgDim+10px;*/
-          /*border: {*/
-            /*style: solid;*/
-            /*width: 0 1px 1px 1px;*/
-            /*color: transparentize(#000000, 0.8);*/
-          /*};*/
-        /*}*/
+      }
+
+      &.events.hover .menuitem, &.people_container.hover .people {
+        background-color: transparentize(#000000, 0.8);
       }
 
       .submenu {
         display:none;
 
+        @include background-image(linear-gradient(#333333, #000000));
+        @include border-bottom-radius(10px);
+        @include single-box-shadow;
+
         font-size: 90%;
         margin-bottom: 10px;
+        padding-bottom: 10px;
 
         li {
           display: list-item;
@@ -170,7 +177,7 @@ body {
             margin: 0;
             padding: 14px 0 5px (16px+8px+25px);
 
-            color: black;
+            color: white;
             height: 20px;
 
             background: {
@@ -195,13 +202,13 @@ body {
 
           &.hover {
             @include background-image(
-              linear-gradient(#8F8F8F, #575757)
+              linear-gradient(#cccccc, #666666)
             );
             background-size: 100% 100%;
             background-position: 0 0;
 
             a {
-              color: white;
+              color: black;
 
               &.event_list {
                 background-image:
@@ -220,26 +227,6 @@ body {
         }
       }
 
-      &.events.hover {
-        $marginTop: 4px;
-
-        @include background-image(linear-gradient(#C5C5C5, #B9B9B9));
-        @include border-radius(10px);
-        @include single-box-shadow;
-
-        margin-top: $marginTop;
-
-        .events_menuitem {
-          margin-top: -$marginTop;
-          color: black;
-          border-bottom:{
-            style: dashed;
-            color: #A5A5A5;
-            width: 1px;
-          };
-        }
-
-      }
     }
   }
 }
@@ -629,10 +616,10 @@ body {
       linear-gradient(#990000, #3F0F10)
     );
     color: white;
-    @include text-shadow(rgba(black, 0.5) 5px 5px 10px);
+    @include text-shadow(#000000 5px 5px 25px);
     font-size: 95px;
     font-variant:small-caps;
-    font-family: "Chunkfive";
+    font-family: "Freshman";
     overflow: hidden;
   }
 
@@ -655,7 +642,7 @@ body {
     
     button {
       margin-top: 100px;
-      font-size: 250%;
+      font-size: 32px;
     }
   }
 }

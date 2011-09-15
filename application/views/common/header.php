@@ -11,7 +11,7 @@ $this->load->view('common/assets',
   <div id="links">
     <ul class="menu">
       <li class="events">
-        <a class="events_menuitem">Events</a>
+        <a class="events_menuitem menuitem">Events</a>
 
         <ul class="submenu">
           <li>
@@ -43,7 +43,7 @@ $this->load->view('common/assets',
           </li>
         </ul>
       </li>
-      <li>
+      <li class="people_container">
         <?php
           echo anchor(
             'user_directory/index',
