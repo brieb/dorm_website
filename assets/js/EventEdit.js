@@ -6,24 +6,26 @@ EventEdit = {
   url: SITE_URL+'/event/edit/',
   urlView: SITE_URL+'/event/view',
   urlDelete: SITE_URL+'/event/delete/',
-  container: null,
 
-  init: function(data) {
-    this.container = $('#container');
+  container: null,
+  sidebar: null,
+
+  init: function(sidebarId, contentId, data) {
+    this.container = $('#'+contentId);
+    this.sidebar = $('#'+sidebarId);
+
     this.data = data;
     this.url += this.data.id;
     this.urlDelete += this.data.id;
 
+    EventCreate.init(sidebarId, contentId);
     this.setUpDelete();
 
-    EventCreate.init();
-
-    EventCreate.containerFields
-      .find('input:submit')
-      .val('Finish Editing Event');
-    EventCreate.containerFields
-      .unbind('submit')
-      .submit(function() {
+    EventCreate.submitButton
+      .button('option', 'label', 'Finish Editing Event');
+    EventCreate.submitButton
+      .unbind('click')
+      .click(function() {
         var eventData = EventCreate.serialize();
         //if (this.data.sign_up_id !== null) {
           eventData += '&sign_up_delete='+this.signUpDelete;
@@ -43,39 +45,49 @@ EventEdit = {
       }.bind(this));
 
     this.replay();
+
   },
   setUpDelete: function()  {
-    this.container.append(
-      $('<button/>')
-        .button({
-          label: 'Delete Event'
+    this.sidebar.append(
+      $('<div />')
+        .attr({
+          'class': 'sidebar-box'
         })
-        .click(function() {
-          $('<div/>')
-            .dialog({
-              title: 'Delete Event',
-              modal: true,
-              buttons: {
-                'Delete Event': function() {
-                  $.post(
-                    EventEdit.urlDelete,
-                    function(response) {
-                      window.location = EventEdit.urlView;
-                      $(this).dialog('close');
-                    }.bind(this)
-                  );
-                },
-                'Cancel': function() {
-                  $(this).dialog('close');
-                }
-              }
+        .append(
+          $('<button/>')
+            .button({
+              label: 'Delete Event'
             })
-            .html(
-              $('<p/>')
-                .text('Deleting this event will delete the event information \
-                      and associated sign ups. This cannot be undone.')
-            )
-        })
+            .click(function() {
+              $('<div/>')
+                .dialog({
+                  title: 'Delete Event',
+                  modal: true,
+                  buttons: {
+                    'Delete Event': function() {
+                      $.post(
+                        EventEdit.urlDelete,
+                        function(response) {
+                          window.location = EventEdit.urlView;
+                          $(this).dialog('close');
+                        }.bind(this)
+                      );
+                    },
+                    'Cancel': function() {
+                      $(this).dialog('close');
+                    }
+                  }
+                })
+                .html(
+                  $('<p/>')
+                    .text(
+                      'Deleting this event will delete the \
+                      event information and associated sign ups. \
+                      This cannot be undone.'
+                    )
+                )
+            })
+        )
     );
   },
   getObjValueByIdentifierArray: function(obj, identifier) {
@@ -87,7 +99,11 @@ EventEdit = {
   },
   setFieldValue: function(identifier, value) {
     //TODO make not so dependent on regexps
-    var field = $('input[name="'+identifier+'"]');
+    var field = $(' \
+      input[name="'+identifier+'"],\
+      textarea[name="'+identifier+'"] \
+    ');
+
     if (identifier.substring(0, "time".length) === "time") {
       field.datetimepicker('setDate', (new Date(value)) );
     } else {

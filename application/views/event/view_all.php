@@ -9,8 +9,13 @@ $this->load->view(
   <div id="sidebar">
     <input id="search" type="text" placeholder="Search for an event..."></input>
 
-    <button class="sort_by active asc" type="button" value="title">Title</button>
-    <button class="sort_by" type="button" value="time">Time</button>
+    <div class="sidebar-box-wrapper">
+      <div class="label">Sort By:</div>
+      <div class="sidebar-box">
+        <button class="sort_by active asc" type="button" value="title">Title</button>
+        <button class="sort_by" type="button" value="time_start">Time</button>
+      </div>
+    </div>
 
     <!--
       TODO
@@ -26,6 +31,8 @@ $this->load->view(
 
 <script type="text/javascript">
   $(document).ready(function () {
+    $("#sidebar button").button();
+
     var events = <?php echo $events ?>;
 
     for (var i = 0; i < events.length; i++) {
@@ -42,6 +49,8 @@ $this->load->view(
       var event_sort = function(event1, event2) {
         //TODO account for 'the's and stuff
         //TODO fall back to date sort when fields match
+        console.log(event1);
+
         var elem1, elem2;
         if (typeof(event1[sort_by.field]) === 'string') {
           elem1 = event1[sort_by.field].toLowerCase();
@@ -97,9 +106,9 @@ $this->load->view(
       }
     };
 
-    $('.sort_by').click(function(event) {
-      var target = $(event.target);
-      console.log(target);
+    $('.sort_by').click(function() {
+      var target = $(this);
+
       if (target.hasClass('active')) {
         if (target.hasClass('asc')) {
           target.removeClass('asc');

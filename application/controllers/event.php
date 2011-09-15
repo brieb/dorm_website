@@ -88,9 +88,8 @@ class Event extends CI_Controller {
       //else {
 
 
-
         $this->serializeFields($form_data);
-        $formData['time'] = $this->formatDatetime($formData['time']);
+        $form_data['time'] = $this->formatDatetime($form_data['time']);
 
         $event_id = $this->Event_model->create($form_data);
         if (!$event_id) {

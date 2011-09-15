@@ -57,21 +57,26 @@ $this->load->helper('event/form_builder');
 
 
   <div id="content">
-    <div class="event_view_title">
-      <?php echo $event['title']; ?>
-    </div>
-    <div class="event_view_time">
-      <?php
-        echo $event['time_pretty_start'] . " - ". $event['time_pretty_end'];
-      ?>
-    </div>
+    <div id="event_view">
+      <div class="event_view_title">
+        <?php echo $event['title']; ?>
+      </div>
+      <div class="event_view_time">
+        <?php
+          echo $event['time_pretty_start'] . ' - '. $event['time_pretty_end'];
+        ?>
+      </div>
 
-    <div class="event_view_description">
-      <?php echo $event['description']; ?>
+      <div class="event_view_description">
+        <?php echo $event['description']; ?>
+      </div>
+
+      <div class="event_view_fields">
+        <?php
+          renderFields($event['fields']);
+        ?>
+      </div>
     </div>
-    <?php
-    renderFields($event['fields']);
-    ?>
   </div>
 
 </div>

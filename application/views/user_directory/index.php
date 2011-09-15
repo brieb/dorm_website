@@ -13,42 +13,47 @@ $this->load->view(
     placeholder='Enter a name or email...'>
   </input>
 
-  <div class="sidebar-box">
+  <div id="checkboxes_house" class="sidebar-box">
     <input
+      id="house_schiff"
       type="checkbox"
       name="filter_house[]" checked
       value="schiff" />
-      Schiff
+    <label for="house_schiff">Schiff</label>
     <br/>
 
     <input
+      id="house_adams"
       type="checkbox"
       name="filter_house[]" checked
       value="adams" />
-      Adams
+    <label for="house_adams">Adams</label>
     <br/>
   </div>
 
-  <div class="sidebar-box">
+  <div id="checkboxes_floor" class="sidebar-box">
     <input
+      id="floor_1"
       type="checkbox"
       name="filter_floor[]" checked
       value="1" />
-      Floor 1
+    <label for="floor_1">Floor 1</label>
     <br/>
 
     <input
+      id="floor_2"
       type="checkbox"
       name="filter_floor[]" checked
       value="2" />
-      Floor 2
+    <label for="floor_2">Floor 2</label>
     <br/>
 
     <input
+      id="floor_3"
       type="checkbox"
       name="filter_floor[]" checked
       value="3" />
-      Floor 3
+    <label for="floor_3">Floor 3</label>
     <br/>
   </div>
 

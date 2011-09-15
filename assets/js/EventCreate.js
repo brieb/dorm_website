@@ -8,6 +8,7 @@ EventCreate = {
   containerButtons: null,
   containerFields: null,
   containerSignUp: null,
+  submitButton: null,
 
   signUpEnabled: false,
   signUpForm: null,
@@ -39,16 +40,12 @@ EventCreate = {
       this.containerFields
     );
 
-    this.containerFields.append(
-      $('<input>')
-        .attr({
-          type: 'submit',
-          value: 'Create Event'
-        })
-        .button()
-    );
+    this.submitButton = $('<button />')
+      .button({
+        label: 'Create Event'
+      });
 
-    this.containerFields.submit(function() {
+    this.submitButton.click(function() {
       $.post(
         this.urlEventCreate,
         this.serialize(),
@@ -57,7 +54,6 @@ EventCreate = {
           window.location = this.urlEventView + '/' + response;
         }.bind(this)
       );
-      return false;
     }.bind(this));
 
     this.containerButtons.append(
@@ -67,8 +63,8 @@ EventCreate = {
         })
         .text('SignUp')
         .button()
-        .click(function(event) {
-          var target = $(event.target);
+        .click(function() {
+          var target = $(this);
           target.button('disable');
           this.signUpCreate();
         }.bind(this))
@@ -77,8 +73,7 @@ EventCreate = {
     $.each(this.fieldTypes, function(key, type) {
       if (type.isDefault) {
         var fieldContent = this.genFieldType(type);
-        this.containerFields.find('input:submit')
-          .before(fieldContent);
+        this.containerFields.append(fieldContent);
       } else {
         this.containerButtons.append(
           $('<button/>')
@@ -94,26 +89,35 @@ EventCreate = {
                 .mouseleave()
                 .button('disable');
               var fieldContent = this.genFieldType(type);
-              this.containerFields.find('input:submit')
-               .before(fieldContent);
+              this.containerFields.append(fieldContent);
             }.bind(this))
         );
       }
     }.bind(this));
 
-    $('#'+sidebarId).append(this.containerButtons);
+    $('#'+sidebarId).append(
+      $('<div />')
+        .attr({
+          'class': 'sidebar-box'
+        })
+        .append(
+          this.submitButton
+        ),
+      $('<div />')
+        .attr({
+          'class': 'sidebar-box-wrapper'
+        })
+        .append(
+          $('<div />')
+            .attr({
+              'class': 'label'
+            })
+            .text('Add Fields:'),
+          this.containerButtons
+        )
+    );
   },
   serialize: function() {
-    //var timeStart = $('input[name="time[start]"]');
-    //var timeEnd = $('input[name="time[end]"]');
-    //var timeDateStart = timeStart.datetimepicker('getDate');
-    //var timeDateEnd = timeEnd.datetimepicker('getDate');
-    //timeStart.val(
-      //timeDateStart.toISOString().replace('Z', '')
-    //);
-    //timeEnd.val(
-      //timeDateEnd.toISOString().replace('Z', '')
-    //);
     var eventData = $(this.containerFields).serialize();
 
     if (this.signUpEnabled) {

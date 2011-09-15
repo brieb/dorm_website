@@ -14,12 +14,13 @@ SignUpFormBuilder = {
   init: function (container/*Id*/) {
     //SignUpFormBuilder.dialog.container = $("#" + containerId);
     SignUpFormBuilder.dialog.container = container;
-    SignUpFormBuilder.buttons.setUp();
     SignUpFormBuilder.dialog.setUp();
+    SignUpFormBuilder.buttons.setUp();
     SignUpFormBuilder.form.container = $("#sign_up_form_create");
   },
   form: {
     container: null,
+
     submitHandler: function() {
       var questions = [];
       SignUpFormBuilder.form.container
@@ -56,11 +57,18 @@ SignUpFormBuilder = {
   },
   dialog: {
     container: null,
+    containerButtons: null,
+
     setUp: function () {
       SignUpFormBuilder.dialog.container.append(
       $('<form />').attr({
         id: 'sign_up_form_create'
       }).addClass('ui-form'));
+      SignUpFormBuilder.dialog.containerButtons = $('<div />')
+        .attr({
+          'class': 'sign_up_form_builder_buttons_container'
+        });
+
       //SignUpFormBuilder.dialog.container.dialog({
         ////TODO change to false
         ////autoOpen: false,
@@ -107,8 +115,12 @@ SignUpFormBuilder = {
             var content = SignUpFormBuilder.field.genType(type);
             SignUpFormBuilder.form.container.append(content);
           })
-          .appendTo(SignUpFormBuilder.dialog.container);
+          .appendTo(SignUpFormBuilder.dialog.containerButtons);
+
+        $('<br />').appendTo(SignUpFormBuilder.dialog.containerButtons);
       });
+      SignUpFormBuilder.dialog.container.append(
+        SignUpFormBuilder.dialog.containerButtons);
     },
     convertToPrettyText: function (type) {
       return type.replace(/(^|_)\w/g, function (x) {
@@ -127,31 +139,60 @@ SignUpFormBuilder = {
 
       var fieldset = $('<fieldset />');
       fieldset.append(
+        $('<legend />')
+          .text(SignUpFormBuilder.buttons.convertToPrettyText(type)),
         $('<input />').attr({
           type: 'hidden',
           name: 'question[id]',
           value: SignUpFormBuilder.field.curId
-        }), $('<input />').attr({
+        }),
+        $('<input />').attr({
           type: 'hidden',
           name: 'question[type]',
           value: type
-        }), $('<input />').attr({
+        }),
+        $('<div />')
+          .attr({
+            'class': 'label'
+          })
+          .text('Question Text:'),
+        $('<input />').attr({
           type: 'text',
           name: 'question[text]',
           placeholder: 'Enter question text here...'
-        }), $('<input />').attr({
+        }),
+        $('<br />'),
+        $('<div />')
+          .attr({
+            'class': 'label'
+          })
+          .text('Question Help:'),
+        $('<input />').attr({
           type: 'text',
           name: 'question[help]',
           placeholder: 'Optional question help'
         }),
-        $('<br/ >'),
-        SignUpFormBuilder.field['genType' + typeFn](),
-        $('<button />').attr({
-          type: 'button'
-        }).text('Remove').button().click(function (event) {
-          var target = $(event.target);
-          target.parents('fieldset').remove();
-        })
+        $('<div />')
+          .attr({
+            'class': 'field'
+          })
+          .append(
+            SignUpFormBuilder.field['genType' + typeFn]()
+          ),
+        $('<button />')
+          .attr({
+            'class': 'button_remove'
+          })
+          .button({
+            icons: {
+              primary: "ui-icon-trash"
+            },
+            text: false
+          })
+          .click(function (event) {
+            var target = $(event.target);
+            target.parents('fieldset').remove();
+          })
       );
 
       return fieldset;

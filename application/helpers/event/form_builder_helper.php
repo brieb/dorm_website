@@ -5,9 +5,6 @@ function renderFields($fields) {
     return;
   }
   $fields = unserialize($fields);
-//  echo "<pre>";
-//  print_r($fields);
-//  echo "</pre>";
   renderFieldsRecursive($fields);
 }
 
@@ -18,9 +15,9 @@ function renderFieldsRecursive($fields) {
 
     echo "<ul>\n";
     if (!is_array($value)) {
-      echo "<li>$key: $value</li>\n";
+      echo "<li class=\"value\">$key: $value</li>\n";
     } else {
-      echo "<li>$key:</li>";
+      echo "<li class=\"label\">$key:</li>";
 
       echo "<li>\n";
       renderFieldsRecursive($value);

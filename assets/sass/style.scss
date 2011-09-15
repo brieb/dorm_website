@@ -240,12 +240,15 @@ body {
 }
 
 #sidebar {
+  $marginButton: 3%;
+
   height: 100%;
   width: $sidebarWidth;
   position: fixed;
   left: 0;
   top: $headerHeight;
-  /*float: left;*/
+
+  font-size: 110%;
 
   background: {
     color: $sidebarBackgroundColor;
@@ -256,10 +259,22 @@ body {
     width: 2px;
   };
 
-  .sidebar-box, #user_search {
-    margin: 3%;
-    padding: 2%;
-    width: 100% - 3%*2 - 2%*2;
+  .sidebar-box-wrapper {
+    .label {
+      font:{
+        size: 100%;
+        family: "Lato-Black";
+      };
+      margin: 15px 0 10px 10px;
+    }
+    margin: 20px 0;
+  }
+
+  .sidebar-box, #user_search, #search {
+    margin: 5px 5px 10px 5px;
+    padding: 5px;
+    width: $sidebarWidth - 10px - 10px - 5px;
+    font-size: 100%;
   }
 
   .sidebar-box {
@@ -272,89 +287,39 @@ body {
     @include border-radius(5px);
   }
 
-  #user_search {
-    font-size: 110%;
+  #user_search, #search {
     height: 32px;
     width: 94%;
+    margin-top: 15px;
+  }
+
+  #checkboxes_house, #checkboxes_floor {
+    label {
+      margin: 5px;
+    }
   }
 
   #navigation {
-    /*$navItemHeight: 45px;*/
     $navItemFontSize: 115%;
-    /*$navIconDim: 18px;*/
-
-  /*button {*/
-    /*width: 180px;*/
-    /*padding: 2px;*/
-    /*margin: 10px 10px 0 10px;*/
-  /*}*/
 
     li {
-      /*height: $navItemHeight;*/
-
       a {
-        /*@include border-radius(0px);*/
-        /*@include background-image(linear-gradient(#C4C4C4, #818181));*/
-        /*text-decoration: none;*/
-        /*color: black;*/
         font: {
           family: "Lato-Bold";
           size: $navItemFontSize;
         };
         text-align: left;
-        /*border-style: none;*/
         width: 92%;
         padding: 2%;
         margin: 2%;
-        /*display: block;*/
-
-        /*height: 100%;*/
-        /*width: 100%;*/
-
-        /*&.active {*/
-          /*@include background-image(linear-gradient(#393939, #5B5B5B));*/
-          /*color: white;*/
-        /*}*/
-        /*&:hover {*/
-          /*@include background-image(linear-gradient(#8F8F8F, #575757));*/
-          /*color: white;*/
-        /*}*/
-
-        /*span {*/
-          /*display: block;*/
-          /*$paddingTop: ($navItemHeight - $navItemFontSize)/2;*/
-          /*height: $navItemHeight - $paddingTop;*/
-          /*margin-left: 8px;*/
-          /*padding-top: $paddingTop;*/
-          /*padding-left: 8px;*/
-        /*}*/
-
-
-        /*background: {*/
-          /*size: $navIconDim $navIconDim;*/
-          /*repeat: no-repeat;*/
-          /*position: center left;*/
-        /*};*/
-
-        /*&.calendar {*/
-          /*background-image: image-url("event/calendar.png");*/
-        /*}*/
-        /*&.event_list {*/
-          /*background-image: image-url("event/event_list.png");*/
-          /*background-size: ($navIconDim - 3px) ($navIconDim - 3px);*/
-        /*}*/
-        /*&.event_create {*/
-          /*background-image: image-url("event/event_create.png");*/
-          /*background-size: ($navIconDim - 2px) ($navIconDim - 2px);*/
-        /*}*/
       }
     }
   }
 
   button {
-    $marginLR: 2%;
-    width: 100% - $marginLR*2;
-    margin: 3% $marginLR;
+    width: 100% - $marginButton*2;
+    margin: $marginButton;
+    font-size: 90%;
   }
 }
 
@@ -424,16 +389,18 @@ body {
 
   #gcal {
     width: 100%;
+    //TODO make height exact
     height: 90%;
   }
 
-  #event_create_fields {
+  #event_create_fields, #event_view {
     @include single-box-shadow;
     @include border-radius(10px);
     @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+    padding: 20px 30px;
+  }
 
-    padding: 3%;
-    margin: 2%;
+  #event_create_fields {
     position: relative;
     padding-bottom: 60px;
 
@@ -498,7 +465,7 @@ body {
 
       h1 {
         font-family: "Lato-Black";
-        font-size: 120%;
+        font-size: 150%;
         margin-bottom: 15px;
       }
 
@@ -507,6 +474,110 @@ body {
         font-size: 110%;
         font-family: "Lato-Bold";
       }
+    }
+  }
+  
+  #event_view {
+    .event_view_title {
+      font: {
+        family: "Lato-Black";
+        size: 300%;
+      };
+      margin-bottom: 30px;
+    }
+    .event_view_time {
+      font: {
+        family: "Lato-Bold";
+        size: 125%;
+      };
+      margin-bottom: 30px;
+    }
+    .event_view_description {
+      margin: 30px;
+      font-size: 110%;
+    }
+    .event_view_fields {
+      ul {
+        margin: 10px 0;
+      }
+      .label {
+        font-size: 120%;
+        font-family: "Lato-Bold";
+        margin: 25px 10px 15px 10px;
+        padding: 5px 0;
+        border-bottom: {
+          style: solid;
+          width: 1px;
+          color: #c5c5c5;
+        };
+        width: 50%;
+      }
+      .value {
+        font-size: 110%;
+        margin: 5px 20px;
+      }
+    }
+  }
+  
+}
+
+.event_create_sign_up_wizard {
+  font-family: "Lato-Regular";
+
+  .ui-dialog-title {
+    font-family: "Lato-Bold";
+  }
+
+  #sign_up_form_create {
+    float: left;
+    width: 500px;
+    height: 450px;
+    overflow-y: scroll;
+
+    fieldset {
+      position: relative;
+      margin-bottom: 10px;
+      margin-right: 5px;
+
+      legend {
+        font-size: 90%;
+      }
+
+      input[type='text'], textarea {
+        width: 80%;
+      }
+
+      .label {
+        font: {
+          size: 80%;
+          family: "Lato-Bold";
+        };
+        margin: 10px 5px 5px 5px;
+      }
+
+      .field {
+        margin-top: 15px;
+      }
+
+      .button_remove {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 10px;
+        right: 5px;
+      }
+    }
+  }
+
+  .sign_up_form_builder_buttons_container {
+    float: right;
+    width: 150px;
+    font: {
+      size: 85%;
+    };
+
+    button {
+      width: 100%;
     }
   }
 }

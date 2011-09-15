@@ -1,14 +1,19 @@
 var EventCreateSignUpWizard = {};
 
 EventCreateSignUpWizard = {
+  
   container: null,
+
   init: function() {
     EventCreateSignUpWizard.container = $('<div/>');
     EventCreateSignUpWizard.container.dialog({
       modal: true,
       autoOpen: true,
-      width: 600,
-      draggable: false
+      draggable: false,
+      minWidth: 700,
+      minHeight: 600,
+      maxHeight: 700,
+      dialogClass: 'event_create_sign_up_wizard'
     }); 
     EventCreateSignUpWizard.loadNextPane();
   },
@@ -81,26 +86,26 @@ EventCreateSignUpWizard = {
   },
   loadPaneQuestions: function() {
     EventCreateSignUpWizard.container.dialog("option", "buttons", [
-    {
-      text: 'Create Sign Up Form',
-      click: function () {
-        EventCreate.signUpEnabled = true;
-        var signUpForm = SignUpFormBuilder.form.submitHandler();
-        EventCreate.setSignUpForm(signUpForm);
-        //TODO validation
-        EventCreateSignUpWizard.loadNextPane(); 
+      {
+        text: 'Create Sign Up Form',
+        click: function () {
+          EventCreate.signUpEnabled = true;
+          var signUpForm = SignUpFormBuilder.form.submitHandler();
+          EventCreate.setSignUpForm(signUpForm);
+          //TODO validation
+          EventCreateSignUpWizard.loadNextPane(); 
+        }
+      },
+      {
+        text: 'Clear',
+        click: function () {
+          $('#sign_up_form_create').empty();
+        }
+      },
+      {
+        text: 'Skip',
+        click: EventCreateSignUpWizard.loadNextPane
       }
-    },
-    {
-      text: 'Clear',
-      click: function () {
-        $('#sign_up_form_create').empty();
-      }
-    },
-    {
-      text: 'Skip',
-      click: EventCreateSignUpWizard.loadNextPane
-    }
     ]);
     SignUpFormBuilder.init(EventCreateSignUpWizard.container);
   },
