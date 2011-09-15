@@ -1,64 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+<?php
+$this->load->view('common/assets',
+  array('page_title' => 'Welcome to FroSoCo!')
+);
+?>
 
-<style type="text/css">
+<div id="welcome">
+  <div id="logo">
+    Freshman Sophomore
+    <br/>
+    College
+  </div>
 
-body {
- background-color: #fff;
- margin: 40px;
- font-family: Lucida Grande, Verdana, Sans-serif;
- font-size: 14px;
- color: #4F5155;
-}
+  <div id="photos">
+    <?php
+      $this->load->helper('directory');
 
-a {
- color: #003399;
- background-color: transparent;
- font-weight: normal;
-}
+      $photosDir = 'assets/img/welcome/';
+      $photos = directory_map($photosDir);
 
-h1 {
- color: #444;
- background-color: transparent;
- border-bottom: 1px solid #D0D0D0;
- font-size: 16px;
- font-weight: bold;
- margin: 24px 0 2px 0;
- padding: 5px 0 6px 0;
-}
+      foreach ($photos as $photo) {
+        echo '
+          <img src="'.
+            base_url().$photosDir.$photo.
+          '" />
+        ';
+      }
+    ?>
+  </div>
 
-code {
- font-family: Monaco, Verdana, Sans-serif;
- font-size: 12px;
- background-color: #f9f9f9;
- border: 1px solid #D0D0D0;
- color: #002166;
- display: block;
- margin: 14px 0 14px 0;
- padding: 12px 10px 12px 10px;
-}
+  <div id="login">
+    <button>Login</button>
+  </div>
+</div>
 
-</style>
-</head>
-<body>
+<script>
+$(document).ready(function () {
+  $("#login button").button();
+});
+</script>
 
-<h1>!!Welcome to CodeIgniter!!</h1>
-
-<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-<p>If you would like to edit this page you'll find it located at:</p>
-<code>application/views/welcome_message.php</code>
-
-<p>The corresponding controller for this page is found at:</p>
-<code>application/controllers/welcome.php</code>
-
-<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-
-
-<p><br />Page rendered in {elapsed_time} seconds</p>
-
-</body>
-</html>
+<?php
+$this->load->view('common/footer');
+?>

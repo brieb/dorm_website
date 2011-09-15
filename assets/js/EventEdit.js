@@ -147,47 +147,60 @@ EventEdit = {
   },
   signUpEdit: function() {
     EventCreate.containerSignUp
-    .append(
-      $('<button/>')
-        .text('Remove Sign Up')
-        .button()
-        .click(function(event) {
-          var target = $(event.target);
+      .addClass('sidebar-box')
+      .append(
+        $('<button/>')
+          .text('Remove Sign Up')
+          .button()
+          .click(function(event) {
+            var target = $(event.target);
 
-          $('<div/>')
-            .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>The sign up and all results will be permanently deleted and cannot be recovered. Are you sure?</p>')
-            .dialog({
-              title: 'Delete Sign Up',
-              resizable: false,
-              modal: true,
-              buttons: {
-                'Delete Sign Up': function() {
-                  EventEdit.signUpDelete = 1;
-                  target.parent().empty();
-                  EventCreate.signUpClear();
+            $('<div/>')
+              .html('\
+                <p>\
+                  <span class="ui-icon ui-icon-alert" \
+                    style="float:left; margin:0 7px 20px 0;"></span>\
+                  The sign up and all results will be\
+                  permanently deleted and cannot be recovered.\
+                  Are you sure?\
+                </p>\
+              ')
+              .dialog({
+                title: 'Delete Sign Up',
+                resizable: false,
+                modal: true,
+                width: 350,
+                draggable: false,
+                buttons: {
 
-                  $('button[name="button_field_add[SignUp]"]')
-                    .blur()
-                    .mouseleave()
-                    .button('enable')
-                    .unbind('click')
-                    .click(function(event) {
-                      var target = $(event.target);
-                      target.button('disable');
-                      EventCreate.signUpCreate();
-                    });
+                  'Cancel': function(){
+                    $(this).dialog('close');
+                  },
 
-                  $(this).dialog('close');
-                },
-                'Cancel': function(){
-                  $(this).dialog('close');
+                  'Delete Sign Up': function() {
+                    EventEdit.signUpDelete = 1;
+                    EventCreate.containerSignUp.remove();
+                    EventCreate.signUpClear();
+
+                    $('button[name="button_field_add[SignUp]"]')
+                      .blur()
+                      .mouseleave()
+                      .button('enable')
+                      .unbind('click')
+                      .click(function(event) {
+                        var target = $(event.target);
+                        target.button('disable');
+                        EventCreate.signUpCreate();
+                      });
+
+                    $(this).dialog('close');
+                  }
                 }
-              }
-            });
+              });
 
-          
-        }.bind(this))
-    );
+            
+          }.bind(this))
+      );
   },
   
 };

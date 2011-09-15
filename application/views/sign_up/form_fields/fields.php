@@ -1,4 +1,4 @@
-<form class="ui-form form_fields">
+<form class="ui-form form_fields" method="post">
 <?php
 //TODO form action
 

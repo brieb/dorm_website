@@ -198,16 +198,18 @@ SignUpFormBuilder = {
       return fieldset;
     },
     genTypeText: function () {
-      return $('<input />').attr({
-        type: 'text',
-        placeholder: 'The question answer will go here...',
-        disabled: 'disabled'
-      });
+      //return $('<input />').attr({
+        //type: 'text',
+        //placeholder: 'The question answer will go here...',
+        //disabled: 'disabled'
+      //});
+      return null;
     },
     genTypeParagraphText: function () {
-      return $('<textarea />').attr({
-        disabled: 'disabled'
-      }).text('The response will go here...');
+      //return $('<textarea />').attr({
+        //disabled: 'disabled'
+      //}).text('The response will go here...');
+      return null;
     },
     genTypeMultipleChoice: function () {
       var elemChoiceDummy = SignUpFormBuilder.field.genDummyField(

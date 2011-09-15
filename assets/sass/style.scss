@@ -54,6 +54,11 @@
   font-files("lato/Lato-Regular.ttf", truetype)
 );
 
+@include font-face(
+  "Chunkfive",
+  font-files("Chunkfive.otf", opentype)
+);
+
 $sidebarBackgroundColor: #343434;
 $sidebarBackgroundColor: #C5C5C5;
 $sidebarWidth: 200px;
@@ -538,6 +543,7 @@ body {
       position: relative;
       margin-bottom: 10px;
       margin-right: 5px;
+      padding: 0 10px;
 
       legend {
         font-size: 90%;
@@ -578,6 +584,78 @@ body {
 
     button {
       width: 100%;
+    }
+  }
+}
+
+.sign_up_form_render {
+  form {
+    height: 400px;
+    overflow-y: scroll;
+  }
+
+  input[type='text'], textarea { 
+    width: 80%;
+  }
+
+  fieldset {
+    margin: 0px 10px 10px 5px;
+
+    .text {
+      font: {
+        family: "Lato-Bold";
+        size: 110%;
+      };
+      margin: 5px;
+    }
+
+    .help {
+      font: {
+        family: "Lato-Regular";
+        size: 90%;
+      };
+      margin: 5px 10px 10px 10px;
+    }
+  }
+}
+
+#welcome {
+
+  #logo {
+    height: 37%;
+    padding-top: 5%;
+    text-align: center;
+    @include background-image(
+      linear-gradient(#990000, #3F0F10)
+    );
+    color: white;
+    @include text-shadow(rgba(black, 0.5) 5px 5px 10px);
+    font-size: 95px;
+    font-variant:small-caps;
+    font-family: "Chunkfive";
+    overflow: hidden;
+  }
+
+  #photos {
+    text-align: center;
+    height: 60px;
+    @include background-image(
+      linear-gradient(#222222, #000000)
+    );
+    overflow: hidden;
+    
+    img {
+      height: 100%;
+      margin: 0 15px;
+    }
+  }
+
+  #login {
+    text-align: center;
+    
+    button {
+      margin-top: 100px;
+      font-size: 250%;
     }
   }
 }

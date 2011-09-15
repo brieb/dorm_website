@@ -9,6 +9,8 @@ EventCreate = {
   containerFields: null,
   containerSignUp: null,
   submitButton: null,
+  submitButtonContainer: null,
+  sidebar: null,
 
   signUpEnabled: false,
   signUpForm: null,
@@ -22,6 +24,8 @@ EventCreate = {
 
   init: function(sidebarId, containerId) {
     this.container = $('#'+containerId);
+    this.sidebar = $('#'+sidebarId);
+
     this.containerButtons = $('<div />')
       .attr({
         'class': 'sidebar-box'
@@ -29,14 +33,11 @@ EventCreate = {
 
     this.containerFields = $('<form/>')
       .attr({ 'id': 'event_create_fields' });
-    this.containerSignUp = $('<div/>')
-      .attr({ id: 'event_create_signup' });
 
     $('#main').append(
       this.containerButtons
     );
     this.container.append(
-      this.containerSignUp,
       this.containerFields
     );
 
@@ -44,6 +45,13 @@ EventCreate = {
       .button({
         label: 'Create Event'
       });
+    this.submitButtonContainer = $('<div />')
+        .attr({
+          'class': 'sidebar-box'
+        })
+        .append(
+          this.submitButton
+        );
 
     this.submitButton.click(function() {
       $.post(
@@ -63,9 +71,16 @@ EventCreate = {
         })
         .text('SignUp')
         .button()
-        .click(function() {
-          var target = $(this);
-          target.button('disable');
+        .click(function(event) {
+          var target = $(event.currentTarget);
+          console.log(target);
+          this.containerSignUp = $('<div/>')
+            .addClass('sidebar-box');
+          this.submitButtonContainer.after(this.containerSignUp);
+          target
+            .blur()
+            .mouseleave()
+            .button('disable');
           this.signUpCreate();
         }.bind(this))
     );
@@ -95,14 +110,10 @@ EventCreate = {
       }
     }.bind(this));
 
-    $('#'+sidebarId).append(
-      $('<div />')
-        .attr({
-          'class': 'sidebar-box'
-        })
-        .append(
-          this.submitButton
-        ),
+  
+
+    this.sidebar.append(
+      this.submitButtonContainer,
       $('<div />')
         .attr({
           'class': 'sidebar-box-wrapper'
@@ -116,6 +127,8 @@ EventCreate = {
           this.containerButtons
         )
     );
+    this.containerSignUp = $('<div/>');
+    this.submitButtonContainer.after(this.containerSignUp);
   },
   serialize: function() {
     var eventData = $(this.containerFields).serialize();
@@ -147,8 +160,7 @@ EventCreate = {
           .text('Remove Sign Up')
           .button()
           .click(function(event) {
-            var target = $(event.target);
-            target.parent().empty();
+            this.containerSignUp.remove();
             this.signUpClear();
             EventCreateSignUpWizard.reset();
 

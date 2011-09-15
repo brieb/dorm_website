@@ -4,6 +4,7 @@ SignUpFormRenderer = {
   formViewUrl: SITE_URL+'/sign_up/view/',
   urlResponseCreate: SITE_URL+'/sign_up_response/create',
   urlResponseDelete: SITE_URL+'/sign_up_response/delete',
+
   buttonSignUp: null,
   signUpId: null,
   eventTitle: '',
@@ -85,6 +86,8 @@ SignUpFormRenderer = {
       autoOpen: true,
       modal: true,
       draggable: false,
+      width: 600,
+      dialogClass: 'sign_up_form_render',
       buttons: {
         'Sign Up': function () {
           this.formSubmit();
@@ -105,7 +108,6 @@ SignUpFormRenderer = {
         +"&sign_up_id="+this.signUpId,
       function(response) {
         //TODO handle error ''
-        //console.log(response);
         this.responseHandler(response);
         this.container.dialog('close');
       }.bind(this)
