@@ -65,7 +65,7 @@ $(document).ready(function() {
     }
   );
 
-  $("#links .people_container").hover(
+  $("#links .people").hover(
     function() {
       $(this).addClass('hover');
     },

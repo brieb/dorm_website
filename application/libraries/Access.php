@@ -13,7 +13,7 @@ class Access {
     $this->CI =& get_instance();
 
     if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-      $_SERVER['REMOTE_USEeR'] = 'jsmith';
+      $_SERVER['REMOTE_USER'] = 'jsmith';
     }
 
     $routing =& load_class('Router');
@@ -60,6 +60,7 @@ class Access {
       'class' => $this->class,
       'method' => $this->method,
     );
+
     if ($this->canDo($action)) {
       return true;
     }
@@ -70,49 +71,55 @@ class Access {
 
   private function initPermissions() {
     $public = array();
-    $stanford = $public + array();
+    $stanford = array_merge_recursive($public, array());
 
-    $resident = $stanford + array(
-      'event' => array(
-        'view' => true,
-      ),
-      'calendar' => array(
-        'index' => true,
-      ),
-      'sign_up_response' => array(
-        'create' => true,
-        'delete' => true,
-      ),
-      'sign_up' => array(
-        'view' => true,
-      ),
-      'user_directory' => array(
-        'index' => true,
-      ),
+    $resident = array_merge_recursive($stanford,
+      array(
+        'event' => array(
+          'view' => true,
+        ),
+        'calendar' => array(
+          'index' => true,
+        ),
+        'sign_up_response' => array(
+          'create' => true,
+          'delete' => true,
+        ),
+        'sign_up' => array(
+          'view' => true,
+        ),
+        'user_directory' => array(
+          'index' => true,
+        ),
+      )
     );
 
-    $staff = $resident + array(
-      'event' => array(
-        'create' => true,
-        'edit' => true,
-        'delete' => true,
-      ),
-      'event_sign_ups' => array(
-        'view' => true,
-      ),
-      'sign_up' => array(
-        'create' => true,
-        'delete' => true,
-      ),
-      'wiki' => array(
-        'staff' => true,
-      ),
+    $staff = array_merge_recursive($resident,
+      array(
+        'event' => array(
+          'create' => true,
+          'edit' => true,
+          'delete' => true,
+        ),
+        'event_sign_ups' => array(
+          'view' => true,
+        ),
+        'sign_up' => array(
+          'create' => true,
+          'delete' => true,
+        ),
+        'wiki' => array(
+          'staff' => true,
+        ),
+      )
     );
 
-    $confi = $staff + array(
-      'wiki' => array(
-        'confi' => true,
-      ),
+    $confi = array_merge_recursive($staff,
+      array(
+        'wiki' => array(
+          'confi' => true,
+        ),
+      )
     );
 
     $this->permissions = array(

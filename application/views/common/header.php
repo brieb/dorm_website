@@ -4,6 +4,98 @@ if (isset($page_title)) {
   $opts['page_title'] = $page_title;
 }
 $this->load->view('common/assets', $opts);
+
+
+$links = array (
+  'events' => array (
+    'menuitem' => array(
+      'title' => 'Events',
+    ),
+    'submenu' => array(
+      array(
+        'title' => 'Calendar',
+        'action' => array(
+          'class' => 'calendar',
+          'method' => 'index',
+        ),
+        'attr' => array(
+          'class' => 'calendar'
+        ),
+      ),
+      array(
+        'title' => 'Event List',
+        'action' => array(
+          'class' => 'event',
+          'method' => 'view',
+        ),
+        'attr' => array(
+          'class' => 'event_list'
+        ),
+      ),
+      array(
+        'title' => 'Create Event',
+        'action' => array(
+          'class' => 'event',
+          'method' => 'create',
+        ),
+        'attr' => array(
+          'class' => 'event_create'
+        ),
+      ),
+    ),
+  ),
+  'people' => array(
+    'menuitem' => array(
+      'title' => 'People',
+      'action' => array(
+        'class' => 'user_directory',
+        'method' => 'index',
+      ),
+    ),
+  ),
+);
+
+function genMenuContent(&$links) {
+  $content = "";
+
+  foreach ($links as $key => $value) {
+    $content .= "<li class='{$key}'>";
+
+    if (isset($value['menuitem'])) {
+      if (isset($value['menuitem']['action'])) {
+        $content .= anchor(
+          $value['menuitem']['action'],
+          $value['menuitem']['title'],
+          array('class' => 'menuitem')
+        );
+      } else {
+        $content .=
+          "<a class='menuitem'>".
+          $value['menuitem']['title'].
+          "</a>";
+      }
+    }
+
+    if (isset($value['submenu'])) {
+      $content .= "<ul class='submenu'>";
+      foreach ($value['submenu'] as $submenuElem) {
+        $content .= "<li>";
+        $content .= anchor(
+          $submenuElem['action'],
+          $submenuElem['title'],
+          $submenuElem['attr']
+        );
+        $content .= "</li>";
+      }
+      $content .= "</ul>";
+    }
+
+    $content .= "</li>";
+  }
+
+  return $content;
+}
+
 ?>
 
 <div id="header">
@@ -12,48 +104,7 @@ $this->load->view('common/assets', $opts);
   </div>
   <div id="links">
     <ul class="menu">
-      <li class="events">
-        <a class="events_menuitem menuitem">Events</a>
-
-        <ul class="submenu">
-          <li>
-            <?php
-              echo anchor(
-                'calendar/index',
-                'Calendar',
-                array('class' => 'calendar')
-              );
-            ?>
-          </li>
-          <li>
-            <?php
-              echo anchor(
-                'event/view',
-                'Event List',
-                array('class' => 'event_list')
-              );
-            ?>
-          </li>
-          <li>
-            <?php
-              echo anchor(
-                'event/create',
-                'Create Event',
-                array('class' => 'event_create')
-              );
-            ?>
-          </li>
-        </ul>
-      </li>
-      <li class="people_container">
-        <?php
-          echo anchor(
-            'user_directory/index',
-            'People',
-            array('class' => 'people')
-          );
-        ?>
-      </li>
+      <?php echo genMenuContent($links); ?>
     </ul>
   </div>
 </div>

@@ -133,16 +133,17 @@ body {
         color: white;
         text-decoration: none;
 
-        &.events_menuitem {
-          background-image: image-url("common/header/calendar.png");
-        }
-        &.people {
-          background-image: image-url("common/header/people.png");
-        }
 
       }
 
-      &.events.hover .menuitem, &.people_container.hover .people {
+      &.events .menuitem {
+        background-image: image-url("common/header/calendar.png");
+      }
+      &.people .menuitem {
+        background-image: image-url("common/header/people.png");
+      }
+
+      &.events.hover .menuitem, &.people.hover .menuitem {
         background-color: transparentize(#000000, 0.8);
       }
 
