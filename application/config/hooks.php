@@ -10,7 +10,12 @@
 |
 */
 
-
+$hook['post_controller_constructor'] = array(
+  'class' => 'Access',
+  'function' => 'preController',
+  'filename' => 'Access.php',
+  'filepath' => 'libraries',
+);
 
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

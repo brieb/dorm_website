@@ -68,6 +68,10 @@ class Gcal_model extends CI_Model {
   }
 
   public function update($id, $data) {
+    if (!$id) {
+      return false;
+    }
+
     $title = $data['title'];
     $time_start = $data['time']['start'];
     $time_end = $data['time']['end'];

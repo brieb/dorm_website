@@ -17,12 +17,7 @@ $(document).ready(function() {
 	//default each row to visible
 	$('tbody tr').addClass('visible');
 
-	//overrides CSS display:none property
-	//so only users w/ JS will see the
-	//filter box
-	$('#search').show();
-
-	$('#filter').keyup(function(event) {
+	$('#search').keyup(function(event) {
 		//if esc is pressed or nothing is entered
     if (event.keyCode == 27 || $(this).val() == '') {
 			//if esc is pressed we want to clear the value of search box

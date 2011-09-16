@@ -1,7 +1,9 @@
 <?php
-$this->load->view('common/assets',
-  array('page_title' => $page_title)
-);
+$opts = array();
+if (isset($page_title)) {
+  $opts['page_title'] = $page_title;
+}
+$this->load->view('common/assets', $opts);
 ?>
 
 <div id="header">

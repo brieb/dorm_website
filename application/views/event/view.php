@@ -19,38 +19,49 @@ $this->load->helper('event/form_builder');
     <?php
     //TODO permissions
 
-    if (true):
+      if (true):
     ?>
     <div class="sidebar-box">
-      <button id="eventEdit">Edit Event</button>
+      <?php
+        echo anchor(
+          'event/edit/'.$event['id'],
+          'Edit Event',
+          array('id' => 'eventEdit')
+        );
+
+        if ($event['sign_up_id'] != NULL) {
+          echo anchor(
+            'event_sign_ups/view/'.$event['id'],
+            'View Sign Ups',
+            array('id' => 'eventSignUps')
+          );
+        }
+      ?>
       <script>
       $(document).ready(function () {
-        $('#eventEdit')
-          .button()
-          .click(function () {
-            window.location = "<?php echo site_url('/event/edit/'.$event['id']); ?>";
-          });
+        $('#eventEdit').button();
+        $('#eventSignUps').button();
       });
       </script>
     </div>
     <?php endif; ?>
 
     <?php if ($event['sign_up_id'] != NULL): ?>
-    <div class="sidebar-box">
-      <button id="button_sign_up">Sign Up</button>
-      <script>
-      $(document).ready(function () {
-        $('#button_sign_up')
-          .button()
-          .click(function () {
-            SignUpFormRenderer.init(
-              "<?php echo $event['sign_up_id']; ?>",
-              "<?php echo $event['title']; ?>"
-            );
-          });
-      });
-      </script>
-    </div>
+      <div class="sidebar-box">
+        <button id="button_sign_up">Sign Up</button>
+        <script>
+        $(document).ready(function () {
+          $('#button_sign_up')
+            .button()
+            .click(function () {
+              SignUpFormRenderer.init(
+                "<?php echo $event['sign_up_id']; ?>",
+                "<?php echo $event['title']; ?>"
+              );
+            });
+        });
+        </script>
+      </div>
     <?php endif; ?>
 
   </div>

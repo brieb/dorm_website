@@ -70,7 +70,6 @@ $sidebarWidth: 200px;
 $headerHeight: 50px;
 $aPaddingTop: 18px;
 $imgDim: 32px;
-$logoPaddingTop: 8px;
 
 body {
   margin: 0;
@@ -93,28 +92,16 @@ body {
   top: 0;
 
   #logo {
-    /*width: $sidebarWidth - 25px;*/
     font-family: "Freshman";
     font-size: 33px;
     position: absolute;
-    /*height: $headerHeight - 14px;*/
-    height: $headerHeight - 14px;
+    height: $headerHeight - 20px;
     width: $sidebarWidth + 2px;
-    /*left: 5px;*/
-    padding: 7px 0px;
-    /*margin: 4px 0;*/
+    padding: 10px 0px;
     background-color: transparentize(#000000, 0.8);
-    /*@include border-radius(10px);*/
-    /*border: {*/
-      /*style: solid;*/
-      /*width: 1px;*/
-      /*color: transparentize(#000000, 0.9);*/
-    /*};*/
 
     a {
       text-align: center;
-      height: $headerHeight - $logoPaddingTop;
-      padding-top: $logoPaddingTop - 5px;
       display: block;
       text-decoration: none;
       color: white;
@@ -277,6 +264,14 @@ body {
       width: 1px;
     };
     @include border-radius(5px);
+
+    .sort_by {
+      .ui-button-text {
+        text-align: left;
+        padding-left: 20px;
+      }
+
+    }
   }
 
   #user_search, #search {
@@ -308,7 +303,7 @@ body {
     }
   }
 
-  button {
+  .ui-button {
     width: 100% - $marginButton*2;
     margin: $marginButton;
     font-size: 90%;
@@ -385,7 +380,7 @@ body {
     height: 90%;
   }
 
-  #event_create_fields, #event_view {
+  #event_create_fields, #event_view, #event_sign_ups {
     @include single-box-shadow;
     @include border-radius(10px);
     @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
@@ -511,6 +506,41 @@ body {
     }
   }
   
+  #event_sign_ups {
+    table {
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 10px;
+    }
+
+    th.sortable {
+      color: #444;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    th.sortable:hover {
+      color: black;
+    }
+    th.sorted-asc, th.sorted-desc  {
+      color: black;
+    }
+
+    td {
+      background-color: white;
+      color: #111;
+    }
+    td.odd {
+      background-color: #666;
+      color: white;
+    }
+
+    td.hovered {
+      background-color: #598CCD;
+      color: #000;
+    }
+  }
 }
 
 .event_create_sign_up_wizard {
@@ -642,7 +672,7 @@ body {
     
     button {
       margin-top: 100px;
-      font-size: 32px;
+      font-size: 30px;
     }
   }
 }

@@ -28,19 +28,31 @@ class Event_sign_ups extends CI_Controller {
       'header' => 'Email Address',
       'rows' => array()
     );
-    foreach ($form['questions'] as $question) {
+
+    foreach ($form as $question) {
       $cols[$question['id']] = array(
         'header' => $question['text'],
         'rows' => array()
       );
     }
 
+    $cols['created'] = array(
+      'header' => 'Sign Up Time',
+      'rows' => array()
+    );
+
     $colKeys = array_keys($cols);
+
     foreach ($responses as $response) {
       foreach ($colKeys as $colKey) {
         if ($colKey == 'name' || $colKey == 'email') {
           $cols[$colKey]['rows'][] = isset($response[$colKey]) ?
             $response[$colKey] : '';
+        } else if($colKey == 'created') {
+          $cols[$colKey]['rows'][] = date(
+            'Y.m.d g:i a',
+            strtotime($response[$colKey])
+          );
         } else {
           $cols[$colKey]['rows'][] = isset($response['form_response'][$colKey]) ?
             $response['form_response'][$colKey] : '';

@@ -49,7 +49,6 @@ $this->load->view(
       var event_sort = function(event1, event2) {
         //TODO account for 'the's and stuff
         //TODO fall back to date sort when fields match
-        console.log(event1);
 
         var elem1, elem2;
         if (typeof(event1[sort_by.field]) === 'string') {
@@ -60,9 +59,21 @@ $this->load->view(
           elem2 = event2[sort_by.field];
         }
         if (sort_by.direction === 'asc') {
-          return ((elem1 < elem2) ? -1 : ((elem1 > elem2) ? 1 : 0));
+          return (
+            (elem1 < elem2) ?
+              -1 :
+              (
+                (elem1 > elem2) ? 1 : 0
+              )
+          );
         } else {
-          return ((elem2 < elem1) ? -1 : ((elem2 > elem1) ? 1 : 0));
+          return (
+            (elem2 < elem1) ?
+              -1 :
+              (
+                (elem2 > elem1) ? 1 : 0
+              )
+          );
         }
       };
       events.sort(event_sort);
@@ -113,13 +124,32 @@ $this->load->view(
         if (target.hasClass('asc')) {
           target.removeClass('asc');
           target.addClass('desc');
+          target.button(
+            "option", "icons",
+            {
+              secondary: 'ui-icon-triangle-1-s'
+            }
+          );
         } else {
           target.removeClass('desc');
           target.addClass('asc');
+          target.button(
+            "option", "icons",
+            {
+              secondary: 'ui-icon-triangle-1-n'
+            }
+          );
         }
       } else {
-        $('.sort_by').removeClass('active');
+        $('.sort_by').removeClass('active asc desc');
+        $('.sort_by').button("option", "icons", {});
         target.addClass('active asc');
+        target.button(
+          "option", "icons",
+          {
+            secondary: 'ui-icon-triangle-1-n'
+          }
+        );
       }
       render_content();
     });

@@ -5,7 +5,11 @@ $this->load->helper('common/asset_helper');
 <html>
   <head>
 
-    <title><?php echo $page_title; ?></title>
+    <title>
+      <?php
+        echo isset($page_title) ? $page_title : 'FroSoCo';
+      ?>
+    </title>
 
     <script type="text/javascript">
         var BASE_URL = "<?php echo base_url(); ?>";

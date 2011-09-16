@@ -15,7 +15,8 @@ class Event_sign_ups_model extends CI_Model {
     $sql = "SELECT
         CONCAT(user.first_name, ' ', user.last_name) AS 'name',
         user.email,
-        sign_up_response.form_response
+        sign_up_response.form_response,
+        sign_up_response.created
       FROM
         sign_up_response
         JOIN user ON sign_up_response.user_id = user.id

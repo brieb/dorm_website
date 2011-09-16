@@ -10,10 +10,11 @@ class User_model extends CI_Model {
 
   function __construct() {
     parent::__construct();
+
+    $this->load->database();
   }
 
   function getUsers() {
-    $this->load->database();
     $query = $this->db->query("
       SELECT
         CONCAT(first_name, ' ', last_name) AS full_name,
@@ -32,5 +33,23 @@ class User_model extends CI_Model {
 
   function getUsersAsJSON() {
     return json_encode($this->getUsers());
+  }
+
+  public function getIdBySunetid($sunetid) {
+    $q = $this->db->query(
+      "SELECT id FROM user WHERE sunetid = ?",
+      array($sunetid)
+    );
+    $result = $q->row_array();
+    return $result['id'];
+  }
+
+  public function getAccessGroup($id) {
+    $q = $this->db->query(
+      "SELECT access_group FROM user WHERE id = ?",
+      $id
+    );
+    $result = $q->row_array();
+    return $result['access_group'];
   }
 }
