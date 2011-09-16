@@ -5,6 +5,77 @@ $this->load->view(
 );
 
 $this->load->helper('event/form_builder');
+
+?>
+
+<?php
+
+$sidebar = array(
+  array(
+    array(
+      'title' => 'Edit Event',
+      'id' => 'eventEdit',
+      'action' => array(
+        'class' => 'event',
+        'method' => 'edit',
+        'id' => $event['id'],
+      ),
+    ),
+    array(
+      'title' => 'View Sign Ups',
+      'id' => 'eventSignUps',
+      'action' => array(
+        'class' => 'event_sign_ups',
+        'method' => 'view',
+        'id' => $event['id'],
+      ),
+    ),
+  ),
+  array(
+    array(
+      'hide' => ($event['sign_up_id'] == NULL),
+      'title' => 'Sign Up',
+      'id' => 'signUpResponse',
+      'action' => array(
+        'class' => 'sign_up_response',
+        'method' => 'create',
+      ),
+    ),
+  ),
+);
+
+$sidebarContent = "";
+
+foreach ($sidebar as $sidebarBox) {
+  $sidebarBoxContent = "";
+  foreach ($sidebarBox as $elem) {
+    if (
+      $this->access->canDo($elem['action']) &&
+      !(isset($elem['hide']) && $elem['hide'])
+    ) {
+      $sidebarBoxContent .= anchor(
+        $elem['action'],
+        $elem['title'],
+        array('id' => $elem['id'])
+      );
+      $sidebarBoxContent .= "
+        <script>
+          $(document).ready(function () {
+            $('#{$elem['id']}').button();
+          });
+        </script>
+      ";
+    }
+  }
+
+  if ($sidebarBoxContent != "") {
+    $sidebarContent .=
+      "<div class='sidebar-box'>".
+      $sidebarBoxContent.
+      "</div>";
+  }
+}
+
 ?>
 
 <script
@@ -12,77 +83,43 @@ $this->load->helper('event/form_builder');
   src="<?php echo base_url(); ?>assets/js/SignUpFormRenderer.js">
 </script>
 
+<?php if ($event['sign_up_id'] != NULL): ?>
+  <script>
+  $(document).ready(function () {
+    $('#signUpResponse')
+      .click(function () {
+        SignUpFormRenderer.init(
+          "<?php echo $event['sign_up_id']; ?>",
+          "<?php echo $event['title']; ?>"
+        );
+      });
+  });
+  </script>
+<?php endif; ?>
+
 <div id="main">
 
   <div id="sidebar">
-
-    <?php
-    //TODO permissions
-
-      if (true):
-    ?>
-    <div class="sidebar-box">
-      <?php
-        echo anchor(
-          'event/edit/'.$event['id'],
-          'Edit Event',
-          array('id' => 'eventEdit')
-        );
-
-        if ($event['sign_up_id'] != NULL) {
-          echo anchor(
-            'event_sign_ups/view/'.$event['id'],
-            'View Sign Ups',
-            array('id' => 'eventSignUps')
-          );
-        }
-      ?>
-      <script>
-      $(document).ready(function () {
-        $('#eventEdit').button();
-        $('#eventSignUps').button();
-      });
-      </script>
-    </div>
-    <?php endif; ?>
-
-    <?php if ($event['sign_up_id'] != NULL): ?>
-      <div class="sidebar-box">
-        <button id="button_sign_up">Sign Up</button>
-        <script>
-        $(document).ready(function () {
-          $('#button_sign_up')
-            .button()
-            .click(function () {
-              SignUpFormRenderer.init(
-                "<?php echo $event['sign_up_id']; ?>",
-                "<?php echo $event['title']; ?>"
-              );
-            });
-        });
-        </script>
-      </div>
-    <?php endif; ?>
-
+    <?php echo $sidebarContent; ?>
   </div>
 
 
   <div id="content">
     <div id="event_view">
-      <div class="event_view_title">
+      <div class="title">
         <?php echo $event['title']; ?>
       </div>
-      <div class="event_view_time">
+      <div class="time">
         <?php
           echo $event['time_pretty_start'] . ' - '. $event['time_pretty_end'];
         ?>
       </div>
 
-      <div class="event_view_description">
+      <div class="description">
         <?php echo $event['description']; ?>
       </div>
 
-      <div class="event_view_fields">
+      <div class="fields">
         <?php
           renderFields($event['fields']);
         ?>

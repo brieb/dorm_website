@@ -466,25 +466,25 @@ body {
   }
   
   #event_view {
-    .event_view_title {
+    .title {
       font: {
         family: "Lato-Black";
         size: 300%;
       };
       margin-bottom: 30px;
     }
-    .event_view_time {
+    .time {
       font: {
         family: "Lato-Bold";
         size: 125%;
       };
       margin-bottom: 30px;
     }
-    .event_view_description {
+    .description {
       margin: 30px;
       font-size: 110%;
     }
-    .event_view_fields {
+    .fields {
       ul {
         margin: 10px 0;
       }

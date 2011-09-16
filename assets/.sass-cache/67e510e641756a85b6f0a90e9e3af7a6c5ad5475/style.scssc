@@ -1,7 +1,7 @@
 3.1.7 (Brainy Betty)
-e30806970172899d93a185ae36e9fc0e9954af24
+57b5af091352144c78d23385f549464663e2ae58
 o:Sass::Tree::RootNode
-:@has_childrenT:@template"1@import "compass";
+:@has_childrenT:@template"Õ0@import "compass";
 
 @include font-face(
   "Sansation",
@@ -469,25 +469,25 @@ body {
   }
   
   #event_view {
-    .event_view_title {
+    .title {
       font: {
         family: "Lato-Black";
         size: 300%;
       };
       margin-bottom: 30px;
     }
-    .event_view_time {
+    .time {
       font: {
         family: "Lato-Bold";
         size: 125%;
       };
       margin-bottom: 30px;
     }
-    .event_view_description {
+    .description {
       margin: 30px;
       font-size: 110%;
     }
-    .event_view_fields {
+    .fields {
       ul {
         margin: 10px 0;
       }
@@ -831,13 +831,15 @@ right;[ ;/;0;1i ;@;o;;;;@;"	10px;iº;1i ;@;i·;1i ;@;i‡o;$
 ;iÌ;-@€
 ;iÌ;[o;.;["margin-bottom;[ ;/;0;1i ;@;o;;;;@;"	15px;iÍo;.;["font-size;[ ;/;0;1i ;@;o;;;;@;"	110%;iÎo;.;["font-family;[ ;/;0;1i ;@;o;;;;@;""Lato-Bold";iÏ;1i ;@;iÌ;1i ;@;i¿;1i ;@;i¾o;$;T;%["#event_view;&o;';([o;);([o;*;([o;2;["event_view;-" ;iÔ;-@ 
 ;iÔ;-@ 
-;iÔ;[	o;$;T;%[".event_view_title;&o;';([o;);([o;*;([o;>;["event_view_title;-" ;iÕ;-@®
+;iÔ;[	o;$;T;%[".title;&o;';([o;);([o;*;([o;>;["
+title;-" ;iÕ;-@®
 ;iÕ;-@®
-;iÕ;[o;.;T;["	font;[o;.;["family;[ ;/;0;1i ;@;o;;;;@;""Lato-Black";i×o;.;["	size;[ ;/;0;1i ;@;o;;;;@;"	300%;iØ;/;0;1i ;@;o;;;;@;" ;iÖo;.;["margin-bottom;[ ;/;0;1i ;@;o;;;;@;"	30px;iÚ;1i ;@;iÕo;$;T;%[".event_view_time;&o;';([o;);([o;*;([o;>;["event_view_time;-" ;iÜ;-@Ô
+;iÕ;[o;.;T;["	font;[o;.;["family;[ ;/;0;1i ;@;o;;;;@;""Lato-Black";i×o;.;["	size;[ ;/;0;1i ;@;o;;;;@;"	300%;iØ;/;0;1i ;@;o;;;;@;" ;iÖo;.;["margin-bottom;[ ;/;0;1i ;@;o;;;;@;"	30px;iÚ;1i ;@;iÕo;$;T;%["
+.time;&o;';([o;);([o;*;([o;>;["	time;-" ;iÜ;-@Ô
 ;iÜ;-@Ô
-;iÜ;[o;.;T;["	font;[o;.;["family;[ ;/;0;1i ;@;o;;;;@;""Lato-Bold";iÞo;.;["	size;[ ;/;0;1i ;@;o;;;;@;"	125%;iß;/;0;1i ;@;o;;;;@;" ;iÝo;.;["margin-bottom;[ ;/;0;1i ;@;o;;;;@;"	30px;iá;1i ;@;iÜo;$;T;%[".event_view_description;&o;';([o;);([o;*;([o;>;["event_view_description;-" ;iã;-@ú
+;iÜ;[o;.;T;["	font;[o;.;["family;[ ;/;0;1i ;@;o;;;;@;""Lato-Bold";iÞo;.;["	size;[ ;/;0;1i ;@;o;;;;@;"	125%;iß;/;0;1i ;@;o;;;;@;" ;iÝo;.;["margin-bottom;[ ;/;0;1i ;@;o;;;;@;"	30px;iá;1i ;@;iÜo;$;T;%[".description;&o;';([o;);([o;*;([o;>;["description;-" ;iã;-@ú
 ;iã;-@ú
-;iã;[o;.;["margin;[ ;/;0;1i ;@;o;;;;@;"	30px;iäo;.;["font-size;[ ;/;0;1i ;@;o;;;;@;"	110%;iå;1i ;@;ião;$;T;%[".event_view_fields;&o;';([o;);([o;*;([o;>;["event_view_fields;-" ;iç;-@;iç;-@;iç;[o;$;T;%["ul;&o;';([o;);([o;*;([o;+	;,0;["ul;-" ;iè;-@";iè;-@";iè;[o;.;["margin;[ ;/;0;1i ;@;o;;;;@;"10px 0;ié;1i ;@;ièo;$;T;%[".label;&o;';([o;);([o;*;([o;>;["
+;iã;[o;.;["margin;[ ;/;0;1i ;@;o;;;;@;"	30px;iäo;.;["font-size;[ ;/;0;1i ;@;o;;;;@;"	110%;iå;1i ;@;ião;$;T;%[".fields;&o;';([o;);([o;*;([o;>;["fields;-" ;iç;-@;iç;-@;iç;[o;$;T;%["ul;&o;';([o;);([o;*;([o;+	;,0;["ul;-" ;iè;-@";iè;-@";iè;[o;.;["margin;[ ;/;0;1i ;@;o;;;;@;"10px 0;ié;1i ;@;ièo;$;T;%[".label;&o;';([o;);([o;*;([o;>;["
 label;-" ;ië;-@6;ië;-@6;ië;[o;.;["font-size;[ ;/;0;1i ;@;o;;;;@;"	120%;iìo;.;["font-family;[ ;/;0;1i ;@;o;;;;@;""Lato-Bold";iío;.;["margin;[ ;/;0;1i ;@;o;;;;@;"25px 10px 15px 10px;iîo;.;["padding;[ ;/;0;1i ;@;o;;;;@;"
 5px 0;iïo;.;T;["border-bottom;[o;.;["
 style;[ ;/;0;1i ;@;o;;;;@;"

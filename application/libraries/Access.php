@@ -70,7 +70,14 @@ class Access {
   }
 
   private function initPermissions() {
-    $public = array();
+    $public = array(
+      //'user_directory' => array(
+        //'index' => true,
+      //),
+        'event' => array(
+          'view' => true,
+        ),
+    );
     $stanford = array_merge_recursive($public, array());
 
     $resident = array_merge_recursive($stanford,

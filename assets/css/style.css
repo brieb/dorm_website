@@ -502,28 +502,28 @@ a {
   font-family: "Lato-Bold";
 }
 /* line 469, ../sass/style.scss */
-#content #event_view .event_view_title {
+#content #event_view .title {
   font-family: "Lato-Black";
   font-size: 300%;
   margin-bottom: 30px;
 }
 /* line 476, ../sass/style.scss */
-#content #event_view .event_view_time {
+#content #event_view .time {
   font-family: "Lato-Bold";
   font-size: 125%;
   margin-bottom: 30px;
 }
 /* line 483, ../sass/style.scss */
-#content #event_view .event_view_description {
+#content #event_view .description {
   margin: 30px;
   font-size: 110%;
 }
 /* line 488, ../sass/style.scss */
-#content #event_view .event_view_fields ul {
+#content #event_view .fields ul {
   margin: 10px 0;
 }
 /* line 491, ../sass/style.scss */
-#content #event_view .event_view_fields .label {
+#content #event_view .fields .label {
   font-size: 120%;
   font-family: "Lato-Bold";
   margin: 25px 10px 15px 10px;
@@ -534,7 +534,7 @@ a {
   width: 50%;
 }
 /* line 503, ../sass/style.scss */
-#content #event_view .event_view_fields .value {
+#content #event_view .fields .value {
   font-size: 110%;
   margin: 5px 20px;
 }
