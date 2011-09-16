@@ -213,12 +213,12 @@ body {
 }
 /* line 191, ../sass/style.scss */
 #header #links .menu li .submenu li.hover {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cccccc), color-stop(100%, #666666));
-  background-image: -webkit-linear-gradient(#cccccc, #666666);
-  background-image: -moz-linear-gradient(#cccccc, #666666);
-  background-image: -o-linear-gradient(#cccccc, #666666);
-  background-image: -ms-linear-gradient(#cccccc, #666666);
-  background-image: linear-gradient(#cccccc, #666666);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cccccc), color-stop(100%, #777777));
+  background-image: -webkit-linear-gradient(#cccccc, #777777);
+  background-image: -moz-linear-gradient(#cccccc, #777777);
+  background-image: -o-linear-gradient(#cccccc, #777777);
+  background-image: -ms-linear-gradient(#cccccc, #777777);
+  background-image: linear-gradient(#cccccc, #777777);
   background-size: 100% 100%;
   background-position: 0 0;
 }

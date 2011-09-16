@@ -52,6 +52,27 @@ $links = array (
       ),
     ),
   ),
+  'wiki' => array(
+    'menuitem' => array(
+      'title' => 'Wikis',
+    ),
+    'submenu' => array(
+      array(
+        'title' => 'Staff Wiki',
+        'action' => array(
+          'class' => 'wiki',
+          'method' => 'staff'
+        ),
+      ),
+      array(
+        'title' => 'Confi Wiki',
+        'action' => array(
+          'class' => 'wiki',
+          'method' => 'confi'
+        ),
+      ),
+    ),
+  ),
 );
 
 /*
@@ -97,16 +118,17 @@ foreach ($links as $key => $value) {
   $menuContent .= "<li class='{$key}'>";
 
   if (isset($value['menuitem'])) {
-    if (isset($value['menuitem']['action'])) {
-      $menuContent .= anchor(
-        $value['menuitem']['action'],
-        $value['menuitem']['title'],
-        array('class' => 'menuitem')
-      );
+    if (
+      isset($value['menuitem']['url']) ||
+      isset($value['menuitem']['action'])
+    ) {
+      $value['menuitem']['attr'] =
+        array('class' => 'menuitem');
+      $menuContent .= genAnchor($value['menuitem']);
     } else {
       $menuContent .=
         "<a class='menuitem'>".
-        $value['menuitem']['title'].
+          $value['menuitem']['title'].
         "</a>";
     }
   }
@@ -114,18 +136,26 @@ foreach ($links as $key => $value) {
   if (isset($value['submenu'])) {
     $menuContent .= "<ul class='submenu'>";
     foreach ($value['submenu'] as $submenuElem) {
-      $menuContent .= "<li>";
-      $menuContent .= anchor(
-        $submenuElem['action'],
-        $submenuElem['title'],
-        $submenuElem['attr']
-      );
-      $menuContent .= "</li>";
+      $menuContent .=
+        "<li>".
+        genAnchor($submenuElem).
+        "</li>";
     }
     $menuContent .= "</ul>";
   }
 
   $menuContent .= "</li>";
+}
+
+function genAnchor($elem) {
+  $uri = isset($elem['url']) ?
+    $elem['url'] :
+    $elem['action'];
+  $title = $elem['title'];
+  $attr = isset($elem['attr']) ?
+    $elem['attr'] : array();
+
+  return anchor($uri, $title, $attr);
 }
 
 ?>

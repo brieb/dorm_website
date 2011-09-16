@@ -97,6 +97,8 @@ foreach ($sidebar as $sidebarBox) {
   </script>
 <?php endif; ?>
 
+
+
 <div id="main">
 
   <div id="sidebar">
