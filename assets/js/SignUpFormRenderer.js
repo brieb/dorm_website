@@ -4,6 +4,7 @@ SignUpFormRenderer = {
   formViewUrl: SITE_URL+'/sign_up/view/',
   urlResponseCreate: SITE_URL+'/sign_up_response/create',
   urlResponseDelete: SITE_URL+'/sign_up_response/delete',
+  urlGetForUser: SITE_URL+'/sign_up_response/getForUser',
 
   buttonSignUp: null,
   signUpId: null,
@@ -12,12 +13,22 @@ SignUpFormRenderer = {
   content: null,
   container: null,
 
-  init: function(signUpId, eventTitle) {
+  init: function(signUpId, eventTitle, signUpButtonId) {
     this.signUpId = signUpId;
     this.eventTitle = eventTitle;
-    this.buttonSignUp = $("#button_sign_up");
+    this.buttonSignUp = $('#'+signUpButtonId);
+
+    this.getSignUpResponseIdForUser();
 
     this.display();
+  },
+  getSignUpResponseIdForUser: function() {
+    $.get(
+      this.urlGetForUser+'/'+this.signUpId,
+      function(response) {
+        console.log(response);
+      }
+    ); 
   },
   process: function() {
     if (this.content === '') {
@@ -40,10 +51,10 @@ SignUpFormRenderer = {
       .button({ label: 'Cancel Sign Up' })
       .unbind('click')
       .click(
-      function() {
-        this.cancel();
-      }.bind(this)
-    );
+        function() {
+          this.cancel();
+        }.bind(this)
+      );
   },
   cancel: function() {
     $.post(

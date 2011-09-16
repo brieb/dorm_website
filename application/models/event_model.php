@@ -132,4 +132,17 @@ class Event_model extends CI_Model {
     return $result['gcal_url'];
   }
 
+  function getSignUpId($id) {
+    $query = $this->db->query(
+      "SELECT
+        sign_up.id AS sign_up_id
+      FROM event LEFT JOIN sign_up
+        ON event.id = sign_up.event_id
+      WHERE event.id = ?",
+      array($id)
+    );
+    $result = $query->row_array();
+    return $result['sign_up_id'];
+  }
+
 }

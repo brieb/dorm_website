@@ -16,8 +16,7 @@ class Sign_up_response_model extends CI_Model {
       VALUES (?, ?, ?)";
     $query = $this->db->query($sql,
       array(
-        //TODO user id
-        2,
+        $data['user_id'],
         $data['sign_up_id'],
         $data['form_response']
       ));
@@ -40,6 +39,24 @@ class Sign_up_response_model extends CI_Model {
 
   function update($id) {
 
+  }
+
+  function getByUserIdSignUpId($user_id, $sign_up_id) {
+    $sql = "
+      SELECT id
+      FROM sign_up_response
+      WHERE
+        user_id = ?
+        AND sign_up_id = ?
+    ";
+    $result = $this->db->query($sql,
+      array(
+        $user_id,
+        $sign_up_id,
+      )
+    )->row_array();
+
+    return element('id', $result, NULL);
   }
 
   function delete($id) {

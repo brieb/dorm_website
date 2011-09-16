@@ -44,19 +44,20 @@ $(document).ready(function() {
     //});
   //});
 
-  $("#links .events").hover(
+  $("#links .events, #links .wiki").hover(
     function() {
-      $("#links .events").addClass('hover');
-      $("#links .submenu").show();
-        
+      var target = $(this);
+      target.addClass('hover');
+      target.find(".submenu").show();
     },
     function() {
-      $("#links .events").removeClass('hover');
-      $("#links .submenu").hide();
+      var target = $(this);
+      target.removeClass('hover');
+      target.find(".submenu").hide();
     }
   );
 
-  $("#links .events .submenu li").hover(
+  $("#links .submenu li").hover(
     function() {
       $(this).addClass('hover');
     },

@@ -27,11 +27,9 @@ EventEdit = {
       .unbind('click')
       .click(function() {
         var eventData = EventCreate.serialize();
-        //if (this.data.sign_up_id !== null) {
-          eventData += '&sign_up_delete='+this.signUpDelete;
-          eventData += '&sign_up_id='+this.data.sign_up_id;
-          eventData += '&id='+this.data.id;
-        //}
+        eventData += '&sign_up_delete='+this.signUpDelete;
+        eventData += '&sign_up_id='+this.data.sign_up_id;
+        eventData += '&id='+this.data.id;
   
         $.post(
           this.url,
@@ -118,7 +116,6 @@ EventEdit = {
         if (type.isDefault) {
           prefill =
             this.getObjValueByIdentifierArray(this.data, field.identifier);
-          //prefill = this.data[this.parseIdentifierArray(field.identifier)];
         } else {
           if (this.data.fields[type.name] !== undefined) {
             $('button[name="button_field_add['+type.name+']"]').click();

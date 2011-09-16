@@ -73,7 +73,6 @@ EventCreate = {
         .button()
         .click(function(event) {
           var target = $(event.currentTarget);
-          console.log(target);
           this.containerSignUp = $('<div/>')
             .addClass('sidebar-box');
           this.submitButtonContainer.after(this.containerSignUp);
@@ -98,7 +97,7 @@ EventCreate = {
             .text(type.pretty)
             .button()
             .click(function(event) {
-              var target = $(event.target).parents('button');
+              var target = $(event.currentTarget);
               target
                 .blur()
                 .mouseleave()

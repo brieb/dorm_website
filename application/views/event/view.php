@@ -22,6 +22,7 @@ $sidebar = array(
       ),
     ),
     array(
+      'hide' => ($event['sign_up_id'] == NULL),
       'title' => 'View Sign Ups',
       'id' => 'eventSignUps',
       'action' => array(
@@ -40,6 +41,7 @@ $sidebar = array(
         'class' => 'sign_up_response',
         'method' => 'create',
       ),
+      'isButton' => true,
     ),
   ),
 );
@@ -53,11 +55,18 @@ foreach ($sidebar as $sidebarBox) {
       $this->access->canDo($elem['action']) &&
       !(isset($elem['hide']) && $elem['hide'])
     ) {
-      $sidebarBoxContent .= anchor(
-        $elem['action'],
-        $elem['title'],
-        array('id' => $elem['id'])
-      );
+      if (element('isButton', $elem)) {
+        $sidebarBoxContent .=
+          "<button id='{$elem['id']}'>".
+          $elem['title'].
+          "</button>";
+      } else {
+        $sidebarBoxContent .= anchor(
+          $elem['action'],
+          $elem['title'],
+          array('id' => $elem['id'])
+        );
+      }
       $sidebarBoxContent .= "
         <script>
           $(document).ready(function () {
@@ -90,7 +99,8 @@ foreach ($sidebar as $sidebarBox) {
       .click(function () {
         SignUpFormRenderer.init(
           "<?php echo $event['sign_up_id']; ?>",
-          "<?php echo $event['title']; ?>"
+          "<?php echo $event['title']; ?>",
+          $(this).attr('id')
         );
       });
   });

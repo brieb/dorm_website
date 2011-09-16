@@ -58,11 +58,29 @@ $links = array (
     ),
     'submenu' => array(
       array(
+        'title' => 'Basecamp',
+        'action' => array(
+          'class' => 'wiki',
+          'method' => 'basecamp'
+        ),
+        'attr' => array(
+          'class' => 'basecamp'
+        ),
+        'url' =>
+          'https://frosoco.basecamphq.com',
+      ),
+      array(
         'title' => 'Staff Wiki',
         'action' => array(
           'class' => 'wiki',
           'method' => 'staff'
         ),
+        'attr' => array(
+          'class' => 'staff'
+        ),
+        'url' =>
+          'https://www.stanford.edu/group/frosoco/cgi-bin/'.
+          'staff_wiki/index.php/Main_Page',
       ),
       array(
         'title' => 'Confi Wiki',
@@ -70,6 +88,12 @@ $links = array (
           'class' => 'wiki',
           'method' => 'confi'
         ),
+        'attr' => array(
+          'class' => 'confi'
+        ),
+        'url' =>
+          'https://www.stanford.edu/group/frosoco/cgi-bin/'.
+          'confi_wiki/index.php/Main_Page',
       ),
     ),
   ),

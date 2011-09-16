@@ -110,6 +110,16 @@ class Event extends CI_Controller {
   function view($id = "") {
     if($id != "") {
       $event = $this->Event_model->read($id);
+
+      if ($event['sign_up_id'] != NULL) {
+        $this->load->library('access');
+        $user_id = $this->access->getLoggedInUserId();
+        $this->load->model('Sign_up_response_model');
+
+        $data['sign_up_response_id'] =
+          $this->Sign_up_response_model->
+            getByUserIdSignUpId($user_id, $event['sign_up_id']);
+      }
       $data['event'] = $event;
       $this->load->view('event/view', $data);
     } else {

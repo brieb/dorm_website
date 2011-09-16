@@ -16,10 +16,6 @@ class Access {
       $_SERVER['REMOTE_USER'] = 'jsmith';
     }
 
-    $routing =& load_class('Router');
-    $this->class = $routing->fetch_class();
-    $this->method = $routing->fetch_method();
-
     if (!($this->isLoggedIn() || $this->isHomePage())) {
       $this->redirectToHomePage();
       return;
@@ -29,10 +25,11 @@ class Access {
       $this->initUser();
     }
 
-    $this->initPermissions();
   }
 
   public function canDo($action) {
+    $this->initPermissions();
+
     if ($this->user['access_group'] == 'SUDO') {
       return true;
     }
@@ -52,6 +49,10 @@ class Access {
   }
 
   public function preController($params) {
+    $routing =& load_class('Router');
+    $this->class = $routing->fetch_class();
+    $this->method = $routing->fetch_method();
+
     if ($this->isHomePage()) {
       return true;
     }
@@ -74,9 +75,9 @@ class Access {
       //'user_directory' => array(
         //'index' => true,
       //),
-        'event' => array(
-          'view' => true,
-        ),
+        //'event' => array(
+          //'view' => true,
+        //),
     );
     $stanford = array_merge_recursive($public, array());
 
@@ -91,6 +92,7 @@ class Access {
         'sign_up_response' => array(
           'create' => true,
           'delete' => true,
+          'getForUser' => true,
         ),
         'sign_up' => array(
           'view' => true,
@@ -117,6 +119,7 @@ class Access {
         ),
         'wiki' => array(
           'staff' => true,
+          'basecamp' => true,
         ),
       )
     );
@@ -136,6 +139,10 @@ class Access {
       'STAFF' => $staff,
       'CONFI' => $confi,
     );
+  }
+
+  public function getLoggedInUserId() {
+    return $this->user['id'];
   }
 
   private function isLoggedIn() {

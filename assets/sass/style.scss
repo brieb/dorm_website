@@ -142,9 +142,38 @@ body {
       &.people .menuitem {
         background-image: image-url("common/header/people.png");
       }
-
       &.events.hover .menuitem, &.people.hover .menuitem {
         background-color: transparentize(#000000, 0.8);
+      }
+
+      &.wiki {
+        .menuitem {
+          background-image: image-url("common/header/wiki.png");
+        }
+
+        .staff {
+          background-image:
+            image-url("common/header/wiki/staff.png");
+        }    
+        .confi {
+          background-image:
+            image-url("common/header/wiki/confi.png");
+        }    
+        .basecamp {
+          background-image:
+            image-url("common/header/wiki/basecamp.png");
+        }    
+
+        .hover {
+          .staff {
+            background-image:
+              image-url("common/header/wiki/staff_hover.png");
+          }    
+          .confi {
+            background-image:
+              image-url("common/header/wiki/confi_hover.png");
+          }    
+        }
       }
 
       .submenu {

@@ -41,7 +41,9 @@ class Event_sign_ups_model extends CI_Model {
       WHERE event_id = ?";
     $query = $this->db->query($sql, array($this->eventId));
     $result = $query->row_array();
-    return unserialize($result['form']);
+
+    $form = element('form', $result, NULL);
+    return unserialize($form);
   }
 
 }

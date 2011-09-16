@@ -2,6 +2,12 @@
 class Event_sign_ups extends CI_Controller {
 
   function view($event_id) {
+    $this->load->model('Event_model');
+    if ($this->Event_model->getSignUpId($event_id) == NULL) {
+      echo "no sign ups for event {$event_id}";
+      return false;
+    }
+
     $this->load->model('Event_sign_ups_model');
     $event_sign_ups = $this->Event_sign_ups_model->read($event_id);
 

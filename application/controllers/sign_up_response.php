@@ -22,6 +22,14 @@ class Sign_up_response extends CI_Controller {
     //);
   }
 
+  function getForUser($sign_up_id) {
+    $this->load->library('Access');
+    $user_id = $this->access->getLoggedInUserId();
+
+    echo $this->Sign_up_response_model->
+      getByUserIdSignUpId($user_id, $sign_up_id);
+  }
+
   function create() {
     $form_data = $this->input->post();
     if (!$form_data) {
@@ -32,19 +40,27 @@ class Sign_up_response extends CI_Controller {
     //$this->load->library('form_validation');
 
     //TODO username
+    $this->load->library('access');
+    $user_id = $this->access->getLoggedInUserId();
+
     $sign_up_id = $form_data['sign_up_id'];
     unset($form_data['sign_up_id']);
     $form_response_ser = serialize($form_data);
 
-    $response = $this->Sign_up_response_model->create(array(
-      'sign_up_id' => $sign_up_id,
-      'form_response' => $form_response_ser
-    ));
+    $response = $this->Sign_up_response_model->create(
+      array(
+        'sign_up_id' => $sign_up_id,
+        'user_id' => $user_id,
+        'form_response' => $form_response_ser
+      )
+    );
     echo $response;
   }
 
   function delete() {
     $formData = $this->input->post();
+    error_log(var_export($formData, true));
+
     $id = $formData['id'];
     //TODO check user permission
     echo $this->Sign_up_response_model->delete($id);
