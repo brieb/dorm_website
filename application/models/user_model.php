@@ -19,9 +19,8 @@ class User_model extends CI_Model {
       SELECT
         CONCAT(first_name, ' ', last_name) AS full_name,
         email,
-        CONCAT(
-          UPPER(SUBSTRING(house,1,1)), LOWER(SUBSTRING(house,2))
-        ) AS house,
+        class,
+        house,
         room,
         staff_role,
         photo
@@ -29,7 +28,9 @@ class User_model extends CI_Model {
     ");
 
     $users = array();
-    foreach ($query->result() as $row) {
+    foreach ($query->result_array() as $row) {
+      $row['class'] = ucfirst(strtolower($row['class']));
+      $row['house'] = ucfirst(strtolower($row['house']));
       $users[] = $row;
     }
     return $users;

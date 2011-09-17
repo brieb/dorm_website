@@ -373,6 +373,7 @@ body {
 
         li {
           padding: 3px;
+          line-height: 1.1em;
 
           &.name {
             font-family: "Lato-Black";
@@ -380,16 +381,12 @@ body {
           }
           &.email {
             font-family: "Lato-Light";
-            margin-left: 20px;
             font-size: 110%;
 
             a {
               text-decoration: none;
               color: inherit;
             }
-          }
-          &.room {
-            margin-left: 20px;
           }
           &.photo {
             float: left;
@@ -405,13 +402,13 @@ body {
             right: 15px;
             font-family: "Lato-Black";
             font-size: 175%;
+            height: 32px;
+            padding-right: 40px;
             background:{
               image: image-url("people/heart.png");
               repeat: no-repeat;
               position: right 3px;
             };
-            height: 32px;
-            padding-right: 40px;
           }
         }
       }

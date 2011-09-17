@@ -181,27 +181,6 @@ class Event extends CI_Controller {
       $this->Event_model->delete($id);
   }
 
-  function gcalTest() {
-    //TODO link back to event
-    //make signup text match whether there is a sign up
-    $form_data = array(
-      'title' => 'test title',
-      'time' => array(
-        'start' => '2011-08-25T08:25:02.000Z',
-        'end' => '2011-08-25T11:25:02.000Z',
-      )
-    );
-
-    $this->load->model('Gcal_model');
-    echo $this->Gcal_model->create(1, $form_data);
-  }
-
-  function gcalRead() {
-    echo "<pre>";
-    $this->load->model('Gcal_model');
-    var_dump($this->Gcal_model->update("http://www.google.com/calendar/feeds/default/private/full/mkm06rsr9prgovm9u9tl1qnnjk"));
-  }
-
   private function formatDatetime($time) {
     return
       array_map(

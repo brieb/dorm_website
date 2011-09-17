@@ -57,6 +57,26 @@ $this->load->view(
     <br/>
   </div>
 
+  <div id="checkboxes_role" class="sidebar-box">
+    <input
+      id="role_residents"
+      type="checkbox"
+      name="filter_role[]"
+      checked="checked"
+      value="residents"/>
+    <label for="role_residents">Residents</label>
+    <br/>
+
+    <input
+      id="role_staff"
+      type="checkbox"
+      name="filter_role[]"
+      checked="checked"
+      value="staff"/>
+    <label for="role_staff">Staff</label>
+    <br/>
+  </div>
+
 </div>
 
 
@@ -91,11 +111,35 @@ $this->load->view(
         var search_text = $('#user_search').val();
         var search_regex = new RegExp(search_text, 'i');
 
+        var match_role = {
+          residents: false,
+          staff: false
+        };
+        $('input[name="filter_role[]"]:checked').each(
+          function() {
+            match_role[this.value] = true;
+          }
+        );
+
         for (var i = 0; i < users.length; i++) {
           var user = users[i];
+
           user['is_match'] = false;
+
           if ($('input[name="filter_house[]"]:checked').length == 0 ||
             $('input[name="filter_floor[]"]:checked').length == 0) {
+            continue;
+          }
+
+          var isStaff = (user['staff_role'] !== null);
+          var wantResidentsOnly = !match_role.staff && match_role.residents;
+          var wantStaffOnly = match_role.staff && !match_role.residents;
+          var wantNoRole = !match_role.staff && !match_role.residents;
+          if (
+              (!isStaff && wantStaffOnly) ||
+              (isStaff && wantResidentsOnly) ||
+              wantNoRole
+            ) {
             continue;
           }
 
@@ -104,7 +148,8 @@ $this->load->view(
             user['email'],
             user['house'],
             user['staff_role'],
-            user['room']
+            user['room'],
+            user['house'] + ' ' + user['room']
           ];
 
           user['is_match'] =
@@ -118,7 +163,7 @@ $this->load->view(
             if (
               user_searchable[j] !== null &&
                 user_searchable[j].search(search_regex) >= 0
-            ) {
+              ) {
               match_text = true;
               break;
             }
@@ -139,8 +184,8 @@ $this->load->view(
         var currentRow = $('<tr />');
 
         for (var i = 0; i < users.length; i++) {
-
           var user = users[i];
+
           if (user['is_match'] === true) {
             var currentCell = $('<td />');
             var currentCellContent = $('<ul />');
@@ -148,13 +193,13 @@ $this->load->view(
             currentCellContent.append(
               $('<li />')
                 .attr({
-                  'class': 'photo'
-                })
+                        'class': 'photo'
+                      })
                 .append(
                 $('<img />')
                   .attr({
-                    'src': BASE_URL + user['photo']
-                  })
+                          'src': BASE_URL + user['photo']
+                        })
               ),
               $('<li />', {
                 text: user['full_name'],
@@ -170,14 +215,18 @@ $this->load->view(
               $('<li />', {
                 text: user['house'] + " " + user['room'],
                 'class': 'room'
+              }),
+              $('<li />', {
+                text: user['class'],
+                'class': 'class'
               })
             );
 
             if (user['staff_role'] !== null) {
               currentCellContent.append(
                 $('<li />', {
-                    text: user['staff_role'],
-                    'class': 'staff_role'
+                  'text': user['staff_role'],
+                  'class': 'staff_role'
                 })
               );
             }
@@ -200,14 +249,13 @@ $this->load->view(
 
         if (numInCol1 > numInCol2) {
           currentRow.append(
-            $('<td />')
-              .attr({ 'class': 'empty' })
+            $('<td />').attr({ 'class': 'empty' })
           );
           content.append(currentRow);
         }
 
         $("#user_directory_listing").html(content);
-      }
+      };
 
       $("#user_search").keyup(print_matching_users);
       $('input:checkbox').click(print_matching_users);
@@ -217,5 +265,5 @@ $this->load->view(
   </script>
 
 <?php
-$this->load->view('common/footer');
+  $this->load->view('common/footer');
   ?>

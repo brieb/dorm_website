@@ -92,7 +92,6 @@ class Event_model extends CI_Model {
   }
 
   function update($id, $data) {
-    //TODO gcal
     $sql = "
       UPDATE event
       SET
