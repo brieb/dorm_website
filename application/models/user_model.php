@@ -19,8 +19,11 @@ class User_model extends CI_Model {
       SELECT
         CONCAT(first_name, ' ', last_name) AS full_name,
         email,
-        house,
-        room
+        CONCAT(
+          UPPER(SUBSTRING(house,1,1)), LOWER(SUBSTRING(house,2))
+        ) AS house,
+        room,
+        photo
       FROM user
     ");
 
@@ -41,15 +44,15 @@ class User_model extends CI_Model {
       array($sunetid)
     );
     $result = $q->row_array();
-    return $result['id'];
+    return element('id', $result, null);
   }
 
   public function getAccessGroup($id) {
     $q = $this->db->query(
       "SELECT access_group FROM user WHERE id = ?",
-      $id
+      array($id)
     );
     $result = $q->row_array();
-    return $result['access_group'];
+    return element('access_group', $result, null);
   }
 }

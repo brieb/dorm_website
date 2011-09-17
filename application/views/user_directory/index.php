@@ -1,7 +1,7 @@
 <?php
 $this->load->view(
  'common/header',
- array('page_title' => 'Directory')
+ array('page_title' => 'People')
 );
 ?>
 
@@ -146,7 +146,7 @@ var print_matching_users = function() {
                 .append(
                   $('<img />')
                     .attr({
-                      'src': BASE_URL + 'assets/img/people/placeholder.png',
+                      'src': BASE_URL + user['photo']
                     })
                 ),
               $('<li />', {

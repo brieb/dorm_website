@@ -13,7 +13,7 @@ class Access {
     $this->CI =& get_instance();
 
     if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-      $_SERVER['REMOTE_USER'] = 'jsmith';
+      $_SERVER['REMOTE_USER'] = 'bbunge';
     }
 
     if (!($this->isLoggedIn() || $this->isHomePage())) {

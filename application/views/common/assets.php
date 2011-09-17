@@ -7,7 +7,7 @@ $this->load->helper('common/asset_helper');
 
     <title>
       <?php
-        echo isset($page_title) ? $page_title : 'FroSoCo';
+        echo isset($page_title) ? $page_title . ' | FroSoCo'  : 'FroSoCo';
       ?>
     </title>
 
