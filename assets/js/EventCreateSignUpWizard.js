@@ -108,38 +108,38 @@ EventCreateSignUpWizard = {
       }
     ]);
     SignUpFormBuilder.init(EventCreateSignUpWizard.container);
-  },
-  //TODO implement later...
-  loadPaneWaitlist: function() {
-    EventCreateSignUpWizard.container.empty();
-    EventCreateSignUpWizard.container.append(
-      $('<label/>')
-        .attr({
-          for: 'waitlist_capacity'
-        })
-        .text("How many people should be accepted to the event before \
-              getting put on the waiting list? (Event Capacity)"),
-      $('<br/>'),
-      $('<input/>')
-        .attr({
-          type: 'text',
-          id: 'waitlist_capacity',
-          name: 'waitlist_capacity'
-        })
-    );
-    EventCreateSignUpWizard.container.dialog("option", "buttons", [
-      {
-        text: 'Add Waitlist',
-        click: function () {
-          EventCreate.setSignUpCapacity($('#waitlist_capacity').val());
-          EventCreateSignUpWizard.loadNextPane(); 
-        }
-      },
-      {
-        text: 'Skip',
-        click: EventCreateSignUpWizard.loadNextPane
-      }
-    ]);
   }
+  //TODO implement waitlist later...
+//  loadPaneWaitlist: function() {
+//    EventCreateSignUpWizard.container.empty();
+//    EventCreateSignUpWizard.container.append(
+//      $('<label/>')
+//        .attr({
+//          for: 'waitlist_capacity'
+//        })
+//        .text("How many people should be accepted to the event before \
+//              getting put on the waiting list? (Event Capacity)"),
+//      $('<br/>'),
+//      $('<input/>')
+//        .attr({
+//          type: 'text',
+//          id: 'waitlist_capacity',
+//          name: 'waitlist_capacity'
+//        })
+//    );
+//    EventCreateSignUpWizard.container.dialog("option", "buttons", [
+//      {
+//        text: 'Add Waitlist',
+//        click: function () {
+//          EventCreate.setSignUpCapacity($('#waitlist_capacity').val());
+//          EventCreateSignUpWizard.loadNextPane();
+//        }
+//      },
+//      {
+//        text: 'Skip',
+//        click: EventCreateSignUpWizard.loadNextPane
+//      }
+//    ]);
+//  }
 
 };

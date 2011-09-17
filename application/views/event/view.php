@@ -87,10 +87,14 @@ foreach ($sidebar as $sidebarBox) {
 
 ?>
 
-<script
-  type="text/javascript"
-  src="<?php echo base_url(); ?>assets/js/SignUpFormRenderer.js">
-</script>
+<?php
+  array_map(
+    "includeJS",
+    array(
+      "SignUpFormRenderer",
+    )
+  );
+?>
 
 <?php if ($event['sign_up_id'] != NULL): ?>
   <script>

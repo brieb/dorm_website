@@ -10,37 +10,25 @@ $this->load->view(
   <div id="content"></div>
 </div>
 
+<?php
+  array_map(
+    "includeCSS",
+    array(
+      "third_party/jquery-ui-timepicker-addon",
+    )
+  );
 
-<link
-  href="<?php
-    echo base_url().
-      "assets/third_party/jquery-ui-timepicker/".
-      "jquery-ui-timepicker-addon.css";
-  ?>"
-  rel="stylesheet" />
-
-<script
-  type="text/javascript"
-  src="<?php
-    echo base_url().
-      "assets/third_party/jquery-ui-timepicker/".
-      "jquery-ui-timepicker-addon.js";
-  ?>" >
-</script>
-
-<script type="text/javascript"
-  src="<?php echo base_url(); ?>assets/js/EventCreate.js">
-</script>
-<script type="text/javascript"
-  src="<?php echo base_url(); ?>assets/js/SignUpFormBuilder.js">
-</script>
-<script type="text/javascript"
-  src="<?php echo base_url(); ?>assets/js/EventCreateSignUpWizard.js">
-</script>
-<script type="text/javascript"
-  src="<?php echo base_url(); ?>assets/js/EventEdit.js">
-</script>
-
+  array_map(
+    "includeJS",
+    array(
+      "third_party/jquery-ui-timepicker-addon",
+      "EventCreate",
+      "SignUpFormBuilder",
+      "EventCreateSignUpWizard",
+      "EventEdit",
+    )
+  );
+?>
 
 <script type="text/javascript">
 $(document).ready(function() {

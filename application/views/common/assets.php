@@ -1,7 +1,3 @@
-<?php
-$this->load->helper('common/asset_helper');
-?>
-
 <html>
   <head>
 
@@ -20,17 +16,17 @@ $this->load->helper('common/asset_helper');
       array_map(
         "includeJS",
         array(
-          "third_party/jquery.js",
-          "third_party/jquery-ui.js",
-          "js/Setup.js",
+          "third_party/jquery",
+          "third_party/jquery-ui-min",
+          "Setup",
         )
       );
     ?>
 
-    <link href="<?php echo base_url(); ?>assets/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/css/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/css/screen-min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/css/print-min.css" media="print" rel="stylesheet" type="text/css" />
     <!--[if IE]>
-        <link href="<?php echo base_url(); ?>assets/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/css/ie-min.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->
 
     <link rel="icon"
@@ -40,8 +36,9 @@ $this->load->helper('common/asset_helper');
       array_map(
         "includeCSS",
         array(
-          "third_party/jquery-ui-themes/Absolution/jquery.ui.all.css",
-          "css/style.css",
+          "reset-min",
+          "third_party/Absolution/jquery.ui.all",
+          "style",
         )
       );
     ?>

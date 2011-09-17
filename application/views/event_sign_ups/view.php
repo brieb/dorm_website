@@ -5,7 +5,14 @@ $this->load->view(
 );
 ?>
 
-<script src="<?php echo base_url(); ?>/assets/js/EventSignUpsView.js"></script>
+<?php
+  array_map(
+    "includeJS",
+    array(
+      "EventSignUpsView",
+    )
+  );
+?>
 
 <div id="sidebar">
   <input
