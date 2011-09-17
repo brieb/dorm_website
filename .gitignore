@@ -2,3 +2,4 @@
 *.secret.php
 /static/
 /.idea/
+/.idea/*
