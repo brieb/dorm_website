@@ -23,6 +23,7 @@ class User_model extends CI_Model {
           UPPER(SUBSTRING(house,1,1)), LOWER(SUBSTRING(house,2))
         ) AS house,
         room,
+        staff_role,
         photo
       FROM user
     ");

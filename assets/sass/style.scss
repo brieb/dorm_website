@@ -364,7 +364,8 @@ body {
       ul {
         padding: 15px;
         margin: 10px;
-        min-height: 85px;
+        min-height: 125px;
+        position: relative;
 
         @include single-box-shadow;
         @include border-radius(5px);
@@ -372,7 +373,6 @@ body {
 
         li {
           padding: 3px;
-          height: 100%;
 
           &.name {
             font-family: "Lato-Black";
@@ -381,7 +381,7 @@ body {
           &.email {
             font-family: "Lato-Light";
             margin-left: 20px;
-            font-size: 110%;ui-state-active
+            font-size: 110%;
 
             a {
               text-decoration: none;
@@ -393,11 +393,25 @@ body {
           }
           &.photo {
             float: left;
-            margin-right: 20px;
+            margin-right: 25px;
 
             img {
-              height: 80px;
+              height: 120px;
             }
+          }
+          &.staff_role {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-family: "Lato-Black";
+            font-size: 175%;
+            background:{
+              image: image-url("people/heart.png");
+              repeat: no-repeat;
+              position: right 3px;
+            };
+            height: 32px;
+            padding-right: 40px;
           }
         }
       }
