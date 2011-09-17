@@ -22,14 +22,6 @@ class Sign_up_response extends CI_Controller {
     //);
   }
 
-  function getForUser($sign_up_id) {
-    $this->load->library('Access');
-    $user_id = $this->access->getLoggedInUserId();
-
-    echo $this->Sign_up_response_model->
-      getByUserIdSignUpId($user_id, $sign_up_id);
-  }
-
   function create() {
     $form_data = $this->input->post();
     if (!$form_data) {

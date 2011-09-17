@@ -4,7 +4,6 @@ SignUpFormRenderer = {
   formViewUrl: SITE_URL+'/sign_up/view/',
   urlResponseCreate: SITE_URL+'/sign_up_response/create',
   urlResponseDelete: SITE_URL+'/sign_up_response/delete',
-  urlGetForUser: SITE_URL+'/sign_up_response/getForUser',
 
   buttonSignUp: null,
   signUpId: null,
@@ -13,22 +12,37 @@ SignUpFormRenderer = {
   content: null,
   container: null,
 
-  init: function(signUpId, eventTitle, signUpButtonId) {
+  init: function(signUpId, responseId, eventTitle, signUpButtonId) {
     this.signUpId = signUpId;
     this.eventTitle = eventTitle;
     this.buttonSignUp = $('#'+signUpButtonId);
-
-    this.getSignUpResponseIdForUser();
-
-    this.display();
+    this.responseId = responseId;
+    
+    if (this.responseId === "") {
+      this.buttonSignUpCreate();
+    } else {
+      this.buttonSignUpDelete();
+    }
   },
-  getSignUpResponseIdForUser: function() {
-    $.get(
-      this.urlGetForUser+'/'+this.signUpId,
-      function(response) {
-        console.log(response);
-      }
-    ); 
+  buttonSignUpCreate: function() {
+    this.buttonSignUp
+      .button({ label: 'Sign Up' })
+      .unbind('click')
+      .click(
+        function() {
+          this.display();
+        }.bind(this)
+      );
+  },
+  buttonSignUpDelete: function() {
+    this.buttonSignUp
+      .button({ label: 'Cancel Sign Up' })
+      .unbind('click')
+      .click(
+        function() {
+          this.cancel();
+        }.bind(this)
+      );
   },
   process: function() {
     if (this.content === '') {
@@ -47,14 +61,7 @@ SignUpFormRenderer = {
   },
   responseHandler: function(response) {
     this.responseId = response;
-    this.buttonSignUp
-      .button({ label: 'Cancel Sign Up' })
-      .unbind('click')
-      .click(
-        function() {
-          this.cancel();
-        }.bind(this)
-      );
+    this.buttonSignUpDelete();
   },
   cancel: function() {
     $.post(
@@ -64,14 +71,7 @@ SignUpFormRenderer = {
        },
        function(response){
          if (response === '1') {
-           this.buttonSignUp
-              .button({ label: 'Sign Up' })
-              .unbind('click')
-              .click(
-              function() {
-                this.process();
-              }.bind(this)
-            );
+           this.buttonSignUpCreate();
          }
        }.bind(this)
     );

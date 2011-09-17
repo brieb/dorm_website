@@ -95,14 +95,12 @@ foreach ($sidebar as $sidebarBox) {
 <?php if ($event['sign_up_id'] != NULL): ?>
   <script>
   $(document).ready(function () {
-    $('#signUpResponse')
-      .click(function () {
-        SignUpFormRenderer.init(
-          "<?php echo $event['sign_up_id']; ?>",
-          "<?php echo $event['title']; ?>",
-          $(this).attr('id')
-        );
-      });
+    SignUpFormRenderer.init(
+      "<?php echo $event['sign_up_id']; ?>",
+      "<?php echo $sign_up_response_id; ?>",
+      "<?php echo $event['title']; ?>",
+      "signUpResponse"
+    );
   });
   </script>
 <?php endif; ?>
