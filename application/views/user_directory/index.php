@@ -77,6 +77,44 @@ $this->load->view(
     <br/>
   </div>
 
+  <div id="checkboxes_class" class="sidebar-box">
+    <input
+      id="class_freshman"
+      type="checkbox"
+      name="filter_class[]"
+      checked="checked"
+      value="freshman"/>
+    <label for="class_freshman">Freshman</label>
+    <br/>
+
+    <input
+      id="class_sophomore"
+      type="checkbox"
+      name="filter_class[]"
+      checked="checked"
+      value="sophomore"/>
+    <label for="class_sophomore">Sophomore</label>
+    <br/>
+    
+    <input
+      id="class_junior"
+      type="checkbox"
+      name="filter_class[]"
+      checked="checked"
+      value="junior"/>
+    <label for="class_junior">Junior</label>
+    <br/>
+    
+    <input
+      id="class_senior"
+      type="checkbox"
+      name="filter_class[]"
+      checked="checked"
+      value="senior"/>
+    <label for="class_senior">Senior</label>
+    <br/>
+  </div>
+
 </div>
 
 
@@ -121,6 +159,18 @@ $this->load->view(
           }
         );
 
+        var match_class = {
+          freshman: false,
+          sophomore: false,
+          junior: false,
+          senior: false
+        };
+        $('input[name="filter_class[]"]:checked').each(
+          function() {
+            match_class[this.value] = true;
+          }
+        );
+
         for (var i = 0; i < users.length; i++) {
           var user = users[i];
 
@@ -132,16 +182,17 @@ $this->load->view(
           }
 
           var isStaff = (user['staff_role'] !== null);
-          var wantResidentsOnly = !match_role.staff && match_role.residents;
-          var wantStaffOnly = match_role.staff && !match_role.residents;
-          var wantNoRole = !match_role.staff && !match_role.residents;
           if (
-              (!isStaff && wantStaffOnly) ||
-              (isStaff && wantResidentsOnly) ||
-              wantNoRole
+              (!isStaff && !match_role.residents) ||
+              (isStaff && !match_role.staff)
             ) {
             continue;
           }
+
+          if (!user['class'] || !match_class[user['class'].toLowerCase()]) {
+            continue;
+          }
+
 
           var user_searchable = [
             user['full_name'],
@@ -154,9 +205,9 @@ $this->load->view(
 
           user['is_match'] =
             user['house'] !== null &&
-              (user['house'].search(match_house_regex) >= 0) &&
-              user['room'] !== null &&
-              (user['room'].search(match_floor_regex) >= 0);
+            (user['house'].search(match_house_regex) >= 0) &&
+            user['room'] !== null &&
+            (user['room'].search(match_floor_regex) >= 0);
 
           var match_text = false;
           for (var j = 0; j < user_searchable.length; j++) {
@@ -170,7 +221,7 @@ $this->load->view(
           }
           user['is_match'] = user['is_match'] && match_text;
         }
-      }
+      };
 
       var print_matching_users = function() {
         detect_matching_users();
