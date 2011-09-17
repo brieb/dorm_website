@@ -1,3 +1,4 @@
 .*.swp
 *.secret.php
 /static/
+/.idea/
