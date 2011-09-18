@@ -1,7 +1,7 @@
 3.1.7 (Brainy Betty)
-f365e0e1c1dba1f734d5f5f4007b94fa78e9f419
+ae2ef6168d1fb74f90b0475300208075505f8148
 o:Sass::Tree::RootNode
-:@has_childrenT:@template"5@import "compass";
+:@has_childrenT:@template"5@import "compass";
 
 @include font-face(
   "Sansation",
@@ -714,7 +714,7 @@ body {
   #login {
     text-align: center;
     
-    button {
+    a {
       margin-top: 100px;
       font-size: 30px;
     }
@@ -953,5 +953,5 @@ white;i±o;;{ ;[o;3	;4;5;@;[	o;	;@;{	;i ;i ;i;i ;0;i²o; 
 ;#"5px;i²o; ;![ ;"["px;@;i;#"	25px;i²;i²;"text-shadow;[ ;@;i²o;.;["font-size;[ ;/;0;1i ;@;o;;;;@;"	95px;i³o;.;["font-variant;[ ;/;0;1i ;@;o;;;;@;"small-caps;i´o;.;["font-family;[ ;/;0;1i ;@;o;;;;@;""Freshman";iµo;.;["overflow;[ ;/;0;1i ;@;o;;;;@;"hidden;i¶;1i ;@;iªo;$;T;%["#photos;&o;';([o;);([o;*;([o;2;["photos;-" ;i¹;-@Í;i¹;-@Í;i¹;[
 o;.;["text-align;[ ;/;0;1i ;@;o;;;;@;"center;iºo;.;["height;[ ;/;0;1i ;@;o;;;;@;"	60px;i»o;;{ ;[o;
 ;{ ;[o;	;@;{	;i';i';i;i';0;i½o;	;@;{	;i ;i ;i;i ;0;i½;"linear-gradient;@;i½;"background-image;[ ;@;i¾o;.;["overflow;[ ;/;0;1i ;@;o;;;;@;"hidden;i¿o;$;T;%["img;&o;';([o;);([o;*;([o;+	;,0;["img;-" ;iÁ;-@ú;iÁ;-@ú;iÁ;[o;.;["height;[ ;/;0;1i ;@;o;;;;@;"	100%;iÂo;.;["margin;[ ;/;0;1i ;@;o;;;;@;"0 15px;iÃ;1i ;@;iÁ;1i ;@;i¹o;$;T;%["#login;&o;';([o;);([o;*;([o;2;["
-login;-" ;iÇ;-@;iÇ;-@;iÇ;[o;.;["text-align;[ ;/;0;1i ;@;o;;;;@;"center;iÈo;$;T;%["button;&o;';([o;);([o;*;([o;+	;,0;["button;-" ;iÊ;-@(;iÊ;-@(;iÊ;[o;.;["margin-top;[ ;/;0;1i ;@;o;;;;@;"
+login;-" ;iÇ;-@;iÇ;-@;iÇ;[o;.;["text-align;[ ;/;0;1i ;@;o;;;;@;"center;iÈo;$;T;%["a;&o;';([o;);([o;*;([o;+	;,0;["a;-" ;iÊ;-@(;iÊ;-@(;iÊ;[o;.;["margin-top;[ ;/;0;1i ;@;o;;;;@;"
 100px;iËo;.;["font-size;[ ;/;0;1i ;@;o;;;;@;"	30px;iÌ;1i ;@;iÊ;1i ;@;iÇ;1i ;@;i¨;@;i
