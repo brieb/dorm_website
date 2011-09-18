@@ -48,12 +48,12 @@ class Event extends CI_Controller {
     //$this->load->library('form_validation');
     $this->load->helper('event/form_builder');
     $form_data = $this->input->post();
-    //$display_fields = array();
 
     if (!$form_data) {
       $this->load->view('event/create');
     }
     else {
+
       //$form_data = json_decode($form_data['data']);
 
       //TODO server-side validation
