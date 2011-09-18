@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @property User_model $User_model
+ * @property CI_Loader $load
+ */
 class User_directory extends CI_Controller {
 
   public function index() {
@@ -10,6 +15,7 @@ class User_directory extends CI_Controller {
         'users' => $users,
       )
     );
+
   }
 
 }

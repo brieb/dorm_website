@@ -71,14 +71,7 @@ class Access {
   }
 
   private function initPermissions() {
-    $public = array(
-      //'user_directory' => array(
-        //'index' => true,
-      //),
-        //'event' => array(
-          //'view' => true,
-        //),
-    );
+    $public = array();
     $stanford = array_merge_recursive($public, array());
 
     $resident = array_merge_recursive($stanford,
@@ -100,6 +93,9 @@ class Access {
         'user_directory' => array(
           'index' => true,
         ),
+        'facebook' => array(
+          'frosoco' => true
+        ),
       )
     );
 
@@ -120,6 +116,9 @@ class Access {
         'wiki' => array(
           'staff' => true,
           'basecamp' => true,
+        ),
+        'facebook' => array(
+          'frosoco_staff' => true
         ),
       )
     );

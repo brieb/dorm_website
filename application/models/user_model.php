@@ -1,4 +1,5 @@
 <?php
+
 class User_model extends CI_Model {
   var $first_name;
   var $last_name;

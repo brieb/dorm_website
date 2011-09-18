@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var adjustDimensions = function() {
     var headerHeight = $('#header').height();
-    var remaining_height = parseInt($(window).height() - headerHeight); 
+    var remaining_height = parseInt($(window).height() - headerHeight);
 
     var sidebar = $('#sidebar');
     var sidebarRight = $('#sidebar-right');
@@ -14,10 +14,10 @@ $(document).ready(function() {
       parseInt(content.css("padding-top")) +
       parseInt(content.css("padding-bottom"));
 
-    sidebar.height(remaining_height - sidebarHeightExtra); 
-    content.height(remaining_height - contentHeightExtra); 
+    sidebar.height(remaining_height - sidebarHeightExtra);
+    content.height(remaining_height - contentHeightExtra);
 
-    //var contentWidth = 
+    //var contentWidth =
       //$(window).width() -  sidebar.width() - 170 - 50;
     //content.width(contentWidth);
   };
@@ -44,7 +44,7 @@ $(document).ready(function() {
     //});
   //});
 
-  $("#links .events, #links .wiki").hover(
+  $("#links li").hover(
     function() {
       var target = $(this);
       target.addClass('hover');
@@ -66,12 +66,4 @@ $(document).ready(function() {
     }
   );
 
-  $("#links .people").hover(
-    function() {
-      $(this).addClass('hover');
-    },
-    function() {
-      $(this).removeClass('hover');
-    }
-  );
 });

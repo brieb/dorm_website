@@ -97,6 +97,12 @@ $links = array (
       ),
     ),
   ),
+//
+//  'facebook' => array(
+//    'menuitem' => array(
+//
+//    ),
+//  ),
 );
 
 /*
@@ -189,9 +195,11 @@ function genAnchor($elem) {
     <?php echo anchor('/', 'FroSoCo'); ?>
   </div>
   <div id="links">
-    <ul class="menu">
-      <?php echo $menuContent; ?>
-    </ul>
+<!--    <ul class="menu">-->
+      <?php //echo $menuContent;
+        echo $this->mainmenu->render();
+      ?>
+<!--    </ul>-->
   </div>
 </div>
 
