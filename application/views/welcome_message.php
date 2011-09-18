@@ -29,13 +29,15 @@ $this->load->view('common/assets',
   </div>
 
   <div id="login">
-    <button>Login</button>
+    <?php
+      echo anchor('event/view', 'Enter');
+    ?>
   </div>
 </div>
 
 <script>
 $(document).ready(function () {
-  $("#login button").button();
+  $("#login a").button();
 });
 </script>
 

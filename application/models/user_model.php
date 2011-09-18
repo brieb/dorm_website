@@ -25,6 +25,7 @@ class User_model extends CI_Model {
         staff_role,
         photo
       FROM user
+      ORDER BY full_name
     ");
 
     $users = array();

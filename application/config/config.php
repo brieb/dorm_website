@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-//$config['base_url']	= 'http://www.stanford.edu/group/frosoco/cgi-bin/codeigniter/';
-$config['base_url']	= 'http://localhost/dorm_website/';
+require_once('config.secret.php');
+$config['base_url']	= $BASE_URL;
 
 /*
 |--------------------------------------------------------------------------

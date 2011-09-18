@@ -10,7 +10,7 @@
     id="user_search"
     type='text'
     name='user_search'
-    placeholder='Enter a name or email...'>
+    placeholder='Search...'>
   </input>
 
   <div id="checkboxes_house" class="sidebar-box">
@@ -95,7 +95,7 @@
       value="sophomore"/>
     <label for="class_sophomore">Sophomore</label>
     <br/>
-    
+
     <input
       id="class_junior"
       type="checkbox"
@@ -104,7 +104,7 @@
       value="junior"/>
     <label for="class_junior">Junior</label>
     <br/>
-    
+
     <input
       id="class_senior"
       type="checkbox"

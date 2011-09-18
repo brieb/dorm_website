@@ -12,7 +12,7 @@ class Access {
     $this->baseUrl = $GLOBALS['CFG']->config['base_url'];
     $this->CI =& get_instance();
 
-    if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+    if (ENVIRONMENT == 'development') {
       $_SERVER['REMOTE_USER'] = 'bbunge';
     }
 
