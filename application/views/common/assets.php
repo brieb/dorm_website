@@ -24,10 +24,6 @@
     ?>
 
     <link href="<?php echo base_url(); ?>assets/css/screen-min.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/css/print-min.css" media="print" rel="stylesheet" type="text/css" />
-    <!--[if IE]>
-        <link href="<?php echo base_url(); ?>assets/css/ie-min.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <![endif]-->
 
     <link rel="icon"
       href="<?php echo base_url().'assets/img/common/favicon.ico'; ?>" />

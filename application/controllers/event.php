@@ -45,7 +45,7 @@ class Event extends CI_Controller {
   }
 
   function create() {
-    $this->load->library('form_validation');
+    //$this->load->library('form_validation');
     $this->load->helper('event/form_builder');
     $form_data = $this->input->post();
     //$display_fields = array();
