@@ -18,8 +18,11 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+  define('ENVIRONMENT', 'development'); 
+} else {
   define('ENVIRONMENT', 'production');
-  //define('ENVIRONMENT', 'development');
+}
 
 /*
  *---------------------------------------------------------------

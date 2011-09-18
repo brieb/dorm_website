@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'https://www.stanford.edu/group/frosoco/cgi-bin/fsc/';
+require_once('config.secret.php');
+$config['base_url']	= $BASE_URL;
 
 /*
 |--------------------------------------------------------------------------
