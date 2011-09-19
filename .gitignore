@@ -2,6 +2,7 @@
 *.secret.php
 /static/
 /application/cache/
+/application/logs/
 /.idea/
 /.idea/*
 *.scssc
