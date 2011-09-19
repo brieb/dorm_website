@@ -3,13 +3,9 @@ require-jquery.js
 ----------------
 require-jquery.js
 
-main.js
-----------------
-EventCreate.js
-main.js
-
 main-default.js
 ----------------
+jquery-ui.js
 SetUp.js
 main-default.js
 
