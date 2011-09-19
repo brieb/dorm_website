@@ -20,10 +20,6 @@
         //Optimize the application files. Exclude jQuery since it is
         //included already in require-jquery.js
         {
-            name: "main",
-            exclude: ["jquery"]
-        },
-        {
             name: "main-default",
             exclude: ["jquery"]
         },

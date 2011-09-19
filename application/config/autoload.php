@@ -55,7 +55,7 @@ $autoload['packages'] = array(APPPATH.'third_party');
 $autoload['libraries'] = array(
   'database',
   'access',
-  'mainmenu',
+  'MainMenu',
 );
 
 

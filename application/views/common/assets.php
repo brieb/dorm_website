@@ -26,7 +26,7 @@
       else:
     ?>
       <script
-        data-main="<?php echo base_url(); ?>assets/js-build/<?php echo $js; ?>"
+        data-main="<?php echo base_url(); ?>assets/js-build/<?php echo $js; ?>.js"
         src="<?php echo base_url(); ?>assets/js-build/require-jquery.js">
       </script>
     <?php

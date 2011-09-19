@@ -1,6 +1,6 @@
 <?php
 
-require_once('menu/Menu.php');
+require_once(dirname(__FILE__) . '/menu/Menu.php');
 
 class MainMenu {
   /**
