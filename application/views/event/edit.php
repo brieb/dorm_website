@@ -1,7 +1,10 @@
 <?php
 $this->load->view(
   'common/header',
-  array('page_title' => 'Create an Event')
+  array(
+    'page_title' => 'Edit Event',
+    'js' => 'main-event-edit',
+  )
 );
 ?>
 
@@ -17,21 +20,10 @@ $this->load->view(
       "third_party/jquery-ui-timepicker-addon",
     )
   );
-
-  array_map(
-    "includeJS",
-    array(
-      "third_party/jquery-ui-timepicker-addon",
-      "EventCreate",
-      "SignUpFormBuilder",
-      "EventCreateSignUpWizard",
-      "EventEdit",
-    )
-  );
 ?>
 
 <script type="text/javascript">
-$(document).ready(function() {
+require.ready(function() {
   EventEdit.init(
     'sidebar', 'content', <?php echo $eventJSON ?>
   );

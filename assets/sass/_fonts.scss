@@ -1,0 +1,63 @@
+@include font-face(
+  "Sansation",
+  font-files("sansation/Sansation_Regular.ttf", truetype)
+);
+@include font-face(
+  "Sansation-Light",
+  font-files("sansation/Sansation_Light.ttf", truetype)
+);
+@include font-face(
+  "Sansation-Bold",
+  font-files("sansation/Sansation_Bold.ttf", truetype)
+);
+
+@include font-face(
+  "Lato-Black",
+  font-files("lato/Lato-Black.ttf", truetype)
+);
+@include font-face(
+  "Lato-BlackItalic",
+  font-files("lato/Lato-BlackItalic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Bold",
+  font-files("lato/Lato-Bold.ttf", truetype)
+);
+@include font-face(
+  "Lato-BoldItalic",
+  font-files("lato/Lato-BoldItalic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Hairline",
+  font-files("lato/Lato-Hairline.ttf", truetype)
+);
+@include font-face(
+  "Lato-HairlineItalic",
+  font-files("lato/Lato-HairlineItalic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Italic",
+  font-files("lato/Lato-Italic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Light",
+  font-files("lato/Lato-Light.ttf", truetype)
+);
+@include font-face(
+  "Lato-LightItalic",
+  font-files("lato/Lato-LightItalic.ttf", truetype)
+);
+@include font-face(
+  "Lato-Regular",
+  font-files("lato/Lato-Regular.ttf", truetype)
+);
+
+@include font-face(
+  "Chunkfive",
+  font-files("Chunkfive.otf", opentype)
+);
+
+@include font-face(
+  "Freshman",
+  font-files("Freshman.ttf", truetype)
+);

@@ -11,15 +11,6 @@
     return $filename . '.' . $ext;
   }
 
-  function includeJS($filename) {
-    $filename = minIfProd($filename, "js");
-
-    echo '<script
-      type="text/javascript"
-      src="' . base_url() . 'assets/js/' . $filename . '">
-    </script>';
-  }
-
   function includeCSS($filename) {
     $filename = minIfProd($filename, "css");
 

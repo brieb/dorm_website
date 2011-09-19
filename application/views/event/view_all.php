@@ -1,7 +1,10 @@
 <?php
 $this->load->view(
   'common/header',
-  array('page_title' => 'Event List')
+  array(
+    'page_title' => 'Event List',
+    'js' => 'main-event-view_all',
+  )
 );
 ?>
 
@@ -30,7 +33,7 @@ $this->load->view(
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function () {
+  require.ready(function () {
     $("#sidebar button").button();
 
     var events = <?php echo $events ?>;

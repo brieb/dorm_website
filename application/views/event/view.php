@@ -1,7 +1,10 @@
 <?php
 $this->load->view(
   'common/header',
-  array('page_title' => 'Event')
+  array(
+    'page_title' => 'Event',
+    'js' => 'main-event-view',
+  )
 );
 
 $this->load->helper('event/form_builder');
@@ -69,7 +72,7 @@ foreach ($sidebar as $sidebarBox) {
       }
       $sidebarBoxContent .= "
         <script>
-          $(document).ready(function () {
+          require.ready(function () {
             $('#{$elem['id']}').button();
           });
         </script>
@@ -87,18 +90,9 @@ foreach ($sidebar as $sidebarBox) {
 
 ?>
 
-<?php
-  array_map(
-    "includeJS",
-    array(
-      "SignUpFormRenderer",
-    )
-  );
-?>
-
 <?php if ($event['sign_up_id'] != NULL): ?>
   <script>
-  $(document).ready(function () {
+  require.ready(function () {
     SignUpFormRenderer.init(
       "<?php echo $event['sign_up_id']; ?>",
       "<?php echo $sign_up_response_id; ?>",

@@ -1,6 +1,8 @@
 <?php
 $this->load->view('common/header',
-  array('page_title' => 'Calendar')
+  array(
+    'page_title' => 'Calendar'
+  )
 );
 ?>
 

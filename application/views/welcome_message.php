@@ -36,7 +36,7 @@ $this->load->view('common/assets',
 </div>
 
 <script>
-$(document).ready(function () {
+require.ready(function () {
   $("#login a").button();
 });
 </script>

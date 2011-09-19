@@ -1,17 +1,11 @@
 <?php
 $this->load->view(
   'common/header',
-  array('page_title' => 'View Event Sign Ups')
+  array(
+    'page_title' => 'View Event Sign Ups',
+    'js' => 'main-event_sign_ups-view',
+  )
 );
-?>
-
-<?php
-  array_map(
-    "includeJS",
-    array(
-      "EventSignUpsView",
-    )
-  );
 ?>
 
 <div id="sidebar">
@@ -30,7 +24,7 @@ $this->load->view(
 
   <thead>
     <tr>
-      <th><input type="checkbox"></input></th>
+      <th><input type="checkbox" /></th>
       <?php
       foreach($cols as $col) {
         echo "<th>{$col['header']}</th>";
@@ -44,7 +38,7 @@ $this->load->view(
   $numRows = count($cols['name']['rows']);
   for ($i = 0; $i < $numRows; $i++) {
     echo '<tr>';
-    echo '<td><input type="checkbox"></input></td>';
+    echo '<td><input type="checkbox" /></td>';
     foreach($cols as $col) {
       echo '<td>';
       $val = $col['rows'][$i];

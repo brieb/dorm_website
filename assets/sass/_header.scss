@@ -1,0 +1,174 @@
+#header {
+  z-index: 1000;
+  @include box-shadow(#000000 0px 0px 12px);
+  height: $headerHeight;
+  width: 100%;
+
+  @include background-image(linear-gradient(#990000, #641B1B));
+  font-family: "Sansation";
+
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  #logo {
+    font-family: "Freshman";
+    font-size: 33px;
+    position: absolute;
+    height: $headerHeight - 20px;
+    width: $sidebarWidth + 2px;
+    padding: 10px 0px;
+    background-color: transparentize(#000000, 0.8);
+
+    a {
+      text-align: center;
+      display: block;
+      text-decoration: none;
+      color: white;
+      @include text-shadow(#000000 1px 1px 4px);
+    }
+  }
+
+  #links {
+    position: absolute;
+    right: 30px;
+    font-size: 120%;
+    z-index: 100;
+
+    .menu li {
+      display: inline-block;
+      margin-right: 5px;
+      vertical-align: top;
+      width: 150px;
+
+      &.hover a {
+        background-color: transparentize(#000000, 0.8);
+      }
+
+      a {
+        height: $headerHeight - $aPaddingTop;
+        display: block;
+        background: {
+          size: $imgDim $imgDim;
+          repeat: no-repeat;
+          position: 15px center;
+        };
+        padding: $aPaddingTop 20px 0 $imgDim+25px;
+        color: white;
+        text-decoration: none;
+
+        &.events {
+          background-image: image-url("common/header/calendar.png");
+        }
+        &.people {
+          background-image: image-url("common/header/people.png");
+        }
+        &.wiki {
+          background-image: image-url("common/header/wiki.png");
+        }
+        &.facebook {
+          background-image: image-url("common/header/facebook.png");
+        }
+      }
+
+      .submenu {
+        display:none;
+        width: 100%;
+
+        @include background-image(linear-gradient(#333333, #000000));
+        @include border-bottom-radius(10px);
+        @include single-box-shadow;
+
+        font-size: 90%;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+
+        li {
+          display: list-item;
+          margin: 0;
+
+          a {
+            margin: 0;
+            padding: 14px 0 5px (16px+8px+25px);
+
+            color: white;
+            height: 20px;
+
+            background: {
+              size: 18px;
+              repeat: no-repeat;
+              position: 15px center;
+            };
+
+            &.event_list {
+              background-image:
+                image-url("common/header/event/event_list.png");
+            }
+            &.event_create {
+              background-image:
+                image-url("common/header/event/event_create.png");
+            }
+            &.calendar {
+              background-image:
+                image-url("common/header/event/calendar.png");
+            }
+            &.wiki_staff {
+              background-image:
+                image-url("common/header/wiki/staff.png");
+            }
+            &.wiki_confi {
+              background-image:
+                image-url("common/header/wiki/confi.png");
+            }
+            &.basecamp {
+              background-image:
+                image-url("common/header/wiki/basecamp.png");
+            }
+            &.facebook_staff {
+              background-image:
+                image-url("common/header/facebook/facebook.png");
+            }
+          }
+
+          &.hover {
+            @include background-image(
+              linear-gradient(#cccccc, #777777)
+            );
+            background-size: 100% 100%;
+            background-position: 0 0;
+
+            a {
+              color: black;
+
+              &.event_list {
+                background-image:
+                  image-url("common/header/event/event_list_hover.png");
+              }
+              &.event_create {
+                background-image:
+                  image-url("common/header/event/event_create_hover.png");
+              }
+              &.calendar {
+                background-image:
+                  image-url("common/header/event/calendar_hover.png");
+              }
+              &.wiki_staff {
+                background-image:
+                  image-url("common/header/wiki/staff_hover.png");
+              }
+              &.wiki_confi {
+                background-image:
+                  image-url("common/header/wiki/confi_hover.png");
+              }
+              &.facebook_staff {
+                background-image:
+                  image-url("common/header/facebook/facebook_hover.png");
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
