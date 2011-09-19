@@ -94,7 +94,7 @@ div.selector select {
 	background: none;
 	width: 100%;
 	opacity: 0;
-	filter: alpha(opacity:0);
+	filter: alpha(opacity=0);
 }
 
 div.selector.focus,
@@ -139,7 +139,7 @@ div.checker input {
 	width: 1em;
 	height: 1em;
 	opacity: 0;
-	filter: alpha(opacity:0);
+	filter: alpha(opacity=0);
 	display: inline-block;
 	background: none;
 }
@@ -228,7 +228,7 @@ div.radio {
 div.radio input {
 	width: 1em; height: 1em;
 	opacity: 0;
-	filter: alpha(opacity:0);
+	filter: alpha(opacity=0);
 	text-align: center;
 	display: inline-block;
 	background: none;
@@ -378,7 +378,7 @@ div.uploader.disabled span.filename {
 
 div.uploader input {
   opacity: 0;
-  filter: alpha(opacity:0);
+  filter: alpha(opacity=0);
   position: absolute;
   top: 0;
   right: 0;

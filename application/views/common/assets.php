@@ -33,8 +33,6 @@
       endif;
     ?>
 
-    <link href="<?php echo base_url(); ?>assets/css/screen-min.css" media="screen, projection" rel="stylesheet" type="text/css" />
-
     <link rel="icon"
       href="<?php echo base_url().'assets/img/common/favicon.ico'; ?>" />
 
@@ -42,8 +40,7 @@
       array_map(
         "includeCSS",
         array(
-          "reset-min",
-          "third_party/Absolution/jquery.ui.all",
+//          "third_party/Absolution/jquery.ui.all",
           "style",
         )
       );
