@@ -18,15 +18,20 @@ class User_model extends CI_Model {
   function getUsers() {
     $query = $this->db->query("
       SELECT
-        CONCAT(first_name, ' ', last_name) AS full_name,
+        first_name,
+        last_name,
+        nick_name,
         email,
         class,
         house,
         room,
         staff_role,
-        photo
+        photo,
+        phone_cell,
+        phone_room,
+        phone_office
       FROM user
-      ORDER BY full_name
+      ORDER BY first_name, last_name
     ");
 
     $users = array();

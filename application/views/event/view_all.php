@@ -3,7 +3,6 @@ $this->load->view(
   'common/header',
   array(
     'page_title' => 'Event List',
-    'js' => 'main-event-view_all',
   )
 );
 ?>

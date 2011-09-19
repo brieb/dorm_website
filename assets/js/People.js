@@ -6,10 +6,10 @@ People = {
   init: function(users) {
     this.users = users;
 
-    $("#user_search").keyup(function(){
+    $("#user_search").keyup(function() {
       this.print_matching_users();
     }.bind(this));
-    $('input:checkbox').click(function(){
+    $('input:checkbox').click(function() {
       this.print_matching_users();
     }.bind(this));
 
@@ -51,7 +51,8 @@ People = {
       freshman: false,
       sophomore: false,
       junior: false,
-      senior: false
+      senior: false,
+      other: false
     };
     $('input[name="filter_class[]"]:checked').each(
       function() {
@@ -83,7 +84,9 @@ People = {
 
 
       var user_searchable = [
-        user['full_name'],
+        user['first_name'],
+        user['nick_name'],
+        user['last_name'],
         user['email'],
         user['house'],
         user['staff_role'],
@@ -128,46 +131,79 @@ People = {
         var currentCell = $('<td />');
         var currentCellContent = $('<ul />');
 
-        currentCellContent.append(
-          $('<li />')
+        var li_photo = $('<li/>');
+        li_photo.addClass('photo');
+        li_photo.append(
+          $('<img />')
             .attr({
-                    'class': 'photo'
+                    'src': BASE_URL + user['photo']
                   })
-            .append(
-            $('<img />')
-              .attr({
-                      'src': BASE_URL + user['photo']
-                    })
-          ),
-          $('<li />', {
-            text: user['full_name'],
-            'class': 'name'
-          }),
-          $('<li />')
-            .attr({ 'class': 'email' })
-            .append(
-            $('<a />')
-              .attr({ 'href': 'mailto:' + user['email'] })
-              .text(user['email'])
-          ),
-          $('<li />', {
-            text: user['house'] + " " + user['room'],
-            'class': 'room'
-          }),
-          $('<li />', {
-            text: user['class'],
-            'class': 'class'
-          })
         );
+        currentCellContent.append(li_photo);
+
+        var li_name = $('<li/>');
+        li_name.addClass('name');
+        var li_name_text = user['first_name'];
+        if (user['nick_name'] !== null) {
+          li_name_text += ' (' + user['nick_name'] + ')';
+        }
+        li_name_text += ' ' + user['last_name'];
+        li_name.text(li_name_text);
+        currentCellContent.append(li_name);
+
+        var li_email = $('<li />');
+        li_email.addClass('email');
+        li_email.append(
+          $('<a />')
+            .attr({ 'href': 'mailto:' + user['email'] })
+            .text(user['email'])
+        );
+        currentCellContent.append(li_email);
+
+        var li_house_room = $('<li />');
+        var li_house_room_text = user['house'];
+        if (user['room'] !== '0') {
+          li_house_room_text += " " + user['room'];
+        }
+        li_house_room.text(li_house_room_text);
+        li_house_room.addClass('room');
+        currentCellContent.append(li_house_room);
+
+        if (user['class'] !== 'Other') {
+          var li_class = $('<li />');
+          li_class.addClass('class');
+          li_class.text(user['class']);
+          currentCellContent.append(li_class);
+        }
 
         if (user['staff_role'] !== null) {
-          currentCellContent.append(
-            $('<li />', {
-              'text': user['staff_role'],
-              'class': 'staff_role'
-            })
-          );
+          var li_staff_role = $('<li />')
+            .text(user['staff_role'])
+            .addClass('staff_role');
+          if (user['staff_role'].length > 3) {
+            li_staff_role.addClass('small_text');
+          }
+          currentCellContent.append(li_staff_role);
         }
+
+        ['phone_cell', 'phone_room', 'phone_office'].map(
+          function(phone_type) {
+            if (user[phone_type] !== null) {
+              var li_phone = $('<li/>');
+              li_phone.addClass(phone_type);
+              var li_phone_text = phone_type.replace(
+                /.*_(.)(.*)/,
+                function(a, b, c) {
+                  return b.toUpperCase() + c
+                }
+              );
+              li_phone_text += ': ' + user[phone_type];
+              li_phone.text(li_phone_text);
+              currentCellContent.append(li_phone);
+            }
+          }
+        );
+
 
         currentCell.append(currentCellContent);
         currentRow.append(currentCell);

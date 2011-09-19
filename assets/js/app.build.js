@@ -4,7 +4,7 @@
     dir: "../js-build",
     //Comment out the optimize line if you want
     //the code minified by UglifyJS
-//    optimize: "none",
+    //optimize: "none",
 
     paths: {
         "jquery": "require-jquery"
@@ -25,10 +25,6 @@
         },
         {
             name: "main-event-view",
-            exclude: ["jquery"]
-        },
-        {
-            name: "main-event-view_all",
             exclude: ["jquery"]
         },
         {
