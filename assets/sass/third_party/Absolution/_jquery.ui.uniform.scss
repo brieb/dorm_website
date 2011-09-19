@@ -10,10 +10,10 @@
 	padding: 0;
 }
 
-.selector, 
-.checker, 
-.button, 
-.radio, 
+.selector,
+.checker,
+.button,
+.radio,
 .uploader {
 	display: -moz-inline-box;
 	display: inline-block;
@@ -22,9 +22,9 @@
 	*display: inline;
 }
 
-.selector select:focus, 
-.radio input:focus, 
-.checker input:focus, 
+.selector select:focus,
+.radio input:focus,
+.checker input:focus,
 .uploader input:focus {
 	outline: 0;
 }
@@ -32,7 +32,7 @@
 /* INPUT & TEXTAREA */
 
 input.text,
-input.email, 
+input.email,
 input.password,
 textarea.uniform
 {
@@ -56,7 +56,7 @@ textarea.uniform:focus
 }
 
 /*  *************************************  *
-	  Select 
+	  Select
  *  *************************************  */
 
 div.selector {
@@ -66,7 +66,7 @@ div.selector {
 	border: 1px solid #c1c1c1;
 	position: relative;
 	overflow: hidden;
-	background: #ffffff url('images/selector.png') right center no-repeat;
+	background: #ffffff image-url("absolution/selector.png") right center no-repeat;
 	-webkit-box-shadow: inset 0 -10px 9px rgba(0,0,0,.05);
 	-moz-box-shadow: inset 0 -10px 9px rgba(0,0,0,.05);
 	box-shadow: inset 0 -10px 9px rgba(0,0,0,.05);
@@ -104,7 +104,7 @@ div.selector.focus:active,
 div.selector.focus.active,
 div.selector:hover:active,
 div.selector.active:hover,
-div.selector:active, 
+div.selector:active,
 div.selector.active {
 	border: 1px solid #2e63a5;
 }
@@ -118,7 +118,7 @@ div.selector.disabled span {
 }
 
 /*  *************************************  *
-	  Checkbox 
+	  Checkbox
  *  *************************************  */
 
 div.checker {
@@ -155,14 +155,14 @@ div.checker span {
 	border-radius: 3px;
 }
 
-div.checker:active span, 
+div.checker:active span,
 div.checker.active span {
-	
+
 }
 
 div.checker.focus span,
 div.checker:hover span {
-	background-image: url(images/ui-icons_222222_256x240.png);
+	background-image: image-url("absolution/ui-icons_222222_256x240.png");
 	background-position: -66px -147px;
 }
 
@@ -177,14 +177,14 @@ div.checker span.checked {
 	-webkit-box-shadow: inset 0 -6px 5px rgba(0,0,0,.2);
 	-moz-box-shadow: inset 0 -6px 5px rgba(0,0,0,.2);
 	box-shadow: inset 0 -6px 5px rgba(0,0,0,.2);
-	background-image: url(images/ui-icons_ffffff_256x240.png);
+	background-image: image-url("absolution/ui-icons_ffffff_256x240.png");
 	background-position: -66px -147px;
 	-webkit-box-shadow: inset 0 -6px 5px rgba(0,0,0,.2);
 	-moz-box-shadow: inset 0 -6px 5px rgba(0,0,0,.2);
 	box-shadow: inset 0 -6px 5px rgba(0,0,0,.2);
 }
 
-div.checker:active span.checked, 
+div.checker:active span.checked,
 div.checker.active span.checked {
 }
 
@@ -209,7 +209,7 @@ div.checker.disabled.active span.checked {
 }
 
 /*  *************************************  *
-	  RADIO 
+	  RADIO
  *  *************************************  */
 
 div.radio {
@@ -244,12 +244,12 @@ div.radio span {
 	text-align: center;
 }
 
-div.radio:active span, 
+div.radio:active span,
 div.radio.active span {
 
 }
 
-div.radio.focus span, 
+div.radio.focus span,
 div.radio:hover span {
 
 }
@@ -276,7 +276,7 @@ div.radio.focus span.checked, div.radio:hover span.checked {
 
 }
 
-div.radio.focus:active span.checked, 
+div.radio.focus:active span.checked,
 div.radio:hover:active span.checked,
 div.radio.focus.active span.checked,
 div.radio.active:hover span.checked {
@@ -296,7 +296,7 @@ div.radio.disabled.active span.checked {
 }
 
 /*  *************************************  *
-	  Uploader 
+	  Uploader
  *  *************************************  */
 
 div.uploader {
@@ -353,7 +353,7 @@ div.uploader.hover span.action,
 div.uploader:hover span.action,
 div.uploader.active span.action,
 div.uploader:active span.action {
-	
+
 }
 
 div.uploader.focus.active span.action,
@@ -391,7 +391,7 @@ div.uploader input {
 }
 
 /*  *************************************  *
-	  Button 
+	  Button
  *  *************************************  */
 
 div.button, div.button span

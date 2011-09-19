@@ -8,15 +8,6 @@ $this->load->view(
 );
 ?>
 
-<?php
-  array_map(
-    "includeCSS",
-    array(
-      "third_party/jquery-ui-timepicker-addon",
-    )
-  );
-?>
-
 <div id="main">
   <div id="sidebar"></div>
   <div id="content"></div>
