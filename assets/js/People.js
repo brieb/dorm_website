@@ -94,11 +94,11 @@ People = {
         //user['house'] + ' ' + user['room']
       ];
 
-      //user['is_match'] =
-        //user['house'] !== null &&
-          //(user['house'].search(match_house_regex) >= 0) &&
-          //user['room'] !== null &&
-          //(user['room'].search(match_floor_regex) >= 0);
+      user['is_match'] =
+        user['house'] !== null &&
+          (user['house'].search(match_house_regex) >= 0) &&
+          user['room'] !== null &&
+          (user['room'].search(match_floor_regex) >= 0);
 
       var match_text = false;
       for (var j = 0; j < user_searchable.length; j++) {
