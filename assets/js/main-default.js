@@ -1,2 +1,2 @@
-require(["jquery", "SetUp"], function($) {
+require(["jquery", "jquery-ui", "SetUp"], function($) {
 });
