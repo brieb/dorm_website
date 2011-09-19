@@ -1,6 +1,6 @@
 require(
   [
-    "jquery", "jquery-ui", "SetUp",
+    "main-default",
     "EventCreate",
     "jquery-ui-timepicker-addon",
     "SignUpFormBuilder",

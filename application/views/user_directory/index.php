@@ -32,6 +32,14 @@
       value="adams"/>
     <label for="house_adams">Adams</label>
     <br/>
+
+    <input
+      id="house_other"
+      type="checkbox"
+      name="filter_house[]" checked
+      value="other"/>
+    <label for="house_other">Other</label>
+    <br/>
   </div>
 
   <div id="checkboxes_floor" class="sidebar-box">
@@ -57,6 +65,14 @@
       name="filter_floor[]" checked
       value="3"/>
     <label for="floor_3">Floor 3</label>
+    <br/>
+
+    <input
+      id="floor_other"
+      type="checkbox"
+      name="filter_floor[]" checked
+      value="0"/>
+    <label for="floor_other">Other</label>
     <br/>
   </div>
 
@@ -115,6 +131,15 @@
       checked="checked"
       value="senior"/>
     <label for="class_senior">Senior</label>
+    <br/>
+
+    <input
+      id="class_other"
+      type="checkbox"
+      name="filter_class[]"
+      checked="checked"
+      value="other"/>
+    <label for="class_other">Other</label>
     <br/>
   </div>
 

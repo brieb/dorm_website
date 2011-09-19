@@ -1,3 +1,7 @@
-require(["jquery", "jquery-ui", "SetUp", "SignUpFormRenderer"], function($) {
+require(
+  [
+    "main-default",
+    "SignUpFormRenderer"
+  ], function($) {
   
 });

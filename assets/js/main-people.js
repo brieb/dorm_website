@@ -1,2 +1,6 @@
-require(["jquery", "SetUp", "People"], function($) {
+require(
+  [
+    "main-default",
+    "People"
+  ], function($) {
 });
