@@ -170,6 +170,9 @@ class Access {
     }
 
     $this->CI->session->set_userdata($user);
+    log_message('info',
+     'Session Initialized sunetid:' . $user['user_sunetid']
+    );
   }
 
   private function isSetSessionUser() {
