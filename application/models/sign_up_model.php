@@ -4,7 +4,7 @@ class Sign_up_model extends CI_Model {
   var $event_id;
   var $form;
 
-  function __construct(){
+  function __construct() {
     parent::__construct();
 
     $this->load->database();
@@ -18,17 +18,18 @@ class Sign_up_model extends CI_Model {
     $sql = "INSERT INTO sign_up
       (event_id, form, waitlist_size)
       VALUES (?, ?, ?)";
-    $query = $this->db->query($sql,
+    $query = $this->db->query(
+      $sql,
       array(
         $event_id,
         $form,
         $waitlist_size
-      ));
+      )
+    );
 
-    if($query) {
-      $query = $this->db->query("SELECT LAST_INSERT_ID() AS id");
-      $result = $query->row();
-      return $result->id;
+    if ($query) {
+      $this->clearCache();
+      return $this->db->insert_id();
     }
     return $query;
   }
@@ -53,6 +54,17 @@ class Sign_up_model extends CI_Model {
       FROM sign_up
       WHERE id = ?
     ";
-    return $this->db->query($sql, array($id));
+    $params = array($id);
+
+    $result = $this->db->query($sql, $params);
+    $this->clearCache();
+    return $result;
+  }
+
+  private function clearCache() {
+    $this->db->cache_delete('sign_up', 'view');
+//    $this->db->cache_delete('sign_up', 'edit');
+//    $this->db->cache_delete('sign_up', 'delete');
+    $this->db->cache_delete('sign_up', 'create');
   }
 }

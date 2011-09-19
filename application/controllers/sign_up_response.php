@@ -31,9 +31,7 @@ class Sign_up_response extends CI_Controller {
     //TODO validation & required fields
     //$this->load->library('form_validation');
 
-    //TODO username
-    $this->load->library('access');
-    $user_id = $this->access->getLoggedInUserId();
+    $user_id = $this->session->userdata('user_id');
 
     $sign_up_id = $form_data['sign_up_id'];
     unset($form_data['sign_up_id']);

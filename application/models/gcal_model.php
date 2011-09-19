@@ -104,6 +104,9 @@ class Gcal_model extends CI_Model {
   }
 
   public function delete($id) {
+    if (!$id) {
+      return TRUE;
+    }
     $event = $this->service->getCalendarEventEntry($id);
     return $event->delete();
   }

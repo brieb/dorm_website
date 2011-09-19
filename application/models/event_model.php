@@ -25,7 +25,13 @@ class Event_model extends CI_Model {
       WHERE event.id = ?",
       array($id)
     );
+
     $event = $query->row_array();
+
+    if ($event == NULL) {
+      return NULL;
+    }
+
     $event['time']['start'] = $event['time_start'];
     $event['time']['end'] = $event['time_end'];
 
@@ -87,6 +93,7 @@ class Event_model extends CI_Model {
     );
 
     if ($query) {
+      $this->clearCache();
       return $this->db->insert_id();
     }
     return $query;
@@ -104,8 +111,8 @@ class Event_model extends CI_Model {
         has_field_payment=?
       WHERE id = ?
     ";
-    return $this->db->query(
-      $sql, array(
+
+    $params = array(
             $data['title'],
             $data['time']['start'],
             $data['time']['end'],
@@ -113,8 +120,10 @@ class Event_model extends CI_Model {
             $data['fields'],
             $data['has_field_payment'],
             $id
-          )
-    );
+          );
+    $result = $this->db->query($sql, $params);
+    $this->clearCache();
+    return $result;
   }
 
   function delete($id) {
@@ -122,7 +131,9 @@ class Event_model extends CI_Model {
       DELETE FROM event
       WHERE id = ?
     ";
-    return $this->db->query($sql, array($id));
+    $result = $this->db->query($sql, array($id));
+    $this->clearCache();
+    return $result;
   }
 
   function readGcalUrl($eventId) {
@@ -151,4 +162,10 @@ class Event_model extends CI_Model {
     return $result['sign_up_id'];
   }
 
+  private function clearCache() {
+    $this->db->cache_delete('event', 'view');
+    $this->db->cache_delete('event', 'edit');
+    $this->db->cache_delete('event', 'delete');
+    $this->db->cache_delete('event', 'create');
+  }
 }

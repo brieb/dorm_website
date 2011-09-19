@@ -14,7 +14,8 @@ class Event_sign_ups extends CI_Controller {
     //TODO trust that the question order matches the answer order??
     // test this ^
 
-    $this->load->view('event_sign_ups/view',
+    $this->load->view(
+      'event_sign_ups/view',
       array(
         'cols' => $this->format($event_sign_ups)
       )
@@ -35,11 +36,13 @@ class Event_sign_ups extends CI_Controller {
       'rows' => array()
     );
 
-    foreach ($form as $question) {
-      $cols[$question['id']] = array(
-        'header' => $question['text'],
-        'rows' => array()
-      );
+    if ($form) {
+      foreach ($form as $question) {
+        $cols[$question['id']] = array(
+          'header' => $question['text'],
+          'rows' => array()
+        );
+      }
     }
 
     $cols['created'] = array(
@@ -54,14 +57,17 @@ class Event_sign_ups extends CI_Controller {
         if ($colKey == 'name' || $colKey == 'email') {
           $cols[$colKey]['rows'][] = isset($response[$colKey]) ?
             $response[$colKey] : '';
-        } else if($colKey == 'created') {
-          $cols[$colKey]['rows'][] = date(
-            'Y.m.d g:i a',
-            strtotime($response[$colKey])
-          );
         } else {
-          $cols[$colKey]['rows'][] = isset($response['form_response'][$colKey]) ?
-            $response['form_response'][$colKey] : '';
+          if ($colKey == 'created') {
+            $cols[$colKey]['rows'][] = date(
+              'Y.m.d g:i a',
+              strtotime($response[$colKey])
+            );
+          } else {
+            $cols[$colKey]['rows'][] = isset($response['form_response'][$colKey])
+              ?
+              $response['form_response'][$colKey] : '';
+          }
         }
       }
     }

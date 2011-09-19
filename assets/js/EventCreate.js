@@ -54,18 +54,13 @@ EventCreate = {
     );
 
     this.submitButton.click(function() {
-      this.submitButton.append(
-        $('<span/>')
-          .attr({
-            'class': 'loading_indicate'
-          })
-      );
+      this.addLoadingIndicatorToButton(this.submitButton);
       $.post(
         this.urlEventCreate,
         this.serialize(),
         function(response) {
           //TODO handle response
-          this.submitButton.remove('.loading_indicate');
+          this.removeLoadingIndicatorFromButton(this.submitButton);
           window.location = this.urlEventView + '/' + response;
         }.bind(this)
       );
@@ -372,6 +367,18 @@ EventCreate = {
       container.append(input);
     });
     return container;
+  },
+  addLoadingIndicatorToButton: function(button) {
+    button.mouseleave();
+    button.append(
+        $('<span/>')
+          .attr({
+            'class': 'loading_indicate'
+          })
+      );
+  },
+  removeLoadingIndicatorFromButton: function(button) {
+    button.remove('.loading_indicate');
   }
 
 };

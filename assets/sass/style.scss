@@ -232,11 +232,11 @@ body {
                 background-image:
                   image-url("common/header/event/calendar_hover.png");
               }
-              &.staff {
+              &.wiki_staff {
                 background-image:
                   image-url("common/header/wiki/staff_hover.png");
               }
-              &.confi {
+              &.wiki_confi {
                 background-image:
                   image-url("common/header/wiki/confi_hover.png");
               }
@@ -261,6 +261,9 @@ body {
   position: fixed;
   left: 0;
   top: $headerHeight;
+
+  overflow-x: hidden;
+  overflow-y: auto;
 
   font-size: 110%;
 
@@ -342,20 +345,6 @@ body {
     width: 100% - $marginButton*2;
     margin: $marginButton;
     font-size: 90%;
-  }
-
-  .loading_indicate {
-    width: 16px;
-    height: 16px;
-
-    background: {
-      image: image-url("common/load.gif");
-      repeat: no-repeat;
-    };
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    margin-top: -8px;
   }
 }
 
@@ -735,4 +724,18 @@ body {
       font-size: 30px;
     }
   }
+}
+
+.loading_indicate {
+  width: 16px;
+  height: 16px;
+
+  background: {
+    image: image-url("common/load.gif");
+    repeat: no-repeat;
+  };
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  margin-top: -8px;
 }

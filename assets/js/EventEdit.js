@@ -30,11 +30,13 @@ EventEdit = {
         eventData += '&sign_up_delete='+this.signUpDelete;
         eventData += '&sign_up_id='+this.data.sign_up_id;
         eventData += '&id='+this.data.id;
-  
+
+        EventCreate.addLoadingIndicatorToButton(EventCreate.submitButton);
         $.post(
           this.url,
           eventData,
           function(response) {
+            EventCreate.removeLoadingIndicatorFromButton(EventCreate.submitButton);
             window.location = this.urlView+'/'+this.data.id;
           }.bind(this)
         );
@@ -62,10 +64,13 @@ EventEdit = {
                   title: 'Delete Event',
                   modal: true,
                   buttons: {
-                    'Delete Event': function() {
+                    'Delete Event': function(event) {
+                      var button = $(event.currentTarget);
+                      EventCreate.addLoadingIndicatorToButton(button);
                       $.post(
                         EventEdit.urlDelete,
                         function(response) {
+                          EventCreate.removeLoadingIndicatorFromButton(button);
                           window.location = EventEdit.urlView;
                           $(this).dialog('close');
                         }.bind(this)
@@ -105,7 +110,7 @@ EventEdit = {
     if (identifier.substring(0, "time".length) === "time") {
       field.datetimepicker('setDate', (new Date(value)) );
     } else {
-      field.val(value); 
+      field.val(value);
     }
   },
   replay: function() {
@@ -123,7 +128,7 @@ EventEdit = {
               new RegExp('form_builder\\['+type.name+'\\]\\[(.*)\\]'), '$1');
             prefill = this.data.fields[type.name][fieldName];
           }
-        }  
+        }
 
         if (prefill !== undefined) {
           this.setFieldValue(field.identifier, prefill);
@@ -195,9 +200,9 @@ EventEdit = {
                 }
               });
 
-            
+
           }.bind(this))
       );
   },
-  
+
 };

@@ -72,8 +72,6 @@ class Event extends CI_Controller {
     $this->createSignUp($form_data, $event_id);
 
     echo $event_id;
-
-    $this->clearCache();
     //}
   }
 
@@ -86,6 +84,11 @@ class Event extends CI_Controller {
     }
 
     $event = $this->Event_model->read($id);
+
+    if ($event == NULL) {
+      redirect('event/view');
+      return;
+    }
 
     if ($event['sign_up_id'] != NULL) {
       $user_id = $this->session->userdata('user_id');
@@ -121,8 +124,6 @@ class Event extends CI_Controller {
     } else {
       $this->editLoad($id);
     }
-
-    $this->clearCache();
   }
 
 
@@ -131,7 +132,6 @@ class Event extends CI_Controller {
     $this->load->model('Gcal_model');
     $this->Gcal_model->delete($this->Event_model->readGcalUrl($id));
     $this->Event_model->delete($id);
-    $this->clearCache();
   }
 
 
@@ -144,10 +144,6 @@ class Event extends CI_Controller {
         ),
         $time
       );
-  }
-
-  private function clearCache() {
-    $this->db->cache_delete('event', 'view');
   }
 
   private function serializeFields(&$form_data) {
