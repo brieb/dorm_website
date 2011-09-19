@@ -1,6 +1,7 @@
 .*.swp
 *.secret.php
 /static/
+/application/cache/
 /.idea/
 /.idea/*
 *.scssc
