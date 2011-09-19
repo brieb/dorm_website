@@ -1,4 +1,9 @@
 @import "compass";
+
+@import "third_party/Absolution/jquery.ui.all";
+@import "third_party/jquery-ui-timepicker-addon";
+
+@import "reset";
 @import "fonts";
 
 $sidebarBackgroundColor: #343434;
