@@ -13,15 +13,6 @@ $this->load->view(
   <div id="content"></div>
 </div>
 
-<?php
-  array_map(
-    "includeCSS",
-    array(
-      "third_party/jquery-ui-timepicker-addon",
-    )
-  );
-?>
-
 <script type="text/javascript">
 require.ready(function() {
   EventEdit.init(

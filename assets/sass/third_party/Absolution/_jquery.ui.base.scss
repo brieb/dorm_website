@@ -1,36 +1,36 @@
 /* Component containers
 ----------------------------------*/
 .ui-widget
-{ 
-	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif; 
+{
+	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
 	font-size: 1.1em;
 }
-	
+
 	.ui-widget a {
 		color: inherit;
 	}
 
 	.ui-widget .ui-widget
-	{ 
+	{
 		font-size: 1em;
 	}
 
 	.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
-	{ 
+	{
 		font-family: inherit;
 		font-size: 1em;
 	}
-	
+
 .ui-widget-content
 {
-	border-color: #c1c1c1; 
+	border-color: #c1c1c1;
 	background: #eeeeee;
 	border-style: solid;
 	border-width: 1px;
 }
-	
+
 .ui-widget-header
-{ 
+{
 	font-weight: bold;
 	border-style: solid;
 	border-width: 1px;
@@ -39,10 +39,10 @@
 /* Interaction states
 ----------------------------------*/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default,
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, 
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover,
 .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus,
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active
-{ 
+{
 	font-weight: bold;
 	border-style: solid;
 	border-width: 1px;
@@ -50,13 +50,13 @@
 
 .ui-state-default a, .ui-state-hover a, .ui-state-active a
 {
-	color: inherit; 
+	color: inherit;
 	text-decoration: none;
 }
 
 .ui-widget:active
-{ 
-	outline: none; 
+{
+	outline: none;
 }
 
 /* Interaction Cues
@@ -90,14 +90,14 @@
 ----------------------------------*/
 
 /* states and images */
-.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-widget-content .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-widget-header .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-state-default .ui-icon { background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(images/ui-icons_ffffff_256x240.png); }
-.ui-state-active .ui-icon {background-image: url(images/ui-icons_ffffff_256x240.png); }
-.ui-state-highlight .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
+.ui-icon { width: 16px; height: 16px; background-image: image-url("absolution/ui-icons_222222_256x240.png"); }
+.ui-widget-content .ui-icon {background-image: image-url("absolution/ui-icons_222222_256x240.png"); }
+.ui-widget-header .ui-icon {background-image: image-url("absolution/ui-icons_222222_256x240.png"); }
+.ui-state-default .ui-icon { background-image: image-url("absolution/ui-icons_222222_256x240.png"); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: image-url("absolution/ui-icons_ffffff_256x240.png"); }
+.ui-state-active .ui-icon {background-image: image-url("absolution/ui-icons_ffffff_256x240.png"); }
+.ui-state-highlight .ui-icon {background-image: image-url("absolution/ui-icons_222222_256x240.png"); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: image-url("absolution/ui-icons_222222_256x240.png"); }
 
 /* positioning */
 .ui-icon-carat-1-n { background-position: 0 0; }
