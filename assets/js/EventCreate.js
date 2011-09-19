@@ -1,8 +1,8 @@
 var EventCreate = {};
 
 EventCreate = {
-  urlEventCreate: SITE_URL+'/event/create',
-  urlEventView: SITE_URL+'/event/view',
+  urlEventCreate: SITE_URL + '/event/create',
+  urlEventView: SITE_URL + '/event/view',
 
   container: null,
   containerButtons: null,
@@ -23,13 +23,13 @@ EventCreate = {
   },
 
   init: function(sidebarId, containerId) {
-    this.container = $('#'+containerId);
-    this.sidebar = $('#'+sidebarId);
+    this.container = $('#' + containerId);
+    this.sidebar = $('#' + sidebarId);
 
     this.containerButtons = $('<div />')
       .attr({
-        'class': 'sidebar-box'
-      });
+              'class': 'sidebar-box'
+            });
 
     this.containerFields = $('<form/>')
       .attr({ 'id': 'event_create_fields' });
@@ -43,22 +43,29 @@ EventCreate = {
 
     this.submitButton = $('<button />')
       .button({
-        label: 'Create Event'
-      });
+                label: 'Create Event'
+              });
     this.submitButtonContainer = $('<div />')
-        .attr({
-          'class': 'sidebar-box'
-        })
-        .append(
-          this.submitButton
-        );
+      .attr({
+              'class': 'sidebar-box'
+            })
+      .append(
+      this.submitButton
+    );
 
     this.submitButton.click(function() {
+      this.submitButton.append(
+        $('<span/>')
+          .attr({
+            'class': 'loading_indicate'
+          })
+      );
       $.post(
         this.urlEventCreate,
         this.serialize(),
         function(response) {
           //TODO handle response
+          this.submitButton.remove('.loading_indicate');
           window.location = this.urlEventView + '/' + response;
         }.bind(this)
       );
@@ -67,21 +74,21 @@ EventCreate = {
     this.containerButtons.append(
       $('<button/>')
         .attr({
-          name: 'button_field_add[SignUp]'
-        })
+                name: 'button_field_add[SignUp]'
+              })
         .text('SignUp')
         .button()
         .click(function(event) {
-          var target = $(event.currentTarget);
-          this.containerSignUp = $('<div/>')
-            .addClass('sidebar-box');
-          this.submitButtonContainer.after(this.containerSignUp);
-          target
-            .blur()
-            .mouseleave()
-            .button('disable');
-          this.signUpCreate();
-        }.bind(this))
+        var target = $(event.currentTarget);
+        this.containerSignUp = $('<div/>')
+          .addClass('sidebar-box');
+        this.submitButtonContainer.after(this.containerSignUp);
+        target
+          .blur()
+          .mouseleave()
+          .button('disable');
+        this.signUpCreate();
+      }.bind(this))
     );
 
     $.each(this.fieldTypes, function(key, type) {
@@ -92,39 +99,37 @@ EventCreate = {
         this.containerButtons.append(
           $('<button/>')
             .attr({
-              name: 'button_field_add['+type.name+']'
-            })
+                    name: 'button_field_add[' + type.name + ']'
+                  })
             .text(type.pretty)
             .button()
             .click(function(event) {
-              var target = $(event.currentTarget);
-              target
-                .blur()
-                .mouseleave()
-                .button('disable');
-              var fieldContent = this.genFieldType(type);
-              this.containerFields.append(fieldContent);
-            }.bind(this))
+            var target = $(event.currentTarget);
+            target
+              .blur()
+              .mouseleave()
+              .button('disable');
+            var fieldContent = this.genFieldType(type);
+            this.containerFields.append(fieldContent);
+          }.bind(this))
         );
       }
     }.bind(this));
-
-  
 
     this.sidebar.append(
       this.submitButtonContainer,
       $('<div />')
         .attr({
-          'class': 'sidebar-box-wrapper'
-        })
+                'class': 'sidebar-box-wrapper'
+              })
         .append(
-          $('<div />')
-            .attr({
-              'class': 'label'
-            })
-            .text('Add Fields:'),
-          this.containerButtons
-        )
+        $('<div />')
+          .attr({
+                  'class': 'label'
+                })
+          .text('Add Fields:'),
+        this.containerButtons
+      )
     );
     this.containerSignUp = $('<div/>');
     this.submitButtonContainer.after(this.containerSignUp);
@@ -134,16 +139,16 @@ EventCreate = {
 
     if (this.signUpEnabled) {
       eventData += '&' + $.param({
-        'SignUp[enabled]': true
-      });
+                                   'SignUp[enabled]': true
+                                 });
       eventData += '&' + $.param({
-        'SignUp[capacity]': this.signUpCapacity
-      });
+                                   'SignUp[capacity]': this.signUpCapacity
+                                 });
     }
     if (this.signUpForm !== null) {
       eventData += '&' + $.param({
-        'SignUp[form]': this.signUpForm
-      });
+                                   'SignUp[form]': this.signUpForm
+                                 });
     }
 
     eventData.replace(/%5B%5D/g, '[]');
@@ -155,20 +160,20 @@ EventCreate = {
 
     this.containerSignUp
       .append(
-        $('<button/>')
-          .text('Remove Sign Up')
-          .button()
-          .click(function(event) {
-            this.containerSignUp.remove();
-            this.signUpClear();
-            EventCreateSignUpWizard.reset();
+      $('<button/>')
+        .text('Remove Sign Up')
+        .button()
+        .click(function(event) {
+        this.containerSignUp.remove();
+        this.signUpClear();
+        EventCreateSignUpWizard.reset();
 
-            $('button[name="button_field_add[SignUp]"]')
-              .blur()
-              .mouseleave()
-              .button('enable');
-          }.bind(this))
-      );
+        $('button[name="button_field_add[SignUp]"]')
+          .blur()
+          .mouseleave()
+          .button('enable');
+      }.bind(this))
+    );
   },
   signUpClear: function() {
     this.signUpEnabled = false;
@@ -276,29 +281,29 @@ EventCreate = {
   genFieldset: function(field, content) {
     return $('<fieldset/>')
       .append(
-        $('<legend/>')
-          .text(field.pretty),
-        content,
-        $('<button/>')
-          .attr({
-            name: 'button_field_remove['+field.name+']',
-            'class': 'button_remove'
-          })
-          .button({
-            //label: 'Remove',
-            icons: {
-              primary: 'ui-icon-trash'
-            }
-          })
-          .click(function(event) {
-            var target = $(event.target);
-            target.parents('fieldset').remove();
-            $('button[name="button_field_add['+field.name+']"]')
-              .blur()
-              .mouseleave()
-              .button('enable');
-          }.bind(this))
-      );
+      $('<legend/>')
+        .text(field.pretty),
+      content,
+      $('<button/>')
+        .attr({
+                name: 'button_field_remove[' + field.name + ']',
+                'class': 'button_remove'
+              })
+        .button({
+                  //label: 'Remove',
+                  icons: {
+                    primary: 'ui-icon-trash'
+                  }
+                })
+        .click(function(event) {
+        var target = $(event.target);
+        target.parents('fieldset').remove();
+        $('button[name="button_field_add[' + field.name + ']"]')
+          .blur()
+          .mouseleave()
+          .button('enable');
+      }.bind(this))
+    );
   },
   genFieldType: function(type) {
     var content = this.genFormInput(type.fields);
@@ -321,43 +326,44 @@ EventCreate = {
         };
         var content = $('<div/>')
           .attr({
-            'class': 'field'
-          })
+                  'class': 'field'
+                })
           .append(
-            $('<label />')
-              .attr({ 'for': elem.identifier })
-              .text(elem.label),
-            $('<br />'),
-            $('<input/>')
-              .attr({
-                type: 'text',
-                id: elem.identifier,
-                name: elem.identifier
-              })
-              .datetimepicker(datepickerOptions)
-              .datetimepicker('setDate', new Date())
-          );
+          $('<label />')
+            .attr({ 'for': elem.identifier })
+            .text(elem.label),
+          $('<br />'),
+          $('<input/>')
+            .attr({
+                    type: 'text',
+                    id: elem.identifier,
+                    name: elem.identifier
+                  })
+            .datetimepicker(datepickerOptions)
+            .datetimepicker('setDate', new Date())
+        );
         //For some reason, part of the picker shows up on load
         $('#ui-datepicker-div').hide();
         return content;
       } else {
         var label = $('<label/>').attr({
-          'for': elem.identifier
-        }).text(elem.label);
-        var input = $('<'+elem.inputType+'/>').attr({
-          name: elem.identifier,
-          id: elem.identifier,
-          placeholder: elem.placeholder
-        });
+                                         'for': elem.identifier
+                                       }).text(elem.label);
+        var input = $('<' + elem.inputType + '/>')
+          .attr({
+                  name: elem.identifier,
+                  id: elem.identifier,
+                  placeholder: elem.placeholder
+                });
 
         if (elem.inputType === 'input') {
           input.attr({ type: 'text' });
         }
         return $('<div/>')
-            .attr({
-              'class': 'field'
-            })
-            .append(label, $('<br />'), input);
+          .attr({
+                  'class': 'field'
+                })
+          .append(label, $('<br />'), input);
       }
     });
 

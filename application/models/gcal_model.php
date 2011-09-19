@@ -1,27 +1,31 @@
 <?php
+
 class Gcal_model extends CI_Model {
-  private
-    $service;
+  private $service;
+  private $calUri;
 
-  function __construct(){
+  function __construct() {
     parent::__construct();
-    $this->load->database();
 
-    $oldPath = set_include_path(get_include_path() . PATH_SEPARATOR .
-      realpath(dirname(__FILE__).'/../../assets/third_party/zend'));
-    require_once 'Zend/Loader.php';
+    require_once(dirname(__FILE__) . '/google_credentials.secret.php');
+    $this->calUri = $GCAL_CAL_URI;
+
+    $oldPath = set_include_path(
+      get_include_path() . PATH_SEPARATOR .
+      realpath(dirname(__FILE__) . '/../../assets/third_party/zend')
+    );
+    require_once('Zend/Loader.php');
 
     Zend_Loader::loadClass('Zend_Gdata');
     Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
     Zend_Loader::loadClass('Zend_Gdata_Calendar');
 
-    require_once('google_credentials.secret.php');
-
     $serviceName = Zend_Gdata_Calendar::AUTH_SERVICE_NAME;
     try {
       $client = Zend_Gdata_ClientLogin::getHttpClient(
-        $user, $pass, $serviceName);
-    } catch(Exception $e) {
+        $GCAL_USER, $GCAL_PASS, $serviceName
+      );
+    } catch (Exception $e) {
       // prevent Google username and password from being displayed
       // if a problem occurs
       echo "Could not connect to calendar.";
@@ -37,9 +41,9 @@ class Gcal_model extends CI_Model {
     $time_start = $data['time']['start'];
     $time_end = $data['time']['end'];
 
-    $desc = "<a href='".
-      site_url('event/view/'.$id).
-      "'>Click here for event info and sign ups</a>";
+    $desc = "<a href='" .
+            site_url('event/view/' . $id) .
+            "'>Click here for event info and sign ups</a>";
 
     $event = $this->service->newEventEntry();
 
@@ -53,14 +57,16 @@ class Gcal_model extends CI_Model {
     $when->endTime = "{$time_end}";
     $event->when = array($when);
 
-    $createdEvent = $this->service->insertEvent($event);
+    $createdEvent = $this->service->insertEvent($event, $this->calUri);
     $gcalUrl = $createdEvent->id->text;
 
     //TODO move this to event model??? - setGcalUrl - and call from event controller
-    $this->db->query("
+    $this->db->query(
+      "
       UPDATE event SET gcal_url = ?
       WHERE id = ?
-    ", array($gcalUrl, $data['event_id']));
+    ", array($gcalUrl, $data['event_id'])
+    );
   }
 
   public function read($id) {
@@ -100,5 +106,12 @@ class Gcal_model extends CI_Model {
   public function delete($id) {
     $event = $this->service->getCalendarEventEntry($id);
     return $event->delete();
+  }
+
+  public function listCalUris() {
+    $calFeed = $this->service->getCalendarListFeed();
+    foreach ($calFeed as $calendar) {
+      error_log($calendar->title->text . " " . $calendar->content->src);
+    }
   }
 }

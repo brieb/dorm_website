@@ -3,7 +3,6 @@
 class Access {
   private $permissions;
   private $CI;
-  private $user;
   private $baseUrl;
   private $class;
   private $method;
@@ -11,6 +10,8 @@ class Access {
   function __construct() {
     $this->baseUrl = $GLOBALS['CFG']->config['base_url'];
     $this->CI =& get_instance();
+
+    $this->CI->load->library('session');
 
     if (ENVIRONMENT == 'development') {
       $_SERVER['REMOTE_USER'] = 'bbunge';
@@ -21,8 +22,8 @@ class Access {
       return;
     }
 
-    if ($this->isLoggedIn()) {
-      $this->initUser();
+    if ($this->isLoggedIn() && !$this->isSetSessionUser()) {
+      $this->setSessionUser();
     }
 
   }
@@ -30,19 +31,21 @@ class Access {
   public function canDo($action) {
     $this->initPermissions();
 
-    if ($this->user['access_group'] == 'SUDO') {
+    $user_access_group = $this->CI->session->userdata('user_access_group');
+
+    if ($user_access_group == 'SUDO') {
       return true;
     }
 
     return
       isset(
         $this->permissions
-          [$this->user['access_group']]
+          [$user_access_group]
           [$action['class']]
           [$action['method']]
       ) ?
         $this->permissions
-          [$this->user['access_group']]
+          [$user_access_group]
           [$action['class']]
           [$action['method']]
       : false;
@@ -140,19 +143,8 @@ class Access {
     );
   }
 
-  public function getLoggedInUserId() {
-    return $this->user['id'];
-  }
-
   private function isLoggedIn() {
     return isset($_SERVER['REMOTE_USER']);
-  }
-
-  private function getLoggedInUser() {
-    if ($this->isLoggedIn()) {
-      return $_SERVER['REMOTE_USER'];
-    }
-    return NULL;
   }
 
   private function isHomePage() {
@@ -163,18 +155,25 @@ class Access {
     header("Location: {$this->baseUrl}");
   }
 
-  private function initUser() {
+  private function setSessionUser() {
     $this->CI->load->model('User_model');
 
-    $this->user['sunetid'] = $this->getLoggedInUser();
-    $this->user['id'] =
-      $this->CI->User_model->getIdBySunetid($this->user['sunetid']);
-    $this->user['access_group'] =
-      $this->CI->User_model->getAccessGroup($this->user['id']);
+    $user = array();
+    $user['user_sunetid'] = $_SERVER['REMOTE_USER'];
+    $user['user_id'] =
+      $this->CI->User_model->getIdBySunetid($user['user_sunetid']);
+    $user['user_access_group'] =
+      $this->CI->User_model->getAccessGroup($user['user_id']);
 
-    if (!$this->user['access_group']) {
-      $this->user['access_group'] = 'PUBLIC';
+    if (!$user['user_access_group']) {
+      $user['user_access_group'] = 'PUBLIC';
     }
+
+    $this->CI->session->set_userdata($user);
+  }
+
+  private function isSetSessionUser() {
+    return $this->CI->session->userdata('user_id') != FALSE;
   }
 
 }
