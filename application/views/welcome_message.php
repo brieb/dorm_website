@@ -28,18 +28,35 @@ $this->load->view('common/assets',
     ?>
   </div>
 
-  <div id="login">
-    <?php
-      echo anchor('event/view', 'Enter');
-    ?>
-  </div>
-</div>
 
-<script>
-require.ready(function () {
-  $("#login a").button();
-});
-</script>
+  <?php
+  if (isset($show_no_access_message) && $show_no_access_message) {
+    echo "
+      <div id='no_access_message'>
+        <p>
+          Sorry. At this time, only FroSoCo Residents and Staff can
+          access the web site.
+        </p>
+        <p>
+          If you feel as though you should have
+          access, please email
+          <a href='mailto:bbunge@stanford.edu'>Brie Bunge</a>.
+        </p>
+        <p>
+          Thank you!
+        </p>
+      </div>
+    ";
+  } else {
+    $link_enter = anchor('event/view', 'Enter');
+    echo "
+      <div id='login'>
+        {$link_enter}
+      </div>
+    ";
+  }
+  ?>
+</div>
 
 <?php
 $this->load->view('common/footer');

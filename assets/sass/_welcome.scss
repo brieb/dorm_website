@@ -31,10 +31,54 @@
 
   #login {
     text-align: center;
+    margin-top: 100px;
 
     a {
-      margin-top: 100px;
+      text-decoration: none;
+      color: #333;
+      font-family: "Lato-Bold";
       font-size: 30px;
+      padding: 10px 20px;
+
+      @include border-radius(5px);
+      @include background-image(linear-gradient(#FFFFFF, #D4D4D4));
+
+      border: {
+        color: #999999;
+        style: solid;
+        width: 1px;
+      };
+
+      &:hover {
+        color: #222;
+        @include single-box-shadow;
+      }
+
+      &:active {
+        color: black;
+        border-color: #777777;
+        @include background-image(linear-gradient(#B9B9B9, #E5E5E5));
+      }
+    }
+  }
+
+  #no_access_message {
+    @include single-box-shadow;
+    @include border-radius(10px);
+    @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+
+    padding: 20px 30px;
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+
+    text-align: center;
+
+    font-family: "Lato-Bold";
+    font-size: 150%;
+
+    p {
+      margin: 15px 0;
     }
   }
 }
