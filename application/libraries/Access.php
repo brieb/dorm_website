@@ -14,11 +14,11 @@ class Access {
     $this->CI->load->library('session');
 
     if (ENVIRONMENT == 'development') {
-      $_SERVER['REMOTE_USER'] = 'bbunge';
+      $_SERVER['REMOTE_USER'] = 'bbunge1234';
     }
 
     if (!($this->isLoggedIn() || $this->isHomePage())) {
-      $this->redirectToHomePage();
+      $this->redirectToNoAccess();
       return;
     }
 
@@ -69,7 +69,7 @@ class Access {
       return true;
     }
 
-    $this->redirectToHomePage();
+    $this->redirectToNoAccess();
     return false;
   }
 
@@ -148,11 +148,11 @@ class Access {
   }
 
   private function isHomePage() {
-    return ($this->class == 'welcome' && $this->method == 'index');
+    return ($this->class == 'welcome');
   }
 
-  private function redirectToHomePage() {
-    header("Location: {$this->baseUrl}");
+  private function redirectToNoAccess() {
+    header("Location: {$this->baseUrl}index.php/welcome/no_access");
   }
 
   private function setSessionUser() {
@@ -171,7 +171,10 @@ class Access {
 
     $this->CI->session->set_userdata($user);
     log_message('info',
-     'Session Initialized sunetid:' . $user['user_sunetid']
+     'Session Initialized'.
+     ' sunetid:' . $user['user_sunetid'] .
+     ' user_access_group:' . $user['user_access_group'] .
+     ' user_id:' . $user['user_id']
     );
   }
 

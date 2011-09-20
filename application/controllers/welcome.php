@@ -20,6 +20,15 @@ class Welcome extends CI_Controller {
 	public function index() {
 		$this->load->view('welcome_message');
 	}
+
+  public function no_access() {
+    $this->load->view(
+      'welcome_message',
+      array(
+        'show_no_access_message' => TRUE
+      )
+    );
+  }
 }
 
 /* End of file welcome.php */
