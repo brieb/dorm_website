@@ -185,7 +185,7 @@ class Event extends CI_Controller {
     return $sign_up_id;
   }
 
-
+  //TODO unify routine with create
   private function editSave($form_data) {
     $event_id = $form_data['id'];
     if (

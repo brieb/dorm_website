@@ -13,7 +13,6 @@ main-event-view.js
 ----------------
 jquery-ui.js
 SetUp.js
-main-default.js
 SignUpFormRenderer.js
 main-event-view.js
 
@@ -21,7 +20,6 @@ main-event-create.js
 ----------------
 jquery-ui.js
 SetUp.js
-main-default.js
 EventCreate.js
 jquery-ui-timepicker-addon.js
 SignUpFormBuilder.js
@@ -32,12 +30,9 @@ main-event-edit.js
 ----------------
 jquery-ui.js
 SetUp.js
-main-default.js
 EventCreate.js
 jquery-ui-timepicker-addon.js
 SignUpFormBuilder.js
-EventCreateSignUpWizard.js
-main-event-create.js
 EventEdit.js
 main-event-edit.js
 
@@ -52,6 +47,5 @@ main-people.js
 ----------------
 jquery-ui.js
 SetUp.js
-main-default.js
 People.js
 main-people.js
