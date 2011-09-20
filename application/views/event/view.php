@@ -124,7 +124,7 @@ foreach ($sidebar as $sidebarBox) {
       </div>
 
       <div class="description">
-        <?php echo nl2br($event['description']); ?>
+        <?php echo nl2br($event['description']) ; ?>
       </div>
 
       <div class="fields">
