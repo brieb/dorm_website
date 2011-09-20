@@ -1,7 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once(CONFPATH.'config.php');
-
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -16,6 +14,7 @@ require_once(CONFPATH.'config.php');
 | path to your installation.
 |
 */
+require(CONFPATH.'config.php');
 $config['base_url']	= $BASE_URL;
 
 /*
