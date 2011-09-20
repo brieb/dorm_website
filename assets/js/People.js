@@ -89,9 +89,9 @@ People = {
         user['last_name'],
         user['email'],
         user['house'],
-        user['staff_role']
-        //user['room'],
-        //user['house'] + ' ' + user['room']
+        user['staff_role'],
+        user['room'],
+        user['house'] + ' ' + user['room']
       ];
 
       user['is_match'] =
@@ -167,7 +167,7 @@ People = {
         }
         li_house_room.text(li_house_room_text);
         li_house_room.addClass('room');
-        //currentCellContent.append(li_house_room);
+        currentCellContent.append(li_house_room);
 
         if (user['class'] !== 'Other') {
           var li_class = $('<li />');
