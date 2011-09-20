@@ -7,7 +7,7 @@ class Gcal_model extends CI_Model {
   function __construct() {
     parent::__construct();
 
-    require_once(dirname(__FILE__) . '/google_credentials.secret.php');
+    require_once(CONFPATH.'google_credentials.php');
     $this->calUri = $GCAL_CAL_URI;
 
     $oldPath = set_include_path(

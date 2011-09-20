@@ -1,5 +1,7 @@
 <?php
 
+define('CONFPATH', dirname(__FILE__).'/conf/');
+
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -19,7 +21,7 @@
  *
  */
 if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-  define('ENVIRONMENT', 'development'); 
+  define('ENVIRONMENT', 'development');
 } else {
   define('ENVIRONMENT', 'production');
 }
