@@ -7,3 +7,4 @@
 /.idea/*
 *.scssc
 .htaccess
+/conf/*.php
