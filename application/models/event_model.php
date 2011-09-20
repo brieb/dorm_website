@@ -64,6 +64,7 @@ class Event_model extends CI_Model {
     if ($sort) {
       $sql .= "ORDER BY time_start, time_end";
     }
+    log_message('info', $sql);
 
     $query = $this->db->query($sql);
 

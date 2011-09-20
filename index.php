@@ -20,7 +20,9 @@ define('CONFPATH', dirname(__FILE__).'/conf/');
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+
+require(CONFPATH.'config.php');
+if (isset($IS_DEV) && $IS_DEV) {
   define('ENVIRONMENT', 'development');
 } else {
   define('ENVIRONMENT', 'production');
