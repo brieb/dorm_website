@@ -110,9 +110,8 @@ $this->load->view(
                           events[i].time_pretty_end,
                     'class': 'time'
                   }),
-                  $('<p/>', {
-                    text: events[i].description
-                  })
+                  $('<p/>')
+                    .html(events[i].description.replace(/\n/g, '<br />'))
               )
           );
         }

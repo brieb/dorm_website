@@ -1,6 +1,6 @@
 require(
   [
-    "main-default",
+    "jquery", "jquery-ui", "SetUp",
     "SignUpFormRenderer"
   ], function($) {
   
