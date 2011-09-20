@@ -41,7 +41,7 @@
 $active_group = 'default';
 $active_record = FALSE;
 
-include('db_credentials.secret.php');
+include(CONFPATH.'db_credentials.php');
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

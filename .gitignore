@@ -1,5 +1,4 @@
 .*.swp
-*.secret.php
 /static/
 /application/cache/
 /application/logs/
