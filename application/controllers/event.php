@@ -79,7 +79,7 @@ class Event extends CI_Controller {
     $this->load->model('Event_model');
 
     if ($id == "") {
-      $this->viewAll();
+      $this->view_all();
       return;
     }
 
@@ -102,8 +102,8 @@ class Event extends CI_Controller {
     $this->load->view('event/view', $data);
   }
 
-  private function viewAll() {
-    $events = $this->Event_model->getEvents();
+  private function view_all() {
+    $events = $this->Event_model->get_events();
     $events = json_encode($events);
     $this->load->view(
       'event/view_all',
@@ -120,9 +120,9 @@ class Event extends CI_Controller {
     $this->load->model('Event_model');
     $form_data = $this->input->post();
     if ($form_data) {
-      $this->editSave($form_data);
+      $this->edit_save($form_data);
     } else {
-      $this->editLoad($id);
+      $this->edit_load($id);
     }
   }
 
@@ -186,7 +186,7 @@ class Event extends CI_Controller {
   }
 
   //TODO unify routine with create
-  private function editSave($form_data) {
+  private function edit_save($form_data) {
     $event_id = $form_data['id'];
     if (
       isset($form_data['sign_up_delete']) &&
@@ -210,7 +210,7 @@ class Event extends CI_Controller {
     );
   }
 
-  private function editLoad($id) {
+  private function edit_load($id) {
     $event = $this->Event_model->read($id);
     $event['time'] = $this->formatDatetime($event['time']);
 

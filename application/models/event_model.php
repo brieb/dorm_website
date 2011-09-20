@@ -10,7 +10,6 @@ class Event_model extends CI_Model {
   }
 
   function read($id) {
-    //TODO load entire sign_up form??
     $query = $this->db->query(
       "SELECT
         event.id,
@@ -32,42 +31,46 @@ class Event_model extends CI_Model {
       return NULL;
     }
 
+    $this->format($event);
+    return $event;
+  }
+
+  private function format(&$event) {
     $event['time']['start'] = $event['time_start'];
     $event['time']['end'] = $event['time_end'];
 
     //TODO move display logic to view layer
-    $event['time_pretty_start'] = date('m.d.y \a\t g:ia', strtotime($event['time_start']));
-    $event['time_pretty_end'] = date('m.d.y \a\t g:ia', strtotime($event['time_end']));
-
-    return $event;
+    $event['time_pretty_start'] =
+      date('m.d.y \a\t g:ia', strtotime($event['time_start']));
+    $event['time_pretty_end'] =
+      date('m.d.y \a\t g:ia', strtotime($event['time_end']));
   }
 
   //TODO move to read with no args
-  function getEvents() {
-    $query = $this->db->query(
-      "
+  function get_events($only_upcoming = TRUE, $sort = TRUE) {
+    $sql = "
       SELECT
-      id,
-      title,
-      description,
-      time_start,
-      time_end,
-      fields
+        id,
+        title,
+        description,
+        time_start,
+        time_end,
+        fields
       FROM event
-      "
-    );
+    ";
+    if ($only_upcoming) {
+      $sql .= "WHERE time_start >= CURDATE()";
+    }
+    if ($sort) {
+      $sql .= "ORDER BY time_start, time_end";
+    }
+
+    $query = $this->db->query($sql);
 
     $events = array();
-    foreach ($query->result_array() as $row) {
-      $row['time']['start'] = $row['time_start'];
-      $row['time']['end'] = $row['time_end'];
-
-      $row['time_pretty_start'] =
-        date('m.d.y \a\t g:ia', strtotime($row['time_start']));
-      $row['time_pretty_end'] =
-        date('m.d.y \a\t g:ia', strtotime($row['time_end']));
-
-      $events[] = $row;
+    foreach ($query->result_array() as $event) {
+      $this->format($event);
+      $events[] = $event;
     }
     return $events;
   }
@@ -113,14 +116,14 @@ class Event_model extends CI_Model {
     ";
 
     $params = array(
-            $data['title'],
-            $data['time']['start'],
-            $data['time']['end'],
-            $data['description'],
-            $data['fields'],
-            $data['has_field_payment'],
-            $id
-          );
+      $data['title'],
+      $data['time']['start'],
+      $data['time']['end'],
+      $data['description'],
+      $data['fields'],
+      $data['has_field_payment'],
+      $id
+    );
     $result = $this->db->query($sql, $params);
     $this->clearCache();
     return $result;
