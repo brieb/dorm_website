@@ -63,35 +63,5 @@ $(document).ready(function() {
 //  };
   //setActiveMenuItems();
 
-  //TODO proper icons
-  //$("#sidebar a").each(function() {
-  //$(this).button({
-  //icons: {
-  //primary: "ui-icon-locked"
-  //}
-  //});
-  //});
-
-  $("#links li").hover(
-    function() {
-      var target = $(this);
-      target.addClass('hover');
-      target.find(".submenu").show();
-    },
-    function() {
-      var target = $(this);
-      target.removeClass('hover');
-      target.find(".submenu").hide();
-    }
-  );
-
-//  $("#links .submenu li").hover(
-//    function() {
-//      $(this).addClass('hover');
-//    },
-//    function() {
-//      $(this).removeClass('hover');
-//    }
-//  );
 
 });
