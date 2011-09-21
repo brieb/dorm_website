@@ -59,11 +59,12 @@ class Event_model extends CI_Model {
       FROM event
     ";
     if ($only_upcoming) {
-      $sql .= "WHERE time_start >= CURDATE()";
+      $sql .= " WHERE time_start >= CURDATE()";
     }
     if ($sort) {
-      $sql .= "ORDER BY time_start, time_end";
+      $sql .= " ORDER BY time_start, time_end";
     }
+    log_message('info', $sql);
 
     $query = $this->db->query($sql);
 
@@ -72,6 +73,7 @@ class Event_model extends CI_Model {
       $this->format($event);
       $events[] = $event;
     }
+
     return $events;
   }
 
