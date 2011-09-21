@@ -15,7 +15,8 @@ class User_directory extends CI_Controller {
         'users' => $users,
       )
     );
-
+    // TODO this mechanism caches the menu for all users..partial instead
+    // $this->output->cache(60*24*365);
   }
 
 }

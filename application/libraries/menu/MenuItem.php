@@ -64,7 +64,7 @@ class MenuItem {
       $uri = $this->url ? $this->url : site_url($this->action);
       $anchor_href .= "href='{$uri}'";
     }
-    
+
     return
       '<a ' . $anchor_class . ' ' . $anchor_href . ' >'.
         $span_sprite . $span_text .
