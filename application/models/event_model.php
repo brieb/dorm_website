@@ -73,6 +73,7 @@ class Event_model extends CI_Model {
       $this->format($event);
       $events[] = $event;
     }
+
     return $events;
   }
 

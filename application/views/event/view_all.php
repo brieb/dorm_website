@@ -14,8 +14,8 @@ $this->load->view(
     <div class="sidebar-box-wrapper">
       <div class="label">Sort By:</div>
       <div class="sidebar-box">
-        <button class="sort_by active asc" type="button" value="title">Title</button>
-        <button class="sort_by" type="button" value="time_start">Time</button>
+        <button class="sort_by" type="button" value="title">Title</button>
+        <button class="sort_by active asc" type="button" value="time_start">Time</button>
       </div>
     </div>
 
@@ -34,6 +34,12 @@ $this->load->view(
 <script type="text/javascript">
   require.ready(function () {
     $("#sidebar button").button();
+    $("#sidebar button.active.asc").button(
+      "option", "icons",
+      {
+        secondary: 'ui-icon-triangle-1-n'
+      }
+    );
 
     var events = <?php echo $events ?>;
 
