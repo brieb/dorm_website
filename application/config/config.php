@@ -1,6 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
+ * Caching config for Cache.php library
+ */
+$config['cache_dir'] = APPPATH.'cache/';
+$config['cache_default_expires'] = 0;
+
+/*
 |--------------------------------------------------------------------------
 | Base Site URL
 |--------------------------------------------------------------------------

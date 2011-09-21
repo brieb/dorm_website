@@ -6,7 +6,7 @@
   width: 100%;
 
   @include background-image(linear-gradient(#990000, #641B1B));
-  font-family: "Sansation";
+  font-family: "Lato-Light";
 
   position: fixed;
   left: 0;
@@ -31,25 +31,34 @@
   }
 
   #links {
+    $menuItemWidth: 140px;
+    $submenuItemHeight: 20px;
+    $menuItemFontSize: 120%;
+    $submenuItemFontSize: 90%;
+
     position: absolute;
     right: 30px;
-    font-size: 120%;
+    font-size: $menuItemFontSize;
     z-index: 100;
 
     .menu li {
       display: inline-block;
       margin-right: 5px;
       vertical-align: top;
-      width: 150px;
+      width: $menuItemWidth;
 
-      &.hover a {
-        background-color: transparentize(#000000, 0.8);
+      &:hover {
+        a {
+          background-color: transparentize(#000000, 0.8);
+        }
+        .submenu {
+          display: block;
+        }
       }
 
       a {
         height: $headerHeight;
         display: block;
-        padding: 0 20px 0 0;
         color: white;
         text-decoration: none;
       }
@@ -62,7 +71,7 @@
 
       .text {
         float: left;
-        margin-top: 18px;
+        margin-top: 16px;
       }
 
       /*
@@ -107,22 +116,20 @@
       }
 
       .submenu {
-        $submenuItemHeight: 20px;
-
         display:none;
-        width: 100%;
 
         @include background-image(linear-gradient(#333333, #000000));
         @include border-bottom-radius(10px);
         @include single-box-shadow;
 
-        font-size: 90%;
+        font-size: $submenuItemFontSize;
         margin-bottom: 10px;
         padding-bottom: 8px;
 
         li {
           display: list-item;
           margin: 0;
+          padding: 0;
 
           a {
             margin: 0;
@@ -137,7 +144,8 @@
             }
 
             .text {
-              margin: 4px 0 0 0;
+              display: inline;
+              margin: 3px 0 0 0;
             }
           }
 
