@@ -54,14 +54,21 @@ class MenuItem {
     return $this->identifier;
   }
 
-  public function getAnchor() {
-    if (!($this->action || $this->url)) {
-      return "<a class='{$this->identifier}'>{$this->title}</a>";
-    }
+  public function render() {
+    $anchor_class = "class='{$this->identifier}'";
+    $anchor_href = "";
+    $span_sprite = "<span class='sprite'></span>";
+    $span_text = "<span class='text'>{$this->title}</span>";
 
-    $uri = $this->url ? $this->url : $this->action;
-    $attr = array('class' => $this->identifier);
-    return anchor($uri, $this->title, $attr);
+    if ($this->action || $this->url) {
+      $uri = $this->url ? $this->url : site_url($this->action);
+      $anchor_href .= "href='{$uri}'";
+    }
+    
+    return
+      '<a ' . $anchor_class . ' ' . $anchor_href . ' >'.
+        $span_sprite . $span_text .
+      '</a>';
   }
 
 }

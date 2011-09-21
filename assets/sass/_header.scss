@@ -1,4 +1,5 @@
 #header {
+
   z-index: 1000;
   @include box-shadow(#000000 0px 0px 12px);
   height: $headerHeight;
@@ -46,32 +47,68 @@
       }
 
       a {
-        height: $headerHeight - $aPaddingTop;
+        height: $headerHeight;
         display: block;
-        background: {
-          size: $imgDim $imgDim;
-          repeat: no-repeat;
-          position: 15px center;
-        };
-        padding: $aPaddingTop 20px 0 $imgDim+25px;
+        padding: 0 20px 0 0;
         color: white;
         text-decoration: none;
+      }
 
-        &.events {
-          background-image: image-url("common/header/calendar.png");
-        }
-        &.people {
-          background-image: image-url("common/header/people.png");
-        }
-        &.wiki {
-          background-image: image-url("common/header/wiki.png");
-        }
-        &.facebook {
-          background-image: image-url("common/header/facebook.png");
-        }
+      .sprite {
+        display: block;
+        float: left;
+        margin: ($headerHeight - $menuIconSize)/2 10px;
+      }
+
+      .text {
+        float: left;
+        margin-top: 18px;
+      }
+
+      /*
+       * Main Menu Items
+       */
+      .events .sprite {
+        @include menu-sprite(event);
+      }
+      .people .sprite {
+        @include menu-sprite(people);
+      }
+      .wiki .sprite {
+        @include menu-sprite(wiki);
+      }
+      .facebook .sprite {
+        @include menu-sprite(facebook);
+      }
+
+      /*
+       * Submenu Items
+       */
+      .event_list .sprite {
+        @include submenu-sprite(event_list);
+      }
+      .event_create .sprite {
+        @include submenu-sprite(event_create);
+      }
+      .calendar .sprite {
+        @include submenu-sprite(event_calendar);
+      }
+      .wiki_staff .sprite {
+        @include submenu-sprite(wiki_staff);
+      }
+      .wiki_confi .sprite {
+        @include submenu-sprite(wiki_confi);
+      }
+      .basecamp .sprite {
+        @include submenu-sprite(wiki_basecamp);
+      }
+      .facebook_staff .sprite {
+        @include submenu-sprite(facebook_staff);
       }
 
       .submenu {
+        $submenuItemHeight: 20px;
+
         display:none;
         width: 100%;
 
@@ -89,81 +126,47 @@
 
           a {
             margin: 0;
-            padding: 14px 0 5px (16px+8px+25px);
+            padding: 10px;
 
             color: white;
-            height: 20px;
+            height: $submenuItemHeight;
 
-            background: {
-              size: 18px;
-              repeat: no-repeat;
-              position: 15px center;
-            };
+            .sprite {
+              $marginTB: ($submenuItemHeight - $submenuIconSize)/2;
+              margin: $marginTB 12px $marginTB 3px;
+            }
 
-            &.event_list {
-              background-image:
-                image-url("common/header/event/event_list.png");
-            }
-            &.event_create {
-              background-image:
-                image-url("common/header/event/event_create.png");
-            }
-            &.calendar {
-              background-image:
-                image-url("common/header/event/calendar.png");
-            }
-            &.wiki_staff {
-              background-image:
-                image-url("common/header/wiki/staff.png");
-            }
-            &.wiki_confi {
-              background-image:
-                image-url("common/header/wiki/confi.png");
-            }
-            &.basecamp {
-              background-image:
-                image-url("common/header/wiki/basecamp.png");
-            }
-            &.facebook_staff {
-              background-image:
-                image-url("common/header/facebook/facebook.png");
+            .text {
+              margin: 4px 0 0 0;
             }
           }
 
-          &.hover {
+          a:hover {
             @include background-image(
               linear-gradient(#cccccc, #777777)
             );
             background-size: 100% 100%;
             background-position: 0 0;
 
-            a {
-              color: black;
+            color: black;
 
-              &.event_list {
-                background-image:
-                  image-url("common/header/event/event_list_hover.png");
-              }
-              &.event_create {
-                background-image:
-                  image-url("common/header/event/event_create_hover.png");
-              }
-              &.calendar {
-                background-image:
-                  image-url("common/header/event/calendar_hover.png");
-              }
-              &.wiki_staff {
-                background-image:
-                  image-url("common/header/wiki/staff_hover.png");
-              }
-              &.wiki_confi {
-                background-image:
-                  image-url("common/header/wiki/confi_hover.png");
-              }
-              &.facebook_staff {
-                background-image:
-                  image-url("common/header/facebook/facebook_hover.png");
-              }
+            &.event_list .sprite {
+              @include submenu-sprite(event_list_hover);
+            }
+            &.event_create .sprite {
+              @include submenu-sprite(event_create_hover);
+            }
+            &.calendar .sprite {
+              @include submenu-sprite(event_calendar_hover);
+            }
+            &.wiki_staff .sprite {
+              @include submenu-sprite(wiki_staff_hover);
+            }
+            &.wiki_confi .sprite {
+              @include submenu-sprite(wiki_confi_hover);
+            }
+            &.facebook_staff .sprite {
+              @include submenu-sprite(facebook_staff_hover);
             }
           }
         }

@@ -85,13 +85,13 @@ $(document).ready(function() {
     }
   );
 
-  $("#links .submenu li").hover(
-    function() {
-      $(this).addClass('hover');
-    },
-    function() {
-      $(this).removeClass('hover');
-    }
-  );
+//  $("#links .submenu li").hover(
+//    function() {
+//      $(this).addClass('hover');
+//    },
+//    function() {
+//      $(this).removeClass('hover');
+//    }
+//  );
 
 });

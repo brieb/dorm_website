@@ -5,12 +5,21 @@
 @import "third_party/Absolution/jquery.ui.all";
 @import "third_party/jquery-ui-timepicker-addon";
 
+
+$menu-sprite-dimensions: true;
+$submenu-sprite-dimensions: true;
+/*$menu-spacing: 18px;*/
+@import "icon/menu/*.png";
+@import "icon/submenu/*.png";
+
 @import "fonts";
 
 $sidebarBackgroundColor: #343434;
 $sidebarBackgroundColor: #C5C5C5;
 $sidebarWidth: 200px;
 $headerHeight: 50px;
+$menuIconSize: 32px;
+$submenuIconSize: 16px;
 $aPaddingTop: 18px;
 $imgDim: 32px;
 
