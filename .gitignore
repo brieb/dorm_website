@@ -1,5 +1,4 @@
 .*.swp
-*.secret.php
 /static/
 /application/cache/
 /application/logs/
@@ -7,3 +6,4 @@
 /.idea/*
 *.scssc
 .htaccess
+/conf/*.php
