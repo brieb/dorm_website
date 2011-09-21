@@ -176,6 +176,14 @@ class Access {
      ' user_access_group:' . $user['user_access_group'] .
      ' user_id:' . $user['user_id']
     );
+    $log_msg =
+     date('Ymd-H:i:s').
+     ' Session Initialized'.
+     ' sunetid:' . $user['user_sunetid'] .
+     ' user_access_group:' . $user['user_access_group'] .
+     ' user_id:' . $user['user_id']
+    ;
+    `echo $log_msg >> user_access.log`;
   }
 
   private function isSetSessionUser() {
