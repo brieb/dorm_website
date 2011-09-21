@@ -31,12 +31,16 @@ class Menu {
 
     $content .= "<li>";
 
-    $content .= $this->mainMenuItem->getAnchor();
+    $content .= $this->mainMenuItem->render();
 
     if ($this->subMenuItems) {
       $content .= "<ul class='submenu'>";
       foreach ($this->subMenuItems as $subMenuItem) {
-        $content .= "<li>{$subMenuItem->getAnchor()}</li>";
+        $content .= "
+          <li>
+            {$subMenuItem->render()}
+          </li>
+        ";
       }
       $content .= "</ul>";
     }

@@ -47,7 +47,7 @@ class Event_model extends CI_Model {
   }
 
   //TODO move to read with no args
-  function get_events($only_upcoming = TRUE, $sort = TRUE) {
+  function read_all($only_upcoming = TRUE, $sort = TRUE) {
     $sql = "
       SELECT
         id,
@@ -64,7 +64,6 @@ class Event_model extends CI_Model {
     if ($sort) {
       $sql .= " ORDER BY time_start, time_end";
     }
-    log_message('info', $sql);
 
     $query = $this->db->query($sql);
 
@@ -78,8 +77,16 @@ class Event_model extends CI_Model {
   }
 
   function create($event_data) {
-    $mysqldate_start = date('Y-m-d H:i:s', strtotime($event_data['time']['start']));
-    $mysqldate_end = date('Y-m-d H:i:s', strtotime($event_data['time']['end']));
+    $mysqldate_format = 'Y-m-d H:i:s';
+
+    $mysqldate_start = date(
+      $mysqldate_format,
+      strtotime($event_data['time']['start'])
+    );
+    $mysqldate_end = date(
+      $mysqldate_format,
+      strtotime($event_data['time']['end'])
+    );
 
     $query = $this->db->query(
       "

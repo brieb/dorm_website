@@ -103,7 +103,7 @@ class Event extends CI_Controller {
   }
 
   private function view_all() {
-    $events = $this->Event_model->get_events();
+    $events = $this->Event_model->read_all();
     $events = json_encode($events);
     $this->load->view(
       'event/view_all',
