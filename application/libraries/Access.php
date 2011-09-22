@@ -13,10 +13,6 @@ class Access {
 
     $this->CI->load->library('session');
 
-    if (ENVIRONMENT == 'development') {
-      $_SERVER['REMOTE_USER'] = 'bbunge';
-    }
-
     if (!($this->isLoggedIn() || $this->isHomePage())) {
       $this->redirectToNoAccess();
       return;

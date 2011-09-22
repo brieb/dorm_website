@@ -18,6 +18,9 @@ class Welcome extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index() {
+    if (ENVIRONMENT == 'development') {
+      $this->output->enable_profiler(TRUE);
+    }
 		$this->load->view('welcome_message');
 	}
 
