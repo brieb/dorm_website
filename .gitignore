@@ -9,3 +9,4 @@
 /conf/*.php
 user_access.log
 /assets/.sass-cache/
+.htpasswd
