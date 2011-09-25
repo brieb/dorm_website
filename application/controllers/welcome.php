@@ -32,6 +32,12 @@ class Welcome extends CI_Controller {
       )
     );
   }
+
+  public function home() {
+    $this->load->view(
+      'home'
+    );
+  }
 }
 
 /* End of file welcome.php */

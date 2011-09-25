@@ -1,5 +1,5 @@
 <?php
-  $this->load->view(
+$this->load->view(
   'common/header',
   array(
     'page_title' => 'People',

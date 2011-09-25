@@ -30,9 +30,17 @@ body {
   background-color: #e3e3e3;
 }
 
+@mixin rounded_box($padding_t_b: 20px, $padding_l_r: 30px) {
+  @include single-box-shadow;
+  @include border-radius(10px);
+  @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+  padding: $padding_t_b $padding_l_r;
+}
+
 @import "sidebar";
 @import "header";
 @import "welcome";
+@import "home";
 @import "content";
 @import "event_create_sign_up_wizard";
 

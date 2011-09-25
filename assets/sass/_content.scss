@@ -19,10 +19,7 @@
   }
 
   #event_create_fields, #event_view, #event_sign_ups {
-    @include single-box-shadow;
-    @include border-radius(10px);
-    @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
-    padding: 20px 30px;
+    @include rounded_box;
   }
 
   #event_create_fields {
