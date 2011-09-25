@@ -21,73 +21,112 @@
     @include box-shadow(#000000 0px 0px 10px);
   }
 
+  .wrapper {
+    width: $content_width;
+    margin: auto;
+  }
+
+  #nav {
+    width: 100%;
+    height: 32px;
+    z-index: 10000;
+    position: fixed;
+
+    background-color: transparentize(#000000, 0.4);
+    color: white;
+    @include text-shadow(#000 0px 0px 5px);
+    @include shadow;
+
+    ul {
+      float: right;
+
+      li {
+        padding: 6px 0;
+        display: inline-block;
+        font-family: "Lato-Regular";
+        font-size: 16px;
+
+        a {
+          border: {
+            right: 0px solid #000000;
+          };
+          padding: 0 15px;
+          color: #DCDCDC;
+          text-decoration: none;
+
+          &:hover {
+            color: white;
+            @include text-shadow(#dfdfdf 0px 0px 3px);
+          }
+        }
+
+        &:last-child {
+          a {
+            border: {
+              right: 0px;
+            };
+          }
+        }
+      }
+    }
+  }
+
   #top {
     background-image: image-url("home/bg_top.png");
     @include shadow;
+    height: 760px;
 
-    #nav {
-      height: 40px;
-      background-color: transparentize(#000000, 0.4);
+    #features {
+      margin-top: 20px;
+      height: 200px;
+      background-color: transparentize(#000000, 0.3);
       color: white;
       @include shadow;
-      /*float: right;*/
+      text-align: center;
+      padding: 15px;
 
-      .wrapper {
-        width: $content_width;
-        margin: auto;
-      }
+      .section {
+        position: relative;
+        width: $col_width - 2px;
+        height: 100%;
+        display: inline-block;
 
-      ul {
-        float: right;
-
-        li {
-          padding: 10px 0;
-          display: inline-block;
-          font-family: "Lato-Light";
-          font-size: 16px;
-
-          a {
-            border: {
-              right: 1px solid #000000;
-            };
-            padding: 0 10px;
-            color: #DCDCDC;
-            text-decoration: none;
-
-            &:hover {
-              color: white;
-            }
-          }
-
-          /*&:first-child {*/
-            /*a {*/
-              /*border: {*/
-                /*left: 0px;*/
-              /*};*/
-            /*}*/
-          /*}*/
-
-          &:last-child {
-            a {
-              border: {
-                right: 0px;
-              };
-            }
-          }
-
-          /*.sprite {*/
-            /*display: block;*/
-            /*float: left;*/
-            /*margin: ($headerHeight - $menuIconSize)/2 10px;*/
-          /*}*/
-
-          /*.events .sprite {*/
-            /*@include menu-sprite(event);*/
-          /*}*/
+        .text {
+          font-family: "Forque";
+          font-size: 36px;
+          margin-top: 20px;
+          letter-spacing: 1px;
+          /*position: absolute;*/
+          /*bottom: 10px;*/
+          /*left: 100px;*/
         }
 
-      }
+        .image {
+          width: 100%;
+          height: 150px;
 
+          img {
+            max-height: 100%;
+            max-width: 100%;
+            border: {
+              color: #e3e3e3;
+              width: 3px;
+              style: solid;
+            };
+            @include border-radius(5px);
+          }
+        }
+
+        &:hover {
+          $shadow_color: #dfdfdf;
+          .text {
+            //@include text-shadow($shadow_color 0px 0px 3px);
+          }
+          .image img {
+            @include box-shadow($shadow_color 0px 0px 10px);
+          }
+        }
+      }
     }
 
     #top_content {
@@ -108,9 +147,10 @@
         float: right;
         background-color: #e3e3e3;
         border:1px solid #FFFFFF;
-        height: 340px;
+        height: $top_content_height;
         position:relative;
         width: $col_width*2 - 2px;
+        @include border-radius(5px);
 
         -moz-box-shadow:0 0 22px #111;
         -webkit-box-shadow:0 0 22px #111;
@@ -179,9 +219,7 @@
 
   #main {
     .content {
-      /*@include box-shadow(#000000 0px 5px 5px);*/
-      /*@include init_section;*/
-
+      padding-bottom: 50px;
 
       border-bottom: {
         color: #B3B3B3;
@@ -272,8 +310,35 @@
     }
   }
 
-  #footer {
-    margin-top: 50px;
+  /*#footer {*/
+    /*margin-top: 50px;*/
+  /*}*/
+
+  .container_button_top {
+    margin-top: 60px;
+    width: 100%;
+    text-align: center;
+
+    a {
+      /*height: 40px;*/
+      $img_size: 36px;
+
+      width: $img_size;
+      display: block;
+      margin: auto;
+      padding-top: $img_size;
+      text-decoration: none;
+      color: #333;
+
+      background-image: image-url('home/arrow.png');
+      background-size: $img_size;
+      background-repeat: no-repeat;
+      background-position: center top;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   .clear {

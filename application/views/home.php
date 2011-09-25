@@ -9,26 +9,26 @@ $this->load->view(
 ?>
 
 <div id="home">
-  <div id="top">
-    <div id="nav">
-      <div class="wrapper">
-        <ul>
-          <li><a class="events" href="">
-            <span class="sprite"></span>
-            <span class="text">Events</span>
-          </a></li>
-          <li><a class="about" href="">
-            <span class="sprite"></span>
-            <span class="text">About</span>
-          </a></li>
-          <li><a class="login" href="">
-            <span class="sprite"></span>
-            <span class="text">Login</span>
-          </a></li>
-        </ul>
-      </div>
+  <div id="nav">
+    <div class="wrapper">
+      <ul>
+        <li><a class="events" href="#events_upcoming">
+          <span class="sprite"></span>
+          <span class="text">Events</span>
+        </a></li>
+        <li><a class="about" href="#about">
+          <span class="sprite"></span>
+          <span class="text">About</span>
+        </a></li>
+        <li><a class="login" href="">
+          <span class="sprite"></span>
+          <span class="text">Login</span>
+        </a></li>
+      </ul>
     </div>
+  </div>
 
+  <div id="top">
     <div id="top_content">
       <div id="logo">
         Freshman<br/>
@@ -58,7 +58,32 @@ $this->load->view(
       </div>
     </div>
 
+    <?php $PHOTO_DIR = base_url() . 'assets/img/home/features/'; ?>
+    <div id="features">
+      <div class="wrapper">
+        <div class="section">
+          <div class="image">
+            <img src="<?php echo $PHOTO_DIR . 'dynamic.jpg'; ?>"/>
+          </div>
+          <div class="text">Dynamic</div>
+        </div>
+        <div class="section">
+          <div class="image">
+            <img src="<?php echo $PHOTO_DIR . 'energetic.jpg'; ?>"/>
+          </div>
+          <div class="text">Energetic</div>
+        </div>
+        <div class="section">
+          <div class="image">
+            <img src="<?php echo $PHOTO_DIR . 'fun.jpg'; ?>"/>
+          </div>
+          <div class="text">Fun!</div>
+        </div>
+      </div>
+    </div>
+
     <div class="clear"></div>
+
 
   </div>
 
@@ -69,46 +94,25 @@ $this->load->view(
           Upcoming<br/>
           Events
         </div>
+
         <div class="section_content">
-          <table>
-            <tr>
-              <td class="event_hover">
-              </td>
-              <td class="event_time">
-                09.14 @ 12:00pm
-              </td>
-              <td class="event_title">
-                BBQ at the Dean's
-              </td>
-            </tr>
-
-            <tr>
-              <td class="event_hover">
-              </td>
-              <td class="event_time">
-                09.14 @ 12:00pm
-              </td>
-              <td class="event_title">
-                BBQ at the Dean's hoiserjlfdsjkl fjsdkalfjkdsla fjskdlafjkdlsajf
-                fjdsklajfkldas jfkldsajfklas dfjkl
-              </td>
-            </tr>
-
-          </table>
-        </div>
-
-        <div id="calendar" class="section_content">
           <iframe
-            src="https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23efefef&amp;src=frosoco.stanford%40gmail.com&amp;color=%23182C57&amp;ctz=America%2FLos_Angeles"
+            src="https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23efefef&amp;src=frosoco.stanford%40gmail.com&amp;color=%23182C57&amp;ctz=America%2FLos_Angeles"
             style=" border-width:0 " width="580" height="500" frameborder="0"
             scrolling="no"></iframe>
         </div>
       </div>
 
       <div class="clear"></div>
+
+      <div class="container_button_top">
+        <a href="#top">Top</a>
+      </div>
     </div>
 
     <div id="about" class="content bg">
+      <!--      <a name="about"></a>-->
+
       <div class="wrapper">
         <div class="section_label">
           What is<br/>
@@ -164,7 +168,12 @@ $this->load->view(
             Stanford and beyond.
           </p>
         </div>
+
         <div class="clear"></div>
+
+        <div class="container_button_top">
+          <a href="#top">Top</a>
+        </div>
       </div>
 
 
