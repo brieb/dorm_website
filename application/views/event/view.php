@@ -8,6 +8,7 @@ $this->load->view(
 );
 
 $this->load->helper('event/form_builder');
+$this->load->helper('remote_user');
 
 ?>
 
@@ -55,7 +56,7 @@ foreach ($sidebar as $sidebarBox) {
   $sidebarBoxContent = "";
   foreach ($sidebarBox as $elem) {
     if (
-      $this->access->canDo($elem['action']) &&
+      remote_user_can_do($elem['action']) &&
       !(isset($elem['hide']) && $elem['hide'])
     ) {
       if (element('isButton', $elem)) {
@@ -89,6 +90,7 @@ foreach ($sidebar as $sidebarBox) {
 }
 
 ?>
+
 
 <?php if ($event['sign_up_id'] != NULL): ?>
   <script>

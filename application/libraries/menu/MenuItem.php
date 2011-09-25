@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . "/../Access.php");
+require_once(dirname(__FILE__) . "/../../helpers/remote_user_helper.php");
 
 class MenuItem {
   /**
@@ -31,13 +31,11 @@ class MenuItem {
     $this->title = $title;
     $this->action = $action;
     $this->url = $url;
-
-    $this->access = new Access();
   }
 
   public function canDo() {
     if ($this->action) {
-      return $this->access->canDo($this->action);
+      return remote_user_can_do($this->action);
     }
     return false;
   }

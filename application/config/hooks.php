@@ -11,10 +11,10 @@
 */
 
 $hook['post_controller_constructor'] = array(
-  'class' => 'Access',
+  'class' => 'Access_hook',
   'function' => 'post_controller_constructor',
-  'filename' => 'Access.php',
-  'filepath' => 'libraries',
+  'filename' => 'access_hook.php',
+  'filepath' => 'hooks',
 );
 
 /* End of file hooks.php */
