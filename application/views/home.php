@@ -6,6 +6,25 @@ $this->load->view(
     'js' => 'main-home',
   )
 );
+
+$photo_list = "";
+
+$this->load->helper('directory');
+
+$PHOTO_DIR = 'assets/img/home/slideshow/photos/';
+$PHOTO_PREFIX = base_url() . $PHOTO_DIR;
+$photos = directory_map($PHOTO_DIR, 1);
+
+$photo_list .= '<ul class="slides">';
+foreach ($photos as $photo) {
+  $photo_list .= '<li>';
+  $photo_list .= '<img src="' . $PHOTO_PREFIX . $photo . '"/>';
+  $photo_list .= '</li>';
+}
+$photo_list .= '</ul>';
+
+
+$photos_dir_features = base_url() . 'assets/img/home/features/';
 ?>
 
 <div id="home">
@@ -20,7 +39,7 @@ $this->load->view(
           <span class="sprite"></span>
           <span class="text">About</span>
         </a></li>
-        <li><a class="login" href="">
+        <li><a class="login" href="<?php echo site_url('calendar/index');  ?>">
           <span class="sprite"></span>
           <span class="text">Login</span>
         </a></li>
@@ -37,45 +56,29 @@ $this->load->view(
       </div>
 
       <div id="slideshow">
-<?php
-          $this->load->helper('directory');
-
-  $PHOTO_DIR = 'assets/img/home/slideshow/photos/';
-  $PHOTO_PREFIX = base_url() . $PHOTO_DIR;
-  $photos = directory_map($PHOTO_DIR, 1);
-
-  echo '<ul class="slides">';
-  foreach ($photos as $photo) {
-    echo '<li>';
-    echo '<img src="' . $PHOTO_PREFIX . $photo . '"/>';
-    echo '</li>';
-  }
-  echo '</ul>';
-  ?>
-
-  <span class="arrow previous"></span>
-  <span class="arrow next"></span>
+        <?php echo $photo_list; ?>
+        <span class="arrow previous"></span>
+        <span class="arrow next"></span>
       </div>
     </div>
 
-    <?php $PHOTO_DIR = base_url() . 'assets/img/home/features/'; ?>
     <div id="features">
       <div class="wrapper">
         <div class="section">
           <div class="image">
-            <img src="<?php echo $PHOTO_DIR . 'dynamic.jpg'; ?>"/>
+            <img src="<?php echo $photos_dir_features . 'dynamic.jpg'; ?>"/>
           </div>
           <div class="text">Dynamic</div>
         </div>
         <div class="section">
           <div class="image">
-            <img src="<?php echo $PHOTO_DIR . 'energetic.jpg'; ?>"/>
+            <img src="<?php echo $photos_dir_features . 'energetic.jpg'; ?>"/>
           </div>
           <div class="text">Energetic</div>
         </div>
         <div class="section">
           <div class="image">
-            <img src="<?php echo $PHOTO_DIR . 'fun.jpg'; ?>"/>
+            <img src="<?php echo $photos_dir_features . 'fun.jpg'; ?>"/>
           </div>
           <div class="text">Fun!</div>
         </div>

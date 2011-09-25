@@ -12,7 +12,7 @@
 
 $hook['post_controller_constructor'] = array(
   'class' => 'Access',
-  'function' => 'preController',
+  'function' => 'post_controller_constructor',
   'filename' => 'Access.php',
   'filepath' => 'libraries',
 );

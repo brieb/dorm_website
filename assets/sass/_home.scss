@@ -41,16 +41,16 @@
       float: right;
 
       li {
-        padding: 6px 0;
+        padding: 5px 0;
         display: inline-block;
-        font-family: "Lato-Regular";
-        font-size: 16px;
+        font-family: "YanoneKaffeesatz-Light";
+        font-size: 22px;
 
         a {
           border: {
             right: 0px solid #000000;
           };
-          padding: 0 15px;
+          padding-left: 25px;
           color: #DCDCDC;
           text-decoration: none;
 
@@ -83,7 +83,7 @@
       color: white;
       @include shadow;
       text-align: center;
-      padding: 15px;
+      padding: 20px;
 
       .section {
         position: relative;
@@ -92,13 +92,9 @@
         display: inline-block;
 
         .text {
-          font-family: "Forque";
-          font-size: 36px;
+          font-family: "YanoneKaffeesatz-Thin";
+          font-size: 24px;
           margin-top: 20px;
-          letter-spacing: 1px;
-          /*position: absolute;*/
-          /*bottom: 10px;*/
-          /*left: 100px;*/
         }
 
         .image {
@@ -120,7 +116,7 @@
         &:hover {
           $shadow_color: #dfdfdf;
           .text {
-            //@include text-shadow($shadow_color 0px 0px 3px);
+            //@include text-shadow($shadow_color 0px 0px 10px);
           }
           .image img {
             @include box-shadow($shadow_color 0px 0px 10px);
@@ -136,8 +132,12 @@
 
       #logo {
         width: $col_width;
-        font-family: "Forque";
-        font-size: 80px;
+        margin-top: -7px;
+
+        font-family: "YanoneKaffeesatz-Bold";
+        font-size: 120px;
+        font-variant:small-caps;
+
         color: #f8f8f8;
         float: left;
         @include text-shadow(#111 0px 0px 22px);

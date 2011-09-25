@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+  exit('No direct script access allowed');
+}
 
 class Access {
   private $permissions;
@@ -13,8 +15,12 @@ class Access {
 
     $this->CI->load->library('session');
 
+    $routing =& load_class('Router');
+    $this->class = $routing->fetch_class();
+    $this->method = $routing->fetch_method();
+
     if (!($this->isLoggedIn() || $this->isHomePage())) {
-      $this->redirectToNoAccess();
+      $this->redirectToHomePage();
       return;
     }
 
@@ -35,22 +41,26 @@ class Access {
 
     return
       isset(
-        $this->permissions
-          [$user_access_group]
-          [$action['class']]
-          [$action['method']]
+      $this->permissions
+      [$user_access_group]
+      [$action['class']]
+      [$action['method']]
       ) ?
         $this->permissions
-          [$user_access_group]
-          [$action['class']]
-          [$action['method']]
-      : false;
+        [$user_access_group]
+        [$action['class']]
+        [$action['method']]
+        : false;
   }
 
-  public function preController($params) {
-    $routing =& load_class('Router');
-    $this->class = $routing->fetch_class();
-    $this->method = $routing->fetch_method();
+  public function post_controller_constructor() {
+    if ($this->isLoggedIn()) error_log("is logged in");
+    if ($this->isHomePage()) error_log("is home");
+    if (!$this->isLoggedIn() && !$this->isHomePage()) {
+      error_log("to login");
+      $this->redirectToLogin();
+      return true;
+    }
 
     if ($this->isHomePage()) {
       return true;
@@ -65,6 +75,7 @@ class Access {
       return true;
     }
 
+    error_log("no access");
     $this->redirectToNoAccess();
     return false;
   }
@@ -73,7 +84,8 @@ class Access {
     $public = array();
     $stanford = array_merge_recursive($public, array());
 
-    $resident = array_merge_recursive($stanford,
+    $resident = array_merge_recursive(
+      $stanford,
       array(
         'event' => array(
           'view' => true,
@@ -98,7 +110,8 @@ class Access {
       )
     );
 
-    $staff = array_merge_recursive($resident,
+    $staff = array_merge_recursive(
+      $resident,
       array(
         'event' => array(
           'create' => true,
@@ -122,7 +135,8 @@ class Access {
       )
     );
 
-    $confi = array_merge_recursive($staff,
+    $confi = array_merge_recursive(
+      $staff,
       array(
         'wiki' => array(
           'confi' => true,
@@ -140,22 +154,39 @@ class Access {
   }
 
   private function isLoggedIn() {
-    return isset($_SERVER['REMOTE_USER']);
+    return isset($_SERVER['REMOTE_USER']) ||
+           (ENVIRONMENT == "development" && isset($_SERVER['PHP_AUTH_USER']));
   }
 
   private function isHomePage() {
-    return ($this->class == 'welcome');
+    return ($this->class == "welcome");
   }
 
   private function redirectToNoAccess() {
     header("Location: {$this->baseUrl}index.php/welcome/no_access");
   }
 
+  private function redirectToLogin() {
+    header("Location: {$this->baseUrl}auth/");
+  }
+
+  private function redirectToHomePage() {
+    header("Location: {$this->baseUrl}index.php/welcome/home");
+  }
+
   private function setSessionUser() {
     $this->CI->load->model('User_model');
 
     $user = array();
-    $user['user_sunetid'] = $_SERVER['REMOTE_USER'];
+
+    $user['user_sunetid'] = "";
+    if (isset($_SERVER['REMOTE_USER'])) {
+      $user['user_sunetid'] = $_SERVER['REMOTE_USER'];
+    } else if (
+      ENVIRONMENT == "development" && isset($_SERVER['PHP_AUTH_USER'])){
+      $user['user_sunetid'] = $_SERVER['PHP_AUTH_USER'];
+    }
+
     $user['user_id'] =
       $this->CI->User_model->getIdBySunetid($user['user_sunetid']);
     $user['user_access_group'] =
@@ -166,19 +197,19 @@ class Access {
     }
 
     $this->CI->session->set_userdata($user);
-    log_message('info',
-     'Session Initialized'.
-     ' sunetid:' . $user['user_sunetid'] .
-     ' user_access_group:' . $user['user_access_group'] .
-     ' user_id:' . $user['user_id']
+    log_message(
+      'info',
+      'Session Initialized' .
+      ' sunetid:' . $user['user_sunetid'] .
+      ' user_access_group:' . $user['user_access_group'] .
+      ' user_id:' . $user['user_id']
     );
     $log_msg =
-     date('Ymd-H:i:s').
-     ' Session Initialized'.
-     ' sunetid:' . $user['user_sunetid'] .
-     ' user_access_group:' . $user['user_access_group'] .
-     ' user_id:' . $user['user_id']
-    ;
+      date('Ymd-H:i:s') .
+      ' Session Initialized' .
+      ' sunetid:' . $user['user_sunetid'] .
+      ' user_access_group:' . $user['user_access_group'] .
+      ' user_id:' . $user['user_id'];
     `echo $log_msg >> user_access.log`;
   }
 

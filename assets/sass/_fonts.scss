@@ -82,3 +82,24 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'YanoneKaffeesatz-Bold';
+    src: url('fonts_orig/YanoneKaffeesatz-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'YanoneKaffeesatz-Light';
+    src: url('fonts_orig/YanoneKaffeesatz-Light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'YanoneKaffeesatz-Thin';
+    src: url('fonts_orig/YanoneKaffeesatz-Thin.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
