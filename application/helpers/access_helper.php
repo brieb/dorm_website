@@ -3,19 +3,6 @@ if (!defined('BASEPATH')) {
   exit('No direct script access allowed');
 }
 
-//if (!function_exists('get_action')) {
-//  function get_action() {
-//    $routing =& load_class('Router');
-//    $class = $routing->fetch_class();
-//    $method = $routing->fetch_method();
-//
-//    return array(
-//      'class' => $class,
-//      'method' => $method
-//    );
-//  }
-//}
-
 if (!function_exists('get_permissions')) {
   function get_permissions() {
     if (!isset($GLOBALS['FSC_PERMISSIONS'])) {
