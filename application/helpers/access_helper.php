@@ -17,6 +17,9 @@ if (!function_exists('get_permissions')) {
         'access_denied' => array(
           'index' => TRUE
         ),
+        'auth' => array(
+          'index' => TRUE
+        ),
       );
       $stanford = array_merge_recursive($public, array());
 
