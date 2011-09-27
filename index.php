@@ -1,213 +1,221 @@
 <?php
 
-define('CONFPATH', dirname(__FILE__).'/conf/');
+include(dirname(__FILE__) . '/intern/conf/config.php');
 
-/*
- *---------------------------------------------------------------
- * APPLICATION ENVIRONMENT
- *---------------------------------------------------------------
- *
- * You can load different configurations depending on your
- * current environment. Setting the environment also influences
- * things like logging and error reporting.
- *
- * This can be set to anything, but default usage is:
- *
- *     development
- *     testing
- *     production
- *
- * NOTE: If you change these, also change the error_reporting() code below
- *
- */
+$URL_HOME = $BASE_URL . '../';
+$URL_APPS = $BASE_URL;
 
-require(CONFPATH.'config.php');
-if (isset($IS_DEV) && $IS_DEV) {
-  define('ENVIRONMENT', 'development');
-} else {
-  define('ENVIRONMENT', 'production');
+function get_files_in_dir($directory) {
+  $results = array();
+  $handler = opendir($directory);
+  while ($file = readdir($handler)) {
+    if ($file != "." && $file != "..") {
+      $results[] = $file;
+    }
+  }
+  closedir($handler);
+  return $results;
 }
 
-/*
- *---------------------------------------------------------------
- * ERROR REPORTING
- *---------------------------------------------------------------
- *
- * Different environments will require different levels of error reporting.
- * By default development will show errors but testing and live will hide them.
- */
+$PHOTO_DIR = 'assets/img/home/slideshow/photos/';
+$PHOTO_PREFIX = $URL_HOME . $PHOTO_DIR;
 
-if (defined('ENVIRONMENT'))
-{
-	switch (ENVIRONMENT)
-	{
-		case 'development':
-			error_reporting(E_ALL);
-		break;
+$photos = get_files_in_dir($PHOTO_DIR);
 
-		case 'testing':
-		case 'production':
-			error_reporting(0);
-		break;
-
-		default:
-			exit('The application environment is not set correctly.');
-	}
+$photo_list = "";
+$photo_list .= '<ul class="slides">';
+foreach ($photos as $photo) {
+  $photo_list .= '<li>';
+  $photo_list .= '<img src="' . $PHOTO_PREFIX . $photo . '"/>';
+  $photo_list .= '</li>';
 }
-
-/*
- *---------------------------------------------------------------
- * SYSTEM FOLDER NAME
- *---------------------------------------------------------------
- *
- * This variable must contain the name of your "system" folder.
- * Include the path if the folder is not in the same  directory
- * as this file.
- *
- */
-	$system_path = 'system';
-
-/*
- *---------------------------------------------------------------
- * APPLICATION FOLDER NAME
- *---------------------------------------------------------------
- *
- * If you want this front controller to use a different "application"
- * folder then the default one you can set its name here. The folder
- * can also be renamed or relocated anywhere on your server.  If
- * you do, use a full server path. For more info please see the user guide:
- * http://codeigniter.com/user_guide/general/managing_apps.html
- *
- * NO TRAILING SLASH!
- *
- */
-	$application_folder = 'application';
-
-/*
- * --------------------------------------------------------------------
- * DEFAULT CONTROLLER
- * --------------------------------------------------------------------
- *
- * Normally you will set your default controller in the routes.php file.
- * You can, however, force a custom routing by hard-coding a
- * specific controller class/function here.  For most applications, you
- * WILL NOT set your routing here, but it's an option for those
- * special instances where you might want to override the standard
- * routing in a specific front controller that shares a common CI installation.
- *
- * IMPORTANT:  If you set the routing here, NO OTHER controller will be
- * callable. In essence, this preference limits your application to ONE
- * specific controller.  Leave the function name blank if you need
- * to call functions dynamically via the URI.
- *
- * Un-comment the $routing array below to use this feature
- *
- */
-	// The directory name, relative to the "controllers" folder.  Leave blank
-	// if your controller is not in a sub-folder within the "controllers" folder
-	// $routing['directory'] = '';
-
-	// The controller class file name.  Example:  Mycontroller.php
-	// $routing['controller'] = '';
-
-	// The controller function you wish to be called.
-	// $routing['function']	= '';
+$photo_list .= '</ul>';
 
 
-/*
- * -------------------------------------------------------------------
- *  CUSTOM CONFIG VALUES
- * -------------------------------------------------------------------
- *
- * The $assign_to_config array below will be passed dynamically to the
- * config class when initialized. This allows you to set custom config
- * items or override any default config values found in the config.php file.
- * This can be handy as it permits you to share one application between
- * multiple front controller files, with each file containing different
- * config values.
- *
- * Un-comment the $assign_to_config array below to use this feature
- *
- */
-	// $assign_to_config['name_of_config_item'] = 'value of config item';
+$photos_dir_features = $URL_HOME . 'assets/img/home/features/';
+
+?>
+
+<html>
+<head>
+  <title>Welcome to FroSoCo! | FroSoCo</title>
+
+  <script
+    data-main="<?php echo $URL_HOME; ?>assets/js/main-home"
+    src="<?php echo $URL_HOME; ?>assets/js/require-jquery.js">
+  </script>
+
+  <link rel="icon"
+        href="<?php echo $URL_HOME; ?>assets/img/common/favicon.ico"/>
+
+  <link
+    href="<?php echo $URL_HOME; ?>assets/css/style.css"
+    rel="stylesheet"/>
+</head>
+
+<body>
+
+<div id="home">
+  <div id="nav">
+    <div class="wrapper">
+      <ul>
+        <li><a class="events" href="#events_upcoming">
+          <span class="sprite"></span>
+          <span class="text">Events</span>
+        </a></li>
+        <li><a class="about" href="#about">
+          <span class="sprite"></span>
+          <span class="text">About</span>
+        </a></li>
+        <li><a class="login"
+               href="<?php echo $URL_APPS . 'index.php/calendar/index';  ?>">
+          <span class="sprite"></span>
+          <span class="text">Login</span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="top">
+    <div id="top_content">
+      <div id="logo">
+        Freshman<br/>
+        Sophomore<br/>
+        College
+      </div>
+
+      <div id="slideshow">
+        <?php echo $photo_list; ?>
+        <span class="arrow previous"></span>
+        <span class="arrow next"></span>
+      </div>
+    </div>
+
+    <div id="features">
+      <div class="wrapper">
+        <div class="section">
+          <div class="image">
+            <img src="<?php echo $photos_dir_features . 'dynamic.jpg'; ?>"/>
+          </div>
+          <div class="text">Dynamic</div>
+        </div>
+        <div class="section">
+          <div class="image">
+            <img src="<?php echo $photos_dir_features . 'energetic.jpg'; ?>"/>
+          </div>
+          <div class="text">Energetic</div>
+        </div>
+        <div class="section">
+          <div class="image">
+            <img src="<?php echo $photos_dir_features . 'fun.jpg'; ?>"/>
+          </div>
+          <div class="text">Fun!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clear"></div>
 
 
+  </div>
 
-// --------------------------------------------------------------------
-// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
-// --------------------------------------------------------------------
+  <div id="main">
+    <div id="events_upcoming" class="content">
+      <div class="wrapper">
+        <div class="section_label">
+          Upcoming<br/>
+          Events
+        </div>
 
-/*
- * ---------------------------------------------------------------
- *  Resolve the system path for increased reliability
- * ---------------------------------------------------------------
- */
+        <div class="section_content">
+          <iframe
+            src="https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23efefef&amp;src=frosoco.stanford%40gmail.com&amp;color=%23182C57&amp;ctz=America%2FLos_Angeles"
+            style=" border-width:0 " width="580" height="500" frameborder="0"
+            scrolling="no"></iframe>
+        </div>
+      </div>
 
-	// Set the current directory correctly for CLI requests
-	if (defined('STDIN'))
-	{
-		chdir(dirname(__FILE__));
-	}
+      <div class="clear"></div>
 
-	if (realpath($system_path) !== FALSE)
-	{
-		$system_path = realpath($system_path).'/';
-	}
+      <div class="container_button_top">
+        <a href="#top">Top</a>
+      </div>
+    </div>
 
-	// ensure there's a trailing slash
-	$system_path = rtrim($system_path, '/').'/';
+    <div id="about" class="content bg">
+      <!--      <a name="about"></a>-->
 
-	// Is the system path correct?
-	if ( ! is_dir($system_path))
-	{
-		exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
-	}
+      <div class="wrapper">
+        <div class="section_label">
+          What is<br/>
+          FroSoCo?
+        </div>
+        <div class="section_content">
+          <p>
+            The Freshman-Sophomore College provides the vibrant residential
+            intellectual community of a small, elite, liberal-arts college while
+            providing enhanced access to the academic resources of one of the
+            world's premier research universities. The College consists of
+            approximately 100 freshman and 60 sophomores living in two adjoining
+            houses with rooms for freshmen and sophomores interspersed on all
+            floors. Admission is by application only and once admitted students
+            can opt to stay for their sophomore year. We aim to bring together
+            the most talented students at Stanford and then help them achieve a
+            balance of academic preparation, personal exploration, cultural
+            enrichment, and self-reflection at the highest level. They emerge
+            with the critical self-understanding needed for the life-long
+            project
+            of designing a meaningful life and are already connected to the
+            resources at Stanford that can set them on the path towards being
+            exceptional individuals and community leaders.
+          </p>
 
-/*
- * -------------------------------------------------------------------
- *  Now that we know the path, set the main path constants
- * -------------------------------------------------------------------
- */
-	// The name of THIS file
-	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+          <p>
+            Part of what helps us achieve these goals is a fun community of
+            students that share their extraordinary abilities and help each
+            other develop, flourish and enjoy life: at the College you will
+            live, study, and play with like-minded individuals who are
+            academically driven, excited about the arts, give back to their
+            community, play Frisbee in the Quad, build a trebuchet to apply
+            their knowledge of physics, travel around the Bay Area and beyond to
+            visit museums, attend plays, sporting events, concerts,
+            restaurants - all supported by the College and its extensive staff.
+            Each house of the college has a senior staff or faculty couple, our
+            College Directors, that live in attached residences; the College
+            Dean lives across from the College. Along with the regular student
+            staff, we have extra writing and subject tutors, a public speaking
+            tutor, and a multimedia consultant. In addition to the wide range of
+            workshops and tutorials provided by our staff, our sophomores lead
+            mini-seminars on a diverse array of subjects exclusively for our
+            residents. The College has the resources to continuously bring in
+            distinguished professors, entrepreneurs, community leaders, and
+            artists to meet with the students and have dinner with them at the
+            Dean's residence.
+          </p>
 
-	// The PHP file extension
-	define('EXT', '.php');
+          <p>
+            In this dynamic, energetic, and fun atmosphere you will gain the
+            knowledge and skills, and the friends, mentors, advisors, and
+            academic and professional relationships, you need to thrive at
+            Stanford and beyond.
+          </p>
+        </div>
 
-	// Path to the system folder
-	define('BASEPATH', str_replace("\\", "/", $system_path));
+        <div class="clear"></div>
 
-	// Path to the front controller (this file)
-	define('FCPATH', str_replace(SELF, '', __FILE__));
-
-	// Name of the "system folder"
-	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
+        <div class="container_button_top">
+          <a href="#top">Top</a>
+        </div>
+      </div>
 
 
-	// The path to the "application" folder
-	if (is_dir($application_folder))
-	{
-		define('APPPATH', $application_folder.'/');
-	}
-	else
-	{
-		if ( ! is_dir(BASEPATH.$application_folder.'/'))
-		{
-			exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
-		}
+    </div>
 
-		define('APPPATH', BASEPATH.$application_folder.'/');
-	}
+  </div>
 
-/*
- * --------------------------------------------------------------------
- * LOAD THE BOOTSTRAP FILE
- * --------------------------------------------------------------------
- *
- * And away we go...
- *
- */
-require_once BASEPATH.'core/CodeIgniter'.EXT;
+  <!--  <div id="footer"></div>-->
+</div>
 
-/* End of file index.php */
-/* Location: ./index.php */
+</body>
+</html>
+

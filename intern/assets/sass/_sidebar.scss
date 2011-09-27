@@ -1,0 +1,94 @@
+#sidebar {
+  $marginButton: 3%;
+
+  height: 100%;
+  width: $sidebarWidth;
+  position: fixed;
+  left: 0;
+  top: $headerHeight;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  font-size: 110%;
+
+  background: {
+    color: $sidebarBackgroundColor;
+  };
+  border-right: {
+    style: solid;
+    color: #B3B3B3;
+    width: 2px;
+  };
+
+  .sidebar-box-wrapper {
+    .label {
+      font:{
+        size: 100%;
+        family: "Lato-Black";
+      };
+      margin: 15px 0 10px 10px;
+    }
+    margin: 20px 0;
+  }
+
+  .sidebar-box, #user_search, #search {
+    margin: 5px 5px 10px 5px;
+    padding: 5px;
+    width: $sidebarWidth - 10px - 10px - 5px;
+    font-size: 100%;
+  }
+
+  .sidebar-box {
+    background: transparentize(#000000, 0.9);
+    border: {
+      style: solid;
+      color: transparentize(#000000, 0.8);
+      width: 1px;
+    };
+    @include border-radius(5px);
+
+    .sort_by {
+      .ui-button-text {
+        text-align: left;
+        padding-left: 20px;
+      }
+
+    }
+  }
+
+  #user_search, #search {
+    height: 32px;
+    width: 94%;
+    margin-top: 15px;
+  }
+
+  #checkboxes_house, #checkboxes_floor {
+    label {
+      margin: 5px;
+    }
+  }
+
+  #navigation {
+    $navItemFontSize: 115%;
+
+    li {
+      a {
+        font: {
+          family: "Lato-Bold";
+          size: $navItemFontSize;
+        };
+        text-align: left;
+        width: 92%;
+        padding: 2%;
+        margin: 2%;
+      }
+    }
+  }
+
+  .ui-button {
+    width: 100% - $marginButton*2;
+    margin: $marginButton;
+    font-size: 90%;
+  }
+}
