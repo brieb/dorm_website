@@ -11,9 +11,6 @@ if (!function_exists('get_permissions')) {
           'index' => TRUE,
           'home' => TRUE,
         ),
-        'home' => array(
-          'index' => TRUE
-        ),
         'access_denied' => array(
           'index' => TRUE
         ),
