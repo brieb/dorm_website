@@ -1,6 +1,6 @@
 <?php
 
-define('CONFPATH', dirname(__FILE__).'/conf/');
+define('CONFPATH', dirname(__FILE__).'/../conf/');
 
 /*
  *---------------------------------------------------------------

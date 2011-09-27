@@ -1,6 +1,6 @@
 require(
   [
-    "jquery", "jquery-ui", "SetUp",
+    "jquery",
     "Slideshow"
   ],
   function($) {

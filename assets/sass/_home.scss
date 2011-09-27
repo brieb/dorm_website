@@ -10,10 +10,10 @@
     width: $content_width;
     margin: auto;
   }
-  
+
   @mixin init_section {
     @include init_width;
-    padding: $spacing_t_b 1px;
+    padding: $spacing_t_b 0;
     min-height: $section_height;
   }
 
@@ -87,7 +87,7 @@
 
       .section {
         position: relative;
-        width: $col_width - 2px;
+        width: $col_width - 5px;
         height: 100%;
         display: inline-block;
 

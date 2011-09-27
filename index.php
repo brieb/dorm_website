@@ -1,6 +1,6 @@
 <?php
 
-include(dirname(__FILE__) . '/intern/conf/config.php');
+include(dirname(__FILE__) . '/conf/config.php');
 
 $URL_HOME = $BASE_URL . '../';
 $URL_APPS = $BASE_URL;
@@ -59,19 +59,27 @@ $photos_dir_features = $URL_HOME . 'assets/img/home/features/';
   <div id="nav">
     <div class="wrapper">
       <ul>
-        <li><a class="events" href="#events_upcoming">
-          <span class="sprite"></span>
-          <span class="text">Events</span>
-        </a></li>
-        <li><a class="about" href="#about">
-          <span class="sprite"></span>
-          <span class="text">About</span>
-        </a></li>
-        <li><a class="login"
-               href="<?php echo $URL_APPS . 'index.php/calendar/index';  ?>">
-          <span class="sprite"></span>
-          <span class="text">Login</span>
-        </a></li>
+        <li>
+          <a class="home" href="#top">
+            Home
+          </a>
+        </li>
+        <li>
+          <a class="events" href="#events_upcoming">
+            Events
+          </a>
+        </li>
+        <li>
+          <a class="about" href="#about">
+            About
+          </a>
+        </li>
+        <li>
+          <a class="login"
+             href="<?php echo $URL_APPS . 'index.php/calendar/index';  ?>">
+            Login
+          </a>
+        </li>
       </ul>
     </div>
   </div>
