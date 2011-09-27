@@ -34,6 +34,7 @@ EventCreate.js
 jquery-ui-timepicker-addon.js
 SignUpFormBuilder.js
 EventEdit.js
+EventCreateSignUpWizard.js
 main-event-edit.js
 
 main-event_sign_ups-view.js
