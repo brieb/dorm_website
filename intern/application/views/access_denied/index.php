@@ -7,7 +7,7 @@ $this->load->view(
 );
 ?>
 
-<div id="home">
+<div id="access_denied">
   <div id="nav">
   </div>
 

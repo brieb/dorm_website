@@ -1,47 +1,95 @@
-.content_inner {
-  margin-top: 50px;
+#access_denied {
+  $content_width: 960px;
+  $spacing_t_b: 50px;
+  $top_content_height: 340px;
+  $section_height: 260px;
+  $col_width: 320px;
+  $left_section_text_padding_right: 30px;
 
-  @include rounded_box(30px, 30px);
-
-  .text, .image {
-    display: inline-block;
-    /*height: 100%;*/
+  @mixin init_width {
+    width: $content_width;
+    margin: auto;
   }
 
-  .image {
-    width: 320px;
-    margin: 10px 40px 10px 10px;
-    text-align: center;
-    vertical-align: top;
-
-    img {
-      width: 85%;
-    }
+  @mixin init_section {
+    @include init_width;
+    padding: $spacing_t_b 0;
+    min-height: $section_height;
   }
 
-  .text {
-    width: 500px;
+  @mixin shadow {
+    @include box-shadow(#000000 0px 0px 10px);
+  }
 
-    .header {
-      font: {
-        family: "YanoneKaffeesatz-Bold";
-        size: 90px;
-      };
-      margin-bottom: 30px;
-    }
-    .content {
-      font: {
-        family: "Lato-Light";
-        size: 20  px;
-      };
-      line-height: 1.3;
-    }
-    .footer {
-      margin-top: 30px;
-      font: {
-        family: "YanoneKaffeesatz-Regular";
-        size: 44px;
-      };
+  .wrapper {
+    width: $content_width;
+    margin: auto;
+  }
+
+  #nav {
+    width: 100%;
+    height: 32px;
+    z-index: 10000;
+    position: fixed;
+    background-color: transparentize(#000000, 0.4);
+  }
+
+  #top {
+    background-image: image-url("home/bg_top.png");
+    @include shadow;
+    height: 760px;
+
+    #top_content {
+      @include init_width;
+      height: $top_content_height;
+      padding: $spacing_t_b 0;
+
+      .content_inner {
+        margin-top: 50px;
+
+        @include rounded_box(30px, 30px);
+
+        .text, .image {
+          display: inline-block;
+        }
+
+        .image {
+          width: 320px;
+          margin: 10px 40px 10px 10px;
+          text-align: center;
+          vertical-align: top;
+
+          img {
+            width: 85%;
+          }
+        }
+
+        .text {
+          width: 500px;
+
+          .header {
+            font: {
+              family: "YanoneKaffeesatz-Bold";
+              size: 90px;
+            };
+            margin-bottom: 30px;
+          }
+          .content {
+            font: {
+              family: "Lato-Light";
+              size: 20  px;
+            };
+            line-height: 1.3;
+          }
+          .footer {
+            margin-top: 30px;
+            font: {
+              family: "YanoneKaffeesatz-Regular";
+              size: 44px;
+            };
+          }
+        }
+      }
     }
   }
 }
