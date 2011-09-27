@@ -1,7 +1,8 @@
 # Require any additional compass plugins here.
 
 # Set this to the root of your project when deployed:
-http_path = "/dorm_website/assets/"
+# TODO better path
+http_path = "../"
 css_dir = "css"
 sass_dir = "sass"
 images_dir = "img"
