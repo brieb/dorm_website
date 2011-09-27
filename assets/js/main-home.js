@@ -1,0 +1,7 @@
+require(
+  [
+    "jquery",
+    "Slideshow"
+  ],
+  function($) {
+ });
