@@ -32,6 +32,7 @@
     z-index: 10000;
     position: fixed;
     background-color: transparentize(#000000, 0.4);
+    @include shadow;
   }
 
   #top {
