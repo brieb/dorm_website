@@ -8,7 +8,7 @@ $this->load->view('common/assets', $opts);
 
 <div id="header">
   <div id="logo">
-    <?php echo anchor('/', 'FroSoCo'); ?>
+    <?php echo anchor('/../../', 'FroSoCo'); ?>
   </div>
   <div id="links">
     <?php
