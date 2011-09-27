@@ -10,10 +10,10 @@
     width: $content_width;
     margin: auto;
   }
-
+  
   @mixin init_section {
     @include init_width;
-    padding: $spacing_t_b 0;
+    padding: $spacing_t_b 1px;
     min-height: $section_height;
   }
 
