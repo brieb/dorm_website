@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'YanoneKaffeesatzThin';
+    font-family: 'YanoneKaffeesatz-Thin';
     src: url('fonts/yanonekaffeesatz-thin-webfont.eot');
     src: url('fonts/yanonekaffeesatz-thin-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/yanonekaffeesatz-thin-webfont.woff') format('woff'),
@@ -11,7 +11,7 @@
 }
 
 @font-face {
-    font-family: 'YanoneKaffeesatzRegular';
+    font-family: 'YanoneKaffeesatz-Regular';
     src: url('fonts/yanonekaffeesatz-regular-webfont.eot');
     src: url('fonts/yanonekaffeesatz-regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/yanonekaffeesatz-regular-webfont.woff') format('woff'),
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-    font-family: 'YanoneKaffeesatzLight';
+    font-family: 'YanoneKaffeesatz-Light';
     src: url('fonts/yanonekaffeesatz-light-webfont.eot');
     src: url('fonts/yanonekaffeesatz-light-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/yanonekaffeesatz-light-webfont.woff') format('woff'),
@@ -35,7 +35,7 @@
 }
 
 @font-face {
-    font-family: 'YanoneKaffeesatzBold';
+    font-family: 'YanoneKaffeesatz-Bold';
     src: url('fonts/yanonekaffeesatz-bold-webfont.eot');
     src: url('fonts/yanonekaffeesatz-bold-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/yanonekaffeesatz-bold-webfont.woff') format('woff'),
@@ -44,4 +44,15 @@
     font-weight: normal;
     font-style: normal;
 
+}
+
+@font-face {
+    font-family: 'Lato-Black';
+    src: url('fonts/lato-black-webfont.eot');
+    src: url('fonts/lato-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/lato-black-webfont.woff') format('woff'),
+         url('fonts/lato-black-webfont.ttf') format('truetype'),
+         url('fonts/lato-black-webfont.svg#Lato-Black') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
