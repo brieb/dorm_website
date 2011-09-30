@@ -1,6 +1,10 @@
-@mixin rounded_box($padding_t_b: 20px, $padding_l_r: 30px) {
+@mixin rounded_box($padding_t_b: 30px, $padding_l_r: 30px) {
   @include single-box-shadow;
   @include border-radius(10px);
   @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
   padding: $padding_t_b $padding_l_r;
+}
+
+@mixin shadow {
+  @include box-shadow(#000000 0px 0px 10px);
 }
