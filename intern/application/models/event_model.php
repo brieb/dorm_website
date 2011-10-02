@@ -76,16 +76,16 @@ class Event_model extends CI_Model {
     return $events;
   }
 
-  function create($event_data) {
+  function create($data) {
     $mysqldate_format = 'Y-m-d H:i:s';
 
-    $mysqldate_start = date(
+    $data['time_start'] = date(
       $mysqldate_format,
-      strtotime($event_data['time']['start'])
+      strtotime($data['time_start'])
     );
-    $mysqldate_end = date(
+    $data['time_end'] = date(
       $mysqldate_format,
-      strtotime($event_data['time']['end'])
+      strtotime($data['time_end'])
     );
 
     $query = $this->db->query(
@@ -94,13 +94,13 @@ class Event_model extends CI_Model {
       (title, description, time_start, time_end, fields, has_field_payment)
       VALUES (?, ?, ?, ?, ?, ?)
       ", array(
-               $event_data['title'],
-               $event_data['description'],
-               $mysqldate_start,
-               $mysqldate_end,
-               $event_data['fields'],
-               isset($event_data['has_field_payment']) ?
-                 $event_data['has_field_payment'] : 0
+               $data['title'],
+               $data['description'],
+               $data['time_start'],
+               $data['time_end'],
+               $data['fields'],
+               isset($data['has_field_payment']) ?
+                 $data['has_field_payment'] : 0
              )
     );
 

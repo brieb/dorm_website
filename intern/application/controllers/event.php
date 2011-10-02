@@ -2,6 +2,7 @@
 
 /**
  * @property Event_model $Event_model
+ * @property Gcal_model $Gcal_model
  * @property Sign_up_model $Sign_up_model
  * @property Sign_up_response_model $Sign_up_response_model
  */
@@ -56,18 +57,21 @@ class Event extends CI_Controller {
     //else {
 
 
-    $this->serializeFields($form_data);
-    $form_data['time'] = $this->formatDatetime($form_data['time']);
+    self::serializeFields($form_data);
+    $form_data['time_start'] = self::formatDatetime($form_data['time_start']);
+    $form_data['time_end'] = self::formatDatetime($form_data['time_end']);
 
     $this->load->model('Event_model');
     $event_id = $this->Event_model->create($form_data);
     if (!$event_id) {
-      echo 'db fail - try again';
+      echo 'db_fail';
+      return;
     }
-
     $form_data['event_id'] = $event_id;
+
     $this->load->model('Gcal_model');
     $this->Gcal_model->create($form_data);
+
     //TODO use form_data event id instead
     $this->createSignUp($form_data, $event_id);
 
@@ -135,27 +139,20 @@ class Event extends CI_Controller {
   }
 
 
-  private function formatDatetime($time) {
-    return
-      array_map(
-        create_function(
-          '$date',
-          'return date(DATE_RFC3339, strtotime($date));'
-        ),
-        $time
-      );
+  private static function formatDatetime($datetime) {
+    return date(DATE_RFC3339, strtotime($datetime));
   }
 
-  private function serializeFields(&$form_data) {
-    if (isset($form_data['form_builder'])) {
-      if (isset($form_data['form_builder']['Payment'])) {
+  private static function serializeFields(&$form_data) {
+    if (isset($form_data['fieldsets'])) {
+      if (isset($form_data['fieldsets']['payment'])) {
         $form_data['has_field_payment'] = 1;
       } else {
         $form_data['has_field_payment'] = 0;
       }
-      $form_builder_ser = serialize($form_data['form_builder']);
-      unset($form_data['form_builder']);
-      $form_data['fields'] = $form_builder_ser;
+      $fieldsets_ser = serialize($form_data['fieldsets']);
+      unset($form_data['fieldsets']);
+      $form_data['fields'] = $fieldsets_ser;
     } else {
       $form_data['fields'] = null;
       $form_data['has_field_payment'] = 0;
@@ -212,9 +209,11 @@ class Event extends CI_Controller {
 
   private function edit_load($id) {
     $event = $this->Event_model->read($id);
+    var_dump($event);
     $event['time'] = $this->formatDatetime($event['time']);
 
-    $event['fields'] = unserialize($event['fields']);
+    $event['fields'] = isset($event['fields']) ?
+      unserialize($event['fields']) : NULL;
     $this->load->view(
       'event/edit',
       array('eventJSON' => json_encode($event))

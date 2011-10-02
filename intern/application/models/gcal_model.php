@@ -38,8 +38,9 @@ class Gcal_model extends CI_Model {
   public function create($data) {
     $id = $data['event_id'];
     $title = $data['title'];
-    $time_start = $data['time']['start'];
-    $time_end = $data['time']['end'];
+    $time_start = $data['time_start'];
+    $time_end = $data['time_end'];
+
 
     $desc = "<a href='" .
             site_url('event/view/' . $id) .
@@ -65,7 +66,7 @@ class Gcal_model extends CI_Model {
       "
       UPDATE event SET gcal_url = ?
       WHERE id = ?
-    ", array($gcalUrl, $data['event_id'])
+    ", array($gcalUrl, $id)
     );
   }
 
