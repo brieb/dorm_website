@@ -57,7 +57,7 @@ $photos_dir_features = $URL_HOME . 'assets/img/home/features/';
 
 <div id="home">
   <div id="nav">
-    <div class="wrapper">
+    <div class="inner">
       <ul>
         <li>
           <a class="home" href="#top">
@@ -87,7 +87,7 @@ $photos_dir_features = $URL_HOME . 'assets/img/home/features/';
   <div id="top">
     <div id="top_content">
       <div id="logo">
-        Freshman<br/>
+        Freshman
         Sophomore<br/>
         College
       </div>
@@ -100,7 +100,7 @@ $photos_dir_features = $URL_HOME . 'assets/img/home/features/';
     </div>
 
     <div id="features">
-      <div class="wrapper">
+      <div class="inner">
         <div class="section">
           <div class="image">
             <img src="<?php echo $photos_dir_features . 'dynamic.jpg'; ?>"/>
@@ -135,10 +135,10 @@ $photos_dir_features = $URL_HOME . 'assets/img/home/features/';
           Events
         </div>
 
-        <div class="section_content">
+        <div class="section_content gcal">
           <iframe
             src="https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=500&amp;wkst=1&amp;bgcolor=%23efefef&amp;src=frosoco.stanford%40gmail.com&amp;color=%23182C57&amp;ctz=America%2FLos_Angeles"
-            style=" border-width:0 " width="580" height="500" frameborder="0"
+            frameborder="0"
             scrolling="no"></iframe>
         </div>
       </div>
@@ -151,7 +151,6 @@ $photos_dir_features = $URL_HOME . 'assets/img/home/features/';
     </div>
 
     <div id="about" class="content bg">
-      <!--      <a name="about"></a>-->
 
       <div class="wrapper">
         <div class="section_label">

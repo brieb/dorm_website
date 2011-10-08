@@ -3,6 +3,7 @@
   @include border-radius(10px);
   @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
   padding: $padding_t_b $padding_l_r;
+  margin: 10px;
 }
 
 @mixin shadow {

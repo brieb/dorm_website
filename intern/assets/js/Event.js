@@ -9,51 +9,6 @@ var Event = function(id_form, id_sidebar) {
     description: new Event.Field.TextArea('description', 'Description')
   };
 
-//  this.fieldsets = {
-//    meetupInfo: {
-//      isSet: false,
-//      fieldset : new Event.Fieldset(
-//        'meetup_info',
-//        'Meetup Info',
-//        [
-//          new Event.Field.Text('info', 'Info', 'ex: Schaddify at 10pm')
-//        ]
-//      )
-//    },
-//    location: {
-//      isSet: false,
-//      fieldset : new Event.Fieldset(
-//        'location',
-//        'Location',
-//        [
-//          new Event.Field.Text('location', 'Location')
-//        ]
-//      )
-//    },
-//    payment: {
-//      isSet: false,
-//      fieldset : new Event.Fieldset(
-//        'payment',
-//        'Payment',
-//        [
-//          new Event.Field.Text('price', 'Price', '$10.00'),
-//          new Event.Field.Text(
-//            'instructions', 'Instructions',
-//            'ex: Slide it under [Staff Memeber]\'s door')
-//        ]
-//      )
-//    },
-//    pointPerson: {
-//      isSet: false,
-//      fieldset : new Event.Fieldset(
-//        'point_person',
-//        'Point Person',
-//        [
-//          new Event.Field.Text('point_person', 'Point Person')
-//        ]
-//      )
-//    }
-//  };
   this.fieldsets = {
     meetup_info: new Event.Fieldset(
       'meetup_info',
