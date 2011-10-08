@@ -26,7 +26,8 @@ $imgDim: 32px;
 
 body {
   margin: 0;
-  font-family: "Lato-Regular", "Lucida Grande", "Verdana", "sans-serif";
+  //font-family: "Lato-Regular", "Lucida Grande", "Verdana", "sans-serif";
+  font-family: Tahoma, Geneva, sans-serif;
   font-size: 14px;
   background-color: #e3e3e3;
 }
@@ -45,6 +46,7 @@ body {
 @import "event_create_sign_up_wizard";
 @import "access_denied";
 @import "layout_full";
+@import "layout_sidebar";
 
 .sign_up_form_render {
   form {

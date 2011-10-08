@@ -1,0 +1,12 @@
+.layout_sidebar {
+  //@include showgrid;
+  @include container;
+
+  .sidebar {
+    @include column(8);
+  }
+
+  .content {
+    @include column(16, true);
+  }
+}

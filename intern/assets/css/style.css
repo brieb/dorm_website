@@ -3112,7 +3112,7 @@ input.text, input.email, input.password, textarea.uniform {
 /* line 27, ../sass/style.scss */
 body {
   margin: 0;
-  font-family: "Lato-Regular", "Lucida Grande", "Verdana", "sans-serif";
+  font-family: Tahoma, Geneva, sans-serif;
   font-size: 14px;
   background-color: #e3e3e3;
 }
@@ -3197,7 +3197,8 @@ body {
 #header {
   height: 40px;
   width: 100%;
-  margin-bottom: 1.5em;
+  min-width: 960px;
+  margin-bottom: 40px;
   -moz-box-shadow: black 0px 0px 12px;
   -webkit-box-shadow: black 0px 0px 12px;
   -o-box-shadow: black 0px 0px 12px;
@@ -3205,7 +3206,7 @@ body {
   background: url('../img/header/bg.png?1318068015');
   font-family: Tahoma, Geneva, sans-serif;
 }
-/* line 11, ../sass/_header.scss */
+/* line 12, ../sass/_header.scss */
 #header .inner {
   width: 950px;
   margin: 0 auto;
@@ -3213,7 +3214,7 @@ body {
   *zoom: 1;
   overflow: visible;
 }
-/* line 16, ../sass/_header.scss */
+/* line 17, ../sass/_header.scss */
 #header #logo {
   display: inline;
   float: left;
@@ -3245,7 +3246,7 @@ body {
 * html #header #logo {
   overflow-x: hidden;
 }
-/* line 28, ../sass/_header.scss */
+/* line 29, ../sass/_header.scss */
 #header #logo a {
   text-align: center;
   display: block;
@@ -3253,7 +3254,7 @@ body {
   color: white;
   text-shadow: black 1px 1px 4px;
 }
-/* line 37, ../sass/_header.scss */
+/* line 38, ../sass/_header.scss */
 #header #links {
   padding-left: 80px;
   display: inline;
@@ -3267,7 +3268,7 @@ body {
 * html #header #links {
   overflow-x: hidden;
 }
-/* line 49, ../sass/_header.scss */
+/* line 50, ../sass/_header.scss */
 #header #links .menu li {
   display: inline;
   float: left;
@@ -3279,15 +3280,15 @@ body {
 * html #header #links .menu li {
   overflow-x: hidden;
 }
-/* line 54, ../sass/_header.scss */
+/* line 55, ../sass/_header.scss */
 #header #links .menu li:hover a {
   text-shadow: white 0px 0px 5px;
 }
-/* line 57, ../sass/_header.scss */
+/* line 58, ../sass/_header.scss */
 #header #links .menu li:hover .submenu {
   display: block;
 }
-/* line 62, ../sass/_header.scss */
+/* line 63, ../sass/_header.scss */
 #header #links .menu li a {
   height: 20px;
   padding: 10px 0;
@@ -3296,7 +3297,7 @@ body {
   text-shadow: white 0px 0px 1px;
   text-decoration: none;
 }
-/* line 72, ../sass/_header.scss */
+/* line 73, ../sass/_header.scss */
 #header #links .menu li .submenu {
   display: none;
   z-index: 100;
@@ -3325,14 +3326,14 @@ body {
   margin-bottom: 10px;
   padding-bottom: 8px;
 }
-/* line 91, ../sass/_header.scss */
+/* line 92, ../sass/_header.scss */
 #header #links .menu li .submenu li {
   display: block;
   width: 100%;
   margin: 0;
   padding: 0;
 }
-/* line 97, ../sass/_header.scss */
+/* line 98, ../sass/_header.scss */
 #header #links .menu li .submenu li a {
   margin: 0;
   padding: 10px;
@@ -3340,12 +3341,12 @@ body {
   text-shadow: white 0px 0px 1px;
   height: 20px;
 }
-/* line 106, ../sass/_header.scss */
+/* line 107, ../sass/_header.scss */
 #header #links .menu li .submenu li a .text {
   display: inline-block;
   margin: 3px 0 0 0;
 }
-/* line 111, ../sass/_header.scss */
+/* line 112, ../sass/_header.scss */
 #header #links .menu li .submenu li a:hover {
   background-color: rgba(89, 89, 89, 0.9);
 }
@@ -3466,16 +3467,25 @@ body {
 /* line 1, ../sass/_content.scss */
 #content {
   margin-left: 200px;
-  margin-top: 40px;
   padding: 20px;
 }
-/* line 6, ../sass/_content.scss */
+/* line 5, ../sass/_content.scss */
 #content.nosidebar {
   margin-left: 0px;
 }
-/* line 9, ../sass/_content.scss */
+/* line 8, ../sass/_content.scss */
 #content.nopadding {
   padding: 0px;
+}
+/* line 12, ../sass/_content.scss */
+#content .heading {
+  font-size: 200%;
+  font-weight: bold;
+  text-shadow: white 1px 1px 1px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+  border-bottom: 1px dashed #BBB;
 }
 /* line 2, ../sass/_user_directory_listing.scss */
 #content #user_directory_listing table {
@@ -3556,13 +3566,8 @@ body {
   font-size: 130%;
   background-position: right 0px;
 }
-/* line 15, ../sass/_content.scss */
-#content #gcal {
-  width: 100%;
-  height: 90%;
-}
-/* line 21, ../sass/_content.scss */
-#content #event_create_fields, #content #event_view, #content #event_sign_ups {
+/* line 1, ../sass/_event.scss */
+#content #event_view, #content #event_sign_ups {
   -moz-box-shadow: 0px 0px 5px #333333;
   -webkit-box-shadow: 0px 0px 5px #333333;
   -o-box-shadow: 0px 0px 5px #333333;
@@ -3581,57 +3586,142 @@ body {
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
   padding: 20px 30px;
 }
-/* line 25, ../sass/_content.scss */
+/* line 5, ../sass/_event.scss */
 #content #event_create_fields {
-  position: relative;
-  padding-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 870px;
 }
-/* line 29, ../sass/_content.scss */
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields {
+  overflow-x: hidden;
+}
+/* line 10, ../sass/_event.scss */
 #content #event_create_fields .field {
-  margin-bottom: 3%;
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 870px;
+  margin-bottom: 30px;
 }
-/* line 32, ../sass/_content.scss */
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields .field {
+  overflow-x: hidden;
+}
+/* line 14, ../sass/_event.scss */
 #content #event_create_fields .field label {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
   font-size: 120%;
-  font-family: "Lato-Bold";
+  margin-top: 5px;
 }
-/* line 39, ../sass/_content.scss */
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields .field label {
+  overflow-x: hidden;
+}
+/* line 22, ../sass/_event.scss */
 #content #event_create_fields .field input[type='text'], #content #event_create_fields .field textarea {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
   height: 32px;
   font-size: 14px;
-  width: 50%;
-  margin: 1%;
 }
-/* line 46, ../sass/_content.scss */
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields .field input[type='text'], * html #content #event_create_fields .field textarea {
+  overflow-x: hidden;
+}
+/* line 30, ../sass/_event.scss */
 #content #event_create_fields .field textarea {
   height: 100px;
 }
-/* line 51, ../sass/_content.scss */
+/* line 35, ../sass/_event.scss */
 #content #event_create_fields fieldset {
-  padding: 20px;
-  margin: 20px 0;
-  width: 55%;
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 830px;
+  padding: 20px 20px 0 20px;
+  margin: 10px 0 30px 0;
   position: relative;
 }
-/* line 58, ../sass/_content.scss */
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields fieldset {
+  overflow-x: hidden;
+}
+/* line 38, ../sass/_event.scss */
+#content #event_create_fields fieldset fieldset {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 790px;
+}
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields fieldset fieldset {
+  overflow-x: hidden;
+}
+/* line 41, ../sass/_event.scss */
+#content #event_create_fields fieldset fieldset .field {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 790px;
+}
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields fieldset fieldset .field {
+  overflow-x: hidden;
+}
+/* line 44, ../sass/_event.scss */
+#content #event_create_fields fieldset fieldset .field input[type='text'] {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 630px;
+}
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields fieldset fieldset .field input[type='text'] {
+  overflow-x: hidden;
+}
+/* line 54, ../sass/_event.scss */
+#content #event_create_fields fieldset .field {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 830px;
+}
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields fieldset .field {
+  overflow-x: hidden;
+}
+/* line 57, ../sass/_event.scss */
 #content #event_create_fields fieldset .field input[type='text'] {
-  width: 90%;
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 670px;
 }
-/* line 63, ../sass/_content.scss */
-#content #event_create_fields fieldset .button_remove {
-  position: absolute;
-  right: 3px;
-  top: 10px;
-  width: 32px;
-  height: 32px;
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #event_create_fields fieldset .field input[type='text'] {
+  overflow-x: hidden;
 }
-/* line 73, ../sass/_content.scss */
+/* line 63, ../sass/_event.scss */
 #content #event_create_fields input[type='submit'] {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  width: 100%;
+  font-size: 110%;
+  margin-top: 30px;
+  padding: 10px 10px;
 }
-/* line 81, ../sass/_content.scss */
+/* line 71, ../sass/_event.scss */
+#content #event_create_fields .event_specific {
+  margin-top: 40px;
+}
+/* line 77, ../sass/_event.scss */
 #content #event_list .item {
   padding: 20px;
   margin-bottom: 30px;
@@ -3652,40 +3742,40 @@ body {
   background-image: -ms-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
 }
-/* line 88, ../sass/_content.scss */
+/* line 84, ../sass/_event.scss */
 #content #event_list .item h1 {
   font-family: "Lato-Black";
   font-size: 150%;
   margin-bottom: 15px;
 }
-/* line 94, ../sass/_content.scss */
+/* line 90, ../sass/_event.scss */
 #content #event_list .item .time {
   margin-bottom: 15px;
   font-size: 110%;
   font-family: "Lato-Bold";
 }
-/* line 103, ../sass/_content.scss */
+/* line 99, ../sass/_event.scss */
 #content #event_view .title {
   font-family: "Lato-Black";
   font-size: 300%;
   margin-bottom: 30px;
 }
-/* line 110, ../sass/_content.scss */
+/* line 106, ../sass/_event.scss */
 #content #event_view .time {
   font-family: "Lato-Bold";
   font-size: 125%;
   margin-bottom: 30px;
 }
-/* line 117, ../sass/_content.scss */
+/* line 113, ../sass/_event.scss */
 #content #event_view .description {
   margin: 30px;
   font-size: 110%;
 }
-/* line 122, ../sass/_content.scss */
+/* line 118, ../sass/_event.scss */
 #content #event_view .fields ul {
   margin: 10px 0;
 }
-/* line 125, ../sass/_content.scss */
+/* line 121, ../sass/_event.scss */
 #content #event_view .fields .label {
   font-size: 120%;
   font-family: "Lato-Bold";
@@ -3696,47 +3786,52 @@ body {
   border-bottom-color: #c5c5c5;
   width: 50%;
 }
-/* line 137, ../sass/_content.scss */
+/* line 133, ../sass/_event.scss */
 #content #event_view .fields .value {
   font-size: 110%;
   margin: 5px 20px;
 }
-/* line 145, ../sass/_content.scss */
+/* line 141, ../sass/_event.scss */
 #content #event_sign_ups table {
   width: 100%;
 }
-/* line 149, ../sass/_content.scss */
+/* line 145, ../sass/_event.scss */
 #content #event_sign_ups th, #content #event_sign_ups td {
   padding: 10px;
 }
-/* line 153, ../sass/_content.scss */
+/* line 149, ../sass/_event.scss */
 #content #event_sign_ups th.sortable {
   color: #444;
   cursor: pointer;
   text-decoration: underline;
 }
-/* line 158, ../sass/_content.scss */
+/* line 154, ../sass/_event.scss */
 #content #event_sign_ups th.sortable:hover {
   color: black;
 }
-/* line 161, ../sass/_content.scss */
+/* line 157, ../sass/_event.scss */
 #content #event_sign_ups th.sorted-asc, #content #event_sign_ups th.sorted-desc {
   color: black;
 }
-/* line 165, ../sass/_content.scss */
+/* line 161, ../sass/_event.scss */
 #content #event_sign_ups td {
   background-color: white;
   color: #111;
 }
-/* line 169, ../sass/_content.scss */
+/* line 165, ../sass/_event.scss */
 #content #event_sign_ups td.odd {
   background-color: #666;
   color: white;
 }
-/* line 174, ../sass/_content.scss */
+/* line 170, ../sass/_event.scss */
 #content #event_sign_ups td.hovered {
   background-color: #598CCD;
   color: #000;
+}
+/* line 26, ../sass/_content.scss */
+#content #gcal {
+  width: 100%;
+  height: 90%;
 }
 
 /* line 1, ../sass/_event_create_sign_up_wizard.scss */
@@ -3892,7 +3987,6 @@ body {
 
 /* line 1, ../sass/_layout_full.scss */
 .layout_full {
-  margin: auto;
   width: 950px;
   margin: 0 auto;
   overflow: hidden;
@@ -3904,39 +3998,70 @@ body {
   float: left;
   margin-right: 0;
   width: 950px;
+  margin-bottom: 1.5em;
 }
 /* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .layout_full .content {
   overflow-x: hidden;
 }
 
-/* line 50, ../sass/style.scss */
+/* line 1, ../sass/_layout_sidebar.scss */
+.layout_sidebar {
+  width: 950px;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 5, ../sass/_layout_sidebar.scss */
+.layout_sidebar .sidebar {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 310px;
+}
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .layout_sidebar .sidebar {
+  overflow-x: hidden;
+}
+/* line 9, ../sass/_layout_sidebar.scss */
+.layout_sidebar .content {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 630px;
+}
+/* line 147, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .layout_sidebar .content {
+  overflow-x: hidden;
+}
+
+/* line 52, ../sass/style.scss */
 .sign_up_form_render form {
   height: 400px;
   overflow-y: scroll;
 }
-/* line 55, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 .sign_up_form_render input[type='text'], .sign_up_form_render textarea {
   width: 80%;
 }
-/* line 59, ../sass/style.scss */
+/* line 61, ../sass/style.scss */
 .sign_up_form_render fieldset {
   margin: 0px 10px 10px 5px;
 }
-/* line 62, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 .sign_up_form_render fieldset .text {
   font-family: "Lato-Bold";
   font-size: 110%;
   margin: 5px;
 }
-/* line 70, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 .sign_up_form_render fieldset .help {
   font-family: "Lato-Regular";
   font-size: 90%;
   margin: 5px 10px 10px 10px;
 }
 
-/* line 80, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 .loading_indicate {
   width: 16px;
   height: 16px;
@@ -3948,32 +4073,32 @@ body {
   margin-top: -8px;
 }
 
-/* line 94, ../sass/style.scss */
+/* line 96, ../sass/style.scss */
 .ui-datepicker td span, .ui-datepicker td a {
   padding: 2px;
 }
 
-/* line 98, ../sass/style.scss */
+/* line 100, ../sass/style.scss */
 .ui-timepicker-div .ui-widget-header {
   margin-bottom: 8px;
 }
 
-/* line 99, ../sass/style.scss */
+/* line 101, ../sass/style.scss */
 .ui-timepicker-div dl {
   text-align: left;
 }
 
-/* line 100, ../sass/style.scss */
+/* line 102, ../sass/style.scss */
 .ui-timepicker-div dl dt {
   height: 25px;
 }
 
-/* line 101, ../sass/style.scss */
+/* line 103, ../sass/style.scss */
 .ui-timepicker-div dl dd {
   margin: -25px 0 10px 65px;
 }
 
-/* line 102, ../sass/style.scss */
+/* line 104, ../sass/style.scss */
 .ui-timepicker-div td {
   font-size: 90%;
 }

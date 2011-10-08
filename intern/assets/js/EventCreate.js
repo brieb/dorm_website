@@ -88,8 +88,8 @@ EventCreate = {
 
     $.each(this.fieldTypes, function(key, type) {
       if (type.isDefault) {
-        var fieldContent = this.genFieldType(type);
-        this.containerFields.append(fieldContent);
+        //var fieldContent = this.genFieldType(type);
+        //this.containerFields.append(fieldContent);
       } else {
         this.containerButtons.append(
           $('<button/>')

@@ -1,8 +1,9 @@
 #header {
   height: $headerHeight;
   width: 100%;
+  min-width: 960px;
 
-  @include append-bottom();
+  @include append-bottom(40px);
 
   @include box-shadow(#000000 0px 0px 12px);
   @include background(image-url("header/bg.png"));

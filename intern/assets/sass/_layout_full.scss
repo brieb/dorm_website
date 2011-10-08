@@ -1,8 +1,9 @@
 .layout_full {
-  margin: auto;
+  //@include showgrid;
   @include container;
 
   .content {
     @include column(24, true);
+    @include append-bottom();
   }
 }
