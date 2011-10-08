@@ -7,13 +7,15 @@ $this->load->view('common/assets', $opts);
 ?>
 
 <div id="header">
-  <div id="logo">
-    <?php echo anchor('/../../', 'FroSoCo'); ?>
-  </div>
-  <div id="links">
-    <?php
-      echo $this->mainmenu->render();
-    ?>
+  <div class="inner">
+    <div id="logo">
+      <?php echo anchor('/../../', 'FroSoCo'); ?>
+    </div>
+      <div id="links">
+        <?php
+          echo $this->mainmenu->render();
+        ?>
+      </div>
   </div>
 </div>
 

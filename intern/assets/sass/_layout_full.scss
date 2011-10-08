@@ -1,0 +1,8 @@
+.layout_full {
+  margin: auto;
+  @include container;
+
+  .content {
+    @include column(24, true);
+  }
+}

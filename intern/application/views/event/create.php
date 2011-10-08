@@ -8,9 +8,9 @@ $this->load->view(
 );
 ?>
 
-<div id="main">
-  <div id="sidebar"></div>
-  <div id="content"></div>
+<div class="layout_full">
+<!--  <div id="sidebar"></div>-->
+  <div id="content" class="content"></div>
 </div>
 
 <?php

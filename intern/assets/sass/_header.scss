@@ -1,25 +1,29 @@
 #header {
-
-  z-index: 1000;
-  @include box-shadow(#000000 0px 0px 12px);
   height: $headerHeight;
   width: 100%;
 
-  @include background-image(linear-gradient(#990000, #641B1B));
-  font-family: "Lato-Light";
+  @include append-bottom();
 
-  position: fixed;
-  left: 0;
-  top: 0;
+  @include box-shadow(#000000 0px 0px 12px);
+  @include background(image-url("header/bg.png"));
+  font-family: Tahoma, Geneva, sans-serif;
+
+  .inner {
+    @include container;
+    overflow: visible;
+  }
 
   #logo {
-    font-family: "Freshman";
-    font-size: 33px;
-    position: absolute;
-    height: $headerHeight - 20px;
-    width: $sidebarWidth + 2px;
-    padding: 10px 0px;
-    background-color: transparentize(#000000, 0.8);
+    @include column(4);
+
+    font-family: "YanoneKaffeesatz-Bold";
+    font-size: 42px;
+    padding: 5px 0px;
+    @include background-image(linear-gradient(#990000, #641B1B));
+
+    $radius: 10px;
+    @include border-bottom-left-radius($radius);
+    @include border-bottom-right-radius($radius);
 
     a {
       text-align: center;
@@ -31,25 +35,24 @@
   }
 
   #links {
-    $menuItemWidth: 140px;
     $submenuItemHeight: 20px;
-    $menuItemFontSize: 120%;
-    $submenuItemFontSize: 90%;
+    $menuItemFontSize: 16px;
+    $submenuItemFontSize: 13px;
 
-    position: absolute;
-    right: 30px;
+    @include prepend(2);
+    @include column(18, true);
+
     font-size: $menuItemFontSize;
-    z-index: 100;
+
+    overflow: visible;
 
     .menu li {
-      display: inline-block;
-      margin-right: 5px;
-      vertical-align: top;
-      width: $menuItemWidth;
+      @include column(2);
+      position: relative;
 
       &:hover {
         a {
-          background-color: transparentize(#000000, 0.8);
+          @include text-shadow(#fff 0px 0px 5px);
         }
         .submenu {
           display: block;
@@ -57,69 +60,28 @@
       }
 
       a {
-        height: $headerHeight;
+        height: $headerHeight - 20px;
+        padding: 10px 0;
         display: block;
         color: white;
+        @include text-shadow(#fff 0px 0px 1px);
+
         text-decoration: none;
       }
 
-      .sprite {
-        display: block;
-        float: left;
-        margin: ($headerHeight - $menuIconSize)/2 10px;
-      }
-
-      .text {
-        float: left;
-        margin-top: 16px;
-      }
-
-      /*
-       * Main Menu Items
-       */
-      .events .sprite {
-        @include menu-sprite(event);
-      }
-      .people .sprite {
-        @include menu-sprite(people);
-      }
-      .wiki .sprite {
-        @include menu-sprite(wiki);
-      }
-      .facebook .sprite {
-        @include menu-sprite(facebook);
-      }
-
-      /*
-       * Submenu Items
-       */
-      .event_list .sprite {
-        @include submenu-sprite(event_list);
-      }
-      .event_create .sprite {
-        @include submenu-sprite(event_create);
-      }
-      .calendar .sprite {
-        @include submenu-sprite(event_calendar);
-      }
-      .wiki_staff .sprite {
-        @include submenu-sprite(wiki_staff);
-      }
-      .wiki_confi .sprite {
-        @include submenu-sprite(wiki_confi);
-      }
-      .basecamp .sprite {
-        @include submenu-sprite(wiki_basecamp);
-      }
-      .facebook_staff .sprite {
-        @include submenu-sprite(facebook_staff);
-      }
-
       .submenu {
+        $padding: 10px;
+
         display:none;
 
-        @include background-image(linear-gradient(#333333, #000000));
-        @include border-bottom-radius(10px);
+        z-index: 100;
+        position: absolute;
+        top: $headerHeight;
+        left: -$padding;
+        width: span(3);
+
+        background-color: transparentize(#000, 0.2);
+        @include border-bottom-radius(7px);
         @include single-box-shadow;
 
         font-size: $submenuItemFontSize;
@@ -127,54 +89,27 @@
         padding-bottom: 8px;
 
         li {
-          display: list-item;
+          display: block;
+          width: 100%;
           margin: 0;
           padding: 0;
 
           a {
             margin: 0;
-            padding: 10px;
+            padding: $padding;
 
             color: white;
+            @include text-shadow(#fff 0px 0px 1px);
+
             height: $submenuItemHeight;
 
-            .sprite {
-              $marginTB: ($submenuItemHeight - $submenuIconSize)/2;
-              margin: $marginTB 12px $marginTB 3px;
-            }
-
             .text {
-              display: inline;
+              display: inline-block;
               margin: 3px 0 0 0;
             }
-          }
 
-          a:hover {
-            @include background-image(
-              linear-gradient(#cccccc, #777777)
-            );
-            background-size: 100% 100%;
-            background-position: 0 0;
-
-            color: black;
-
-            &.event_list .sprite {
-              @include submenu-sprite(event_list_hover);
-            }
-            &.event_create .sprite {
-              @include submenu-sprite(event_create_hover);
-            }
-            &.calendar .sprite {
-              @include submenu-sprite(event_calendar_hover);
-            }
-            &.wiki_staff .sprite {
-              @include submenu-sprite(wiki_staff_hover);
-            }
-            &.wiki_confi .sprite {
-              @include submenu-sprite(wiki_confi_hover);
-            }
-            &.facebook_staff .sprite {
-              @include submenu-sprite(facebook_staff_hover);
+            &:hover {
+              background-color: transparentize(lighten(#000, 35), 0.1);
             }
           }
         }

@@ -1,6 +1,7 @@
 @import "reset";
 
 @import "compass";
+@import "blueprint";
 
 @import "third_party/Absolution/jquery.ui.all";
 @import "third_party/jquery-ui-timepicker-addon";
@@ -17,7 +18,7 @@ $submenu-sprite-dimensions: true;
 $sidebarBackgroundColor: #343434;
 $sidebarBackgroundColor: #C5C5C5;
 $sidebarWidth: 200px;
-$headerHeight: 50px;
+$headerHeight: 40px;
 $menuIconSize: 32px;
 $submenuIconSize: 16px;
 $aPaddingTop: 18px;
@@ -43,6 +44,7 @@ body {
 @import "content";
 @import "event_create_sign_up_wizard";
 @import "access_denied";
+@import "layout_full";
 
 .sign_up_form_render {
   form {
