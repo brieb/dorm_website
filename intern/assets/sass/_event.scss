@@ -11,7 +11,7 @@
     @include column(22, true);
     margin-bottom: 30px;
 
-    label {
+    .label {
       @include column(4);
       font: {
         size: 120%;
@@ -19,8 +19,17 @@
       margin-top: 5px;
     }
 
-    input[type='text'], textarea {
+    .width_half {
+      @include column(9);
+    }
+    .width_half.last {
+      @include column(9, true);
+    }
+    .width_full {
       @include column(18, true);
+    }
+
+    input[type='text'], textarea {
       height: 32px;
       font-size: 14px;
       //width: 100%;
@@ -41,7 +50,7 @@
       .field {
         @include column(20, true);
 
-        input[type='text'] {
+        .width_full {
           @include column(16, true);
         }
       }
@@ -54,7 +63,10 @@
     .field {
       @include column(21, true);
 
-      input[type='text'] {
+      .width_half {
+        @include column(8);
+      }
+      .width_full {
         @include column(17, true);
       }
     }

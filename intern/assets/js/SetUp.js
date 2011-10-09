@@ -27,6 +27,7 @@ if (!Function.prototype.bind) {
 
 
 $(document).ready(function() {
+
 //  var adjustDimensions = function() {
 //    var headerHeight = $('#header').height();
 //    var remaining_height = parseInt($(window).height() - headerHeight);

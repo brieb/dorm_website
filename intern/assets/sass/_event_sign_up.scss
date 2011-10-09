@@ -1,0 +1,55 @@
+#event_sign_up {
+  //@include showgrid;
+  @include container;
+
+  #event_sign_up_tabs {
+    @include column(4);
+    margin-right: 0;
+
+    .tab {
+      padding: 10px 0;
+    }
+    .tab.active {
+      background-color: white;
+    }
+
+    .button_add {
+      margin-top: 20px;
+    }
+  }
+  #event_sign_up_content {
+    background-color: white;
+    padding: span(1) 0;
+    @include prepend(1);
+    @include append(1);
+    @include column(18, true);
+
+    .label {
+      margin-top: 5px;
+      @include column(3);
+    }
+    .width_full {
+      @include column(15, true);
+    }
+
+    .subfield {
+      @include prepend-top();
+      @include prepend(3);
+      @include column(15, true);
+
+      /*.width_full {*/
+        /*@include append(3);*/
+        /*@include column(12, true);*/
+      /*}*/
+
+      input[type="radio"] {
+        @include column(0.5);
+        margin-top: 10px;
+      }
+      input[type="text"] {
+        @include column(10, true);
+      }
+    }
+  }
+
+}
