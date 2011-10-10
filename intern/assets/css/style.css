@@ -3523,29 +3523,6 @@ body {
 #content #user_directory_listing ul li {
   padding: 3px;
   line-height: 1.2em;
-  /*&.staff_role {*/
-  /*z-index: -1;*/
-  /*@include single-box-shadow;*/
-  /*$radius: 5px;*/
-  /*@include border-top-right-radius($radius);*/
-  /*@include border-bottom-right-radius($radius);*/
-  /*position: absolute;*/
-  /*top: 20px;*/
-  /*right: -59px;*/
-  /*font-weight: bold;*/
-  /*font-size: 120%;*/
-  /*text-align: center;*/
-  /*color: white;*/
-  /*padding: 10px 2px 4px 2px;*/
-  /*height: 22px;*/
-  /*width: 55px;*/
-  /*background:{*/
-  /*color: #3C3C3C;*/
-  /*};*/
-  /*&.small_text {*/
-  /*font-size: 100%;*/
-  /*}*/
-  /*}*/
 }
 /* line 18, ../sass/_user_directory_listing.scss */
 #content #user_directory_listing ul li.name {
@@ -3570,7 +3547,7 @@ body {
 #content #user_directory_listing ul li.photo img {
   height: 120px;
 }
-/* line 67, ../sass/_user_directory_listing.scss */
+/* line 39, ../sass/_user_directory_listing.scss */
 #content #user_directory_listing ul li.staff_role {
   position: absolute;
   top: 10px;
@@ -3579,7 +3556,7 @@ body {
   font-size: 125%;
   text-align: right;
 }
-/* line 76, ../sass/_user_directory_listing.scss */
+/* line 48, ../sass/_user_directory_listing.scss */
 #content #user_directory_listing ul li.staff_role.small_text {
   font-size: 110%;
 }

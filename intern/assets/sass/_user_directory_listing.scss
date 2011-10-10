@@ -35,35 +35,7 @@
           height: 120px;
         }
       }
-      /*&.staff_role {*/
-        /*z-index: -1;*/
-        /*@include single-box-shadow;*/
 
-        /*$radius: 5px;*/
-        /*@include border-top-right-radius($radius);*/
-        /*@include border-bottom-right-radius($radius);*/
-
-        /*position: absolute;*/
-        /*top: 20px;*/
-        /*right: -59px;*/
-
-        /*font-weight: bold;*/
-        /*font-size: 120%;*/
-        /*text-align: center;*/
-        /*color: white;*/
-        /*padding: 10px 2px 4px 2px;*/
-
-        /*height: 22px;*/
-        /*width: 55px;*/
-
-        /*background:{*/
-          /*color: #3C3C3C;*/
-        /*};*/
-
-        /*&.small_text {*/
-          /*font-size: 100%;*/
-        /*}*/
-      /*}*/
       &.staff_role {
         position: absolute;
         top: 10px;
