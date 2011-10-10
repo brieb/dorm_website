@@ -4,6 +4,9 @@
 
   $marginButton: 3%;
 
+  padding-top:    20px;
+  padding-bottom: 20px;
+
   //position: fixed;
   //height: 100%;
 
@@ -19,13 +22,17 @@
   }
 
   .sidebar-box, #user_search, #search {
-    margin: 5px 0px 10px 0px;
+    margin: 0px 0px 10px 0px;
     padding: 5px;
     font-size: 100%;
   }
 
   fieldset {
     margin: 20px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
     .sort_by {
@@ -39,7 +46,6 @@
   #user_search, #search {
     height: 32px;
     width: 100%;
-    margin-top: 15px;
   }
 
   #checkboxes_house, #checkboxes_floor {
