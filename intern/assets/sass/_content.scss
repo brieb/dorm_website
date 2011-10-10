@@ -1,6 +1,10 @@
+#container {
+  //@include showgrid;
+  @include container;
+}
+
 #content {
-  margin-left: $sidebarWidth;
-  padding: 20px;
+  @include column(19, true);
 
   &.nosidebar {
     margin-left: 0px;

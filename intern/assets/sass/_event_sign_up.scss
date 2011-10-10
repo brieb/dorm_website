@@ -1,54 +1,90 @@
-#event_sign_up {
+#event_sign_up_form {
   //@include showgrid;
   @include container;
 
+  text-shadow: none;
+
   #event_sign_up_tabs {
+    border-right: 1px solid #c1c1c1;
+
     @include column(4);
     margin-right: 0;
 
     .tab {
-      padding: 10px 0;
+      padding: 10px;
     }
     .tab.active {
-      background-color: white;
+      background-color: #ccc;
+      $radius: 5px;
+      @include border-bottom-left-radius($radius);
+      @include border-top-left-radius($radius);
     }
 
     .button_add {
-      margin-top: 20px;
+      margin: 20px 0;
     }
+
+    button.ui-button-icon-only {
+        width: 20px;
+        height: 20px;
+        margin-top: -3px;
+        margin-right: 10px;
+        float: left;
+      }
   }
   #event_sign_up_content {
-    background-color: white;
-    padding: span(1) 0;
+    padding: 10px 0;
     @include prepend(1);
     @include append(1);
-    @include column(18, true);
+    @include column(14, true);
 
     .label {
       margin-top: 5px;
-      @include column(3);
+      @include column(2);
     }
     .width_full {
-      @include column(15, true);
+      @include column(12, true);
     }
 
     .subfield {
       @include prepend-top();
-      @include prepend(3);
-      @include column(15, true);
+      @include prepend(2);
+      @include column(12, true);
 
-      /*.width_full {*/
-        /*@include append(3);*/
-        /*@include column(12, true);*/
-      /*}*/
+      .sign_up_remove_choice {
+        @include column(1);
+        padding: 8px 0;
 
-      input[type="radio"] {
-        @include column(0.5);
+        button {
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+      .has_input_placeholder {
+        @include prepend(0.5);
+
+        input[type="radio"],input[type="checkbox"] {
+          margin-top: 10px;
+          margin-right: 6px;
+          float: left;
+        }
+        input[type="text"] {
+          @include column(10.5, true);
+        }
+      }
+
+      .no_input_placeholder {
+        input[type="text"] {
+          @include column(11, true);
+        }
+      }
+
+      .sign_up_field_button {
         margin-top: 10px;
+        float: right;
       }
-      input[type="text"] {
-        @include column(10, true);
-      }
+
     }
   }
 

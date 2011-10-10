@@ -28,8 +28,15 @@ body {
   margin: 0;
   //font-family: "Lato-Regular", "Lucida Grande", "Verdana", "sans-serif";
   font-family: Tahoma, Geneva, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   background-color: #e3e3e3;
+}
+
+.ui-button-text {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  text-shadow: none;
 }
 
 @mixin rounded_box($padding_t_b: 20px, $padding_l_r: 30px) {

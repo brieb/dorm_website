@@ -1,25 +1,11 @@
 #sidebar {
+  @include column(4);
+  @include colborder(#B3B3B3, 1px);
+
   $marginButton: 3%;
 
-  height: 100%;
-  width: $sidebarWidth;
-  position: fixed;
-  left: 0;
-  top: $headerHeight;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-
-  font-size: 110%;
-
-  background: {
-    color: $sidebarBackgroundColor;
-  };
-  border-right: {
-    style: solid;
-    color: #B3B3B3;
-    width: 2px;
-  };
+  //position: fixed;
+  //height: 100%;
 
   .sidebar-box-wrapper {
     .label {
@@ -33,20 +19,14 @@
   }
 
   .sidebar-box, #user_search, #search {
-    margin: 5px 5px 10px 5px;
+    margin: 5px 0px 10px 0px;
     padding: 5px;
-    width: $sidebarWidth - 10px - 10px - 5px;
     font-size: 100%;
   }
 
-  .sidebar-box {
-    background: transparentize(#000000, 0.9);
-    border: {
-      style: solid;
-      color: transparentize(#000000, 0.8);
-      width: 1px;
-    };
-    @include border-radius(5px);
+  fieldset {
+    margin: 20px 0;
+  }
 
     .sort_by {
       .ui-button-text {
@@ -54,12 +34,11 @@
         padding-left: 20px;
       }
 
-    }
   }
 
   #user_search, #search {
     height: 32px;
-    width: 94%;
+    width: 100%;
     margin-top: 15px;
   }
 

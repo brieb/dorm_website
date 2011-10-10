@@ -13,8 +13,6 @@ class Event extends CI_Controller {
   }
 
   function create() {
-    //$this->load->library('form_validation');
-
     $form_data = $this->input->post();
 
     if (!$form_data) {
@@ -23,43 +21,18 @@ class Event extends CI_Controller {
       return;
     }
 
-    //$form_data = json_decode($form_data['data']);
-
     //TODO server-side validation
-    //if (isset($form_data['form_builder'])) {
-    //foreach (
-    //$form_data['form_builder'] as $key => $value
-    //) {
-    //$display_fields[] = $key;
-    //}
-    //}
-    //$data['display_fields'] = $display_fields;
 
-    //$this->form_validation->set_rules('title', 'Title', 'required|min_length[6]');
-    //$this->form_validation->set_rules('datetime', 'Date and time', 'required');
-    //$this->form_validation->set_rules('description', 'Description', 'required');
-    //if (isset($form_data['form_builder'])) {
-    //if (isset($form_data['form_builder']['payment'])) {
-    //$this->form_validation->set_rules('form_builder[payment][price]', 'Price', 'required');
-    //$this->form_validation->set_rules('form_builder[payment][instructions]', 'Instructions', 'required');
-    //}
-    //if (isset($form_data['form_builder']['event_location'])) {
-    //$this->form_validation->set_rules('form_builder[event_location][location]', 'Event Location', 'required');
-    //}
-    //if (isset($form_data['form_builder']['meetup_information'])) {
-    //$this->form_validation->set_rules('form_builder[meetup_info][info]', 'Meetup Info', 'required');
-    //}
-    //}
+    $form_data['has_field_payment'] =
+      (int)($form_data['payment_price'] != "" ||
+            $form_data['payment_instructions'] != "");
 
-    //if ($this->form_validation->run() == FALSE) {
-    //$this->load->view('event/create', $data);
-    //}
-    //else {
-
-
-    self::serializeFields($form_data);
-    $form_data['time_start'] = self::formatDatetime($form_data['time_start']);
-    $form_data['time_end'] = self::formatDatetime($form_data['time_end']);
+    $form_data['time_start'] = self::formatDatetime(
+      $form_data['start_date'] . ' ' . $form_data['start_time']
+    );
+    $form_data['time_end'] = self::formatDatetime(
+      $form_data['end_date'] . ' ' . $form_data['end_time']
+    );
 
     $this->load->model('Event_model');
     $event_id = $this->Event_model->create($form_data);
@@ -69,14 +42,14 @@ class Event extends CI_Controller {
     }
     $form_data['event_id'] = $event_id;
 
+    if ($form_data['sign_up_enabled'] == "1") {
+      $this->createSignUp($form_data);
+    }
+
     $this->load->model('Gcal_model');
     $this->Gcal_model->create($form_data);
 
-    //TODO use form_data event id instead
-    $this->createSignUp($form_data, $event_id);
-
     echo $event_id;
-    //}
   }
 
   function view($id = "") {
@@ -143,37 +116,16 @@ class Event extends CI_Controller {
     return date(DATE_RFC3339, strtotime($datetime));
   }
 
-  private static function serializeFields(&$form_data) {
-    if (isset($form_data['fieldsets'])) {
-      if (isset($form_data['fieldsets']['payment'])) {
-        $form_data['has_field_payment'] = 1;
-      } else {
-        $form_data['has_field_payment'] = 0;
-      }
-      $fieldsets_ser = serialize($form_data['fieldsets']);
-      unset($form_data['fieldsets']);
-      $form_data['fields'] = $fieldsets_ser;
-    } else {
-      $form_data['fields'] = null;
-      $form_data['has_field_payment'] = 0;
-    }
-  }
+  private function createSignUp(&$form_data) {
+    $sign_up_form_ser = isset($form_data['sign_up_questions']) ?
+      serialize($form_data['sign_up_questions']) : serialize(NULL);
 
-  private function createSignUp(&$form_data, $event_id) {
-    if (!isset($form_data['SignUp'])) {
-      return -1;
-    }
-
-    $sign_up_form_ser = isset($form_data['SignUp']['form']) ?
-      serialize($form_data['SignUp']['form']) : serialize(NULL);
-    $capacity = isset($form_data['SignUp']['capacity']) ?
-      $form_data['SignUp']['capacity'] : 0;
-    unset($form_data['SignUp']);
+    $capacity = $form_data['sign_up_capacity'];
 
     $this->load->model('Sign_up_model');
     $sign_up_id = $this->Sign_up_model->create(
       array(
-        'event_id' => $event_id,
+        'event_id' => $form_data['event_id'],
         'form' => $sign_up_form_ser,
         'capacity' => $capacity
       )

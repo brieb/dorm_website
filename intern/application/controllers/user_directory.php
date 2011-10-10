@@ -7,9 +7,9 @@
 class User_directory extends CI_Controller {
 
   public function index() {
-    if (ENVIRONMENT == 'development') {
-      $this->output->enable_profiler(TRUE);
-    }
+//    if (ENVIRONMENT == 'development') {
+//      $this->output->enable_profiler(TRUE);
+//    }
 
     $this->load->model('User_model');
     $users = $this->User_model->getUsersAsJSON();

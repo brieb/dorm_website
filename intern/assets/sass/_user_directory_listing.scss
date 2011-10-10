@@ -1,65 +1,80 @@
 #user_directory_listing {
-  table {
-    width: 100%;
-    border-collapse: collapse;
+  @include append(1);
 
-    td.empty {
-      width: 50%;
-    }
+  ul {
+    padding: 15px;
+    margin: 10px 0;
 
-    ul {
-      padding: 15px;
-      margin: 10px;
-      min-height: 125px;
-      position: relative;
+    min-height: 125px;
+    position: relative;
 
-      @include single-box-shadow;
-      @include border-radius(5px);
-      @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+    @include single-box-shadow;
+    @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
 
-      li {
-        padding: 3px;
-        line-height: 1.1em;
+    li {
+      padding: 3px;
+      line-height: 1.2em;
 
-        &.name {
-          font-family: "Lato-Black";
-          font-size: 120%;
+      &.name {
+        font-weight: bold;
+        font-size: 120%;
+      }
+      &.email {
+        font-size: 110%;
+
+        a {
+          text-decoration: none;
+          color: inherit;
         }
-        &.email {
-          font-family: "Lato-Light";
+      }
+      &.photo {
+        float: left;
+        margin-right: 25px;
+
+        img {
+          height: 120px;
+        }
+      }
+      /*&.staff_role {*/
+        /*z-index: -1;*/
+        /*@include single-box-shadow;*/
+
+        /*$radius: 5px;*/
+        /*@include border-top-right-radius($radius);*/
+        /*@include border-bottom-right-radius($radius);*/
+
+        /*position: absolute;*/
+        /*top: 20px;*/
+        /*right: -59px;*/
+
+        /*font-weight: bold;*/
+        /*font-size: 120%;*/
+        /*text-align: center;*/
+        /*color: white;*/
+        /*padding: 10px 2px 4px 2px;*/
+
+        /*height: 22px;*/
+        /*width: 55px;*/
+
+        /*background:{*/
+          /*color: #3C3C3C;*/
+        /*};*/
+
+        /*&.small_text {*/
+          /*font-size: 100%;*/
+        /*}*/
+      /*}*/
+      &.staff_role {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+
+        font-weight: bold;
+        font-size: 125%;
+        text-align: right;
+
+        &.small_text {
           font-size: 110%;
-
-          a {
-            text-decoration: none;
-            color: inherit;
-          }
-        }
-        &.photo {
-          float: left;
-          margin-right: 25px;
-
-          img {
-            height: 120px;
-          }
-        }
-        &.staff_role {
-          position: absolute;
-          top: 10px;
-          right: 15px;
-          font-family: "Lato-Black";
-          font-size: 175%;
-          height: 32px;
-          padding-right: 40px;
-          background:{
-            image: image-url("people/heart.png");
-            repeat: no-repeat;
-            position: right 3px;
-          };
-
-          &.small_text {
-            font-size: 130%;
-            background-position: right 0px;
-          }
         }
       }
     }

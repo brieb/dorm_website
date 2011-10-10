@@ -42,7 +42,7 @@ $this->load->view(
   <div id="content" class="content nosidebar nopadding">
     <div class="heading">Create an Event</div>
 
-    <form id="event_create_fields">
+    <form id="event_create_fields" method="POST">
 
       <div class="field">
         <label class="label" for="title">Title: </label>
@@ -91,8 +91,7 @@ $this->load->view(
       <fieldset class="event_specific">
         <legend>Event-Specific Information</legend>
 
-        <fieldset>
-          <legend>Location</legend>
+        <div>
           <div class="field">
             <label class="label" for="location">Location: </label>
 
@@ -101,18 +100,27 @@ $this->load->view(
               placeholder=""
               class="width_full"/>
           </div>
-        </fieldset>
+        </div>
 
-        <fieldset>
-          <legend>Meetup Info</legend>
+        <div>
           <div class="field">
-            <label class="label" for="info">Info: </label>
+            <label class="label" for="meetup_info">Meetup Info: </label>
             <input
-              type="text" id="info" name="info"
+              type="text" id="meetup_info" name="meetup_info"
               placeholder="ex: Schaddify at 10pm"
               class="width_full"/>
           </div>
-        </fieldset>
+        </div>
+
+        <div>
+          <div class="field">
+            <label class="label" for="point_person">Point Person: </label>
+
+            <input type="text" id="point_person"
+                   name="point_person" placeholder=""
+                   class="width_full"/>
+          </div>
+        </div>
 
         <fieldset>
           <legend>Payment</legend>
@@ -121,7 +129,7 @@ $this->load->view(
             <label class="label" for="price">Price: </label>
 
             <input
-              type="text" id="price" name="price"
+              type="text" id="price" name="payment_price"
               placeholder="ex: $10.00"
               class="width_full"/>
           </div>
@@ -133,22 +141,12 @@ $this->load->view(
 
             <input type="text"
                    id="instructions"
-                   name="instructions"
-                   placeholder="ex: Slide it under [Staff Memeber]'s door"
+                   name="payment_instructions"
+                   placeholder="ex: Slide it under Lily's door"
                    class="width_full"/>
           </div>
         </fieldset>
 
-        <fieldset>
-          <legend>Point Person</legend>
-          <div class="field">
-            <label class="label" for="point_person">Point Person: </label>
-
-            <input type="text" id="point_person"
-                   name="point_person" placeholder=""
-                   class="width_full"/>
-          </div>
-        </fieldset>
       </fieldset>
 
       <fieldset>
@@ -172,19 +170,21 @@ $this->load->view(
           </div>
         </div>
 
-        <div class="field">
-          <label class="label" for="sign_up_capacity">Event Capacity: </label>
-          <input type="text"
-                 id="sign_up_capacity"
-                 name="sign_up_capacity"
-                 placeholder=""
-                 class="width_full"/>
-        </div>
+        <div id="event_sign_up_specific">
+          <div class="field">
+            <label class="label" for="sign_up_capacity">Event Capacity: </label>
+            <input type="text"
+                   id="sign_up_capacity"
+                   name="sign_up_capacity"
+                   placeholder=""
+                   class="width_full"/>
+          </div>
 
-        <fieldset>
-          <legend>Questions</legend>
-          <div id="sign_up_form"></div>
-        </fieldset>
+          <fieldset>
+            <legend>Questions</legend>
+            <div id="event_sign_up_form"></div>
+          </fieldset>
+        </div>
 
       </fieldset>
 

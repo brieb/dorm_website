@@ -59,6 +59,9 @@ Event.Fieldset.prototype.initButtonRemove = function() {
                 primary: 'ui-icon-trash'
               }
             })
+    .attr({
+                type: 'button'
+              })
     .click(function() {
              self.fieldsetElem.remove();
              self.buttonAdd

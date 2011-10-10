@@ -17,7 +17,12 @@ class Event_model extends CI_Model {
         event.description,
         event.time_start,
         event.time_end,
-        event.fields,
+        event.location,
+        event.meetup_info,
+        event.point_person,
+        event.has_field_payment,
+        event.payment_price,
+        event.payment_instructions,
         sign_up.id AS sign_up_id
       FROM event LEFT JOIN sign_up
       ON event.id = sign_up.event_id
@@ -55,7 +60,12 @@ class Event_model extends CI_Model {
         description,
         time_start,
         time_end,
-        fields
+        location,
+        meetup_info,
+        point_person,
+        has_field_payment,
+        payment_price,
+        payment_instructions
       FROM event
     ";
     if ($only_upcoming) {
@@ -91,16 +101,30 @@ class Event_model extends CI_Model {
     $query = $this->db->query(
       "
       INSERT INTO event
-      (title, description, time_start, time_end, fields, has_field_payment)
-      VALUES (?, ?, ?, ?, ?, ?)
+      (
+        title,
+        description,
+        time_start,
+        time_end,
+        location,
+        meetup_info,
+        point_person,
+        has_field_payment,
+        payment_price,
+        payment_instructions
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ", array(
                $data['title'],
                $data['description'],
                $data['time_start'],
                $data['time_end'],
-               $data['fields'],
-               isset($data['has_field_payment']) ?
-                 $data['has_field_payment'] : 0
+               $data['location'],
+               $data['meetup_info'],
+               $data['point_person'],
+               $data['has_field_payment'],
+               $data['payment_price'],
+               $data['payment_instructions']
              )
     );
 
