@@ -7,17 +7,16 @@ $this->load->view(
 );
 ?>
 
-<div id="main">
+<div id="container">
   <div id="sidebar">
     <input id="search" type="text" placeholder="Search for an event..."></input>
 
-    <div class="sidebar-box-wrapper">
-      <div class="label">Sort By:</div>
-      <div class="sidebar-box">
-        <button class="sort_by" type="button" value="title">Title</button>
-        <button class="sort_by active asc" type="button" value="time_start">Time</button>
-      </div>
-    </div>
+    <fieldset>
+      <legend>Sort By:</legend>
+
+      <button class="sort_by" type="button" value="title">Title</button>
+      <button class="sort_by active asc" type="button" value="time_start">Time</button>
+    </fieldset>
 
     <!--
       TODO

@@ -107,7 +107,7 @@ foreach ($sidebar as $sidebarBox) {
 
 
 
-<div id="main">
+<div id="container">
 
   <div id="sidebar">
     <?php echo $sidebarContent; ?>

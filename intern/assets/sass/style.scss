@@ -48,6 +48,25 @@ body {
   padding: $padding_t_b $padding_l_r;
 }
 
+@mixin square_box {
+  padding: 15px;
+  margin: 5px 10px 20px 5px;
+  @include single-box-shadow;
+  @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+
+  //@include border-radius(5px);
+  //border-top: 1px solid #B3B3B3;
+  //border-bottom: 1px solid #B3B3B3;
+}
+
+@mixin box_divider {
+  padding: 25px 10px;
+  margin: 0px 10px 0px 5px;
+
+  //border-top: 1px solid #B3B3B3;
+  border-bottom: 1px solid #B3B3B3;
+}
+
 @import "sidebar";
 @import "header";
 @import "welcome";

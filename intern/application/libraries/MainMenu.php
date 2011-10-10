@@ -10,22 +10,20 @@ class MainMenu {
 
   function __construct() {
     $menuEvent = new Menu(
-      new MenuItem('events', 'Events'),
+      new MenuItem(
+        'events', 'Events',
+        array(
+          'class' => 'event',
+          'method' => 'view'
+        )
+      ),
       array(
         new MenuItem(
           'calendar',
-          'Calendar',
+          'Calendars',
           array(
             'class' => 'calendar',
             'method' => 'index'
-          )
-        ),
-        new MenuItem(
-          'event_list',
-          'Event List',
-          array(
-            'class' => 'event',
-            'method' => 'view'
           )
         ),
         new MenuItem(

@@ -7,10 +7,7 @@
   @include column(19, true);
 
   &.nosidebar {
-    margin-left: 0px;
-  }
-  &.nopadding {
-    padding: 0px;
+    @include column(24, true);
   }
 
   .heading {
@@ -27,9 +24,10 @@
   @import "user_directory_listing";
   @import "event";
 
-  #gcal {
-    width: 100%;
+  .gcal {
+    width: span(24);
     //TODO make height exact
-    height: 90%;
+    height: 600px;
+    margin-bottom: 60px;
   }
 }

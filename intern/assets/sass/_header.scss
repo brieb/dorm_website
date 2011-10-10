@@ -3,7 +3,7 @@
   width: 100%;
   min-width: 960px;
 
-  @include append-bottom(40px);
+  @include append-bottom(50px);
 
   @include box-shadow(#000000 0px 0px 12px);
   @include background(image-url("header/bg.png"));
