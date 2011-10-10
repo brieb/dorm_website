@@ -7,7 +7,6 @@ $this->load->view(
   )
 );
 
-$this->load->helper('event/form_builder');
 $this->load->helper('remote_user');
 
 ?>
@@ -61,8 +60,8 @@ foreach ($sidebar as $sidebarBox) {
     ) {
       if (element('isButton', $elem)) {
         $sidebarBoxContent .=
-          "<button id='{$elem['id']}'>".
-          $elem['title'].
+          "<button id='{$elem['id']}'>" .
+          $elem['title'] .
           "</button>";
       } else {
         $sidebarBoxContent .= anchor(
@@ -83,17 +82,23 @@ foreach ($sidebar as $sidebarBox) {
 
   if ($sidebarBoxContent != "") {
     $sidebarContent .=
-      "<div class='sidebar-box'>".
-      $sidebarBoxContent.
+      "<div class='sidebar-box'>" .
+      $sidebarBoxContent .
       "</div>";
   }
 }
 
 ?>
 
+<?php
+
+$fields_content = "";
+
+?>
+
 
 <?php if ($event['sign_up_id'] != NULL): ?>
-  <script>
+<script>
   require.ready(function () {
     SignUpFormRenderer.init(
       "<?php echo $event['sign_up_id']; ?>",
@@ -102,7 +107,7 @@ foreach ($sidebar as $sidebarBox) {
       "signUpResponse"
     );
   });
-  </script>
+</script>
 <?php endif; ?>
 
 
@@ -120,19 +125,49 @@ foreach ($sidebar as $sidebarBox) {
         <?php echo $event['title']; ?>
       </div>
       <div class="time">
-        <?php
-          echo $event['time_pretty_start'] . ' - '. $event['time_pretty_end'];
-        ?>
+<?php
+          echo $event['time_pretty_start'] . ' - ' . $event['time_pretty_end'];
+  ?>
       </div>
 
       <div class="description">
-        <?php echo nl2br($event['description']) ; ?>
+        <?php echo nl2br($event['description']); ?>
       </div>
 
       <div class="fields">
-        <?php
-          renderFields($event['fields']);
-        ?>
+        <ul>
+<?php
+
+  if ($event['location'] != "") {
+    echo "<li class=\"label\">Location:</li>\n";
+    echo "<li class=\"value\">{$event['location']}</li>\n";
+  }
+
+  if ($event['meetup_info'] != "") {
+    echo "<li class=\"label\">Meetup Info:</li>\n";
+    echo "<li class=\"value\">{$event['meetup_info']}</li>\n";
+  }
+
+  if ($event['point_person'] != "") {
+    echo "<li class=\"label\">Point Person:</li>\n";
+    echo "<li class=\"value\">{$event['point_person']}</li>\n";
+  }
+
+  if ($event['payment_price'] != "" || $event['payment_instructions'] != "") {
+    echo "<li class=\"label\">Payment:</li>\n";
+    echo "<ul>";
+    if ($event['payment_price'] != "") {
+      echo "<li class=\"value\">Price: {$event['payment_price']}</li>\n";
+    }
+    if ($event['payment_instructions'] != "") {
+      echo "<li class=\"value\">Insructions: {$event['payment_instructions']}</li>\n";
+    }
+    echo "</ul>";
+  }
+
+  ?>
+        </ul>
+
       </div>
     </div>
   </div>

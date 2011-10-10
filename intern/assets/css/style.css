@@ -3569,25 +3569,21 @@ body {
 }
 /* line 1, ../sass/_event.scss */
 #content #event_view, #content #event_sign_ups {
+  padding: 15px;
+  margin: 5px 10px 20px 5px;
   -moz-box-shadow: 0px 0px 5px #333333;
   -webkit-box-shadow: 0px 0px 5px #333333;
   -o-box-shadow: 0px 0px 5px #333333;
   box-shadow: 0px 0px 5px #333333;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -khtml-border-radius: 10px;
-  border-radius: 10px;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f3f3f3), color-stop(100%, #e6e6e6));
   background-image: -webkit-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: -moz-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: -o-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: -ms-linear-gradient(#f3f3f3, #e6e6e6);
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
-  padding: 20px 30px;
+  padding: 30px;
 }
-/* line 5, ../sass/_event.scss */
+/* line 6, ../sass/_event.scss */
 #content #event_create_fields {
   padding-left: 40px;
   padding-right: 40px;
@@ -3600,7 +3596,7 @@ body {
 * html #content #event_create_fields {
   overflow-x: hidden;
 }
-/* line 10, ../sass/_event.scss */
+/* line 11, ../sass/_event.scss */
 #content #event_create_fields .field {
   display: inline;
   float: left;
@@ -3612,7 +3608,7 @@ body {
 * html #content #event_create_fields .field {
   overflow-x: hidden;
 }
-/* line 14, ../sass/_event.scss */
+/* line 15, ../sass/_event.scss */
 #content #event_create_fields .field .label {
   display: inline;
   float: left;
@@ -3625,7 +3621,7 @@ body {
 * html #content #event_create_fields .field .label {
   overflow-x: hidden;
 }
-/* line 22, ../sass/_event.scss */
+/* line 23, ../sass/_event.scss */
 #content #event_create_fields .field .width_half {
   display: inline;
   float: left;
@@ -3636,7 +3632,7 @@ body {
 * html #content #event_create_fields .field .width_half {
   overflow-x: hidden;
 }
-/* line 25, ../sass/_event.scss */
+/* line 26, ../sass/_event.scss */
 #content #event_create_fields .field .width_half.last {
   display: inline;
   float: left;
@@ -3647,7 +3643,7 @@ body {
 * html #content #event_create_fields .field .width_half.last {
   overflow-x: hidden;
 }
-/* line 28, ../sass/_event.scss */
+/* line 29, ../sass/_event.scss */
 #content #event_create_fields .field .width_full {
   display: inline;
   float: left;
@@ -3658,16 +3654,16 @@ body {
 * html #content #event_create_fields .field .width_full {
   overflow-x: hidden;
 }
-/* line 32, ../sass/_event.scss */
+/* line 33, ../sass/_event.scss */
 #content #event_create_fields .field input[type='text'], #content #event_create_fields .field textarea {
   height: 32px;
   font-size: 14px;
 }
-/* line 39, ../sass/_event.scss */
+/* line 40, ../sass/_event.scss */
 #content #event_create_fields .field textarea {
   height: 100px;
 }
-/* line 44, ../sass/_event.scss */
+/* line 45, ../sass/_event.scss */
 #content #event_create_fields fieldset {
   display: inline;
   float: left;
@@ -3681,7 +3677,7 @@ body {
 * html #content #event_create_fields fieldset {
   overflow-x: hidden;
 }
-/* line 47, ../sass/_event.scss */
+/* line 48, ../sass/_event.scss */
 #content #event_create_fields fieldset fieldset {
   display: inline;
   float: left;
@@ -3692,7 +3688,7 @@ body {
 * html #content #event_create_fields fieldset fieldset {
   overflow-x: hidden;
 }
-/* line 50, ../sass/_event.scss */
+/* line 51, ../sass/_event.scss */
 #content #event_create_fields fieldset fieldset .field {
   display: inline;
   float: left;
@@ -3703,7 +3699,7 @@ body {
 * html #content #event_create_fields fieldset fieldset .field {
   overflow-x: hidden;
 }
-/* line 53, ../sass/_event.scss */
+/* line 54, ../sass/_event.scss */
 #content #event_create_fields fieldset fieldset .field .width_full {
   display: inline;
   float: left;
@@ -3714,7 +3710,7 @@ body {
 * html #content #event_create_fields fieldset fieldset .field .width_full {
   overflow-x: hidden;
 }
-/* line 63, ../sass/_event.scss */
+/* line 64, ../sass/_event.scss */
 #content #event_create_fields fieldset .field {
   display: inline;
   float: left;
@@ -3725,7 +3721,7 @@ body {
 * html #content #event_create_fields fieldset .field {
   overflow-x: hidden;
 }
-/* line 66, ../sass/_event.scss */
+/* line 67, ../sass/_event.scss */
 #content #event_create_fields fieldset .field .width_half {
   display: inline;
   float: left;
@@ -3736,7 +3732,7 @@ body {
 * html #content #event_create_fields fieldset .field .width_half {
   overflow-x: hidden;
 }
-/* line 69, ../sass/_event.scss */
+/* line 70, ../sass/_event.scss */
 #content #event_create_fields fieldset .field .width_full {
   display: inline;
   float: left;
@@ -3747,52 +3743,51 @@ body {
 * html #content #event_create_fields fieldset .field .width_full {
   overflow-x: hidden;
 }
-/* line 75, ../sass/_event.scss */
+/* line 76, ../sass/_event.scss */
 #content #event_create_fields input[type='submit'] {
   width: 100%;
   font-size: 110%;
   margin-top: 30px;
   padding: 10px 10px;
 }
-/* line 83, ../sass/_event.scss */
+/* line 84, ../sass/_event.scss */
 #content #event_create_fields .event_specific {
   margin-top: 40px;
 }
-/* line 89, ../sass/_event.scss */
+/* line 90, ../sass/_event.scss */
 #content #event_list .item {
   padding: 25px 10px;
   margin: 0px 10px 0px 5px;
   border-bottom: 1px solid #B3B3B3;
 }
-/* line 92, ../sass/_event.scss */
+/* line 93, ../sass/_event.scss */
 #content #event_list .item h1 {
   font-family: "Lato-Black";
   font-size: 150%;
   margin-bottom: 15px;
 }
-/* line 98, ../sass/_event.scss */
+/* line 99, ../sass/_event.scss */
 #content #event_list .item .time {
   margin-bottom: 15px;
   font-size: 110%;
   font-family: "Lato-Bold";
 }
-/* line 104, ../sass/_event.scss */
+/* line 105, ../sass/_event.scss */
 #content #event_list .item:first-child {
   padding-top: 0;
 }
-/* line 107, ../sass/_event.scss */
+/* line 108, ../sass/_event.scss */
 #content #event_list .item:last-child {
   border-width: 0;
 }
-/* line 114, ../sass/_event.scss */
+/* line 115, ../sass/_event.scss */
 #content #event_view .title {
-  font-family: "Lato-Black";
+  font-weight: bold;
   font-size: 300%;
   margin-bottom: 30px;
 }
-/* line 121, ../sass/_event.scss */
+/* line 122, ../sass/_event.scss */
 #content #event_view .time {
-  font-family: "Lato-Bold";
   font-size: 125%;
   margin-bottom: 30px;
 }
@@ -3807,53 +3802,53 @@ body {
 }
 /* line 136, ../sass/_event.scss */
 #content #event_view .fields .label {
-  font-size: 120%;
-  font-family: "Lato-Bold";
+  width: 390px;
+  font-size: 110%;
+  font-weight: bold;
   margin: 25px 10px 15px 10px;
   padding: 5px 0;
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: #c5c5c5;
-  width: 50%;
 }
-/* line 148, ../sass/_event.scss */
+/* line 149, ../sass/_event.scss */
 #content #event_view .fields .value {
   font-size: 110%;
   margin: 5px 20px;
 }
-/* line 156, ../sass/_event.scss */
+/* line 157, ../sass/_event.scss */
 #content #event_sign_ups table {
   width: 100%;
 }
-/* line 160, ../sass/_event.scss */
+/* line 161, ../sass/_event.scss */
 #content #event_sign_ups th, #content #event_sign_ups td {
   padding: 10px;
 }
-/* line 164, ../sass/_event.scss */
+/* line 165, ../sass/_event.scss */
 #content #event_sign_ups th.sortable {
   color: #444;
   cursor: pointer;
   text-decoration: underline;
 }
-/* line 169, ../sass/_event.scss */
+/* line 170, ../sass/_event.scss */
 #content #event_sign_ups th.sortable:hover {
   color: black;
 }
-/* line 172, ../sass/_event.scss */
+/* line 173, ../sass/_event.scss */
 #content #event_sign_ups th.sorted-asc, #content #event_sign_ups th.sorted-desc {
   color: black;
 }
-/* line 176, ../sass/_event.scss */
+/* line 177, ../sass/_event.scss */
 #content #event_sign_ups td {
   background-color: white;
   color: #111;
 }
-/* line 180, ../sass/_event.scss */
+/* line 181, ../sass/_event.scss */
 #content #event_sign_ups td.odd {
   background-color: #666;
   color: white;
 }
-/* line 185, ../sass/_event.scss */
+/* line 186, ../sass/_event.scss */
 #content #event_sign_ups td.hovered {
   background-color: #598CCD;
   color: #000;

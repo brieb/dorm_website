@@ -1,5 +1,6 @@
 #event_view, #event_sign_ups {
-  @include rounded_box;
+  @include square_box;
+  padding: 30px;
 }
 
 #event_create_fields {
@@ -113,14 +114,13 @@
 #event_view {
   .title {
     font: {
-      family: "Lato-Black";
+      weight: bold;
       size: 300%;
     };
     margin-bottom: 30px;
   }
   .time {
     font: {
-      family: "Lato-Bold";
       size: 125%;
     };
     margin-bottom: 30px;
@@ -134,8 +134,10 @@
       margin: 10px 0;
     }
     .label {
-      font-size: 120%;
-      font-family: "Lato-Bold";
+      width: span(10);
+
+      font-size: 110%;
+      font-weight: bold;
       margin: 25px 10px 15px 10px;
       padding: 5px 0;
       border-bottom: {
@@ -143,7 +145,6 @@
         width: 1px;
         color: #c5c5c5;
       };
-      width: 50%;
     }
     .value {
       font-size: 110%;

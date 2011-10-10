@@ -16,7 +16,6 @@ class Event extends CI_Controller {
     $form_data = $this->input->post();
 
     if (!$form_data) {
-      $this->load->helper('event/form_builder');
       $this->load->view('event/create');
       return;
     }
