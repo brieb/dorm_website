@@ -91,6 +91,9 @@ class Event extends CI_Controller {
     }
 
     if ($event['sign_up_id'] != NULL) {
+      $this->load->model('Sign_up_model');
+      $event['sign_up'] = $this->Sign_up_model->read($event['sign_up_id']);
+
       $user_id = $this->session->userdata('user_id');
       $this->load->model('Sign_up_response_model');
 

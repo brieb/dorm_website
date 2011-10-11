@@ -37,7 +37,7 @@ class Sign_up_model extends CI_Model {
   function read($id) {
     $sql = "
       SELECT
-        event_id, form, waitlist_size
+        event_id, form, waitlist_size, is_open
       FROM sign_up
       WHERE id = ?
     ";

@@ -38,7 +38,10 @@ $sidebar = array(
   ),
   array(
     array(
-      'hide' => ($event['sign_up_id'] == NULL),
+      'hide' => (
+        $event['sign_up_id'] == NULL ||
+        !$event['sign_up']['is_open']
+      ),
       'title' => 'Sign Up',
       'id' => 'signUpResponse',
       'action' => array(
@@ -73,9 +76,9 @@ foreach ($sidebar as $sidebarBox) {
       }
       $sidebarBoxContent .= "
         <script>
-          require.ready(function () {
-            $('#{$elem['id']}').button();
-          });
+require.ready(function () {
+  $('#{$elem['id']}').button();
+    });
         </script>
       ";
     }
@@ -93,16 +96,16 @@ foreach ($sidebar as $sidebarBox) {
 
 
 <?php if ($event['sign_up_id'] != NULL): ?>
-  <script>
-  require.ready(function () {
-    SignUpFormRenderer.init(
-      "<?php echo $event['sign_up_id']; ?>",
-      "<?php echo $sign_up_response_id; ?>",
-      "<?php echo $event['title']; ?>",
-      "signUpResponse"
-    );
-  });
-  </script>
+<script>
+require.ready(function () {
+  SignUpFormRenderer.init(
+    "<?php echo $event['sign_up_id']; ?>",
+    "<?php echo $sign_up_response_id; ?>",
+    "<?php echo $event['title']; ?>",
+    "signUpResponse"
+  );
+});
+</script>
 <?php endif; ?>
 
 
@@ -121,7 +124,7 @@ foreach ($sidebar as $sidebarBox) {
       </div>
       <div class="time">
         <?php
-          echo $event['time_pretty_start'] . ' - '. $event['time_pretty_end'];
+        echo $event['time_pretty_start'] . ' - '. $event['time_pretty_end'];
         ?>
       </div>
 
@@ -131,7 +134,7 @@ foreach ($sidebar as $sidebarBox) {
 
       <div class="fields">
         <?php
-          renderFields($event['fields']);
+        renderFields($event['fields']);
         ?>
       </div>
     </div>
