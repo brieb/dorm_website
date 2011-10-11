@@ -5,6 +5,10 @@ include(dirname(__FILE__) . '/conf/config.php');
 $URL_HOME = $BASE_URL . '../';
 $URL_APPS = $BASE_URL;
 
+if ( !(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ) {
+  header("Location: ".$URL_HOME);
+}
+
 function get_files_in_dir($directory) {
   $results = array();
   $handler = opendir($directory);
