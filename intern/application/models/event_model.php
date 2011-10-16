@@ -76,6 +76,9 @@ class Event_model extends CI_Model {
     }
 
     $query = $this->db->query($sql);
+    if (!$query) {
+      return array();
+    }
 
     $events = array();
     foreach ($query->result_array() as $event) {

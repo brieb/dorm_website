@@ -1,5 +1,6 @@
 .*.swp
 /intern/static/
+/static/
 /intern/application/cache/
 /intern/application/logs/
 /assets/.sass-cache/
@@ -11,3 +12,4 @@
 /conf/*.php
 *.log
 .htpasswd
+/application-archive/

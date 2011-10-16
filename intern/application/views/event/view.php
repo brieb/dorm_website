@@ -1,51 +1,54 @@
 <?php
-$this->load->view(
-  'common/header',
-  array(
-    'page_title' => 'Event',
-    'js' => 'main-event-view',
-  )
-);
+  $this->load->view(
+    'common/header',
+    array(
+      'page_title' => 'Event',
+      'js' => 'main-event-view',
+    )
+  );
 
-$this->load->helper('remote_user');
-
+  $this->load->helper('remote_user');
 ?>
 
 <?php
-
-$sidebar = array(
-  array(
+  $sidebar = array(
     array(
-      'title' => 'Edit Event',
-      'id' => 'eventEdit',
-      'action' => array(
-        'class' => 'event',
-        'method' => 'edit',
-        'id' => $event['id'],
+      array(
+        'title' => 'Edit Event',
+        'id' => 'eventEdit',
+        'action' => array(
+          'class' => 'event',
+          'method' => 'edit',
+          'id' => $event['id'],
+        ),
+      ),
+      array(
+        'hide' => ($event['sign_up_id'] == NULL),
+        'title' => 'View Sign Ups',
+        'id' => 'eventSignUps',
+        'action' => array(
+          'class' => 'event_sign_ups',
+          'method' => 'view',
+          'id' => $event['id'],
+        ),
       ),
     ),
     array(
-      'hide' => ($event['sign_up_id'] == NULL),
-      'title' => 'View Sign Ups',
-      'id' => 'eventSignUps',
-      'action' => array(
-        'class' => 'event_sign_ups',
-        'method' => 'view',
-        'id' => $event['id'],
+      array(
+        'hide' => (
+          $event['sign_up_id'] == NULL ||
+          !$event['sign_up']['is_open']
+        ),
+        'title' => 'Sign Up',
+        'id' => 'signUpResponse',
+        'action' => array(
+          'class' => 'sign_up_response',
+          'method' => 'create',
+        ),
+        'isButton' => true,
       ),
     ),
-  ),
-  array(
-    array(
-      'hide' => ($event['sign_up_id'] == NULL),
-      'title' => 'Sign Up',
-      'id' => 'signUpResponse',
-      'action' => array(
-        'class' => 'sign_up_response',
-        'method' => 'create',
-      ),
-      'isButton' => true,
-    ),
+<<<<<<< HEAD
   ),
 );
 
@@ -71,22 +74,56 @@ foreach ($sidebar as $sidebarBox) {
         );
       }
       $sidebarBoxContent .= "
+=======
+  );
+
+  $sidebarContent = "";
+
+  foreach ($sidebar as $sidebarBox) {
+    $sidebarBoxContent = "";
+    foreach ($sidebarBox as $elem) {
+      if (
+        remote_user_can_do($elem['action']) &&
+        !(isset($elem['hide']) && $elem['hide'])
+      ) {
+        if (element('isButton', $elem)) {
+          $sidebarBoxContent .=
+          "<button id='{$elem['id']}'>".
+            $elem['title'].
+            "</button>";
+        } else {
+          $sidebarBoxContent .= anchor(
+            $elem['action'],
+            $elem['title'],
+            array('id' => $elem['id'])
+          );
+        }
+        $sidebarBoxContent .= "
+>>>>>>> ee06a9ac0098584056f50bcafcd72d880021f808
         <script>
           require.ready(function () {
             $('#{$elem['id']}').button();
           });
         </script>
-      ";
+        ";
+      }
     }
-  }
 
+<<<<<<< HEAD
   if ($sidebarBoxContent != "") {
     $sidebarContent .=
       "<div class='sidebar-box'>" .
       $sidebarBoxContent .
       "</div>";
+=======
+    if ($sidebarBoxContent != "") {
+      $sidebarContent .=
+      "<div class='sidebar-box'>".
+        $sidebarBoxContent.
+        "</div>";
+    }
+>>>>>>> ee06a9ac0098584056f50bcafcd72d880021f808
   }
-}
 
 ?>
 
@@ -100,12 +137,12 @@ $fields_content = "";
 <?php if ($event['sign_up_id'] != NULL): ?>
 <script>
   require.ready(function () {
-    SignUpFormRenderer.init(
-      "<?php echo $event['sign_up_id']; ?>",
-      "<?php echo $sign_up_response_id; ?>",
-      "<?php echo $event['title']; ?>",
-      "signUpResponse"
-    );
+      SignUpFormRenderer.init(
+        "<?php echo $event['sign_up_id']; ?>",
+        "<?php echo $sign_up_response_id; ?>",
+        "<?php echo $event['title']; ?>",
+        "signUpResponse"
+      );
   });
 </script>
 <?php endif; ?>
@@ -125,9 +162,16 @@ $fields_content = "";
         <?php echo $event['title']; ?>
       </div>
       <div class="time">
+<<<<<<< HEAD
 <?php
           echo $event['time_pretty_start'] . ' - ' . $event['time_pretty_end'];
   ?>
+=======
+        <?php
+          echo $event['time_pretty_start'] . ' - ' .
+          $event['time_pretty_end'];
+        ?>
+>>>>>>> ee06a9ac0098584056f50bcafcd72d880021f808
       </div>
 
       <div class="description">
@@ -175,7 +219,6 @@ $fields_content = "";
 </div>
 
 <?php
-$this->load->view('common/footer');
+  $this->load->view('common/footer');
 ?>
-
 

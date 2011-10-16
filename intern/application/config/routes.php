@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "event/view";
+$route['default_controller'] = "calendar";
 $route['404_override'] = '';
 
 
