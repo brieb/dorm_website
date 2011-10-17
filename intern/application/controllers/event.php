@@ -23,16 +23,7 @@ class Event extends CI_Controller {
 
     //TODO server-side validation
 
-    $form_data['has_field_payment'] =
-      (int)($form_data['payment_price'] != "" ||
-            $form_data['payment_instructions'] != "");
-
-    $form_data['time_start'] = self::formatDatetime(
-      $form_data['start_date'] . ' ' . $form_data['start_time']
-    );
-    $form_data['time_end'] = self::formatDatetime(
-      $form_data['end_date'] . ' ' . $form_data['end_time']
-    );
+    self::format_form_data($form_data);
 
     $this->load->model('Event_model');
     $event_id = $this->Event_model->create($form_data);
@@ -70,6 +61,14 @@ class Event extends CI_Controller {
     if ($event['sign_up_id'] != NULL) {
       $this->load->model('Sign_up_model');
       $event['sign_up'] = $this->Sign_up_model->read($event['sign_up_id']);
+      $event['sign_up']['form'] = unserialize($event['sign_up']['form']);
+      if ($event['sign_up']['form'] != NULL) {
+        $event['sign_up']['html'] = $this->load->view(
+          'sign_up/form_fields/fields',
+          array('fields' => $event['sign_up']['form']),
+          true
+        );
+      }
 
       $user_id = $this->session->userdata('user_id');
       $this->load->model('Sign_up_response_model');
@@ -79,6 +78,7 @@ class Event extends CI_Controller {
           getByUserIdSignUpId($user_id, $event['sign_up_id']);
     }
     $data['event'] = $event;
+
     $this->load->view('event/view', $data);
   }
 
@@ -100,6 +100,7 @@ class Event extends CI_Controller {
     $this->load->model('Event_model');
     $form_data = $this->input->post();
     if ($form_data) {
+      $form_data['event_id'] = $id;
       $this->edit_save($form_data);
     } else {
       $this->edit_load($id);
@@ -115,20 +116,41 @@ class Event extends CI_Controller {
   }
 
 
+  private static function format_form_data(&$form_data) {
+    $form_data['has_field_payment'] =
+      (int)($form_data['payment_price'] != "" ||
+            $form_data['payment_instructions'] != "");
+
+    $form_data['time_start'] = self::formatDatetime(
+      $form_data['start_date'] . ' ' . $form_data['start_time']
+    );
+    $form_data['time_end'] = self::formatDatetime(
+      $form_data['end_date'] . ' ' . $form_data['end_time']
+    );
+  }
+
   private static function formatDatetime($datetime) {
     return date(DATE_RFC3339, strtotime($datetime));
   }
 
-  private function createSignUp(&$form_data) {
-    $sign_up_form_ser = isset($form_data['sign_up_questions']) ?
-      serialize($form_data['sign_up_questions']) : serialize(NULL);
 
-    $capacity = $form_data['sign_up_capacity'];
+  private function createSignUp(&$form_data) {
+    $event_id = $form_data['event_id'];
+
+    $sign_up_form_ser = serialize(NULL);
+    if (isset($form_data['sign_up_questions'])) {
+      for($i = 0; $i < count($form_data['sign_up_questions']); $i++) {
+        $form_data['sign_up_questions'][$i]['id'] = "q$i";
+      }
+      $sign_up_form_ser = serialize($form_data['sign_up_questions']);
+    }
+
+    $capacity = element('sign_up_capacity', $form_data, 0);
 
     $this->load->model('Sign_up_model');
     $sign_up_id = $this->Sign_up_model->create(
       array(
-        'event_id' => $form_data['event_id'],
+        'event_id' => $event_id,
         'form' => $sign_up_form_ser,
         'capacity' => $capacity
       )
@@ -139,20 +161,16 @@ class Event extends CI_Controller {
 
   //TODO unify routine with create
   private function edit_save($form_data) {
-    $event_id = $form_data['id'];
-    if (
-      isset($form_data['sign_up_delete']) &&
-      $form_data['sign_up_delete'] == '1'
-    ) {
-      $this->load->model('Sign_up_model');
-      $this->Sign_up_model->delete($form_data['sign_up_id']);
-      unset($form_data['sign_up_delete']);
-      unset($form_data['sign_up_id']);
-    }
-    $this->createSignUp($form_data, $event_id);
+    $event_id = $form_data['event_id'];
 
-    $this->serializeFields($form_data);
-    $form_data['time'] = $this->formatDatetime($form_data['time']);
+    self::format_form_data($form_data);
+
+    if (
+      isset($form_data['sign_up_enabled']) &&
+      $form_data['sign_up_enabled'] == '1'
+    ) {
+      $this->createSignUp($form_data, $event_id);
+    }
 
     $this->Event_model->update($event_id, $form_data);
     $this->load->model('Gcal_model');
@@ -164,14 +182,18 @@ class Event extends CI_Controller {
 
   private function edit_load($id) {
     $event = $this->Event_model->read($id);
-    var_dump($event);
-    $event['time'] = $this->formatDatetime($event['time']);
 
-    $event['fields'] = isset($event['fields']) ?
-      unserialize($event['fields']) : NULL;
-    $this->load->view(
-      'event/edit',
-      array('eventJSON' => json_encode($event))
+    $this->load->library(
+      'Event_form',
+      array(
+        'prefill' => $event,
+        'sign_up_id' => $event['sign_up_id']
+      )
     );
+    //$event['time'] = $this->formatDatetime($event['time']);
+
+    $this->load->view('event/edit', array( 'event_id' => $event['id'] ));
   }
+
+
 }

@@ -15,7 +15,7 @@ class Sign_up_model extends CI_Model {
     $waitlist_size = $data['capacity'];
     $form = $data['form'];
 
-    $sql = "INSERT INTO sign_up
+    $sql = "INSERT IGNORE INTO sign_up
       (event_id, form, waitlist_size)
       VALUES (?, ?, ?)";
     $query = $this->db->query(

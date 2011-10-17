@@ -27,6 +27,13 @@ if (!Function.prototype.bind) {
 
 
 $(document).ready(function() {
+  $.blockUI.defaults.css.border = 'none';
+  $.blockUI.defaults.css.padding = '15px'; 
+  $.blockUI.defaults.css.backgroundColor = '#000'; 
+  $.blockUI.defaults.css.opacity = .8;
+  $.blockUI.defaults.css.fontSize = '150%';
+  $.blockUI.defaults.css.color = '#fff'; 
+  $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
 //  var adjustDimensions = function() {
 //    var headerHeight = $('#header').height();
@@ -63,6 +70,5 @@ $(document).ready(function() {
 //    });
 //  };
   //setActiveMenuItems();
-
 
 });

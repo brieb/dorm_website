@@ -4,6 +4,8 @@
 }
 
 #content {
+  position: relative;
+
   @include column(19, true);
 
   &.nosidebar {

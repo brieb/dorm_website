@@ -8,6 +8,8 @@ $this->load->view(
 );
 ?>
 
+<div id="container">
+
 <div id="sidebar">
   <input
     id="search"
@@ -60,4 +62,6 @@ $this->load->view(
 
   </table>
   </div>
+</div>
+
 </div>

@@ -9,14 +9,15 @@ SignUpFormRenderer = {
   signUpId: null,
   eventTitle: '',
   responseId: 0,
-  content: null,
   container: null,
+  content: null,
 
-  init: function(signUpId, responseId, eventTitle, signUpButtonId) {
+  init: function(signUpId, responseId, eventTitle, signUpButtonId, content) {
     this.signUpId = signUpId;
     this.eventTitle = eventTitle;
     this.buttonSignUp = $('#'+signUpButtonId);
     this.responseId = responseId;
+    this.content = content;
     
     if (this.responseId === "") {
       this.buttonSignUpCreate();
@@ -30,7 +31,7 @@ SignUpFormRenderer = {
       .unbind('click')
       .click(
         function() {
-          this.display();
+          this.process();
         }.bind(this)
       );
   },
@@ -75,19 +76,6 @@ SignUpFormRenderer = {
          }
        }.bind(this)
     );
-  },
-  display: function() {
-    if (this.content !== null) {
-      this.process();
-    } else {
-      $.get(
-        this.formViewUrl+this.signUpId,
-        function(response) {
-          this.content = response;
-          this.process();
-        }.bind(this)
-      );
-    }
   },
   formRender: function() {
     this.container = $('<div />');

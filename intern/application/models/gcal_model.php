@@ -80,8 +80,8 @@ class Gcal_model extends CI_Model {
     }
 
     $title = $data['title'];
-    $time_start = $data['time']['start'];
-    $time_end = $data['time']['end'];
+    $time_start = $data['time_start'];
+    $time_end = $data['time_end'];
 
     $event = $this->service->getCalendarEventEntry($id);
     if (!$event) {

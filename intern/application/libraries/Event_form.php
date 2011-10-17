@@ -7,12 +7,19 @@
     private $fields_common;
     private $fieldsets_specific;
     private $prefill;
+    private $event_id;
     private $sign_up_id;
 
-    //function __construct($prefill = null, $sign_up_id = -1) {
     public function __construct($params) {
-      //$this->prefill = $prefill;
-      //$this->sign_up_id = $sign_up_id;
+      $this->prefill = null;
+      $this->sign_up_id = null;
+      $this->event_id = null;
+
+      if (isset($params['prefill'])) {
+        $this->prefill = $params['prefill'];
+        $this->sign_up_id = $params['sign_up_id'];
+        $this->event_id = $params['prefill']['id'];
+      }
 
       $this->fields_common = array();
       $this->fieldsets_specific = array();
@@ -21,54 +28,75 @@
       $this->init_fieldsets_specific();
     }
 
-    function test() { return "hi"; }
-
     function render_sign_up_form() {
-      if ($this->sign_up_id == -1) {
-        //TODO handle case with existing signup
-        return "<button type='button'>Remove</button>";
-      }
+      $content = "";
+      $content .= "<script>
+        require.ready(function () {
+          EventForm.setEventId({$this->event_id});
+        });
+      </script>";
+      $hide_sign_up_form = "";
 
-      $content = <<<EOT
-      <fieldset>
-        <legend>Sign Up</legend>
+      $content .= "<fieldset>";
+        $content .= "<legend>Sign Up</legend>";
 
-        <div class="field">
-          <div class="label">Enabled:</div>
+        if ($this->sign_up_id != NULL) {
+          //TODO handle case with existing signup
+          $content .= "<div id='event_sign_up_remove_container' class='field'>";
+            $content .= "<button
+              id='event_sign_up_remove'
+              type='button'>Remove</button>";
+            $content .= "<script>
+              require.ready(function () {
+                EventForm.setSignUpId({$this->sign_up_id});
+              });
+            </script>";
+            $content .= "</div>";
+          $hide_sign_up_form = "style='display: none;'";
+        }
+        $content .= "
+        <div id=\"event_sign_up_toggle\" class='field' {$hide_sign_up_form} >
 
-          <div id="sign_up_enabled" class="buttonset">
-            <input type="radio"
-            id="sign_up_enabled_yes"
-            name="sign_up_enabled"
-            value="1"/>
-            <label for="sign_up_enabled_yes">Yes</label>
-            <input type="radio"
-            id="sign_up_enabled_no"
-            name="sign_up_enabled"
-            checked="checked"
-            value="0"/>
-            <label for="sign_up_enabled_no">No</label>
+          <div class=\"label\">Enabled:</div>
+
+          <div id=\"sign_up_enabled\" class=\"buttonset\">
+
+            <input type=\"radio\"
+            id=\"sign_up_enabled_yes\"
+            name=\"sign_up_enabled\"
+            value=\"1\"/>
+            <label for=\"sign_up_enabled_yes\">Yes</label>
+
+            <input type=\"radio\"
+            id=\"sign_up_enabled_no\"
+            name=\"sign_up_enabled\"
+            checked=\"checked\"
+            value=\"0\"/>
+            <label for=\"sign_up_enabled_no\">No</label>
+
           </div>
+
         </div>
 
-        <div id="event_sign_up_specific">
-          <div class="field">
-            <label class="label" for="sign_up_capacity">Event Capacity: </label>
-            <input type="text"
-            id="sign_up_capacity"
-            name="sign_up_capacity"
-            placeholder=""
-            class="width_full"/>
+        <div id=\"event_sign_up_specific\">
+          <div class=\"field\">
+            <label class=\"label\"
+              for=\"sign_up_capacity\">Event Capacity: </label>
+            <input type=\"text\"
+            id=\"sign_up_capacity\"
+            name=\"sign_up_capacity\"
+            placeholder=\"\"
+            class=\"width_full\"/>
           </div>
 
           <fieldset>
             <legend>Questions</legend>
-            <div id="event_sign_up_form"></div>
+            <div id=\"event_sign_up_form\"></div>
           </fieldset>
         </div>
+        ";
 
-      </fieldset>
-EOT;
+        $content .= "</fieldset>";
 
       return $content;
     }
@@ -89,11 +117,11 @@ EOT;
       return $content;
     }
 
-    private function get_prefill_value($id) {
-      if ($this->prefill == null || !isset($this->prefill[$id])) {
+    private function get_prefill_value($key) {
+      if ($this->prefill == null || !isset($this->prefill[$key])) {
         return "";
       }
-      return $prefill_data[$id];
+      return $this->prefill[$key];
     }
 
     private function init_fields_common() {
@@ -225,6 +253,7 @@ EOT;
           )
         );
         $fieldset->add_element($fieldset_inner);
+
 
         $this->fieldsets_specific[] = $fieldset;
       }

@@ -28,11 +28,7 @@
             exclude: ["jquery"]
         },
         {
-          name: "main-event-create",
-          exclude: ["jquery"]
-        },
-        {
-          name: "main-event-edit",
+          name: "main-event-form",
           exclude: ["jquery"]
         },
         {

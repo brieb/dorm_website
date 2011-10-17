@@ -196,14 +196,14 @@ EventSignUp.Field = function() {
     }
   ];
 
-  this.type_selector.append(
-    $('<option/>')
-      .attr({
-              value: "",
-              disabled: "disabled"
-            })
-      .text("Choose a question type...")
-  );
+  //this.type_selector.append(
+    //$('<option/>')
+      //.attr({
+              //value: "",
+              //disabled: "disabled"
+            //})
+      //.text("Choose a question type...")
+  //);
 
   for (var i = 0; i < this.types.length; i++) {
     var type = this.types[i];

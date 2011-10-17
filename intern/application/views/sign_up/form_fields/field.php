@@ -4,10 +4,6 @@
 <?php echo $field['text']; ?>
 </div>
 
-<div class="help">
-<?php echo $field['help']; ?>
-</div>
-
 <div class="field">
 <?php
 $this->load->view(

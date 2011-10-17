@@ -7,6 +7,16 @@
       ?>
     </title>
 
+    <?php
+      array_map(
+        "includeCSS",
+        array(
+//          "third_party/Absolution/jquery.ui.all",
+          "style",
+        )
+      );
+    ?>
+
     <script type="text/javascript">
         var BASE_URL = "<?php echo base_url(); ?>";
         var SITE_URL = "<?php echo site_url(); ?>";
@@ -35,16 +45,6 @@
 
     <link rel="icon"
       href="<?php echo base_url().'assets/img/common/favicon.ico'; ?>" />
-
-    <?php
-      array_map(
-        "includeCSS",
-        array(
-//          "third_party/Absolution/jquery.ui.all",
-          "style",
-        )
-      );
-    ?>
 
   </head>
 

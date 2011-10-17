@@ -105,7 +105,14 @@ $fields_content = "";
         "<?php echo $event['sign_up_id']; ?>",
         "<?php echo $sign_up_response_id; ?>",
         "<?php echo $event['title']; ?>",
-        "signUpResponse"
+        "signUpResponse",
+        <?php
+          if (isset($event['sign_up']['html'])) {
+            echo json_encode($event['sign_up']['html']);
+          } else {
+            echo "\"\"";
+          }
+        ?>
       );
   });
 </script>
