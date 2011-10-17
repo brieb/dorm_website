@@ -6,7 +6,6 @@ $this->load->view(
     'js' => 'main-event-create'
   )
 );
-  $this->load->helper('event');
 ?>
 
 <?php
@@ -44,7 +43,7 @@ $this->load->view(
     <div class="heading">Create an Event</div>
 
     <form id="event_create_fields" method="POST">
-      <?php echo getEventFormContent(); ?>
+      <?php echo $this->event_form->render(); //echo get_event_form_content(); ?>
       <input type="submit" value="Create Event"/>
     </form>
   </div>

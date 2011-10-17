@@ -19,6 +19,7 @@ require(
     $('.date').mask("D9/M9/2019");
 
     $('.buttonset').buttonset();
+    $('button').button();
 
     var event_sign_up = null;
 
