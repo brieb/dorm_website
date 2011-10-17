@@ -48,33 +48,6 @@
         'isButton' => true,
       ),
     ),
-<<<<<<< HEAD
-  ),
-);
-
-$sidebarContent = "";
-
-foreach ($sidebar as $sidebarBox) {
-  $sidebarBoxContent = "";
-  foreach ($sidebarBox as $elem) {
-    if (
-      remote_user_can_do($elem['action']) &&
-      !(isset($elem['hide']) && $elem['hide'])
-    ) {
-      if (element('isButton', $elem)) {
-        $sidebarBoxContent .=
-          "<button id='{$elem['id']}'>" .
-          $elem['title'] .
-          "</button>";
-      } else {
-        $sidebarBoxContent .= anchor(
-          $elem['action'],
-          $elem['title'],
-          array('id' => $elem['id'])
-        );
-      }
-      $sidebarBoxContent .= "
-=======
   );
 
   $sidebarContent = "";
@@ -99,7 +72,6 @@ foreach ($sidebar as $sidebarBox) {
           );
         }
         $sidebarBoxContent .= "
->>>>>>> ee06a9ac0098584056f50bcafcd72d880021f808
         <script>
           require.ready(function () {
             $('#{$elem['id']}').button();
@@ -109,20 +81,12 @@ foreach ($sidebar as $sidebarBox) {
       }
     }
 
-<<<<<<< HEAD
-  if ($sidebarBoxContent != "") {
-    $sidebarContent .=
-      "<div class='sidebar-box'>" .
-      $sidebarBoxContent .
-      "</div>";
-=======
     if ($sidebarBoxContent != "") {
       $sidebarContent .=
       "<div class='sidebar-box'>".
         $sidebarBoxContent.
         "</div>";
     }
->>>>>>> ee06a9ac0098584056f50bcafcd72d880021f808
   }
 
 ?>
@@ -162,16 +126,10 @@ $fields_content = "";
         <?php echo $event['title']; ?>
       </div>
       <div class="time">
-<<<<<<< HEAD
-<?php
-          echo $event['time_pretty_start'] . ' - ' . $event['time_pretty_end'];
-  ?>
-=======
         <?php
           echo $event['time_pretty_start'] . ' - ' .
           $event['time_pretty_end'];
         ?>
->>>>>>> ee06a9ac0098584056f50bcafcd72d880021f808
       </div>
 
       <div class="description">

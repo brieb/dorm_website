@@ -15,6 +15,7 @@ $this->load->view(
 
 <script type="text/javascript">
 require.ready(function() {
+    console.log(<?php echo $eventJSON ?>);
   EventEdit.init(
     'sidebar', 'content', <?php echo $eventJSON ?>
   );
