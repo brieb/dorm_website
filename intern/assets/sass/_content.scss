@@ -17,6 +17,12 @@
     //TODO make height exact
     height: 90%;
   }
+  .note_doc {
+    width: 960px;
+    margin: auto;
+    //TODO make height exact
+    height: 90%;
+  }
 
   #event_create_fields, #event_view, #event_sign_ups {
     @include rounded_box;

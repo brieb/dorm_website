@@ -50,6 +50,15 @@ class MainMenu {
       )
     );
 
+    $menuNote = new Menu(
+      new MenuItem('note', 'Notes',
+        array(
+          'class' => 'note',
+          'method' => 'index'
+        )
+      )
+    );
+
     $menuWiki = new Menu(
       new MenuItem('wiki', 'Wikis'),
       array(
@@ -111,6 +120,7 @@ class MainMenu {
     $this->menus = array(
       $menuEvent,
       $menuPeople,
+      $menuNote,
       $menuWiki,
       $menuFacebook,
     );

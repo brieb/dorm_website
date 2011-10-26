@@ -83,6 +83,9 @@
       .people .sprite {
         @include menu-sprite(people);
       }
+      .note .sprite {
+        @include menu-sprite(wiki);
+      }
       .wiki .sprite {
         @include menu-sprite(wiki);
       }

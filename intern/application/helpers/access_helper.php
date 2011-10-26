@@ -17,6 +17,9 @@ if (!function_exists('get_permissions')) {
         'auth' => array(
           'index' => TRUE
         ),
+        'note' => array(
+          'index' => TRUE,
+        ),
       );
       $stanford = array_merge_recursive($public, array());
 
