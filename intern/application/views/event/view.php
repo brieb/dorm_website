@@ -40,7 +40,7 @@
           $event['sign_up_id'] == NULL ||
           !$event['sign_up']['is_open']
         ),
-        'title' => 'Sign Up',
+        'title' => 'Request Sign Up',
         'id' => 'signUpResponse',
         'action' => array(
           'class' => 'sign_up_response',

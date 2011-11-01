@@ -26,7 +26,7 @@ SignUpFormRenderer = {
   },
   buttonSignUpCreate: function() {
     this.buttonSignUp
-      .button({ label: 'Sign Up' })
+      .button({ label: 'Request Sign Up' })
       .unbind('click')
       .click(
         function() {
