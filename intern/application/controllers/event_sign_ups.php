@@ -22,7 +22,7 @@ class Event_sign_ups extends CI_Controller {
     );
   }
 
-  function set_is_open($sign_up_id, $is_open) {
+  function set_is_open($event_id, $sign_up_id, $is_open) {
      $sql = "
        UPDATE sign_up
        SET is_open = ?
@@ -34,7 +34,8 @@ class Event_sign_ups extends CI_Controller {
        $sql,
        array($is_open, $sign_up_id)
      );
-     echo $query;
+     //TODO handle case of db error
+     redirect('/event/view/'.$event_id);
    }
 
    private function format($event_sign_ups) {

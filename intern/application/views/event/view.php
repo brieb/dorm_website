@@ -48,6 +48,7 @@
       'action' => array(
         'class' => 'event_sign_ups',
         'method' => 'set_is_open',
+        'event_id' => $event['id'],
         'sign_up_id' => $event['sign_up_id'],
         'is_open' => $is_open,
       ),
