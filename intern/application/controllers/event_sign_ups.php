@@ -22,57 +22,72 @@ class Event_sign_ups extends CI_Controller {
     );
   }
 
-  private function format($event_sign_ups) {
-    $form = $event_sign_ups['form'];
-    $responses = $event_sign_ups['responses'];
+  function set_is_open($sign_up_id, $is_open) {
+     $sql = "
+       UPDATE sign_up
+       SET is_open = ?
+       WHERE id = ?
+     ";
 
-    $cols = array();
-    $cols['name'] = array(
-      'header' => 'Name',
-      'rows' => array()
-    );
-    $cols['email'] = array(
-      'header' => 'Email Address',
-      'rows' => array()
-    );
+     $this->load->database();
+     $query = $this->db->query(
+       $sql,
+       array($is_open, $sign_up_id)
+     );
+     echo $query;
+   }
 
-    if ($form) {
-      foreach ($form as $question) {
-        $cols[$question['id']] = array(
-          'header' => $question['text'],
-          'rows' => array()
-        );
-      }
-    }
+   private function format($event_sign_ups) {
+     $form = $event_sign_ups['form'];
+     $responses = $event_sign_ups['responses'];
 
-    $cols['created'] = array(
-      'header' => 'Sign Up Time',
-      'rows' => array()
-    );
+     $cols = array();
+     $cols['name'] = array(
+       'header' => 'Name',
+       'rows' => array()
+     );
+     $cols['email'] = array(
+       'header' => 'Email Address',
+       'rows' => array()
+     );
 
-    $colKeys = array_keys($cols);
+     if ($form) {
+       foreach ($form as $question) {
+         $cols[$question['id']] = array(
+           'header' => $question['text'],
+           'rows' => array()
+         );
+       }
+     }
 
-    foreach ($responses as $response) {
-      foreach ($colKeys as $colKey) {
-        if ($colKey == 'name' || $colKey == 'email') {
-          $cols[$colKey]['rows'][] = isset($response[$colKey]) ?
-            $response[$colKey] : '';
-        } else {
-          if ($colKey == 'created') {
-            $cols[$colKey]['rows'][] = date(
-              'Y.m.d g:i a',
-              strtotime($response[$colKey])
-            );
-          } else {
-            $cols[$colKey]['rows'][] = isset($response['form_response'][$colKey])
-              ?
-              $response['form_response'][$colKey] : '';
-          }
-        }
-      }
-    }
+     $cols['created'] = array(
+       'header' => 'Sign Up Time',
+       'rows' => array()
+     );
 
-    return $cols;
-  }
+     $colKeys = array_keys($cols);
+
+     foreach ($responses as $response) {
+       foreach ($colKeys as $colKey) {
+         if ($colKey == 'name' || $colKey == 'email') {
+           $cols[$colKey]['rows'][] = isset($response[$colKey]) ?
+           $response[$colKey] : '';
+         } else {
+           if ($colKey == 'created') {
+             $cols[$colKey]['rows'][] = date(
+               'Y.m.d g:i a',
+               strtotime($response[$colKey])
+             );
+           } else {
+             $cols[$colKey]['rows'][] = isset($response['form_response'][$colKey])
+           ?
+           $response['form_response'][$colKey] : '';
+         }
+       }
+     }
+   }
+
+   return $cols;
+ }
 
 }
