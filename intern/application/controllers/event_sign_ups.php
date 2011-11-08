@@ -29,7 +29,6 @@ class Event_sign_ups extends CI_Controller {
        WHERE id = ?
      ";
 
-     $this->load->database();
      $query = $this->db->query(
        $sql,
        array($is_open, $sign_up_id)

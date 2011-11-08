@@ -9,9 +9,6 @@
 
   $this->load->helper('event/form_builder');
   $this->load->helper('remote_user');
-
-  var_dump($event);
-
 ?>
 
 <?php
