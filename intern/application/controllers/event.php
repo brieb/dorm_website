@@ -66,10 +66,12 @@ class Event extends CI_Controller {
     }
 
     $form_data['event_id'] = $event_id;
+
+    $this->createSignUp($form_data, $event_id);
+
     $this->load->model('Gcal_model');
     $this->Gcal_model->create($form_data);
     //TODO use form_data event id instead
-    $this->createSignUp($form_data, $event_id);
 
     echo $event_id;
     //}

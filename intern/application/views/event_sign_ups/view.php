@@ -16,6 +16,7 @@ $this->load->view(
     value=""
     placeholder="Search any field..."
   />
+  <?php echo anchor('event_sign_ups/view_csv/'.$event_id, 'Export to Spreadsheet'); ?>
 </div>
 
 <div id="content">

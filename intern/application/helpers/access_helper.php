@@ -59,6 +59,7 @@ if (!function_exists('get_permissions')) {
           ),
           'event_sign_ups' => array(
             'view' => true,
+            'view_csv' => true,
             'set_is_open' => true,
           ),
           'sign_up' => array(
