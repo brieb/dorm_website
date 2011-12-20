@@ -1,0 +1,1 @@
+var Util={};Util={button:{addLoadingIndicator:function(a){a.mouseleave(),a.append($("<span/>").attr({"class":"loading_indicate"}))},removeLoadingIndicator:function(a){a.remove(".loading_indicate")}}}

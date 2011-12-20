@@ -20,6 +20,26 @@
         //Optimize the application files. Exclude jQuery since it is
         //included already in require-jquery.js
         {
+            name: "main-default",
+            exclude: ["jquery"]
+        },
+        {
+            name: "main-event-view",
+            exclude: ["jquery"]
+        },
+        {
+          name: "main-event-form",
+          exclude: ["jquery"]
+        },
+        {
+            name: "main-event_sign_ups-view",
+            exclude: ["jquery"]
+        },
+        {
+            name: "main-people",
+            exclude: ["jquery"]
+        },
+        {
             name: "main-home",
             exclude: ["jquery"]
         }

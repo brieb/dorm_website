@@ -2,12 +2,12 @@
 
 include(dirname(__FILE__) . '/conf/config.php');
 
-$URL_HOME = $BASE_URL . '../';
+$URL_HOME = $BASE_URL;
 $URL_APPS = $BASE_URL;
 
-if ( !(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ) {
-  header("Location: ".$URL_HOME);
-}
+//if ( !(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ) {
+  //header("Location: ".$URL_HOME);
+//}
 
 function get_files_in_dir($directory) {
   $results = array();
@@ -53,7 +53,7 @@ $photos_dir_features = $URL_HOME . 'assets/img/home/features/';
         href="<?php echo $URL_HOME; ?>assets/img/common/favicon.ico"/>
 
   <link
-    href="<?php echo $URL_HOME; ?>assets/css/style.css"
+    href="<?php echo $URL_HOME; ?>assets/css/home.css"
     rel="stylesheet"/>
 </head>
 
@@ -80,7 +80,7 @@ $photos_dir_features = $URL_HOME . 'assets/img/home/features/';
         </li>
         <li>
           <a class="login"
-             href="<?php echo $URL_APPS . 'index.php/calendar/index';  ?>">
+            href="<?php echo $URL_APPS . 'intern.php/calendar/index';  ?>">
             Login
           </a>
         </li>

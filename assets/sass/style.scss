@@ -1,14 +1,134 @@
-@import "compass/reset";
+@import "reset";
+
 @import "compass";
-@import "fonts";
-@import "util";
 @import "blueprint";
+
+@import "third_party/Absolution/jquery.ui.all";
+@import "third_party/jquery-ui-timepicker-addon";
+
+
+$menu-sprite-dimensions: true;
+$submenu-sprite-dimensions: true;
+/*$menu-spacing: 18px;*/
+@import "icon/menu/*.png";
+@import "icon/submenu/*.png";
+
+@import "fonts";
+
+$sidebarBackgroundColor: #343434;
+$sidebarBackgroundColor: #C5C5C5;
+$sidebarWidth: 200px;
+$headerHeight: 40px;
+$menuIconSize: 32px;
+$submenuIconSize: 16px;
+$aPaddingTop: 18px;
+$imgDim: 32px;
 
 body {
   margin: 0;
-  font-family: "Trebuchet MS", "Lucida Grande", "Verdana", sans-serif;
-  font-size: 14px;
+  //font-family: "Lato-Regular", "Lucida Grande", "Verdana", "sans-serif";
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 12px;
   background-color: #e3e3e3;
+
+  overflow-y: scroll;
 }
 
-@import "home";
+.ui-button-text {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  text-shadow: none;
+}
+
+@mixin rounded_box($padding_t_b: 20px, $padding_l_r: 30px) {
+  @include single-box-shadow;
+  @include border-radius(10px);
+  @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+  padding: $padding_t_b $padding_l_r;
+}
+
+@mixin square_box {
+  padding: 15px;
+  margin: 5px 10px 20px 5px;
+  @include single-box-shadow;
+  @include background-image(linear-gradient(#F3F3F3, #E6E6E6));
+
+  //@include border-radius(5px);
+  //border-top: 1px solid #B3B3B3;
+  //border-bottom: 1px solid #B3B3B3;
+}
+
+@mixin box_divider {
+  padding: 25px 10px;
+  margin: 0px 10px 0px 5px;
+
+  //border-top: 1px solid #B3B3B3;
+  border-bottom: 1px solid #B3B3B3;
+}
+
+@import "sidebar";
+@import "header";
+@import "welcome";
+@import "content";
+//@import "uniform";
+@import "event_sign_up";
+@import "event_create_sign_up_wizard";
+@import "access_denied";
+@import "layout_full";
+@import "layout_sidebar";
+
+.sign_up_form_render {
+  form {
+    height: 400px;
+    overflow-y: scroll;
+  }
+
+  input[type='text'], textarea {
+    width: 80%;
+  }
+
+  fieldset {
+    margin: 0px 10px 10px 5px;
+
+    .text {
+      font: {
+        family: "Lato-Bold";
+        size: 110%;
+      };
+      margin: 5px;
+    }
+
+    .help {
+      font: {
+        family: "Lato-Regular";
+        size: 90%;
+      };
+      margin: 5px 10px 10px 10px;
+    }
+  }
+}
+
+.loading_indicate {
+  width: 16px;
+  height: 16px;
+
+  background: {
+    image: image-url("common/load.gif");
+    repeat: no-repeat;
+  };
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  margin-top: -8px;
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+  padding: 2px;
+}
+
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
